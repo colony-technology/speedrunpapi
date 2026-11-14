@@ -2442,7 +2442,7 @@ function hasMainComponent(source) {
 function compileCircom(file, options = {}) {
   const found = findCircom(options.bin);
   if (!found)
-    return { ok: false, stage: "locate", error: "circom compiler not found. Install circom 2.x (https://docs.circom.io), set CIRCOM_BIN, or scan the compiled .r1cs instead." };
+    return { ok: false, stage: "locate", error: "circom compiler not found. Install circom 2.x (https://github.com/iden3/circom/blob/master/mkdocs/docs/getting-started/installation.md), set CIRCOM_BIN, or scan the compiled .r1cs instead." };
   const abs2 = path.resolve(file);
   let source;
   try {
@@ -2587,7 +2587,7 @@ function scanCircomFile(file, options = {}) {
 }
 
 // src/cli.ts
-var VERSION = "0.7.1";
+var VERSION = "0.7.2";
 function usage() {
   console.log(`speedrunpapi ${VERSION}: output-determinism analysis for Circom circuits and R1CS
 
@@ -2596,6 +2596,8 @@ Usage:
   speedrunpapi scan --batch files.json [options]
   speedrunpapi verify <report.json> --source <circuit.r1cs>
   speedrunpapi version
+  speedrunpapi quote|solve|run|optimize|status|result|check ...   hosted jobs; needs COLONY_API_KEY
+  speedrunpapi verify-onnx <source.onnx> <artifacts-dir>           offline ONNX plan check
 
 What scan decides, per file:
   Certified  every satisfying witness with the same inputs has the same outputs.
@@ -2626,6 +2628,7 @@ Options:
 
 Exit status: 0 all Certified, 2 any Broken, 3 any Unknown, 1 error.
 Compute is local. Nothing is uploaded unless a key is supplied.
+Hosted jobs: docs/hosted-jobs.md in this package.
 `);
 }
 var sha2562 = (data) => "sha256:" + createHash2("sha256").update(data).digest("hex");
@@ -2633,6 +2636,7 @@ function scanOne(file, flags) {
   const abs2 = path3.resolve(file);
   const id = path3.basename(file).replace(/\.[^.]+$/, "");
   const ext = path3.extname(file).toLowerCase();
+  if (!fs3.existsSync(abs2)) throw new Error(file + ": file not found");
   const bytes = new Uint8Array(fs3.readFileSync(abs2));
   const source_checksum = sha2562(bytes);
   const analyze = { strict: flags.strict, timeBudgetMs: flags.timeoutMs, counterexampleBudgetMs: flags.cexTimeoutMs };
@@ -2646,6 +2650,7 @@ function scanOne(file, flags) {
       assumeBinary: flags.assumeBinary,
       analyze
     });
+    if (!res.ok && res.stage === "locate") throw new Error(res.error);
     if (!res.ok) {
       return {
         file,
@@ -2889,6 +2894,10 @@ async function main() {
       console.error("Usage: speedrunpapi verify <report.json> --source <circuit.r1cs>");
       process.exit(1);
     }
+    for (const f of [reportPath, sourcePath]) if (!fs3.existsSync(path3.resolve(f))) {
+      console.error(f + ": file not found");
+      process.exit(1);
+    }
     const report = JSON.parse(fs3.readFileSync(reportPath, "utf8"));
     const bytes = new Uint8Array(fs3.readFileSync(path3.resolve(sourcePath)));
     const digest = sha2562(bytes);
@@ -3062,12 +3071,12 @@ if (process.argv[2] === "verify-onnx") {
   }
 } else if (hostedCommands.has(process.argv[2])) {
   import("./colony-jobs.mjs").catch((e) => {
-    console.error(e);
+    console.error(e instanceof Error ? e.message : String(e));
     process.exitCode = 1;
   });
 } else {
   main().catch((e) => {
-    console.error(e);
+    console.error(e instanceof Error ? e.message : String(e));
     process.exitCode = 1;
   });
 }

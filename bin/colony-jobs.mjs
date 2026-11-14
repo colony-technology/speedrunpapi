@@ -22980,7 +22980,7 @@ var onnxContract = {
 // packages/colony-sdk/src/client.ts
 var ColonyApiError = class extends Error {
   constructor(status, detail) {
-    super("Colony API " + status + ": " + detail.slice(0, 240));
+    super("colony API " + status + ": " + detail.slice(0, 240));
     this.status = status;
     this.detail = detail;
     this.name = "ColonyApiError";
@@ -23151,7 +23151,7 @@ function createColonyClient(options) {
   const base = (options.apiBase ?? "https://api.colony.technology").replace(/\/+$/, "");
   if (!/^https:\/\//.test(base) && !/^http:\/\/(local|127\.0\.0\.1|localhost)(?::\d+)?$/.test(base))
     throw new Error("API base must use HTTPS, except local test transport");
-  if (!options.apiKey || !/^el_[a-f0-9]{32}$/.test(options.apiKey)) throw new Error("Expected a Colony API key");
+  if (!options.apiKey || !/^el_[a-f0-9]{32}$/.test(options.apiKey)) throw new Error("Set COLONY_API_KEY to the key from your credit pack (it starts with el_). Packs: https://colony.technology/packs");
   const transport = options.fetchImpl ?? fetch;
   async function request(path3, body) {
     const res = await transport(base + path3, {
@@ -23315,7 +23315,7 @@ function createColonyClient(options) {
 
 // packages/colony-sdk/src/cli.ts
 function syntax() {
-  console.log("\u1455. Colony universal jobs\n  colony-jobs run <source> [--format circom] [--cert] [--public]\n  colony-jobs quote <source> [--format circom|onnx|math]\n  colony-jobs solve <source.math>\n  colony-jobs optimize <source.onnx> --out candidate.onnx --proof-dir proof\n  colony-jobs status <job-id>\n  colony-jobs result <job-id> [--out result.json]\n  colony-jobs check <source> <result.json>\n  colony-jobs usage\nSet COLONY_API_KEY. Optional COLONY_API defaults to https://api.colony.technology.\nExisting speedrunpapi scan/verify/claim behavior is unchanged.");
+  console.log("\u1455. colony universal jobs\n  colony-jobs run <source> [--format circom] [--cert] [--public]\n  colony-jobs quote <source> [--format circom|onnx|math]\n  colony-jobs solve <source.math>\n  colony-jobs optimize <source.onnx> --out candidate.onnx --proof-dir proof\n  colony-jobs status <job-id>\n  colony-jobs result <job-id> [--out result.json]\n  colony-jobs check <source> <result.json>\n  colony-jobs usage\nSet COLONY_API_KEY. Optional COLONY_API defaults to https://api.colony.technology.\nspeedrunpapi scan and verify are unchanged.");
 }
 function option(args, flag) {
   const i = args.indexOf(flag);
