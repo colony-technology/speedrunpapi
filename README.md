@@ -46,7 +46,7 @@ speedrunpapi scan circuits/withdraw.circom -l node_modules
 # A library template: instantiate it as main
 speedrunpapi scan node_modules/circomlib/circuits/comparators.circom --main "LessThan(64)" -l node_modules/circomlib/circuits
 
-# A template that expects bits: state the precondition, and it becomes part of the claim
+# A template that expects bits: state the precondition; it is written into the verdict
 speedrunpapi scan pedersen.circom --main "Pedersen(248)" --assume-binary in
 
 # An R1CS you already compiled (a sibling .sym supplies signal names)
@@ -71,15 +71,15 @@ speedrunpapi verify out/circuit.report.json --source out/circuit.r1cs
 | `--timeout`, `--cex-timeout` | Seconds for proof search (600) and counterexample search (15) |
 | `--circom <bin>`, `--prime <name>` | Compiler binary and field (`bn128`, `bls12381`, `goldilocks`, ...) |
 
-## What is claimed, exactly
+## What Certified means
 
 `Certified` states output determinism of one constraint system: for any two assignments that satisfy every constraint and agree on all input signals, the output signals agree. With `--strict` the same is stated for every signal.
 
-It does not state that a witness exists, that the circuit computes what you intended, that inputs are range-checked, or anything about a proving system. A deterministic circuit can still compute the wrong function.
+That a satisfying witness exists, that the circuit computes the intended function and that the inputs stay within their ranges are separate checks.
 
 A circuit with no output signals is never `Certified`: the property says nothing about it. The report then lists the internal signals that are not fixed by the inputs, which is where hint-related bugs live in assert-only circuits.
 
-`--assume-binary` adds the constraint `x * (x - 1) = 0` for each matched input. The verdict then holds for callers that respect the assumption and says nothing about callers that do not. The assumptions are written into the report and the certificate.
+`--assume-binary` adds the constraint `x * (x - 1) = 0` for each matched input. The verdict holds for callers that pass bits at those inputs. The assumptions are written into the report and the certificate.
 
 ### Compiler levels
 
@@ -131,7 +131,7 @@ The `Broken` rows are properties of those templates taken alone, with unrestrict
 
 The corpus has 71 circom-compiled cases with known answers. The engine currently decides 61 of them and reports `Unknown` for 10; none of its verdicts contradicts the known answer. A separate fuzzer compares the engine against brute-force enumeration on random systems over small fields (150,000 systems in the release run, no wrong `Certified` or `Broken`).
 
-## What returns Unknown today
+## What returns Unknown
 
 - Elliptic-curve arithmetic whose uniqueness depends on a number-theoretic fact, such as the completeness of the Baby Jubjub addition law.
 - Big-integer arithmetic whose uniqueness depends on range bounds across limbs.
@@ -139,7 +139,7 @@ The corpus has 71 circom-compiled cases with known answers. The engine currently
 - Circuits with no outputs.
 - R1CS with custom gates (PLONK custom templates), or over a field other than the ones circom targets.
 
-For these the report lists each open signal with the condition under which a constraint would fix it, for example `main.xout: fixed by constraint 4 only where (1 + 168696*main.tau) != 0`. Each line is an obligation to discharge by review.
+For these the report lists each open signal with the condition under which a constraint would fix it, for example `main.xout: fixed by constraint 4 only where (1 + 168696*main.tau) != 0`. Each line gives a condition to check by hand.
 
 ## Checking a result yourself
 
@@ -174,33 +174,17 @@ export COLONY_API_KEY=...
 speedrunpapi scan circuit.circom --require-signed
 ```
 
-The service signs only `Certified` and `Broken` results that it has itself re-verified. It does not sign `Unknown`, and it does not sign a verdict it was merely told. The certificate names the R1CS digest, the derivation digest and any assumptions; the source file name and compiler are recorded as client-declared, because the service cannot run your compiler. Uploads are limited to 8 MiB of R1CS; larger circuits are checked locally with `verify` and the Python checker. Certificate status and revocations are public at `api.colony.technology/v1/certificates/status` and `/v1/revocations`.
+The service signs only `Certified` and `Broken` results that it has itself re-verified. The certificate names the R1CS digest, the derivation digest and any assumptions; the source file name and compiler are recorded as client-declared, because the service cannot run your compiler. Uploads are limited to 8 MiB of R1CS; larger circuits are checked locally with `verify` and the Python checker. Certificate status and revocations are public at `api.colony.technology/v1/certificates/status` and `/v1/revocations`.
 
-To check a certificate offline, `node "$(npm root -g)/speedrunpapi/verifiers/cert/verify.mjs" certificate.json circuit.r1cs` (or `node verifiers/cert/verify.mjs …` from a clone of this repository) verifies the Ed25519 signature against the pinned public key and that the certificate names the digest of your file. A signature authenticates the issuer's statement; the report is what lets you re-check the claim itself. Credit packs: [colony.technology/packs](https://colony.technology/packs).
+To check a certificate offline, `node "$(npm root -g)/speedrunpapi/verifiers/cert/verify.mjs" certificate.json circuit.r1cs` (or `node verifiers/cert/verify.mjs …` from a clone of this repository) verifies the Ed25519 signature against the pinned public key and that the certificate names the digest of your file. The signature identifies the issuer. The report lets you re-check the result. Credit packs: [colony.technology/packs](https://colony.technology/packs).
 
-## Changes in 0.7.2
+## Earlier versions
 
-The analyzer is the 0.7.1 analyzer; verdicts and reports are unchanged. Command-line fixes only:
+Before 0.7.1, sources were classified by template name and keyword. A circuit with unconstrained outputs could receive `Certified`. Certificates issued before 0.7.1 have been revoked. Scan again with 0.7.1 or later. [Release notes](https://github.com/lmtlssss/speedrunpapi/releases).
 
-- No circom compiler on the path is now an error (exit 1) instead of `Unknown` (exit 3).
-- A missing input, report or R1CS file prints `FILE: file not found` and exits 1, with no stack trace.
-- A hosted command without a key says to set `COLONY_API_KEY` and where keys come from.
-- `speedrunpapi --help` lists the hosted-job commands and `verify-onnx`.
-- The circom install link in messages and docs points to the iden3/circom repository; docs.circom.io does not resolve.
+## Hosted jobs
 
-## Changes in 0.7.1
-
-(There is no 0.7.0 package: that tag was placed on the wrong commit and was never published.)
-
-Versions before 0.7.1 classified Circom, Verilog and INT8 sources by template name and keyword. They could report `Certified` for a circuit whose outputs were unconstrained, and the hosted service would sign that verdict. Those results were not proofs.
-
-0.7.1 replaces that analyzer with the one described above, which reasons about the compiled constraint system. If you relied on a `Certified` result from an earlier version, scan again. Certificates issued before 0.7.1 have been revoked.
-
-The Verilog, INT8, ONNX-text and carry-graph classifiers are removed and those inputs return `Unknown`. So are the Bitcoin Script and RV32IM trace adapters: an audit found that the first executed nothing (it accepted scripts that can never complete) and the second only replayed a trace against instruction words the trace itself supplied.
-
-## Also in this package
-
-The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, `check`) and the offline ONNX checker (`verify-onnx`) are unchanged in this release. See [docs/hosted-jobs.md](docs/hosted-jobs.md). The [SCITT claim profile](standards/scitt-exact-computation/) is an individual technical proposal and has not been submitted to the IETF Datatracker.
+The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, `check`) and the offline ONNX checker (`verify-onnx`) are described in [docs/hosted-jobs.md](docs/hosted-jobs.md).
 
 ## Hardware
 
@@ -249,3 +233,4 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 Every netlist has an independent checker; the division and square-root recurrences are proved in Lean 4.
 
 [Terms](https://colony.technology/terms) · [Releases](https://github.com/lmtlssss/speedrunpapi/releases)
+Questions: lmtlssss@colony.technology
