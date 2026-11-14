@@ -70,7 +70,7 @@ The plain operands are not rare ones. Of the integers 1 to 4,096, `sqrt` returns
 
 ## Counts
 
-10,000 calls per operation, format and rounding style, on operands aimed at the places arithmetic breaks: denormal operands and results, both ends of the exponent range, fractions that round up into the next binade, exact ties, signed zeros, infinities. A cell is the number of results that are not the exactly rounded one, of the calls compared. A conversion whose result does not fit the integer is not compared. The functions run are the ones in the tables; `remainder`, `modulo`, `Logb`, `Nextafter`, the comparisons, the conversions with `real` and with fixed point, and the text input and output were not run.
+10,000 calls per operation, format and rounding style, on operands aimed at the places arithmetic breaks: denormal operands and results, both ends of the exponent range, fractions that round up into the next binade, exact ties, signed zeros, infinities. A cell is the number of results that are not the exactly rounded one, of the calls compared. A conversion whose result does not fit the integer is not compared. The functions run are the ones in the tables; `remainder`, `modulo`, `Logb`, `Nextafter`, the comparisons, the conversions with `real` and with fixed point, the text input and output, operands of two different formats in one call, and `check_error` false were not run.
 
 ```
 float32                            round_nearest      round_zero         round_neginf       round_inf
