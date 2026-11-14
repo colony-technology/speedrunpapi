@@ -1,9 +1,8 @@
-# Arithmetic audits of open cores
+# Arithmetic audits of open cores and libraries
 
-Each core is simulated beside exact arithmetic on vectors aimed at the places arithmetic breaks: subnormal operands and results,
-both exponent limits, significands that round up into the next binade, exact ties, signed zeros, infinities.
-Reference: IEEE 754 round to nearest even from the host, and integer arithmetic for the other rounding modes.
-Every row below has a reproducer that fits on one line.
+We check RTL cores and software libraries against exact arithmetic. The inputs cover subnormal operands and results, both exponent limits, significands that round up into the next binade, exact ties, signed zeros and infinities.
+
+For RTL cores the reference is IEEE 754 round to nearest even from the host. The other rounding modes use integer arithmetic. For software libraries and the IEEE 1076 packages, we treat operands as exact fractions, do the operation exactly and round once in every mode. The last column links each wrong result reported upstream; most rows have a one-line reproducer further down the page.
 
 ## Results
 
@@ -286,7 +285,7 @@ ac_fixed<8,0,true> -0.5 / ac_fixed<8,8,true> 3, truncation toward minus infinity
 
 Fix: two lines in [`ac-math/`](ac-math), with the exact reference and the sweep. 0 wrong after them in 689,808 calls over 5,802 configurations, 56 of which did not compile before.
 
-**LLVM `APFloat`.** The software floating point that Clang, the optimizer and MLIR fold constants with. On its eleven 8-, 6- and 4-bit formats the arithmetic is right in all five rounding modes, on every operand pair and on every operand triple of the fused multiply-add. The two value defects of release 23.1.4 are on LLVM's record already. One thing is not: a result below the smallest normal number that rounds up to it comes back without the underflow status, in every format. An x86-64 and an arm64 processor both raise underflow for the first line.
+**LLVM `APFloat`.** The software floating point that Clang, the optimizer and MLIR fold constants with. On its eleven 8-, 6- and 4-bit formats the arithmetic is right in all five rounding modes, on every operand pair and on every operand triple of the fused multiply-add. LLVM has recorded the two value defects of release 23.1.4. The underflow status is not on its record: a result below the smallest normal number that rounds up to it comes back without the underflow status, in every format. An x86-64 and an arm64 processor both raise underflow for the first line.
 
 ```
 (1 - 2^-53) x 2^-1022, binary64, to nearest          expected opUnderflow | opInexact      library opInexact
