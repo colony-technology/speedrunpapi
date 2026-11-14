@@ -1,5 +1,24 @@
 # IEEE 1076 float package
 
+We found sqrt(2.0) in the standard's float_pkg returns one unit in the last place too low in double precision by default. This is the IEEE 1076-2008 and 1076-2019 VHDL floating-point package; IEEE publishes the file, GHDL and NVC ship it unchanged.
+
+The root uses a fixed count of Newton steps and no sticky bit. But taking it one bit at a time from the definition is exact, with a subtraction per bit, the same thing as square root by hand on paper.
+
+Our check treats operands as exact fractions, does each operation exactly and rounds once before comparing. mac(-6, -1, -5), or (-6)(-1)+(-5), returns -15 instead of 1. Converting 2^-512 double to single returns 1.0; reciprocal of 2^127 in single returns infinity. For all operands and pairs in a 7-bit format (3 exponent bits, 3 fraction bits), plus all mac triples, we ran 8,692,326 calls, and 1,271,619 weren't correctly rounded.
+
+The exact reference, testbench, causes with source line numbers and patch are in the folder. All 32,470,838 calls from four test sets pass with patch; GHDL and NVC produce identical result files on common sets. fixed_pkg division gets 41,026 of 751,418 wrong and has its patch there. Reported to IEEE P1076 working group (VHDL-Issues 388), ghdl 3486, nvc 1758.
+
+To see it yourself, with GHDL and nothing else:
+
+```
+ghdl -a --std=08 plain.vhd
+ghdl --elab-run --std=08 plain
+```
+
+The rest of this page is the record: every wrong call, the counts, the causes by line, the patch.
+
+## The package and the reference
+
 `ieee.float_pkg` is the floating-point package of the VHDL standard, IEEE Std 1076-2008 and 1076-2019. The source is the IEEE's own: [`ieee/float_generic_pkg-body.vhdl`](https://opensource.ieee.org/vasg/Packages/-/blob/release/ieee/float_generic_pkg-body.vhdl) on the `release` branch of `opensource.ieee.org/vasg/Packages`, 5,712 lines, `$Revision: 1220 $`. The working group's `develop` branch at `gitlab.com/IEEE-P1076/Packages` has the same bytes, and GHDL and NVC ship them unchanged. The runs here are in GHDL 7.0.0-dev and NVC 1.23.1, and where both ran the same vectors they wrote the same result file.
 
 The package is set beside exact arithmetic. An operand is a sign and a fraction of two integers, the operation is done on the fractions, and the result is rounded once into the format in the rounding style the call names. [`exact.py`](exact.py) is that reference.
