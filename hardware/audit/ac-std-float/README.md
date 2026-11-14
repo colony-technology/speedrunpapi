@@ -182,7 +182,7 @@ A C++17 compiler and Python 3. `AC_TYPES` is a checkout of [hlslibs/ac_types](ht
 
 ```
 export AC_TYPES=/path/to/ac_types
-./run.sh repro                              # the three findings, a few lines each
+./run.sh repro                              # the six findings, a few lines each
 ./run.sh small "10.4" "add sub"             # every pair of the 10.4 format, four rounding modes
 ./run.sh small "6.3" "fma"                  # every triple of the 6.3 format
 ./run.sh small "10.4" "ceil floor trunc round"

@@ -51,9 +51,7 @@ binary16  fma(NaN, 1.0, 1.0)     7c40
 
 Rounding toward zero carries an overflow to the largest finite number. 100000 to binary16 comes back `7c00`, infinity, where 65504 (`7bff`) is the result. `APFloat<4,3>` from a 12-bit integer returns infinity for all 3,585 integers of magnitude 256 or more. `cast_from_fixed_using_rne` is right to return infinity there.
 
-## One thing the documentation leaves open
-
-"Subnormal results are flushed to zero." A result below the smallest normal number that IEEE rounding carries up to it comes back as the smallest normal number from `mul` and `ldexp`, and as either that or zero from `fma`. Both are accepted here; `xrun.py` prints how often each occurs.
+"Subnormal results are flushed to zero." A result below the smallest normal number that IEEE rounding carries up to it comes back as the smallest normal number from `mul` and `ldexp`, and as either that or zero from `fma`. The comparison accepts either result, and `xrun.py` records how often each occurs.
 
 ## Run it
 
