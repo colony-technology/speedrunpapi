@@ -308,8 +308,10 @@ Wrappers, exact reference and the workflow that makes the Verilog: [`xls-apfloat
 
 ## Your block
 
-One arithmetic block of yours, audited this way: 2,500 USD, fixed.
+One arithmetic block of yours, audited this way: 1,800 USD, fixed.
 
 You send the RTL and the function it implements. You receive the vector counts, every mismatch reduced to a one-line reproducer with the faulty line, and the fix.
 
-Pay: https://buy.stripe.com/9B614m4Ls2kf6s277R6c004 · Questions: lmtlssss@colony.technology
+Pay: https://buy.stripe.com/7sY9AS1zg5wr9Ee63N6c005 · Questions: lmtlssss@colony.technology
+
+Larger work, by contract: the same address.

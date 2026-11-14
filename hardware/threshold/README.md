@@ -53,12 +53,14 @@ python3 test_threshold.py
 
 ## Paid evaluation
 
-One block of yours, in your flow: 2,500 USD, fixed.
+One block of yours, in your flow: 1,800 USD, fixed.
 
 You send the function, width, FPGA family and your reference RTL. You receive the LUT netlist as Verilog, the proof files with the independent checker, and a comparison sheet measured in your flow.
 Full refund if the delivered block does not beat your reference on LUT count or logic depth.
 
-Pay: https://buy.stripe.com/9B614m4Ls2kf6s277R6c004 · Questions: lmtlssss@colony.technology
+Pay: https://buy.stripe.com/7sY9AS1zg5wr9Ee63N6c005 · Questions: lmtlssss@colony.technology
+
+Larger work, by contract: the same address.
 
 ## Proof
 

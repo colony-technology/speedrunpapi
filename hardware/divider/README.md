@@ -75,11 +75,13 @@ Yosys's SAT solver proves `udiv` equal to `/` and `%` for every `a` and every `b
 
 ## Paid evaluation
 
-One arithmetic block of yours, in your flow: 2,500 USD, fixed.
+One arithmetic block of yours, in your flow: 1,800 USD, fixed.
 
 You send the function, width, FPGA family and your reference RTL. You receive the block as Verilog, the proof files, and a comparison sheet measured in your flow.
 Full refund if the delivered block does not beat your reference on cell count or delay.
 
-Pay: https://buy.stripe.com/9B614m4Ls2kf6s277R6c004 · Questions: lmtlssss@colony.technology
+Pay: https://buy.stripe.com/7sY9AS1zg5wr9Ee63N6c005 · Questions: lmtlssss@colony.technology
+
+Larger work, by contract: the same address.
 
 Licence: see `LICENSE.md` at the repository root.
