@@ -1,0 +1,19 @@
+$ python3 -I proof/sat_equiv.py --yosys $BIN/yosys --work $WORK/equiv
+colony_crc32_d8    struct v           PROVED (73 of 73 net pairs)
+colony_crc32_d8    struct lut6        PROVED (73 of 73 net pairs)
+colony_crc32_d8    struct lut6-mutant UNPROVEN (71 proven, 2 unproven)
+colony_crc32_d32   struct v           PROVED (132 of 132 net pairs)
+colony_crc32_d32   struct lut6        PROVED (132 of 132 net pairs)
+colony_crc32_d32   struct lut6-mutant UNPROVEN (131 proven, 1 unproven)
+colony_crc32_d64   struct v           PROVED (183 of 183 net pairs)
+colony_crc32_d64   struct lut6        PROVED (183 of 183 net pairs)
+colony_crc32_d64   struct lut6-mutant UNPROVEN (182 proven, 1 unproven)
+colony_crc32_be64  struct v           PROVED (380 of 380 net pairs)
+colony_crc32_be64  struct lut6        PROVED (380 of 380 net pairs)
+colony_crc32_be64  struct lut6-mutant UNPROVEN (379 proven, 1 unproven)
+colony_crc32_d8    ref    v           PROVED
+colony_crc32_d8    ref    lut6        PROVED
+colony_crc32_d8    ref    blif        PROVED
+colony_crc32_d8    ref    lut6-mutant COUNTEREXAMPLE
+FAILURES 0
+exit 0

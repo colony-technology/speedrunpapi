@@ -1,0 +1,5 @@
+Yosys 0.70+385 (git sha1 098e46a36, Release, Clang /usr/local/osxcross/target/bin/aarch64-apple-darwin25.5-clang++ 21.1.8)
+Verilator 5.055 devel rev v5.054-183-g9040f8666 (mod)
+Python 3.15.2
+zlib 1.2.12
+macOS-27.2-arm64-arm-64bit-Mach-O

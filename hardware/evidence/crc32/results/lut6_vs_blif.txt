@@ -1,0 +1,6 @@
+$ python3 -I proof/lut6_vs_blif.py
+colony_crc32_d8    LUT instances  41  BLIF LUTs  41  outputs 32  MATCH
+colony_crc32_d32   LUT instances 100  BLIF LUTs 100  outputs 32  MATCH
+colony_crc32_d64   LUT instances 151  BLIF LUTs 151  outputs 32  MATCH
+colony_crc32_be64  LUT instances 348  BLIF LUTs 348  outputs 32  MATCH
+exit 0

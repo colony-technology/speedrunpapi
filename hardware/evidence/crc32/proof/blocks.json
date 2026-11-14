@@ -1,0 +1,30 @@
+[
+ {
+  "name": "colony_crc32_d8",
+  "data_bits": 8,
+  "inputs": 40,
+  "lut6": 41,
+  "levels": 2
+ },
+ {
+  "name": "colony_crc32_d32",
+  "data_bits": 32,
+  "inputs": 64,
+  "lut6": 100,
+  "levels": 3
+ },
+ {
+  "name": "colony_crc32_d64",
+  "data_bits": 64,
+  "inputs": 96,
+  "lut6": 151,
+  "levels": 3
+ },
+ {
+  "name": "colony_crc32_be64",
+  "data_bits": 64,
+  "inputs": 99,
+  "lut6": 348,
+  "levels": 13
+ }
+]

@@ -1,0 +1,8 @@
+$ python3 -I sim/run_sim.py --verilator $BIN/verilator --cells $BIN/../share/yosys/xilinx/cells_sim.v --work $WORK/sim --n 1000000
+directed vectors per block 776
+RAND seed 1 per_block 1000776  d8 0  d32 0  d64 0  be64 0 mismatches
+- ./sim/tb_rand.sv:57: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 1us; walltime 2.835 s; speed 353.066 ns/s
+- Verilator: cpu 2.746 s on 1 threads; allocated 2 MB
+exit 0
