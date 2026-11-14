@@ -15,8 +15,6 @@ ghdl -a --std=08 plain.vhd
 ghdl --elab-run --std=08 plain
 ```
 
-The rest of this page is the record: every wrong call, the counts, the causes by line, the patch.
-
 ## The package and the reference
 
 `ieee.float_pkg` is the floating-point package of the VHDL standard, IEEE Std 1076-2008 and 1076-2019. The source is the IEEE's own: [`ieee/float_generic_pkg-body.vhdl`](https://opensource.ieee.org/vasg/Packages/-/blob/release/ieee/float_generic_pkg-body.vhdl) on the `release` branch of [`opensource.ieee.org/vasg/Packages`](https://opensource.ieee.org/vasg/Packages), 5,712 lines, `$Revision: 1220 $`. The working group's `develop` branch at `gitlab.com/IEEE-P1076/Packages` has the same bytes, and GHDL and NVC ship them unchanged. The runs here are in GHDL 7.0.0-dev and NVC 1.23.1, and where both ran the same vectors they wrote the same result file.
@@ -72,7 +70,7 @@ The plain operands are not rare ones. Of the integers 1 to 4,096, `sqrt` returns
 
 ## Counts
 
-10,000 calls per operation, format and rounding style, on operands aimed at the places arithmetic breaks: denormal operands and results, both ends of the exponent range, fractions that round up into the next binade, exact ties, signed zeros, infinities. A cell is the number of results that are not the exactly rounded one, of the calls compared. A conversion whose result does not fit the integer is not compared.
+10,000 calls per operation, format and rounding style, on operands aimed at the places arithmetic breaks: denormal operands and results, both ends of the exponent range, fractions that round up into the next binade, exact ties, signed zeros, infinities. A cell is the number of results that are not the exactly rounded one, of the calls compared. A conversion whose result does not fit the integer is not compared. The functions run are the ones in the tables; `remainder`, `modulo`, `Logb`, `Nextafter`, the comparisons, the conversions with `real` and with fixed point, and the text input and output were not run.
 
 ```
 float32                            round_nearest      round_zero         round_neginf       round_inf
@@ -281,12 +279,6 @@ python3 exact.py check vectors.txt results.txt
 
 To use the patched package in a design, compile `float_generic_pkg.vhdl` and the patched body into a library and instantiate `float_pkg` from it, as `run.sh` does.
 
-## Not covered
-
-`remainder`, `modulo`, `Logb`, `Nextafter`, the comparisons, the conversions with `real` and with fixed point, the text input and output, operands of two different formats in one call, and `check_error` false.
-
-The VHDL-93 version of the package, `float_pkg_c.vhdl` in [FPHDL/fphdl](https://github.com/FPHDL/fphdl), carries the same lines. It was not run here.
-
 ## Reported
 
-To the IEEE P1076 working group on 13 November 2026 as [VHDL-Issues#388](https://gitlab.com/IEEE-P1076/VHDL-Issues/-/work_items/388) and by mail, and as [ghdl/ghdl#3486](https://github.com/ghdl/ghdl/issues/3486), [nickg/nvc#1758](https://github.com/nickg/nvc/issues/1758) and [FPHDL/fphdl#4](https://github.com/FPHDL/fphdl/issues/4).
+To the IEEE P1076 working group on 13 November 2026 as [VHDL-Issues#388](https://gitlab.com/IEEE-P1076/VHDL-Issues/-/work_items/388) and by mail, and as [ghdl/ghdl#3486](https://github.com/ghdl/ghdl/issues/3486) and [nickg/nvc#1758](https://github.com/nickg/nvc/issues/1758). The VHDL-93 version of the package, `float_pkg_c.vhdl` in [FPHDL/fphdl](https://github.com/FPHDL/fphdl), carries the same lines: [FPHDL/fphdl#4](https://github.com/FPHDL/fphdl/issues/4).
