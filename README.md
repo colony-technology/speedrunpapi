@@ -229,6 +229,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.
 [`hardware/linear/`](hardware/linear/) builds XOR logic: CRC-32 over a 512-bit bus in 701 LUT-6 at 4 levels, where Yosys takes 2,344; with any number of valid bytes, 1,172.
 
+[`hardware/evidence/crc32/`](hardware/evidence/crc32/) holds the Ethernet and ARINC 664 frame check sequence at 8, 32 and 64 bits per clock and 64 bits with byte enables, 41, 100, 151 and 348 LUT-6, as verification evidence for a DO-254 or ISO 26262 applicant. Each block is proven equal to the bit-serial definition on every input by an independent checker and again in Yosys, simulated on 1,000,776 vectors, and replayed on 53 known-answer messages.
+
 [`hardware/audit/`](hardware/audit/) runs open arithmetic cores beside exact arithmetic: a double-precision divider in dawsonjon/fpu returns 2^29 times the quotient for a band of subnormal results. The floating-point adder of BaseJump STL returns the smallest normal number for 0 + 0. The floating-point unit of OpenHW's CVA5 never answers 0.0 / 2.0 when that division directly follows another one. NOEL-V, Gaisler's RISC-V processor, returns 1.65e-24 for 3.0 * 5.0 - 15.0 at the target of a mispredicted branch. The float package of the VHDL standard, as the IEEE publishes it and GHDL and NVC ship it, returns -15 for (-6)(-1) + (-5) and the wrong last bit for the square root of two in double precision; the patch beside it passes 32 million calls.
 Every netlist has an independent checker; the division and square-root recurrences are proved in Lean 4.
 

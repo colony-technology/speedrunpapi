@@ -1,0 +1,3 @@
+$ python3 -I proof/independent_crc_checker.py --netlist proof/colony_crc32_be64.blif --derivation proof/colony_crc32_be64.json
+{"bytes": 8, "levels": 13, "lut_count": 348, "netlist_digest": "sha256:dcb67421c277346efa60fcbd27ad8f2685cd734da0dcc621a5ce2c31198cda39", "ok": true, "poly": "0x4c11db7", "proof": "GF(2) forms of the outputs equal the recurrence for every number of valid bytes", "width": 32}
+exit 0

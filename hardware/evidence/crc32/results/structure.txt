@@ -1,0 +1,6 @@
+$ python3 -I proof/structure.py --yosys $BIN/yosys --verilator $BIN/verilator --work $WORK/structure
+colony_crc32_d8    netlist  41  kept wires  41  LUT cells  41  no state/process True  lut-only True  verilator -Wall warnings 0 / 0
+colony_crc32_d32   netlist 100  kept wires 100  LUT cells 100  no state/process True  lut-only True  verilator -Wall warnings 0 / 0
+colony_crc32_d64   netlist 151  kept wires 151  LUT cells 151  no state/process True  lut-only True  verilator -Wall warnings 0 / 0
+colony_crc32_be64  netlist 348  kept wires 348  LUT cells 348  no state/process True  lut-only True  verilator -Wall warnings 0 / 0
+exit 0

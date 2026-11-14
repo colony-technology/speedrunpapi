@@ -1,0 +1,3 @@
+$ python3 -I proof/independent_linear_checker.py --netlist proof/colony_crc32_d8.blif --derivation proof/colony_crc32_d8.json
+{"inputs": 40, "kind": "crc", "levels": 2, "lut_count": 41, "netlist_digest": "sha256:a718cdc8c81a21972483b1a6627f0131fdd813970291d2c80c315f2958b3899a", "ok": true, "outputs": 32, "proof": "parity LUTs; GF(2) forms of the outputs equal the claim"}
+exit 0

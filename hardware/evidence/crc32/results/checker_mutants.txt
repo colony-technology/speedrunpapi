@@ -1,0 +1,6 @@
+$ python3 -I proof/mutate_checkers.py
+colony_crc32_d8    original accepted True   mutants 41  rejected 41
+colony_crc32_d32   original accepted True   mutants 100  rejected 100
+colony_crc32_d64   original accepted True   mutants 151  rejected 151
+colony_crc32_be64  original accepted True   mutants 348  rejected 348
+exit 0

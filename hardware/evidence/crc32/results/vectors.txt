@@ -1,0 +1,8 @@
+$ python3 -I vectors/replay.py --verilator $BIN/verilator --cells $BIN/../share/yosys/xilinx/cells_sim.v --work $WORK/kat
+software: 53 vectors, 15452 bytes, 0 mismatches
+KAT vectors 53 bytes 15452 paths 9 crc_mismatches 0 residue_mismatches 0
+- ./sim/tb_kat.sv:84: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.055 devel
+- Verilator: $finish at 125ns; walltime 0.267 s; speed 469.666 ns/s
+- Verilator: cpu 0.266 s on 1 threads; allocated 2 MB
+exit 0
