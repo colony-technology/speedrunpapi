@@ -49,8 +49,8 @@ A [replayable production ONNX proof](proofs/hosted-onnx-production-20261110/) ac
 
 [Exact carry-state contraction, 4,096 → 6 retained states](proofs/carry-frontier-4096/) is a complete portable evidence packet. It preserves the declared high-result observations of six modular additions for **all admissible lower-prefix inputs and every high suffix**. The 682.7× factor describes the reduction in retained states, not a CPU speedup.
 
-The original source, mathematical candidate, separate verifier source, exact input/claim digests and Ed25519 laboratory receipt travel together. A reviewer can run the independent checker with Python 3.11 and Node 20+:
+The original source, mathematical candidate, separate verifier source, exact input/claim digests and Ed25519 laboratory receipt travel together. A reviewer can run the independent checker with Python 3.11 and Node 20+, from a clone of this repository:
 
 `python3 proofs/carry-frontier-4096/verifier/verify.py`
 
-This mathematical reproduction requires no colony account, private optimizer, or network access. Its ephemeral Ed25519 signature is a laboratory attestation; commercial certificates and third-party challenge acceptance have separate issuance and review requirements. The [proof workflow](.github/workflows/portable-proof.yml) replays it on GitHub Actions. Additional source-bound operator evidence can be published beside this example when accepted externally.
+This mathematical reproduction requires no colony account, private optimizer, or network access. Its Ed25519 key is generated per run; it is not a colony certificate. The [proof workflow](.github/workflows/portable-proof.yml) replays it on GitHub Actions.

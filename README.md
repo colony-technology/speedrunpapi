@@ -2,7 +2,7 @@
 
 Output-determinism analysis for Circom circuits and R1CS, by [colony.technology](https://colony.technology).
 
-An under-constrained circuit accepts more than one output for the same input, so the prover decides the result instead of the circuit. `speedrunpapi` checks that property on the constraint system the compiler emits and returns one of three verdicts. Each is backed by something you can re-check without trusting this tool.
+An under-constrained circuit accepts more than one output for the same input, so the prover decides the result instead of the circuit. `speedrunpapi` checks that property on the constraint system the compiler emits and returns one of three verdicts.
 
 | Verdict | Meaning | Backed by |
 | --- | --- | --- |
@@ -10,11 +10,11 @@ An under-constrained circuit accepts more than one output for the same input, so
 | `Broken` | Two satisfying witnesses share every input and differ on an output. | Both witnesses, re-evaluated against every constraint |
 | `Unknown` | Neither was established. | The signals that are still open, and why |
 
-The tool does not guess. A circuit it cannot decide is `Unknown`.
+A circuit it cannot decide is `Unknown`.
 
 ## Quick start
 
-Requires Node.js 20+ and the [circom](https://docs.circom.io/getting-started/installation/) compiler 2.x for `.circom` input.
+Requires Node.js 20+ and the [circom](https://github.com/iden3/circom/blob/master/mkdocs/docs/getting-started/installation.md) compiler 2.x for `.circom` input.
 
 ```sh
 npx speedrunpapi scan circuit.circom
@@ -31,6 +31,7 @@ Broken  examples/division.circom
 
 ```sh
 npm install -g speedrunpapi      # or: pip install speedrunpapi  (same bundle; still needs Node.js)
+git clone https://github.com/lmtlssss/speedrunpapi && cd speedrunpapi
 speedrunpapi scan examples/iszero.circom examples/decoder.circom examples/modsum-safe.circom
 ```
 
@@ -147,7 +148,7 @@ A report is self-contained: the derivation or the two witnesses, the R1CS digest
 ```sh
 speedrunpapi scan circuit.circom --report circuit.report.json     # also writes circuit.r1cs
 speedrunpapi verify circuit.report.json --source circuit.r1cs
-python3 verifiers/determinism/determinism_check.py circuit.r1cs circuit.report.json
+python3 "$(npm root -g)/speedrunpapi/verifiers/determinism/determinism_check.py" circuit.r1cs circuit.report.json
 ```
 
 `verify` uses the JavaScript checker. `determinism_check.py` is a second implementation in Python with no dependencies beyond the standard library and its own R1CS parser. To tie the R1CS back to your source, recompile with the recorded compiler version and flags and compare digests.
@@ -175,7 +176,7 @@ speedrunpapi scan circuit.circom --require-signed
 
 The service signs only `Certified` and `Broken` results that it has itself re-verified. It does not sign `Unknown`, and it does not sign a verdict it was merely told. The certificate names the R1CS digest, the derivation digest and any assumptions; the source file name and compiler are recorded as client-declared, because the service cannot run your compiler. Uploads are limited to 8 MiB of R1CS; larger circuits are checked locally with `verify` and the Python checker. Certificate status and revocations are public at `api.colony.technology/v1/certificates/status` and `/v1/revocations`.
 
-To check a certificate offline, `node verifiers/cert/verify.mjs certificate.json circuit.r1cs` verifies the Ed25519 signature against the pinned public key and that the certificate names the digest of your file. A signature authenticates the issuer's statement; the report is what lets you re-check the claim itself. Credit packs: [colony.technology/packs](https://colony.technology/packs).
+To check a certificate offline, `node "$(npm root -g)/speedrunpapi/verifiers/cert/verify.mjs" certificate.json circuit.r1cs` (or `node verifiers/cert/verify.mjs …` from a clone of this repository) verifies the Ed25519 signature against the pinned public key and that the certificate names the digest of your file. A signature authenticates the issuer's statement; the report is what lets you re-check the claim itself. Credit packs: [colony.technology/packs](https://colony.technology/packs).
 
 ## Changes in 0.7.1
 
@@ -193,7 +194,7 @@ The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, 
 
 ## Hardware
 
-The same mathematics builds logic. Compilers, netlists and proofs are under [`hardware/`](hardware/).
+Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 
 | EPFL benchmark | Published best | colony |
 | --- | --- | --- |
@@ -222,7 +223,7 @@ The same mathematics builds logic. Compilers, netlists and proofs are under [`ha
 
 [`hardware/iwls/`](hardware/iwls/) holds the rules behind twenty functions of the IWLS 2026 contest, which gives them as truth tables only. For ten of them the circuit built from the rule is smaller than the smallest of the twelve teams: 519 to 683 AND nodes where the contest has 2,868 to 8,383, and 1,067 to 2,056 where it has 1,573 to 21,553. [`hardware/iwls/2025/`](hardware/iwls/2025/) does the same for the 2025 contest: the exact rules of twenty-six floating-point functions and eleven circuits smaller than the smallest of the four teams, among them an 8-bit multiplier in 303 AND nodes where the contest has 2,327.
 
-[`hardware/bristol/`](hardware/bristol/) holds sixteen of the Bristol Fashion circuits that garbled-circuit, multi-party computation and zero-knowledge systems load, with fewer AND gates: the IEEE double square root in 2,013 where the published circuit has 91,504, divide in 4,559 where it has 82,269, and the ten float circuits together in 15,704 where they have 204,664. The files are drop-in. Nine are proved equal to the published ones with ABC, and add, multiply, divide and square root match the arithmetic of the processor on a billion operands each.
+[`hardware/bristol/`](hardware/bristol/) holds sixteen of the Bristol Fashion circuits that garbled-circuit, multi-party computation and zero-knowledge systems load, with fewer AND gates: the IEEE double square root in 2,013 where the published circuit has 91,504, divide in 4,559 where it has 82,269, and the ten float circuits together in 15,704 where they have 204,664. Same file format; they load in place of the published ones. Nine are proved equal to the published ones with ABC, and add, multiply, divide and square root match the arithmetic of the processor on a billion operands each.
 
 [`hardware/epfl-sin/`](hardware/epfl-sin/) holds the EPFL `sin` benchmark as 685 LUT-6 where the smallest published netlist has 994, and the arithmetic the benchmark computes, which the suite does not describe. Both are checked against the benchmark on all 16,777,216 inputs.
 
@@ -234,7 +235,7 @@ The same mathematics builds logic. Compilers, netlists and proofs are under [`ha
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.
 [`hardware/linear/`](hardware/linear/) builds XOR logic: CRC-32 over a 512-bit bus in 701 LUT-6 at 4 levels, where Yosys takes 2,344; with any number of valid bytes, 1,172.
 
-[`hardware/audit/`](hardware/audit/) runs open arithmetic cores beside exact arithmetic: a double-precision divider in a 763-star FPU returns 2^29 times the quotient for a band of subnormal results. The floating-point adder of a 694-star hardware library returns the smallest normal number for 0 + 0. The floating-point unit of OpenHW's CVA5 never answers 0.0 / 2.0 when that division directly follows another one. NOEL-V, Gaisler's RISC-V processor, returns 1.65e-24 for 3.0 * 5.0 - 15.0 at the target of a mispredicted branch. The float package of the VHDL standard, as the IEEE publishes it and GHDL and NVC ship it, returns -15 for (-6)(-1) + (-5) and the wrong last bit for the square root of two in double precision; the patch beside it passes 32 million calls.
+[`hardware/audit/`](hardware/audit/) runs open arithmetic cores beside exact arithmetic: a double-precision divider in dawsonjon/fpu returns 2^29 times the quotient for a band of subnormal results. The floating-point adder of BaseJump STL returns the smallest normal number for 0 + 0. The floating-point unit of OpenHW's CVA5 never answers 0.0 / 2.0 when that division directly follows another one. NOEL-V, Gaisler's RISC-V processor, returns 1.65e-24 for 3.0 * 5.0 - 15.0 at the target of a mispredicted branch. The float package of the VHDL standard, as the IEEE publishes it and GHDL and NVC ship it, returns -15 for (-6)(-1) + (-5) and the wrong last bit for the square root of two in double precision; the patch beside it passes 32 million calls.
 Every netlist has an independent checker; the division and square-root recurrences are proved in Lean 4.
 
 [Terms](https://colony.technology/terms) · [Releases](https://github.com/lmtlssss/speedrunpapi/releases)
