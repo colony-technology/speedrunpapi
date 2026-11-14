@@ -1,6 +1,6 @@
 # CVA5
 
-[openhwgroup/cva5](https://github.com/openhwgroup/cva5), `master` at `2acf79f`, the floating-point unit `fp_unit` driven at its issue and writeback interfaces.
+[openhwfoundation/cva5](https://github.com/openhwfoundation/cva5), `master` at `2acf79f`, the floating-point unit `fp_unit` driven at its issue and writeback interfaces.
 
 ## Division and square root issued back to back
 

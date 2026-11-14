@@ -1,10 +1,10 @@
 # CVFPU
 
-[openhwgroup/cvfpu](https://github.com/openhwgroup/cvfpu), branch `develop` at `532f0f8`, `fpnew_top` with its default parameters and with the merged ADDMUL unit.
+[openhwfoundation/cvfpu](https://github.com/openhwfoundation/cvfpu), branch `develop` at `532f0f8`, `fpnew_top` with its default parameters and with the merged ADDMUL unit.
 
 ## DIV on FP16ALT
 
-A quotient below 2^-134 returns zero without flags. Upstream issue [#169](https://github.com/openhwgroup/cvfpu/issues/169) reports the symptom.
+A quotient below 2^-134 returns zero without flags. Upstream issue [#169](https://github.com/openhwfoundation/cvfpu/issues/169) reports the symptom.
 
 ```
 0x0d00 / 0x5080  =  2^-101 / 2^34  =  2^-135        a quarter of the smallest subnormal, 2^-133
@@ -39,7 +39,7 @@ Run with Verilator 5: the sources of `Bender.yml`, `cf_math_pkg.sv`, `lzc.sv` an
 
 ## ADDS into a format with a smaller exponent range
 
-`ADDS` adds two operands of the source format and rounds into the destination format. With the merged ADDMUL unit and a destination whose exponent field is narrower than the source's, a sum at or below the destination's smallest normal number is wrong.
+`ADDS` adds two operands of the source format and rounds into the destination format. With the merged ADDMUL unit and a destination whose exponent field is narrower than the source's, a sum at or below the destination's smallest normal number is wrong. Upstream issue [#195](https://github.com/openhwfoundation/cvfpu/issues/195).
 
 ```
 ADDS, FP64 to FP32:   (+0) + 0x37e0000000000000 (2^-129)
