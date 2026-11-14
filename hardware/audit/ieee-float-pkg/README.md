@@ -6,7 +6,7 @@ The root uses a fixed count of Newton steps and no sticky bit. But taking it one
 
 Our check treats operands as exact fractions, does each operation exactly and rounds once before comparing. mac(-6, -1, -5), or (-6)(-1)+(-5), returns -15 instead of 1. Converting 2^-512 double to single returns 1.0; reciprocal of 2^127 in single returns infinity. For all operands and pairs in a 7-bit format (3 exponent bits, 3 fraction bits), plus all mac triples, we ran 8,692,326 calls, and 1,271,619 weren't correctly rounded.
 
-The exact reference, testbench, causes with source line numbers and patch are in the folder. All 32,470,838 calls from four test sets pass with patch; GHDL and NVC produce identical result files on common sets. fixed_pkg division gets 41,026 of 751,418 wrong and has its patch there. Reported to IEEE P1076 working group (VHDL-Issues 388), ghdl 3486, nvc 1758.
+The exact reference, testbench, causes with source line numbers and patch are in the folder. All 32,470,838 calls from four test sets pass with patch; GHDL and NVC produce identical result files on common sets. fixed_pkg division gets 41,026 of 751,418 wrong and has its patch there. Reported to IEEE P1076 working group (VHDL-Issues 388), ghdl 3486, nvc 1758, fphdl 4.
 
 To see it yourself, with GHDL and nothing else:
 

@@ -39,7 +39,7 @@ Run with Verilator 5: the sources of `Bender.yml`, `cf_math_pkg.sv`, `lzc.sv` an
 
 ## ADDS into a format with a smaller exponent range
 
-`ADDS` adds two operands of the source format and rounds into the destination format. With the merged ADDMUL unit and a destination whose exponent field is narrower than the source's, a sum at or below the destination's smallest normal number is wrong.
+`ADDS` adds two operands of the source format and rounds into the destination format. With the merged ADDMUL unit and a destination whose exponent field is narrower than the source's, a sum at or below the destination's smallest normal number is wrong. Upstream issue [#195](https://github.com/openhwgroup/cvfpu/issues/195).
 
 ```
 ADDS, FP64 to FP32:   (+0) + 0x37e0000000000000 (2^-129)
