@@ -30,12 +30,12 @@ Reported on 13 November 2026 as [antonblanchard/microwatt#482](https://github.co
 
 ## `fcfidus`
 
-Converting an unsigned 64-bit integer to single precision drops the bits under the single-precision round bit. This one is reported upstream by others, with its cause and fix, as [#476](https://github.com/antonblanchard/microwatt/issues/476): the decode sets the single-precision mask for `fcfid` and `fcfids` only. This harness ran into it in its first 8,600 tests. Two things it adds to that report:
+Converting an unsigned 64-bit integer to single precision drops the bits under the single-precision round bit. This one is reported upstream by others, with its cause and fix, as [#476](https://github.com/antonblanchard/microwatt/issues/476): the decode sets the single-precision mask for `fcfid` and `fcfids` only. The first 8,600 tests encountered this case. The run also measured the following inputs and error rates:
 
 - It starts at 2^26 + 1, not above 2^53. `fcfidus` of `0000000004000001` returns `4190000000000000` with XX and FI clear in every rounding mode, and the same value when rounding up, where `4190000020000000` is right. `0000000004000005` returns `4190000000000000` in round to nearest, where `4190000020000000` is right.
 - Of 20,000 random 48-bit integers, 2,488 convert to the wrong value in round to nearest and 4,982 come back without XX: one in eight and one in four. Of 20,000 random 64-bit integers it is 76 and 185.
 
-With the three lines of #476 added, the same 40,000 integers are right in all four rounding modes. Those lines are here as [`fpu-fcfidu-single-mask.patch`](fpu-fcfidu-single-mask.patch) so that the runs below can be repeated. The fix is the upstream report's, not this folder's.
+With the three lines of #476 added, the same 40,000 integers are right in all four rounding modes. Those lines are here as [`fpu-fcfidu-single-mask.patch`](fpu-fcfidu-single-mask.patch) so that the runs below can be repeated. The fix comes from the upstream report.
 
 ## What agrees
 
@@ -44,11 +44,11 @@ With both changes in place:
 - 155,400 tests with the exception enables set: 37 instructions (`fadd` to `fnmsub` and their single forms, `frsp`, the eight `fcti*`, the four `fcfid*`, the four `fri*`, `fcmpu`, `fcmpo`), 600 operand sets each, under seven settings of the enables: none, XE, ZE, UE, OE, VE, all five. Value, exception bits, FEX, FR, FI, FPRF and the compare field are right, the target is left alone for every enabled invalid operation and zero divide, and no interrupt is raised with `MSR[FE0 FE1] = 00`. Operands sit at both ends of the exponent range, around the enabled-exception bias, on long runs of ones, and include zeros, infinities and both kinds of NaN.
 - 90,300 tests that start from a filled FPSCR, on all 43 instructions, the moves and `fsel` among them. Before each instruction `mtfsf` writes drawn values into the sticky exception bits, FX, FR, FI and FPRF. Afterwards an exception bit is set if it was set or was raised, FX if it was set or a bit went from 0 to 1, VX and FEX are the summaries, and FR, FI and FPRF are what the kind of instruction says: arithmetic sets them, a compare sets the four FPCC bits and leaves the rest, a move changes nothing, and an instruction that writes no result clears FR and FI and leaves FPRF. The enables and the rounding mode are untouched.
 - 9,030 tests of the same kind with the record forms mixed in: CR field 1 is FX, FEX, VX and OX, and a form that does not record writes no CR field.
-- 344,000 more tests with every exception disabled, on the operand generators the other audits in this directory use: 43 instructions, 2,000 operand sets each, four rounding modes. Those generators are not in this folder.
+- 344,000 tests with every exception disabled, using the operand generators from the other audits in this directory: 43 instructions, 2,000 operand sets each, four rounding modes. The operand generators are kept outside this folder.
 
 Without the one-line fix, 55 of the 155,400 differ, all in FPRF as above and all with UE set: 48 in `frsp`, 5 in `fmul`, one in `fmadd` and one in `fnmadds`.
 
-The integer divisions and remainders (`divd`, `divdu`, `divw`, `divwu`, `divde`, `divdeu`, `divwe`, `divweu`, `modsd`, `modud`, `modsw`, `moduw`) are compared with integer arithmetic by [`mw_idiv.py`](mw_idiv.py), with OE and Rc both ways: quotient or remainder, OV, OV32, SO, CR0. What the ISA leaves undefined is not compared: the result when the divisor is zero or the quotient does not fit, and the upper half of the word forms.
+The integer divisions and remainders (`divd`, `divdu`, `divw`, `divwu`, `divde`, `divdeu`, `divwe`, `divweu`, `modsd`, `modud`, `modsw`, `moduw`) are compared with integer arithmetic by [`mw_idiv.py`](mw_idiv.py), with OE and Rc both ways: quotient or remainder, OV, OV32, SO, CR0. The comparison excludes the result for a zero divisor or a quotient that does not fit, and the upper half of word forms, as those results are undefined in the ISA.
 
 All 600,000 are right: 50,000 operand pairs for each of the twelve instructions. For 113,689 of them the ISA leaves the result undefined, most of them extended divisions whose quotient does not fit; there OV, OV32 and SO are right and the value is not compared.
 

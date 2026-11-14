@@ -43,7 +43,7 @@ The sweep runs every call twice, with the output variable holding `0101...` and 
 | unsigned fixed-point division | 315,392 | 7,648, each one the earlier content of the output | 128 of 2,240 |
 | signed fixed-point division | 312,256 | 3,840 | 72 of 2,184 that compile |
 
-All eight quantization modes are affected. A first sweep, built without that option and with the outputs left unset, reported 336 wrong values: unset memory is mostly zero in such a build, and zero is the right answer on this path.
+All eight quantization modes are affected. With the outputs unset and without the initialization option, the sweep reported 336 wrong values. Unset memory was mostly zero, which gave the right answer for this path.
 
 ## Signed fixed-point division with a saturating output
 
@@ -60,7 +60,7 @@ When the output's last place is at or above that bound, `ZW` is zero or negative
 - 4 stop at the library's assertion "Attempting to read bit beyond MSB" on 172 calls (`AC_TRN`, a zero-width temporary indexed at `[0]`).
 - 8 return 0 on an exact tie that rounds away from zero: 16 calls, `AC_RND_INF` and `AC_RND_CONV_ODD`. Example: -2 / 2 into `ac_fixed<5,6,true,AC_RND_INF,AC_SAT>`, whose last place is 2. The quotient -1 is a tie between 0 and -2, and -2 is right.
 
-These are what is left when the first defect is fixed alone.
+These errors remain after the first defect is fixed.
 
 Both are reported, on 13 November 2026, as [hlslibs/ac_math#11](https://github.com/hlslibs/ac_math/issues/11).
 

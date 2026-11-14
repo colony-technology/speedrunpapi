@@ -4,7 +4,7 @@
 
 Two builds were run: release 23.1.4 as Homebrew installs it, and main at commit [`11a7e80b`](https://github.com/llvm/llvm-project/commit/11a7e80b89a8b824d8d431fdbf19d4cb98e077db) of 14 November 2026 with assertions on.
 
-[`apf.cpp`](apf.cpp) calls the library on every operand and prints the class, the bit pattern and the status it returns. [`apref.py`](apref.py) reads the value of every bit pattern from the library's own decoding and computes the rest with integers: the exact result, rounded once to the precision and least exponent of the format in the mode asked for, with overflow by the rule of IEEE 754. Where a format has no infinity, `APFloat.h` says a NaN comes back in its place. Where a format has no way to write the result and the header does not say what happens, the case is counted and not judged.
+[`apf.cpp`](apf.cpp) calls the library on every operand and prints the class, the bit pattern and the status it returns. [`apref.py`](apref.py) reads the value of every bit pattern from the library's own decoding and computes the rest with integers: the exact result, rounded once to the precision and least exponent of the format in the mode asked for, with overflow by the rule of IEEE 754. Where a format has no infinity, `APFloat.h` says a NaN comes back in its place. Cases with no representable result and no behavior specified in the header are counted without a verdict.
 
 ## Release 23.1.4
 
@@ -82,13 +82,13 @@ The values are right in all of them. A sum or a difference that small is exact, 
 
 `convertFromString` on a decimal string is not changed. `roundSignificandWithExponent` cuts a denormal down to the least exponent itself, and the bits that decide are gone before `normalize` is called: `2.2250738585072012e-308` still returns `opInexact`. A hexadecimal string goes through `normalize` whole and is fixed ([`uf_strings.cpp`](uf_strings.cpp)).
 
-The patch changes LLVM's source and is offered under LLVM's licence, Apache-2.0 with LLVM exceptions.
+The patch changes LLVM's source. It is offered under LLVM's Apache-2.0 licence with LLVM exceptions.
 
 ## The overflow flag
 
 When an overflow is rounded to the largest finite number, in the directed modes, the status is `opInexact` without `opOverflow`: 33,102,374 results of the release sweep. That is [llvm/llvm-project#220018](https://github.com/llvm/llvm-project/issues/220018), with a fix open as #220020.
 
-## What is not judged
+The following cases are excluded from the judged results.
 
 The three formats without infinity or NaN (`Float6E3M2FN`, `Float6E2M3FN`, `Float4E2M1FN`): an overflow returns the largest finite number. A division by zero returns a value whose class is infinity, which the format cannot write; its bits read as zero in the release, and main stops at `llvm_unreachable` when they are read. 0/0 and a `remainder` or `mod` by zero return class NaN with the bits of zero in the release; main stops inside the operation. [#182433](https://github.com/llvm/llvm-project/issues/182433) is this through `convert`.
 
