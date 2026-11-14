@@ -1,0 +1,51 @@
+# The machine contract of design I (PART3_REPORT section 2), written from its statement:
+# one mark, at R >= 1; the word ends at the top 1-bit (R <= m, T - m = 1) or one letter above R with zeros
+# above m (R > m, T - R = 1). Outputs: y = rho(x, R) bit by bit; final c = y_L (carry), inexact = [y != x],
+# c' = [rho(x, R-1) >= 2^(m+1)], the carry out of the top when rounding one place below R.
+# The rule is a one-hot scalar input: ne, na, tz, aw, odd.
+length N >= 2
+input x, mark : N
+input ne, na, tz, aw, odd : bit
+assume orr(mark) & eq(mark & (mark - 1), 0) & ~bit(mark,0)
+assume top(x,0) | (top(mark,0) & lt(x, mark))
+assume (ne | na | tz | aw | odd)
+assume ~(ne & na) & ~(ne & tz) & ~(ne & aw) & ~(ne & odd) & ~(na & tz) & ~(na & aw) & ~(na & odd)
+assume ~(tz & aw) & ~(tz & odd) & ~(aw & odd)
+
+# rounding at R
+let below = mark - 1
+let half = mark >> 1
+let rem = x & below
+let t = x & ~below
+let gt = lt(half, rem)
+let tie = eq(rem, half)
+let nz = ~eq(rem, 0)
+let q_odd = ~eq(t & mark, 0)
+let up = (ne & (gt | (tie & q_odd))) | (na & (gt | tie)) | (aw & nz) | (odd & nz & ~q_odd)
+let inc = up ? mark : 0
+let y = t + inc
+
+# rounding at R-1 (mark1 = 2^(R-1), R >= 1)
+let mark1 = mark >> 1
+let below1 = mark1 - 1
+let half1 = mark1 >> 1
+let rem1 = x & below1
+let t1 = x & ~below1
+let gt1 = lt(half1, rem1)
+let tie1 = eq(rem1, half1) & ~eq(half1, 0)
+let nz1 = ~eq(rem1, 0)
+let q_odd1 = ~eq(t1 & mark1, 0)
+let up1 = (ne & (gt1 | (tie1 & q_odd1))) | (na & (gt1 | tie1)) | (aw & nz1) | (odd & nz1 & ~q_odd1)
+let inc1 = up1 ? mark1 : 0
+# Case R <= m: the word ends at m, so rho(x, R-1) >= 2^(m+1) is the carry out of the word.
+# Case R > m (the word ends at R, letter L-1 = R carries no bit of x):
+#   R = m + 1: rho(x, R-1) is 2^m or 2^(m+1) = 2^R, so c' is the top bit of y1;
+#   R >= m + 2 (x < 2^(R-1)): rho(x, R-1) is 0 or 2^(R-1) >= 2^(m+1), so c' is "rounded up".
+let c1_top = cout(t1, inc1)
+let y1 = t1 + inc1
+let cprime = top(x,0) ? c1_top : (top(y1,0) | (lt(x, half) & up1))
+
+output y
+output carry = cout(t, inc)
+output inexact = nz
+output cprime

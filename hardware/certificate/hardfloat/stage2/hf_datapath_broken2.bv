@@ -1,0 +1,45 @@
+# BROKEN COPY 2: round to odd jams only when the round bit is set (anyRound replaced by roundPosBit, line 217).
+# HardFloat Release 1, source/HardFloat_rawFN.v, module roundAnyRawFNToRecFN, lines 174-218, as used by
+# roundRawFNToRecFN#(expWidth, sigWidth) with options = 0 and the RISCV specialization:
+#   neverUnderflows = 0 (inExpWidth == outExpWidth, options 0), so roundMask comes from lowMaskLoHi (line 188);
+#   propagateNaNPayload = 0 (HardFloat_propagateNaNPayloads not defined), so the split ORs of lines 193-202
+#   are one OR over all bits.
+# Word: letter i holds bit i of adjustedSig (= in_sig, outSigWidth + 3 = p + 3 bits) and of roundMask.
+# N = p + 4: the vectors have width N-1 = p+3; the top letter is padding (all inputs 0 there).
+# roundMask = {roundMask_main | doShiftSigDown1, 2'b11} is a run of ones from bit 0 (lowMaskLoHi is a
+# low mask, OR with a single bit 0 keeps it one), with at least two ones. The datapath is checked for every
+# such mask, not only the ones the exponent stage produces.
+# Verilog widths: every operand here is unsigned. The expression of roundedSig (line 210) has context width
+# max(p+3, 32) because of the unsized 0 on line 215; ~(... ? roundMask>>1 : 0) then has ones above bit p+2,
+# but they meet the zero bits of ((adjustedSig|roundMask)>>2)+1, which is below 2^(p+2), so modelling
+# that ~ at width p+3 gives the same p+2 bits of roundedSig.
+length N >= 6
+input sig, mask : N-1
+input m2, m1, m0, sign : bit
+assume ones_below(mask)
+assume bit(mask,0) & bit(mask,1)
+assume ~(m2 & ~m1 & m0) & ~(m2 & m1 & m0)
+
+let roundingMode_near_even   = ~m2 & ~m1 & ~m0
+let roundingMode_minMag      = ~m2 & ~m1 & m0
+let roundingMode_min         = ~m2 & m1 & ~m0
+let roundingMode_max         = ~m2 & m1 & m0
+let roundingMode_near_maxMag = m2 & ~m1 & ~m0
+let roundingMode_odd         = m2 & m1 & ~m0
+let roundMagUp = (roundingMode_min & sign) | (roundingMode_max & ~sign)
+
+let shiftedRoundMask : N-1 = mask >> 1
+let roundPosMask : N-1 = ~shiftedRoundMask & mask
+let roundPosBit = orr(sig & roundPosMask)
+let anyRoundExtra = orr(sig & shiftedRoundMask)
+let anyRound = roundPosBit | anyRoundExtra
+let roundIncr = ((roundingMode_near_even | roundingMode_near_maxMag) & roundPosBit) | (roundMagUp & anyRound)
+let incd = (((sig | mask) >> 2) + 1) & ~((roundingMode_near_even & roundPosBit & ~anyRoundExtra) ? mask >> 1 : 0)
+let trnc = ((sig & ~mask) >> 2) | ((roundingMode_odd & roundPosBit) ? roundPosMask >> 1 : 0)
+let roundedSig : N-2 = roundIncr ? incd : trnc
+
+output roundedSig
+output roundPosBit
+output anyRoundExtra
+output anyRound
+# carry_hi, carry_lo (roundedSig[p+1], roundedSig[p], the bits added to sExp) are letters N-3, N-4 of roundedSig: compared there.

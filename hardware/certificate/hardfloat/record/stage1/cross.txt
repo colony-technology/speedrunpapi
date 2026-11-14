@@ -1,0 +1,4 @@
+Icarus Verilog version 14.0 (devel) (s20260301-978-g70cee475f-dirty)
+w=3 p=5 lines 147456 icarus vs verilator: identical
+w=4 p=7 lines 1179648 icarus vs verilator: identical
+w=5 p=5 lines 589824 icarus vs verilator: identical

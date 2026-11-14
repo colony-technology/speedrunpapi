@@ -1,0 +1,23 @@
+== 12:44:41 bvfsm.py equiv hf_datapath.bv ref_round.bv
+  live A hf_datapath.bv: 56272 stored, 20000 expanded, peak 97 MB
+  live A hf_datapath.bv: 81136 stored, 40000 expanded, peak 143 MB
+  live A hf_datapath.bv: 106224 stored, 60000 expanded, peak 155 MB
+  live A hf_datapath.bv: 131216 stored, 80000 expanded, peak 182 MB
+  live A hf_datapath.bv: 152112 stored, 100000 expanded, peak 208 MB
+  live A hf_datapath.bv: 152112 stored, 120000 expanded, peak 210 MB
+  live B ref_round.bv: 62176 stored, 20000 expanded, peak 228 MB
+  live B ref_round.bv: 95776 stored, 40000 expanded, peak 253 MB
+  live B ref_round.bv: 123200 stored, 60000 expanded, peak 258 MB
+  live B ref_round.bv: 149728 stored, 80000 expanded, peak 277 MB
+  live B ref_round.bv: 176040 stored, 100000 expanded, peak 309 MB
+  live B ref_round.bv: 202120 stored, 120000 expanded, peak 309 MB
+  live B ref_round.bv: 204960 stored, 140000 expanded, peak 330 MB
+  live B ref_round.bv: 204960 stored, 160000 expanded, peak 330 MB
+  live states: A 3216 of 152112 reachable, B 4348 of 204960 reachable
+  product: 26880 stored, 20000 expanded, peak 332 MB
+equiv hf_datapath.bv ref_round.bv
+  outputs compared: roundedSig, roundPosBit, anyRoundExtra, anyRound
+  product states reached: 33556
+EQUAL on every word length N >= 6
+exit 0
+== 12:48:09 end

@@ -1,0 +1,39 @@
+w=3 p=3 invalidExc&infiniteExc applied 393216 value_wrong 0 flags_11000 393216
+w=3 p=3 applied 1560576 (finite nonzero 36864, special 1523712) skipped_invalid_sig 12288 mismatches 0 (special 0, value 0, flags 0)
+w=3 p=4 invalidExc&infiniteExc applied 786432 value_wrong 0 flags_11000 786432
+w=3 p=4 applied 3121152 (finite nonzero 73728, special 3047424) skipped_invalid_sig 24576 mismatches 0 (special 0, value 0, flags 0)
+w=3 p=5 invalidExc&infiniteExc applied 1572864 value_wrong 0 flags_11000 1572864
+w=3 p=5 applied 6242304 (finite nonzero 147456, special 6094848) skipped_invalid_sig 49152 mismatches 0 (special 0, value 0, flags 0)
+w=3 p=6 invalidExc&infiniteExc applied 3145728 value_wrong 0 flags_11000 3145728
+w=3 p=6 applied 12484608 (finite nonzero 294912, special 12189696) skipped_invalid_sig 98304 mismatches 2072 (special 0, value 2012, flags 60)
+w=3 p=7 invalidExc&infiniteExc applied 6291456 value_wrong 0 flags_11000 6291456
+w=3 p=7 applied 24969216 (finite nonzero 589824, special 24379392) skipped_invalid_sig 196608 mismatches 113700 (special 0, value 100552, flags 107612)
+w=4 p=3 invalidExc&infiniteExc applied 786432 value_wrong 0 flags_11000 786432
+w=4 p=3 applied 3121152 (finite nonzero 73728, special 3047424) skipped_invalid_sig 24576 mismatches 0 (special 0, value 0, flags 0)
+w=4 p=4 invalidExc&infiniteExc applied 1572864 value_wrong 0 flags_11000 1572864
+w=4 p=4 applied 6242304 (finite nonzero 147456, special 6094848) skipped_invalid_sig 49152 mismatches 0 (special 0, value 0, flags 0)
+w=4 p=5 invalidExc&infiniteExc applied 3145728 value_wrong 0 flags_11000 3145728
+w=4 p=5 applied 12484608 (finite nonzero 294912, special 12189696) skipped_invalid_sig 98304 mismatches 0 (special 0, value 0, flags 0)
+w=4 p=6 invalidExc&infiniteExc applied 6291456 value_wrong 0 flags_11000 6291456
+w=4 p=6 applied 24969216 (finite nonzero 589824, special 24379392) skipped_invalid_sig 196608 mismatches 0 (special 0, value 0, flags 0)
+w=4 p=7 invalidExc&infiniteExc applied 12582912 value_wrong 0 flags_11000 12582912
+w=4 p=7 applied 49938432 (finite nonzero 1179648, special 48758784) skipped_invalid_sig 393216 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=3 invalidExc&infiniteExc applied 1572864 value_wrong 0 flags_11000 1572864
+w=5 p=3 applied 6242304 (finite nonzero 147456, special 6094848) skipped_invalid_sig 49152 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=4 invalidExc&infiniteExc applied 3145728 value_wrong 0 flags_11000 3145728
+w=5 p=4 applied 12484608 (finite nonzero 294912, special 12189696) skipped_invalid_sig 98304 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=5 invalidExc&infiniteExc applied 6291456 value_wrong 0 flags_11000 6291456
+w=5 p=5 applied 24969216 (finite nonzero 589824, special 24379392) skipped_invalid_sig 196608 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=6 invalidExc&infiniteExc applied 12582912 value_wrong 0 flags_11000 12582912
+w=5 p=6 applied 49938432 (finite nonzero 1179648, special 48758784) skipped_invalid_sig 393216 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=7 invalidExc&infiniteExc applied 25165824 value_wrong 0 flags_11000 25165824
+w=5 p=7 applied 99876864 (finite nonzero 2359296, special 97517568) skipped_invalid_sig 786432 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=8 invalidExc&infiniteExc applied 50331648 value_wrong 0 flags_11000 50331648
+w=5 p=8 applied 199753728 (finite nonzero 4718592, special 195035136) skipped_invalid_sig 1572864 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=9 invalidExc&infiniteExc applied 100663296 value_wrong 0 flags_11000 100663296
+w=5 p=9 applied 399507456 (finite nonzero 9437184, special 390070272) skipped_invalid_sig 3145728 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=10 invalidExc&infiniteExc applied 201326592 value_wrong 0 flags_11000 201326592
+w=5 p=10 applied 799014912 (finite nonzero 18874368, special 780140544) skipped_invalid_sig 6291456 mismatches 0 (special 0, value 0, flags 0)
+w=5 p=11 invalidExc&infiniteExc applied 402653184 value_wrong 0 flags_11000 402653184
+w=5 p=11 applied 1598029824 (finite nonzero 37748736, special 1560281088) skipped_invalid_sig 12582912 mismatches 0 (special 0, value 0, flags 0)
+done 12:11:41

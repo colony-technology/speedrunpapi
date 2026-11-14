@@ -1,0 +1,36 @@
+# The machine contract of design I (PART3_REPORT section 2), written causally (no guessed comparisons):
+# one mark, at R >= 1; the word ends at the top 1-bit (R <= m, T - m = 1) or at the letter R with zeros
+# above m (R > m, T - R = 1). Outputs: y = rho(x, R) bit by bit; final carry = y_L, inexact = [y != x],
+# cprime = [rho(x, R-1) >= 2^(m+1)].
+# The rounding decision at R uses the round bit x[R-1] (x << 1 at letter R), the sticky bit
+# OR x[0..R-2] (preor(x << 1) at letter R) and the last kept bit x[R] (IEEE 754-2019 4.3; HardFloat doc 6.2
+# for odd). The rule is a one-hot scalar input: ne, na, tz, aw, odd.
+length N >= 2
+input x, mark : N
+input ne, na, tz, aw, odd : bit
+assume onehot(mark)
+assume ~bit(mark,0)
+assume top(x,0) | top(mark,0)
+assume (ne | na | tz | aw | odd)
+assume ~(ne & na) & ~(ne & tz) & ~(ne & aw) & ~(ne & odd) & ~(na & tz) & ~(na & aw) & ~(na & odd)
+assume ~(tz & aw) & ~(tz & odd) & ~(aw & odd)
+
+let rb = x << 1
+let st = preor(x << 1)
+let upv = mark & ((ne ? (rb & (st | x)) : 0) | (na ? rb : 0) | (aw ? (rb | st) : 0) | (odd ? ((rb | st) & ~x) : 0))
+let t = x & ~(mark - 1)
+let y = t + upv
+
+# rounding at R-1, decided at letter R from x[R-2], OR x[0..R-3] and x[R-1]
+let rb1 = x << 2
+let st1 = preor(x << 2)
+let lsb1 = x << 1
+let up1v = mark & ((ne ? (rb1 & (st1 | lsb1)) : 0) | (na ? rb1 : 0) | (aw ? (rb1 | st1) : 0) | (odd ? ((rb1 | st1) & ~lsb1) : 0))
+# rho(x, R-1) = t + (x[R-1] + up1) 2^(R-1): its carry out of the word is that of t + 2^R (x[R-1] & up1).
+# When R > m (the word ends at R): rho(x, R-1) >= 2^(m+1) exactly when it rounds up (see design1.bv).
+let cR1 = up1v & lsb1
+
+output y
+output carry = cout(t, upv)
+output inexact = orr(x & (mark - 1))
+output cprime = top(x,0) ? cout(t, cR1) : orr(up1v)

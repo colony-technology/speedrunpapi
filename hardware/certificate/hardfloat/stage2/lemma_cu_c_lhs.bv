@@ -1,0 +1,37 @@
+# Lemma L1, causal form (replaces lemma_cu.bv, whose guessed comparisons exhausted memory).
+# x has its top bit set (m = N-1). The mark is at U >= 1, the rounding position with unbounded exponent;
+# R = U + 1 <= N is HardFloat's bounded rounding position in the one case where HardFloat consults U.
+# Claim: [rho(x, U) carries out of the top]  =  bit R-1 of x  &  bit m+1 of rho(x, R)  &  unbIncr,
+# unbIncr = HardFloat's unboundedRange_roundIncr = ((ne | na) & bit U-1 of x) | (magUp & [x mod 2^U != 0]).
+# This file is side A when SIDE = lhs, side B when SIDE = rhs: see the two generated copies.
+length N >= 2
+input x, markU : N
+input ne, na, tz, aw, odd : bit
+assume top(x,0)
+assume onehot(markU)
+assume ~bit(markU,0)
+assume (ne | na | tz | aw | odd)
+assume ~(ne & na) & ~(ne & tz) & ~(ne & aw) & ~(ne & odd) & ~(na & tz) & ~(na & aw) & ~(na & odd)
+assume ~(tz & aw) & ~(tz & odd) & ~(aw & odd)
+
+# rounding at U, decided at letter U from x[U-1], OR x[0..U-2], x[U]
+let rbU = x << 1
+let stU = preor(x << 1)
+let upU = markU & ((ne ? (rbU & (stU | x)) : 0) | (na ? rbU : 0) | (aw ? (rbU | stU) : 0) | (odd ? ((rbU | stU) & ~x) : 0))
+let tU = x & ~(markU - 1)
+output v = cout(tU, upU)
+
+# rounding at R = U + 1, decided at letter R from x[R-1], OR x[0..R-2], x[R]
+let markR = markU << 1
+let rbR = x << 1
+let stR = preor(x << 1)
+let upR = markR & ((ne ? (rbR & (stR | x)) : 0) | (na ? rbR : 0) | (aw ? (rbR | stR) : 0) | (odd ? ((rbR | stR) & ~x) : 0))
+let tR = x & ~(markR - 1)
+# R = N (U at the top letter): rho(x, N) is 0 or 2^N; decided at letter U = N-1 with x[R] = 0
+let rbT = x
+let stT = preor(x)
+let upT = markU & ((ne ? (rbT & stT) : 0) | (na ? rbT : 0) | (aw ? (rbT | stT) : 0) | (odd ? (rbT | stT) : 0))
+let carryR = top(markU,0) ? orr(upT) : cout(tR, upR)
+
+let roundPosBit = orr(x & markU)
+let unbIncr = orr(markU & ((ne | na) ? rbU : 0)) | (aw & orr(x & (markU - 1)))
