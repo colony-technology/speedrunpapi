@@ -19,7 +19,7 @@ The rest of this page is the record: every wrong call, the counts, the causes by
 
 ## The package and the reference
 
-`ieee.float_pkg` is the floating-point package of the VHDL standard, IEEE Std 1076-2008 and 1076-2019. The source is the IEEE's own: [`ieee/float_generic_pkg-body.vhdl`](https://opensource.ieee.org/vasg/Packages/-/blob/release/ieee/float_generic_pkg-body.vhdl) on the `release` branch of `opensource.ieee.org/vasg/Packages`, 5,712 lines, `$Revision: 1220 $`. The working group's `develop` branch at `gitlab.com/IEEE-P1076/Packages` has the same bytes, and GHDL and NVC ship them unchanged. The runs here are in GHDL 7.0.0-dev and NVC 1.23.1, and where both ran the same vectors they wrote the same result file.
+`ieee.float_pkg` is the floating-point package of the VHDL standard, IEEE Std 1076-2008 and 1076-2019. The source is the IEEE's own: [`ieee/float_generic_pkg-body.vhdl`](https://opensource.ieee.org/vasg/Packages/-/blob/release/ieee/float_generic_pkg-body.vhdl) on the `release` branch of [`opensource.ieee.org/vasg/Packages`](https://opensource.ieee.org/vasg/Packages), 5,712 lines, `$Revision: 1220 $`. The working group's `develop` branch at `gitlab.com/IEEE-P1076/Packages` has the same bytes, and GHDL and NVC ship them unchanged. The runs here are in GHDL 7.0.0-dev and NVC 1.23.1, and where both ran the same vectors they wrote the same result file.
 
 The package is set beside exact arithmetic. An operand is a sign and a fraction of two integers, the operation is done on the fractions, and the result is rounded once into the format in the rounding style the call names. [`exact.py`](exact.py) is that reference.
 
@@ -126,6 +126,46 @@ float16                                     every operand of the one-operand fun
 ```
 
 `mac` in `round_nearest` is wrong for 243,520 of the 2,097,152 triples of the 7-bit format.
+
+## How far off
+
+The distance from the returned value to the exact result, in units of the last place of the exact result, for the `round_nearest` column of the float32 and float64 tables above. A correctly rounded result is at most 0.5 away.
+
+```
+float32                        wrong     within 1    1 to 1,000    over 1,000    wrong sign    infinity or NaN    sign of zero
+divide                         27        27          0             0             0             0                  0
+sqrt                           735       629         6             100           0             0                  0
+mac                            2,671     163         34            347           2,018         41                 68
+reciprocal                     384       0           0             0             0             360                24
+resize to a narrower format    422       0           77            54            0             252                39
+to_signed                      613       613         0             0             0             0                  0
+to_unsigned                    280       280         0             0             0             0                  0
+dividebyp2                     1,542     759         0             619           0             164                0
+scalb                          2,653     789         3             781           0             1,080              0
+all                            9,327     3,260       120           1,901         2,018         1,897              131
+```
+
+```
+float64                        wrong     within 1    1 to 1,000    over 1,000    wrong sign    infinity or NaN    sign of zero
+divide                         18        18          0             0             0             0                  0
+sqrt                           1,278     1,177       3             98            0             0                  0
+mac                            2,673     137         17            372           2,045         11                 91
+reciprocal                     350       0           0             0             0             327                23
+resize to a narrower format    801       0           145           160           0             436                60
+to_signed                      618       618         0             0             0             0                  0
+to_unsigned                    321       321         0             0             0             0                  0
+dividebyp2                     1,543     803         0             607           0             133                0
+scalb                          2,218     879         1             637           0             701                0
+all                            9,820     3,953       166           1,874         2,045         1,608              174
+```
+
+`infinity or NaN` counts an infinity or a NaN returned for a number, a number returned for an infinity or a NaN, and the wrong one of them. `sign of zero` is +0 for -0 or -0 for +0.
+
+Of the 19,147 wrong results, 7,213 are within one unit. 4,063 have the wrong sign, 3,775 are more than 1,000 units away and 3,505 confuse a number with infinity or NaN. The 45 wrong quotients of `divide` are exact ties taken to the odd neighbour. `sqrt (2.0)` in float64 is 0.565 of a unit from the root, and the correctly rounded value is 0.435 from it; `sqrt (14.0)` is 0.544 from the root.
+
+```
+python3 exact.py sizes vectors.txt results.txt
+```
 
 ## Causes
 
