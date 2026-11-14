@@ -36,7 +36,7 @@ For RTL cores the reference is IEEE 754 round to nearest even from the host. The
 | [bluespec/Flute](https://github.com/bluespec/Flute) | FBox, checked-in RV64 Verilog: add, sub, mul, single and double, five rounding modes | 10,000,000 each | 339,869 to 698,070 | Bluespec library fix bsc #808 is later than the checked-in Verilog |
 | bluespec/Flute | FBox: fused multiply-add, conversions, min/max | 40,000 per operation | see below | Flute #64, #65; Piccolo #23, #25, #26; bsc #1183 |
 | bluespec/Flute | integer multiply/divide box, RV64 and RV32 | about 500,000 per operation | 0 | |
-| [stnolting/neorv32](https://github.com/stnolting/neorv32) | Zfinx FPU, five rounding modes | 987,401 | 1,004 | [#1689](https://github.com/stnolting/neorv32/issues/1689) |
+| [stnolting/neorv32](https://github.com/stnolting/neorv32) | Zfinx FPU, five rounding modes | 987,401 | 1,004 | [#1689](https://github.com/stnolting/neorv32/issues/1689), fixed by [#1692](https://github.com/stnolting/neorv32/pull/1692), merged 14 November 2026 |
 | stnolting/neorv32 | multiply/divide unit, serial and fast | 2,000,000 per variant | 0 | |
 | [chipsalliance/Cores-VeeR-EH2](https://github.com/chipsalliance/Cores-VeeR-EH2) | 1/2/3/4-bit dividers, XLEN 64 | 1,000,000 each | 12,200 to 13,600 each | [#60](https://github.com/chipsalliance/Cores-VeeR-EH2/issues/60) |
 | chipsalliance/Cores-VeeR-EH2 | all five dividers at XLEN 32, legacy at XLEN 64 | 4,000,000 each | 0 | |
@@ -180,7 +180,7 @@ fmadd.d  RNE  0x3ff0000000000001 * 0x3ff0000000000001 + 0xbff0000000000002      
 fcvt.w.d RMM  0x4006000000000000 (2.75)                                               expected 3                     core 2
 ```
 
-**neorv32 Zfinx FPU.** The float-to-integer path drops the mantissa bit shifted out for inputs in (0.5, 1), so 0.5 + 1 ulp looks like a tie. In round-down mode the zero sum of two zeros takes the wrong sign.
+**neorv32 Zfinx FPU.** The float-to-integer path drops the mantissa bit shifted out for inputs in (0.5, 1), so 0.5 + 1 ulp looks like a tie. In round-down mode the zero sum of two zeros takes the wrong sign. Both are fixed upstream by pull request [#1692](https://github.com/stnolting/neorv32/pull/1692), merged on 14 November 2026; with it the 1,004 differences in the 987,401 vectors become 0.
 
 ```
 fcvt.w.s  0x3f000001 (0.5 + 2^-24)    expected 1     core 0
