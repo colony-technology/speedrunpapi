@@ -137,8 +137,10 @@ python3 verify.py sixteen /path/to/EPFLfull/MtM/sixteen/aiger/sixteen.aig sixtee
 
 ## Your block
 
-One table, ROM or netlist of yours taken apart this way: 2,500 USD, fixed.
+One table, ROM or netlist of yours taken apart this way: 1,800 USD, fixed.
 
 You send the netlist or the table. You receive the rule behind it if it has one, the LUT netlist built from that rule, and the proof of equivalence with the tools to rerun it.
 
-Pay: https://buy.stripe.com/9B614m4Ls2kf6s277R6c004 · Questions: lmtlssss@colony.technology
+Pay: https://buy.stripe.com/7sY9AS1zg5wr9Ee63N6c005 · Questions: lmtlssss@colony.technology
+
+Larger work, by contract: the same address.
