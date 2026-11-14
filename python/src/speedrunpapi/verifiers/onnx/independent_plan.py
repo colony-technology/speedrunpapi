@@ -1,6 +1,6 @@
-"""Offline independent checker of Colony's executable ONNX plan.
+"""Offline independent checker of colony's executable ONNX plan.
 
-No optimizer, runner, generator, signer or Colony network connection is used.
+No optimizer, runner, generator, signer or colony network connection is used.
 It validates original model bytes, every selected ONNX stage through its
 independent checker, the original/delivered bytes, and the target-selection
 arithmetic from a retained measurement transcript. Physical timings are

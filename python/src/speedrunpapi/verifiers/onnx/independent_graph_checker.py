@@ -1,4 +1,4 @@
-"""Independent verifier for Colony ONNX static-metadata graph transformations.
+"""Independent verifier for colony ONNX static-metadata graph transformations.
 
 Reconstructs replacement constants directly from the original ONNX source
 and verifies that every untouched source node, interface and model field

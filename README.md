@@ -157,7 +157,7 @@ python3 "$(npm root -g)/speedrunpapi/verifiers/determinism/determinism_check.py"
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: lmtlssss/speedrunpapi@v0.7.1
+- uses: lmtlssss/speedrunpapi@v0.7.2
   with:
     file: circuits/main.circom
     include: node_modules/circomlib/circuits
@@ -177,6 +177,16 @@ speedrunpapi scan circuit.circom --require-signed
 The service signs only `Certified` and `Broken` results that it has itself re-verified. It does not sign `Unknown`, and it does not sign a verdict it was merely told. The certificate names the R1CS digest, the derivation digest and any assumptions; the source file name and compiler are recorded as client-declared, because the service cannot run your compiler. Uploads are limited to 8 MiB of R1CS; larger circuits are checked locally with `verify` and the Python checker. Certificate status and revocations are public at `api.colony.technology/v1/certificates/status` and `/v1/revocations`.
 
 To check a certificate offline, `node "$(npm root -g)/speedrunpapi/verifiers/cert/verify.mjs" certificate.json circuit.r1cs` (or `node verifiers/cert/verify.mjs …` from a clone of this repository) verifies the Ed25519 signature against the pinned public key and that the certificate names the digest of your file. A signature authenticates the issuer's statement; the report is what lets you re-check the claim itself. Credit packs: [colony.technology/packs](https://colony.technology/packs).
+
+## Changes in 0.7.2
+
+The analyzer is the 0.7.1 analyzer; verdicts and reports are unchanged. Command-line fixes only:
+
+- No circom compiler on the path is now an error (exit 1) instead of `Unknown` (exit 3).
+- A missing input, report or R1CS file prints `FILE: file not found` and exits 1, with no stack trace.
+- A hosted command without a key says to set `COLONY_API_KEY` and where keys come from.
+- `speedrunpapi --help` lists the hosted-job commands and `verify-onnx`.
+- The circom install link in messages and docs points to the iden3/circom repository; docs.circom.io does not resolve.
 
 ## Changes in 0.7.1
 

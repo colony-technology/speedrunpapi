@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent verifier for Colony determinism reports (schema colony.determinism/1).
+"""Independent verifier for colony determinism reports (schema colony.determinism/1).
 
     python3 determinism_check.py <circuit.r1cs> <report.json>
 

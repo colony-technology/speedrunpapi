@@ -1,4 +1,4 @@
-"""Run the bundled Colony analyzer with no network install step."""
+"""Run the bundled colony analyzer with no network install step."""
 from __future__ import annotations
 
 import os

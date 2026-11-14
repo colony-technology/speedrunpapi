@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Offline signature and source-binding verification for the published Colony Ed25519 key.
+// Offline signature and source-binding verification for the published colony.technology Ed25519 key.
 // A live revocation/status response is checked when supplied by the registry endpoint.
 import fs from 'node:fs';
 import { createHash, createPublicKey, verify } from 'node:crypto';
