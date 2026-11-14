@@ -5,6 +5,7 @@
 #   python3 exact.py all EW,FW [op ...] > vectors.txt               every operand of a small format
 #   python3 exact.py run vectors.txt results.txt -- CMD ...         runs the testbench; {vec}, {out}, {skip} in CMD
 #   python3 exact.py check vectors.txt results.txt                  the table and the first mismatches
+#   python3 exact.py sizes vectors.txt results.txt [STYLE]          how far off each wrong result is
 #
 # A value is a sign and a fraction of two integers, so nothing here rounds until the one place that should.
 import itertools
@@ -22,6 +23,7 @@ OPS = ["add", "subtract", "multiply", "divide", "sqrt", "mac", "reciprocal", "re
 FROM_INT = ("to_float", "to_float_integer")             # from a signed vector, from an integer
 TO_INT = ("to_signed", "to_unsigned", "to_integer")
 NAN = "nan"
+LAST = [None]                                           # what the last rounding was given: (sign, value, a root?)
 
 
 class Fmt:
@@ -76,6 +78,7 @@ def finish(f, sign, style, n, qexp, state):
 
 def rounded(f, sign, v, style):
     """The positive fraction v in the format."""
+    LAST[0] = (sign, v, False)
     qexp = max(floor_log2(v), f.emin) - f.fw
     q = Fraction(2) ** qexp
     n = int(v // q)
@@ -86,6 +89,7 @@ def rounded(f, sign, v, style):
 
 def rounded_root(f, v, style):
     """The square root of the positive fraction v in the format."""
+    LAST[0] = (0, v, True)
     qexp = max(floor_log2(v) // 2, f.emin) - f.fw
     t = v / Fraction(4) ** qexp                         # the root is sqrt(t) units of 2**qexp
     n = isqrt(int(t // 1))
@@ -99,6 +103,7 @@ def rounded_root(f, v, style):
 
 def to_int(sign, v, style):
     """The fraction v with its sign, as an integer."""
+    LAST[0] = (sign, v, False)
     n = int(v // 1)
     rest = v - n
     state = 0 if rest == 0 else 1 if 2 * rest < 1 else 2 if 2 * rest == 1 else 3
@@ -561,6 +566,93 @@ def check(vec, out):
     print("%d wrong and %d stops in %d operations" % (sum(bad.values()), sum(stop.values()), sum(total.values())))
 
 
+# ---- how far off --------------------------------------------------------------------------------------
+# The distance from the returned value to the exact result, in units of the last place of the exact result.
+# A correctly rounded result is at most 0.5 away in round_nearest and less than 1 away in the other styles.
+
+# "infinity or NaN": one of them returned for a number, a number returned for one of them, or the wrong one.
+
+SIZES = ["within 1", "1 to 1,000", "over 1,000", "wrong sign", "infinity or NaN", "sign of zero", "stops"]
+
+
+def root_of(v, bits=200):
+    """The square root of the positive fraction v, to 2**-bits of itself."""
+    k = max(0, bits - floor_log2(v) // 2)
+    return Fraction(isqrt(int(v * Fraction(4) ** k // 1)), 1 << k)
+
+
+def by_distance(got, x, unit):
+    """got and x are signed fractions."""
+    if got and x and (got < 0) != (x < 0):
+        return "wrong sign"
+    e = abs(got - x) / unit
+    return "within 1" if e <= 1 else "1 to 1,000" if e <= 1000 else "over 1,000"
+
+
+def size(name, g, width, got, want, last):
+    """The column of SIZES for a wrong result. got and want are the bits, or NAN, or integers of a conversion;
+    last is what the rounding was given, or None where the exact result is a zero, an infinity or NaN."""
+    x = Fraction(0)
+    if last is not None:
+        sign, v, root = last
+        x = root_of(v) if root else v
+        x = -x if sign else x
+    if name in TO_INT:
+        if name == "to_signed" and got >> (width - 1):
+            got -= 1 << width
+        return by_distance(Fraction(got), x, 1)
+    dg = NAN if is_nan(g, got) else decode(g, got)
+    dw = want if want == NAN else decode(g, want)
+    odd_g = dg == NAN or dg[1] == "inf"
+    odd_w = dw == NAN or dw[1] == "inf"
+    if odd_g or odd_w:
+        return "infinity or NaN"
+    vg = -dg[1] if dg[0] else dg[1]
+    if dg[1] == dw[1] == 0:
+        return "sign of zero"
+    e = min(max(floor_log2(abs(x)), g.emin), g.emax) if x else g.emin
+    return by_distance(vg, x, Fraction(2) ** (e - g.fw))
+
+
+def sizes(vec, out, style=0):
+    count, wrong = {}, {}
+    for v, r in zip(open(vec), open(out)):
+        t = v.split()
+        op, st, ew, fw, guard, dn, p1, p2 = [int(x) for x in t[:8]]
+        if st != style:
+            continue
+        ops = [int(x, 2) for x in t[8:]]
+        f = Fmt(ew, fw)
+        name = OPS[op]
+        LAST[0] = None
+        want = expected(op, st, f, p1, p2, ops)
+        if want is None:
+            continue
+        key = ("%d,%d" % (ew, fw), name)
+        g = Fmt(p1, p2) if name == "resize" else f
+        width = g.w if name not in TO_INT else 32 if name == "to_integer" else p1
+        r = r.strip()
+        if r == "STOP":
+            column = "stops"
+        else:
+            got = int(r) if name == "to_integer" else int(r.replace("X", "1").replace("U", "1"), 2)
+            if name == "to_integer":
+                if got == want:
+                    continue
+                got &= (1 << 32) - 1                    # as the bits of a signed 32-bit integer
+            elif got == want or (want == NAN and is_nan(g, got)):
+                continue
+            column = size("to_signed" if name == "to_integer" else name, g, width, got, want, LAST[0])
+        wrong[key] = wrong.get(key, 0) + (column != "stops")
+        count[key + (column,)] = count.get(key + (column,), 0) + 1
+    print("%s: the distance from the returned value to the exact result, in units of the last place" % STYLE[style])
+    print("%-8s %-13s %-8s %s" % ("format", "operation", "wrong", "".join("%-*s" % (len(c) + 3, c) for c in SIZES)))
+    for key in list(wrong) + [(fmt, "all") for fmt in dict.fromkeys(k[0] for k in wrong)]:
+        rows = [k for k in wrong if k[0] == key[0]] if key[1] == "all" else [key]
+        print("%-8s %-13s %-8d %s" % (key[0], key[1], sum(wrong[k] for k in rows), "".join(
+            "%-*d" % (len(c) + 3, sum(count.get(k + (c,), 0) for k in rows)) for c in SIZES)))
+
+
 def pairs(args):
     return [tuple(int(x) for x in a.split(",")) for a in args]
 
@@ -576,5 +668,7 @@ if __name__ == "__main__":
         everything(ew, fw, sys.argv[3:] or OPS)
     elif sys.argv[1] == "run":
         run(sys.argv[2], sys.argv[3], sys.argv[sys.argv.index("--") + 1:])
+    elif sys.argv[1] == "sizes":
+        sizes(sys.argv[2], sys.argv[3], STYLE.index(sys.argv[4]) if len(sys.argv) > 4 else 0)
     else:
         check(sys.argv[2], sys.argv[3])
