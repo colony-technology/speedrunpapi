@@ -1,7 +1,7 @@
 # usage: python3 check_selfcheck.py SCDIR LAW.json [--claim-b]
 #
 # Independent check of a self-checking multiplier (SCDIR/selfcheck.blif with SCDIR/det.json; LAW.json is the
-# multiplier's law). Shares no code with gpcmul.py or gen_detector.py. Trusts neither JSON file: they only say
+# multiplier's law). Shares no code with the generator of the multiplier or with gen_detector.py. Trusts neither JSON file: they only say
 # where to look; every statement is checked against the tables of selfcheck.blif.
 #
 #  1. The multiplier part. Its tables are cut out of selfcheck.blif and given to lawcheck2.py, which must print
