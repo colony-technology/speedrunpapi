@@ -22,15 +22,15 @@ Pairwise coprime moduli m_1 … m_k, M = m_1 ⋯ m_k. The set is a **unit set** 
 
 ## Statements
 
-| | statement | checked | result |
-| --- | --- | --- | --- |
-| 1 | any k: unit with signs ε ⇔ Σ ε_i M/m_i ≡ 1 (mod M) | every pairwise coprime triple ≤ 300 (1,264,341) with 8 sign vectors each; every quadruple ≤ 60 (50,257) | 0 disagreements |
-| 2 | two dials: unit ⇔ m_2 = m_1 + 1 | every coprime pair ≤ 1000 (303,192) | 0 failures |
-| 3 | three dials: unit ⇔ z(x + y) = xy ± 1 for some labelling | every triple ≤ 300 | 620 unit triples, 0 failures, no exceptions |
-| 3 | the equation forces pairwise coprimality | every triple ≤ 300 satisfying it | 0 not coprime |
-| 3 | all unit triples: s ≥ 2 and x² ≡ ±1 (mod s) give (x, s − x, (x(s − x) ± 1)/s) | every triple ≤ 300 | 620 generated, equal to the 620 unit triples |
-| 4 | four dials, signs (+, +, −, −) on (w, x, y, z): yz(w + x) − wx(y + z) = ±1 ⇔ (Ay − p)(Az − p) = p² ± A, A = w + x, p = wx | every quadruple ≤ 60; the 512 such sets of the search below | 0 failures; 512 of 512 |
-| 5 | five dials: fix v, w, x; Q = vwx, P/Q = ε_v/v + ε_w/w + ε_x/x: (Py + Qε_y)(Pz + Qε_z) = σP + Q²ε_yε_z | the identity (Py + Qε_y)(Pz + Qε_z) − (σP + Q²ε_yε_z) = P(Pyz + Qε_y z + Qε_z y − σ) | |
+| | statement | checked | result | Lean |
+| --- | --- | --- | --- | --- |
+| 1 | any k: unit with signs ε ⇔ Σ ε_i M/m_i ≡ 1 (mod M) | every pairwise coprime triple ≤ 300 (1,264,341) with 8 sign vectors each; every quadruple ≤ 60 (50,257) | 0 disagreements | `unit_iff_sum`, proved |
+| 2 | two dials: unit ⇔ m_2 = m_1 + 1 | every coprime pair ≤ 1000 (303,192) | 0 failures | `two_dials`, proved, no coprimality assumed |
+| 3 | three dials: unit ⇔ z(x + y) = xy ± 1 for some labelling | every triple ≤ 300 | 620 unit triples, 0 failures, no exceptions | |
+| 3 | the equation forces pairwise coprimality | every triple ≤ 300 satisfying it | 0 not coprime | |
+| 3 | all unit triples: s ≥ 2 and x² ≡ ±1 (mod s) give (x, s − x, (x(s − x) ± 1)/s) | every triple ≤ 300 | 620 generated, equal to the 620 unit triples | |
+| 4 | four dials, signs (+, +, −, −) on (w, x, y, z): yz(w + x) − wx(y + z) = ±1 ⇔ (Ay − p)(Az − p) = p² ± A, A = w + x, p = wx | every quadruple ≤ 60; the 512 such sets of the search below | 0 failures; 512 of 512 | the identity, `four_factor`, proved |
+| 5 | five dials: fix v, w, x; Q = vwx, P/Q = ε_v/v + ε_w/w + ε_x/x: (Py + Qε_y)(Pz + Qε_z) = σP + Q²ε_yε_z | the identity (Py + Qε_y)(Pz + Qε_z) − (σP + Q²ε_yε_z) = P(Pyz + Qε_y z + Qε_z y − σ) | | `five_factor`, proved |
 
 (2, 3, 5) is not an exception to 3: 2·(3 + 5) = 3·5 + 1. Its all-plus sign vector, 1/2 + 1/3 + 1/5 = 1 + 1/30, exists only because +1 ≡ −1 (mod 2). It is the only unit triple ≤ 300 with one.
 
@@ -39,7 +39,7 @@ Pairwise coprime moduli m_1 … m_k, M = m_1 ⋯ m_k. The set is a **unit set** 
 | line | checked | result |
 | --- | --- | --- |
 | (F_n, F_n+1, F_n+2), F_1 = F_2 = 1: F_n F_n+3 − F_n+1 F_n+2 = (−1)^(n+1) | n = 3..55 | unit 53 of 53 |
-| δ = 2t + 1: (t² + t − 1, 2t² + t − 2, 2t² + 3t − 1) and (t² + t + 1, 2t² + t + 2, 2t² + 3t + 3) | odd δ = 3..199 | 197 triples with every modulus ≥ 2, unit 197: (3, 5, 8), (5, 8, 13), (7, 12, 17), (11, 19, 26), (13, 23, 30), (19, 34, 43), (21, 38, 47), (29, 53, 64), (31, 57, 68), … |
+| δ = 2t + 1: (t² + t − 1, 2t² + t − 2, 2t² + 3t − 1) and (t² + t + 1, 2t² + t + 2, 2t² + 3t + 3) | odd δ = 3..199 | the identities proved in Lean (`delta_line1`, `delta_line2`); 197 triples with every modulus ≥ 2, unit 197: (3, 5, 8), (5, 8, 13), (7, 12, 17), (11, 19, 26), (13, 23, 30), (19, 34, 43), (21, 38, 47), (29, 53, 64), (31, 57, 68), … |
 | (2^k − 1, 2^k + 1, 2^(2k−1)), constants (+1, −1, −1) | k = 2..128 | unit 127 of 127 |
 | the textbook (2^n − 1, 2^n, 2^n + 1) | n = 2..128 | not unit, 127 of 127; inverses 2^(n−1), −1, −2^(n−1) |
 
@@ -127,6 +127,23 @@ Each mapped netlist is simulated with Icarus Verilog 14.0 on every valid input, 
 
 `record/proof.txt`
 
+## Lean
+
+| theorem | statement | axioms |
+| --- | --- | --- |
+| `unit_iff_sum` | 1. Moduli m_i ≥ 2, pairwise coprime, ε_i² = 1: (M/m_i ≡ ε_i (mod m_i) for every i) ⇔ Σ ε_i M/m_i ≡ 1 (mod M) | propext, Classical.choice, Quot.sound |
+| `two_dials` | 2. 2 ≤ a < b: (b ≡ ±1 (mod a) and a ≡ ±1 (mod b)) ⇔ b = a + 1 | propext, Classical.choice, Quot.sound |
+| `delta_line1` | the first δ line: a(b + c) − bc = 1 | propext, Quot.sound |
+| `delta_line2` | the second δ line: a(b + c) − bc = −1 | propext |
+| `four_factor` | 4. (Ay − p)(Az − p) − (p² + sA) = A(yz(w + x) − wx(y + z) − s) | propext, Quot.sound |
+| `five_factor` | 5. (Py + Qε_y)(Pz + Qε_z) − (σP + Q²ε_yε_z) = P(Pyz + Qε_y z + Qε_z y − σ) | propext, Quot.sound |
+
+Rebuilt on a clean runner: GitHub Actions run 43701616486, 15 November 2026, 09:56Z to 10:20Z, success. Lean 4.35.0, Mathlib v4.35.0, `lake build` 9,101 jobs for the project that holds this file, 179 theorems in its axiom report, no `sorryAx`. The axioms above are as `lean/P7DialsCheck.lean` prints them. No `sorry`, `admit` or `native_decide` appears.
+
+`two_dials` needs no coprimality. Also, a ≡ ±1 (mod b) alone forces b = a + 1: a ≡ 1 (mod b) is impossible because 0 < a − 1 < b, and a ≡ −1 (mod b) with 0 < a + 1 ≤ b gives b = a + 1.
+
+`lean/RoundingLean/P7Dials.lean` holds the statements and proofs as built; only its module comment is reworded. `lean/` also carries the toolchain, lakefile and manifest of that build. Its root file imports this module alone. The folder's own Lean project was not built separately.
+
 ## Sources
 
 | statement | in print, in the sources opened |
@@ -154,3 +171,4 @@ bash replay.sh      # python3, cc, Yosys with yosys-abc, Icarus Verilog; exit 0 
 | 1 | `src/check_claims.py 1000 300 60`, `src/oldest.py`, `src/search4.c 2000 4`, `src/search5.c 600 4`, `src/analyse.py`, `src/cheap4.py 40 4` | equal to `record/`, line for line |
 | 2 | `src/prove_sim.sh` on every netlist in `netlists/`; ABC `cec` for the 15-bit adder and multiplier | 0 mismatches; equivalent; both controls fail |
 | 3 | `src/gen_cost.py`, `src/map.sh`, `src/cost_table.py` with the local Yosys | printed beside `record/cost_table.md`; counts can differ with another Yosys |
+| Lean, apart from `replay.sh` | `cd lean; lake exe cache get; lake build; lake env lean P7DialsCheck.lean` | builds; the axioms in the Lean table |
