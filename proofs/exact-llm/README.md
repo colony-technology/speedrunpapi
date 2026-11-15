@@ -28,9 +28,19 @@ Rows 1 to 6: GitHub Actions run [43671156245](https://github.com/lmtlssss/speedr
 | --- | --- | --- | --- |
 | f64 | one float64 product | n · (2^15 − 1)^2 < 2^53 | `exact16-f64` |
 | f32 | `a = 256 a1 + a0`, `a0` in [−128, 127], `a1` in [−128, 128], the same for `b`; four float32 products in chunks of 1,024 inputs | partial sums ≤ 1,024 · 2^14 = 2^24 | `exact16-f32` |
-| i8 | `a1 = a >> 8` int8, `a0 = a & 255` uint8; four int32 products, onnxruntime `MatMulInteger` (NumPy int32 where onnxruntime is missing, named `i8-numpy`) | n · 255^2 < 2^31, n ≤ 33,025 | `exact16-i8` |
+| i8 | `u = a + 2^15` in [1, 2^16 − 1], `u = 256 u1 + u0`, both uint8, the same for `b`; four int32 products of uint8 by uint8, onnxruntime `MatMulInteger` (NumPy int32 where onnxruntime is missing, named `i8-numpy`); `a · b = u_a · u_b − 2^15 (Σ a + Σ b) − n 2^30` in int64 | n · 255^2 < 2^31, n ≤ 33,025 | `exact16-i8` |
 
-`a · b = 2^16 G11 + 2^8 (G10 + G01) + G00`, `Gij = ai · bj`, added in int64; `mm16`. The f32 digits have at most 8 significant bits, so they are exact as TF32 and bfloat16 inputs too, with float32 accumulation (not run here). `MatMulInteger` is a one-node ONNX model (opset 13) written as protobuf bytes in `exact_llm.py`; onnxruntime 1.32.0 gives the int32 product for all four pairs of uint8 and int8.
+`a · b` (on i8, `u_a · u_b`) `= 2^16 G11 + 2^8 (G10 + G01) + G00`, `Gij = ai · bj`, added in int64; `mm16`. `MatMulInteger` is a one-node ONNX model (opset 13) written as protobuf bytes in `exact_llm.py`.
+
+What a kernel may hold inside, in any order and grouping (`bounds-16.json`, `kernel_intermediate`):
+
+| route | largest partial sum | why no step rounds or saturates |
+| --- | --- | --- |
+| f64 | n · (2^15 − 1)^2 < 2^53 | every product and every partial sum is an integer below 2^53, and every integer below 2^53 is a float64; a sum or a fused `a · b + c` whose exact value is a float64 is returned exactly, so the order, the blocking and FMA cannot change it |
+| f32 | 1,024 · 128 · 128 = 2^24 within a chunk | every digit product is an integer with \|p\| ≤ 2^14 and every partial sum of a chunk, in any order, an integer with \|s\| ≤ 2^24; every integer with \|s\| ≤ 2^24 is a float32. The digits have at most 8 significant bits, so they are exact as TF32 and bfloat16 inputs too, with float32 accumulation (not run here) |
+| i8 | a pair 2 · 255^2 = 130,050; k products ≤ k · 255^2 < 2^31 for k ≤ 33,025 | one uint8 · uint8 product (up to 65,025) does not fit a signed 16-bit lane, so the kernel widens before it adds. uint8 by uint8 is the pair every onnxruntime version implements |
+
+The i8 route first used `a >> 8` as int8 with `a & 255` as uint8. A uint8 · int8 kernel without VNNI adds adjacent pairs in int16 with saturation, and 2 · 255 · 128 = 65,280 > 32,767; a 7-bit unsigned digit (2 · 127 · 128 = 32,512) would hold, at six products instead of four. onnxruntime's quantization notes ([When and why do I need to try U8U8?](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html#when-and-why-do-i-need-to-try-u8u8)): on x86-64 with AVX2 and AVX512 it "uses the VPMADDUBSW instruction for U8S8", whose output "has to be clamped (saturated)" when it does not fit 16 bits, and "the U8U8 format ... doesn't have saturation issues". The runner that failed did so earlier still: onnxruntime 1.23.2, the last macOS x86-64 wheel, cannot build a `MatMulInteger` session for one of the pairs with an int8 operand (`NOT_IMPLEMENTED`, run 43720517570).
 
 | Apple M1, 64 prompts | logits | continuations | clamped |
 | --- | --- | --- | --- |
@@ -47,6 +57,7 @@ The continuations are the exact model's and float32's. `python exact_llm.py chec
 | product inputs | per token vector: `sh = max(0, bitlength(max \|x\|) − 15)`, one more if the rounding reaches 2^15; `x16 = round(x / 2^sh)`; `block16` |
 | peeled terms | 2 per product, per token vector: its two largest \|x\| (ties to the lower index) kept whole; each `x · w16` is an exact wide term added in int64 before the one rounding, on every route; `peel_index` |
 | linear, logits | `y = round((2^sh · x16 · w16 + Σ peeled x · w16) / 2^g)`, one rounding; `product` |
+| key-value cache | each position's `k` clamped and block-shifted (`k16` and its shift), `v` clamped and split, once, as the position enters the cache; `cache_entry` |
 | scores | `q16 · k16`, `q` and `k` block-shifted per head vector; `s = 2^(sh_q + sh_k) · q16 · k16` at 2^-32 |
 | softmax | as the exact model, then `p = round(floor(e · 2^16 / Σ e) / 2)` at 2^-15, held at 2^15 − 1 (20,174 values over the 64 prompts at batch 1) |
 | context | `v` whole, `v = 2^15 vh + vl`, `vl = v & (2^15 − 1)`, `\|vh\| ≤ 2^13` within the clamp; `round((2^15 · p16 · vh + p16 · vl) / 2^15)` at 2^-16. No shift, so no position reads another key's magnitude, a later token or the padding |
@@ -63,7 +74,7 @@ Weight row scales `g`: q 12..19, k 12..18, v 13..17, o 12..17, gate 11..16, up 1
 
 ### The width, measured
 
-Each row narrows the exact model's product operands and is compared with float32 (perplexity 30.57175); Apple M1, 0 values clamped in every row. Inputs: product inputs per token vector; weights: per output row from bfloat16; attention: q and k per head vector, p at 2^-15. In these rows `v` had one shift per key-value head over all keys; exact-16 takes `v` whole in two halves (last row). Peel k: the k largest \|x\| of each product input kept whole. The 14- and 12-bit rows are the edge.
+Each row narrows the exact model's product operands and is compared with the same float32 run (perplexity 30.5717); Apple M1, 0 values clamped in every row. Inputs: product inputs per token vector; weights: per output row from bfloat16; attention: q and k per head vector, p at 2^-15. In these rows `v` had one shift per key-value head over all keys; exact-16 takes `v` whole in two halves (last row). Peel k: the k largest \|x\| of each product input kept whole. The 14- and 12-bit rows are the edge.
 
 | row | prompt top-1 | logit difference, largest / mean | continuations | text top-1 | perplexity |
 | --- | --- | --- | --- | --- | --- |
@@ -92,10 +103,10 @@ The large difference at 16-bit inputs is one outlier per vector setting its shif
 | largest and mean, the six runners | 0.0215 to 0.0217, 0.0012 | | |
 | continuations, 64 × 48 tokens, equal to float32 | 64 of 64 | 64 of 64 | 64 of 64 |
 | text, 8,176 tokens: same top-1 token as float32 | 8,160 (99.80 %) | 8,171 (99.94 %) | 8,176 (100 %) |
-| perplexity, float32 30.5718; Apple M1, float64 exp and log of the logits, not hashed | 30.5799 | 30.5715 | 30.5717 |
+| perplexity, float32 30.5717; Apple M1, float64 exp and log of the logits, not hashed | 30.5799 | 30.5715 | 30.5717 |
 | 256-token continuations, 64 prompts, batch 8, equal to float32 (16,384 tokens) | 64 of 64 | not run | 64 of 64 |
 
-Text: Tiny Shakespeare (`karpathy/char-rnn` at `370cbcd`), the first 8,192 tokens as 16 windows of 512. `distance.py`, `record/machines.txt`.
+Text: Tiny Shakespeare (`karpathy/char-rnn` at `370cbcd`), the first 8,192 tokens as 16 windows of 512. `distance.py`, `record/machines.txt`. Every float32 figure in this README is the one run `exact_llm.py text --engine float32` on the M1: perplexity 30.571749784 (printed 30.571750), 30.5717 to four places; onnxruntime 30.571742606, exact 30.579936034, exact-16 30.571460960.
 
 ## Apple M1: threads and batch
 
@@ -116,8 +127,11 @@ Text: Tiny Shakespeare (`karpathy/char-rnn` at `370cbcd`), the first 8,192 token
 | exact, one float64 matrix at a time (default) | 236 | 79.7 | 11.8 | 1,088 MB |
 | exact, float64 matrices kept (`--keep`) | 224 | 92.2 | 14.5 | 1,775 MB |
 | float32 | 1,037 | 130.1 | 55.2 | 1,116 MB |
+| exact-16, f64 route | 121 | 44.5 | 7.7 | 926 MB |
+| exact-16, f32 route | 79 | 13.5 | 1.9 | 887 MB |
+| exact-16, i8 route (onnxruntime 1.32.0) | 54 | 18.2 | 2.9 | 855 MB |
 
-`speed.py`. The 64-prompt hash run at batch 8: exact 61.7 s at 831 MB (default), 38.9 s at 1.82 GB (`--keep`); float32 28.3 s; onnxruntime 22.6 s. The 256-token run of the 64 prompts, exact, batch 8: 345 s at 1,496 MB.
+`speed.py`. The 64-prompt hash run at batch 8: exact 61.7 s at 831 MB (default), 38.9 s at 1.82 GB (`--keep`); float32 28.3 s; onnxruntime 22.6 s; exact-16 f64 80 s, f32 248 s, i8 206 s (`check`, 1.21 GB for the whole check). The 256-token run of the 64 prompts, exact, batch 8: 345 s at 1,496 MB. The i8 route with the int8-by-uint8 digits it replaces decoded 8.2 tokens/s at batch 8 (`record/exact16-m1.txt`, run 1).
 
 ## Method, in the order `exact_llm.py` computes
 
@@ -132,6 +146,7 @@ Text: Tiny Shakespeare (`karpathy/char-rnn` at `370cbcd`), the first 8,192 token
 | RMS norm, per token (576) | `s = max(0, bitlength(max \|x\|) − 26)`; `ms = floor(Σ (x >> s)² / 576)`; `r = isqrt(ms + round(10^-5 · 2^(32−2s)))`; `y = floor(x · 2^(16−s) / r)`, asserted `\|y\| ≤ 25·2^16`; `round(y · g / 2^16)`; `rms` |
 | linear | `round(clamp(x) · W / 2^16)`, `W` [in, out] float64 from int32; the down product in 6 chunks of 256 inputs, each in float64, summed in int64; `linear` |
 | rotary, `i < 32` | `x'_i = round((x_i·C[p,i] − x_{i+32}·S[p,i]) / 2^20)`; `x'_{i+32} = round((x_{i+32}·C[p,i] + x_i·S[p,i]) / 2^20)`; `rope` |
+| key-value cache | `clamp(k)` and `clamp(v)` of each position, made once as it enters the cache (`cache_entry`); cos and sin of each position read once per forward pass (`rope_tables`) |
 | scores | `s = clamp(q) · clamp(k)` at 2^-32; query head `h` reads key-value head `floor(h/3)` |
 | softmax | `m = max s` over the keys the row may read; `t = floor((m − s) / 2^19)` (1/√64 = 2^-3); `e = Exp(t)`, 0 for other keys; `p = floor(e · 2^16 / Σ e)`; `attention` |
 | `Exp(t)` | `k = t >> 8`, `r = t mod 256`; `floor((E[k]·(256 − r) + E[k+1]·r) / 256)`, `k ≤ 6144` |
@@ -199,7 +214,7 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | tables against their generator | equal | `make_tables.py --check` |
 | products below 2^53, int64 below 2^63 | holds | `bounds.py` |
 | exact-16: every product within its route's bound, int64 below 2^63 | holds | `bounds16.py` |
-| exact-16 routes against int64 products: 7 shapes (2-D and the batched attention shapes, widths 1,023 to 1,536 across the f32 chunk edge) × 5 operand kinds (random, all ±(2^15 − 1), p-like), int64 and int16 right operands | 0 different on all three routes; the int16 digit split equals the int64 one for all 65,535 values; peel ties to the lower index | `routes_test.py` |
+| exact-16 routes against int64 products: 7 shapes (2-D and the batched attention shapes, widths 1,023 to 1,536 across the f32 chunk edge) × 6 operand kinds (random; all +max, which puts every i8 digit at 255 and every f32 chunk at exactly 2^24; all −max; +max by −max; p-like; digit extremes, the eight values whose digits sit at the ends of both routes' ranges, mixed position by position), int64 and int16 right operands | 0 different on all three routes; the int16 digit splits equal the int64 ones for all 65,535 values; peel ties to the lower index | `routes_test.py` |
 | float32 against onnxruntime | top-1 equal at all 471 prompt and 8,176 text positions; largest logit difference 0.0006 | `distance.py DIR float32 onnx` |
 | notebook, its cells run as one script in a fresh directory with an empty cache, Apple M1 | downloads checked; exact MATCH (63 s); top-1 471 of 471; continuations 64 of 64 | `exact_llm.ipynb`, `make_notebook.py --check` |
 

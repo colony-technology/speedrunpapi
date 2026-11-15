@@ -3,8 +3,26 @@
  "routes": {
   "f64": "one float64 product; exact while n (2^15 - 1)^2 < 2^53, n below 2^23",
   "f32": "a = 256 a1 + a0, a0 in [-128, 127], a1 in [-128, 128]; four float32 products in chunks of 1,024 inputs; |partial sums| <= 1024 x 2^14 = 2^24. The digits need 8 significant bits, so they are exact as TF32 (11) and bfloat16 (8) inputs too, with float32 accumulation",
-  "i8": "a1 = a >> 8 in [-128, 127] (int8), a0 = a & 255 in [0, 255] (uint8); four int32 products; |partial sums| <= n 255^2 < 2^31, n <= 33,025"
+  "i8": "u = a + 2^15 in [1, 2^16 - 1], u = 256 u1 + u0, u1 and u0 in [0, 255] (uint8), the same for b; four int32 MatMulInteger products of uint8 by uint8; partial sums <= n 255^2 < 2^31, n <= 33,025; then a b = u_a u_b - 2^15 (row sums of a + column sums of b) - n 2^30 in int64"
  },
+ "kernel_intermediate": [
+  {
+   "route": "f64",
+   "largest partial sum, any order or grouping, with or without fused multiply-add": "n (2^15 - 1)^2 < 2^53 (n = 1536: 2^40.585)",
+   "why exact": "every product and every partial sum is an integer below 2^53, and every integer below 2^53 is a float64; a sum or a fused a b + c whose exact value is a float64 is returned exactly"
+  },
+  {
+   "route": "f32",
+   "largest partial sum, any order or grouping, with or without fused multiply-add": "1,024 x 128 x 128 = 2^24 within a chunk; the chunks are added in int64",
+   "why exact": "every digit product is an integer of magnitude at most 2^14 and every partial sum of a chunk, in any order, is an integer of magnitude at most 2^24; every integer of magnitude at most 2^24 is a float32, so no addition or fused multiply-add rounds. The digits have at most 8 significant bits (|d| <= 128), so they are also exact as TF32 or bfloat16 inputs"
+  },
+  {
+   "route": "i8",
+   "kernel intermediate, int16 pair sum": "2 x 255 x 255 = 130,050",
+   "why exact": "one uint8 by uint8 product (up to 65,025) does not fit a signed 16-bit lane, so a uint8 by uint8 kernel has to widen before it adds: a pair needs 18 bits, any sum of k products is at most k 255^2 < 2^31 for k <= 33,025. routes_test.py's 'all +max' puts every pair at 130,050 and fails on a kernel that keeps less. uint8 by uint8 is the MatMulInteger type pair every onnxruntime version implements",
+   "the digits it replaces": "a1 = a >> 8 (int8), a0 = a & 255 (uint8): a uint8 by int8 kernel without VNNI adds adjacent pairs in int16 with saturation, and 2 x 255 x 128 = 65,280 > 32,767; a 7-bit unsigned digit (2 x 127 x 128 = 32,512) would hold, at six products instead of four. onnxruntime 1.23.2 (macOS x86-64) could not build a MatMulInteger session for one of the pairs with an int8 operand (NOT_IMPLEMENTED)"
+  }
+ ],
  "products": [
   {
    "product": "q_proj",
@@ -235,6 +253,16 @@
    "operation": "peel key: |x| 2^11 + index, |x| within the largest clamp",
    "largest_magnitude": 2199023257599,
    "log2": 41.0
+  },
+  {
+   "operation": "i8 route: sum of u_a u_b, u = a + 2^15 <= 2^16 - 1, over the widest product (n = 1536)",
+   "largest_magnitude": 6596868441600,
+   "log2": 42.585
+  },
+  {
+   "operation": "i8 route: 2^15 (row sum of a + column sum of b) + n 2^30",
+   "largest_magnitude": 4947701661696,
+   "log2": 42.17
   },
   {
    "operation": "rms: y * norm weight (as Exact)",

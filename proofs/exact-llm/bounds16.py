@@ -4,8 +4,11 @@ overflow in the work around the products. Writes bounds-16.json.
 Every product operand is an integer with |a| <= 2^15 - 1 (asserted by block16 at run time; weights by
 int16_weights; p held at 2^15 - 1). A product over n inputs then has |partial sums| <= n (2^15 - 1)^2 on the f64
 route; on the f32 route each byte product term is at most 128 x 128 = 2^14 and a chunk holds 1,024 inputs; on the
-i8 route each term is at most 255 x 255 and the accumulator is int32. The int64 rows use the clamps of Exact (the
-same sites) and the 16-bit weights with their row scales.
+i8 route each term is a product of two unsigned bytes, at most 255 x 255, and the accumulator is int32. The int64
+rows use the clamps of Exact (the same sites) and the 16-bit weights with their row scales.
+
+The bound that matters is what a kernel may hold inside, not only its output: "kernel_intermediate" states, per
+route, the largest value any partial sum can take in any order and grouping, and the narrowest type that holds it.
 
 usage: python bounds16.py
 """
@@ -79,6 +82,7 @@ for kind, site in SITE.items():
         lin_out = max(lin_out, big_y)
     else:                                                 # int32 storage: asserted on every call, as in Exact
         rows.append(("logits: |y| in int64 (stored as int32; |y| < 2^31 asserted on every call)", big_y))
+N_MAX = max(p["inputs"] for p in products.values())
 shq, shk = shmax(C["q"]), shmax(C["k"])
 qk = X.HEAD * M * M
 sp = ((1 << X.A) + T_MAX) // 2                       # sum of p at 2^-15 (rounded halves) over one row
@@ -94,6 +98,9 @@ rows += [
     ("scores: max minus score", 2 * (qk << (shq + shk))),
     ("context: 2^15 p16 . vh + p16 . vl (|vh| <= %d, vl < 2^15), at 2^-31" % vh, pv),
     ("peel key: |x| 2^11 + index, |x| within the largest clamp", (max(C[s] for s in SITE.values()) << 11) + 2047),
+    ("i8 route: sum of u_a u_b, u = a + 2^15 <= 2^16 - 1, over the widest product (n = %d)" % N_MAX,
+     N_MAX * ((1 << 16) - 1) ** 2),
+    ("i8 route: 2^15 (row sum of a + column sum of b) + n 2^30", (2 * N_MAX * M << 15) + (N_MAX << 30)),
     ("rms: y * norm weight (as Exact)", (25 << X.A) * normw),
     ("exp interpolation, softmax, silu, gate times up: as Exact (bounds.json)", C["gate"] * C["up"]),
 ]
@@ -104,8 +111,32 @@ out = {"operands": "every product operand an integer with |a| <= 2^15 - 1 = %d" 
                   "f32": "a = 256 a1 + a0, a0 in [-128, 127], a1 in [-128, 128]; four float32 products in chunks of "
                          "1,024 inputs; |partial sums| <= 1024 x 2^14 = 2^24. The digits need 8 significant bits, so "
                          "they are exact as TF32 (11) and bfloat16 (8) inputs too, with float32 accumulation",
-                  "i8": "a1 = a >> 8 in [-128, 127] (int8), a0 = a & 255 in [0, 255] (uint8); four int32 products; "
-                        "|partial sums| <= n 255^2 < 2^31, n <= 33,025"},
+                  "i8": "u = a + 2^15 in [1, 2^16 - 1], u = 256 u1 + u0, u1 and u0 in [0, 255] (uint8), the same for "
+                        "b; four int32 MatMulInteger products of uint8 by uint8; partial sums <= n 255^2 < 2^31, "
+                        "n <= 33,025; then a b = u_a u_b - 2^15 (row sums of a + column sums of b) - n 2^30 in int64"},
+       "kernel_intermediate": [
+           {"route": "f64", "largest partial sum, any order or grouping, with or without fused multiply-add":
+            "n (2^15 - 1)^2 < 2^53 (n = %d: 2^%.3f)" % (N_MAX, math.log2(N_MAX * M * M)),
+            "why exact": "every product and every partial sum is an integer below 2^53, and every integer below 2^53 "
+                         "is a float64; a sum or a fused a b + c whose exact value is a float64 is returned exactly"},
+           {"route": "f32", "largest partial sum, any order or grouping, with or without fused multiply-add":
+            "1,024 x 128 x 128 = 2^24 within a chunk; the chunks are added in int64",
+            "why exact": "every digit product is an integer of magnitude at most 2^14 and every partial sum of a "
+                         "chunk, in any order, is an integer of magnitude at most 2^24; every integer of magnitude "
+                         "at most 2^24 is a float32, so no addition or fused multiply-add rounds. The digits have at "
+                         "most 8 significant bits (|d| <= 128), so they are also exact as TF32 or bfloat16 inputs"},
+           {"route": "i8", "kernel intermediate, int16 pair sum": "2 x 255 x 255 = 130,050",
+            "why exact": "one uint8 by uint8 product (up to 65,025) does not fit a signed 16-bit lane, so a uint8 by "
+                         "uint8 kernel has to widen before it adds: a pair needs 18 bits, any sum of k products is at "
+                         "most k 255^2 < 2^31 for k <= 33,025. routes_test.py's 'all +max' puts every pair at "
+                         "130,050 and fails on a kernel that keeps less. uint8 by uint8 is the MatMulInteger type "
+                         "pair every onnxruntime version implements",
+            "the digits it replaces": "a1 = a >> 8 (int8), a0 = a & 255 (uint8): a uint8 by int8 kernel without "
+                                      "VNNI adds adjacent pairs in int16 with saturation, and 2 x 255 x 128 = 65,280 "
+                                      "> 32,767; a 7-bit unsigned digit (2 x 127 x 128 = 32,512) would hold, at six "
+                                      "products instead of four. onnxruntime 1.23.2 (macOS x86-64) could not build a "
+                                      "MatMulInteger session for one of the pairs with an int8 operand "
+                                      "(NOT_IMPLEMENTED)"}],
        "products": routes,
        "weight_row_scales_g": {k: list(v) for k, v in gs.items()},
        "block_shift_max": {s: shmax(C[s]) for s in sorted(set(SITE.values()) | {"q", "k"})},
@@ -116,5 +147,7 @@ for r in routes:
     print("  %-14s n %5d  f64 2^%.3f  f32 2^%.3f (chunk %d)  i8 2^%.3f" % (
         r["product"], r["inputs"], r["f64_log2"], r["f32_log2"], r["f32_chunk"], r["i8_log2"]))
 print("  weight row scales g:", ", ".join("%s %d..%d" % (k, *v) for k, v in gs.items()))
+print("  kernel intermediate: f64 partial sums < 2^53; f32 partial sums <= 2^24 per chunk; i8 uint8 x uint8, a pair "
+      "2 x 255^2 = 130,050 (no int16 lane holds one product), any k products < 2^31 for k <= 33,025")
 print("  int64: %d operations below 2^63, largest 2^%.3f; wrote bounds-16.json" % (
     len(rows), max(math.log2(v) for _, v in rows)))

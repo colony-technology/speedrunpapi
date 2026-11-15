@@ -66,3 +66,61 @@ peak resident 1069596672 bytes
 exact16-i8: load 0.3 s; prefill 49 tokens/s (512 tokens in 10.39 s); decode batch 8: 8.2 tokens/s (8 rows x 47 tokens in 45.67 s); decode batch 1: 1.2 tokens/s (2 rows x 47 tokens in 76.94 s); peak resident 978 MB
 elapsed 147.24 s
 peak resident 1025458176 bytes
+== run 2 (i8 uint8 by uint8; k, v prepared once per position): routes
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+digit extremes, value (i8 digits) (f32 digits): 32767 (255, 255) (128, -1); -32767 (0, 1) (-128, 1); 32640 (255, 128) (128, -128); -32640 (0, 128) (-127, -128); 32639 (255, 127) (127, 127); -32641 (0, 127) (-128, 127); 32512 (255, 0) (127, 0); -32513 (0, 255) (-127, -1)
+f32 digits: high -128..128, low -128..127 (int16 split the same: True); i8 digits of a + 2^15: high 0..255, low 0..255 (from int16 the same: True)
+peel_index of [5, -9, 9, 3, -9, 1] k=2: [1, 2] (expect [1, 2])
+elapsed 0.79 s
+peak resident 89505792 bytes
+== run 2 (i8 uint8 by uint8; k, v prepared once per position): check
+versions: Python 3.11.18, NumPy 2.4.6, onnxruntime 1.32.0; darwin arm64
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 80 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f32, 248 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route i8-onnxruntime-1.32.0, 206 s, clamped 0
+float32  logits aafc4308a017f736d5bfe17d5b3dbe72d5d03dd473669b2c35a4abd50df738c2  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02151, mean 0.001230; continuations equal 64 of 64
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05920, mean 0.002697; continuations equal 64 of 64
+onnx     logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+elapsed 637.13 s
+peak resident 1207599104 bytes
+== run 2 (i8 uint8 by uint8; k, v prepared once per position): speed-f64
+exact16-f64: load 0.2 s; prefill 121 tokens/s (512 tokens in 4.23 s); decode batch 8: 44.5 tokens/s (8 rows x 47 tokens in 8.46 s); decode batch 1: 7.7 tokens/s (2 rows x 47 tokens in 12.17 s); peak resident 926 MB
+elapsed 30.27 s
+peak resident 970670080 bytes
+== run 2 (i8 uint8 by uint8; k, v prepared once per position): speed-f32
+exact16-f32: load 0.1 s; prefill 79 tokens/s (512 tokens in 6.45 s); decode batch 8: 13.5 tokens/s (8 rows x 47 tokens in 27.83 s); decode batch 1: 1.9 tokens/s (2 rows x 47 tokens in 50.65 s); peak resident 887 MB
+elapsed 92.29 s
+peak resident 930086912 bytes
+== run 2 (i8 uint8 by uint8; k, v prepared once per position): speed-i8
+exact16-i8: load 0.3 s; prefill 54 tokens/s (512 tokens in 9.49 s); decode batch 8: 18.2 tokens/s (8 rows x 47 tokens in 20.66 s); decode batch 1: 2.9 tokens/s (2 rows x 47 tokens in 32.45 s); peak resident 855 MB
+elapsed 70.25 s
+peak resident 896466944 bytes
+== run 2 (i8 uint8 by uint8; k, v prepared once per position): same-bits
+exact16-f64 threads=1 batch=1 logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (525 s)
+exact16-f64 threads=1 batch=8 logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (68 s)
+exact16-f64 threads=4 batch=1 logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (416 s)
+exact16-f64 threads=4 batch=8 logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (85 s)
+exact16-f64 1 distinct pair over the four runs
+elapsed 1094.75 s
+peak resident 575160320 bytes
+== run 2 (i8 uint8 by uint8; k, v prepared once per position): bounds16
+bounds-16: 10 product kinds on 3 routes
+  q_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  k_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  v_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  o_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  gate_proj      n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  up_proj        n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  down_proj      n  1536  f64 2^40.585  f32 2^24.000 (chunk 1024)  i8 2^26.574
+  embed_tokens   n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  scores q.k     n    64  f64 2^36.000  f32 2^20.000 (chunk 64)  i8 2^21.989
+  context p.vh, p.vl n   512  f64 2^39.000  f32 2^23.000 (chunk 512)  i8 2^24.989
+  weight row scales g: q_proj 12..19, k_proj 12..18, v_proj 13..17, o_proj 12..17, gate_proj 11..16, up_proj 12..16, down_proj 12..16, embed_tokens 14..16
+  kernel intermediate: f64 partial sums < 2^53; f32 partial sums <= 2^24 per chunk; i8 uint8 x uint8, a pair 2 x 255^2 = 130,050 (no int16 lane holds one product), any k products < 2^31 for k <= 33,025
+  int64: 19 operations below 2^63, largest 2^59.733; wrote bounds-16.json
+elapsed 0.57 s
+peak resident 460439552 bytes
