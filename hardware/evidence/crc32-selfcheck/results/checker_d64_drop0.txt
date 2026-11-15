@@ -1,0 +1,3 @@
+$ python3 -I proof/independent_selfcheck_checker.py --netlist proof/colony_crc32_d64_sc.blif --block proof/colony_crc32_d64.blif --H proof/colony_crc32_d64_H.json --drop 0
+check bit 0 dropped: 58 uncovered nets: b_n0 b_n4 b_n5 b_n10 b_n13 b_n18 b_n19 b_n21 b_n22 b_n24 b_n26 b_n31 b_n32 b_n35 b_n37 b_n44 b_n46 b_n54 b_n57 b_n58 b_n59 b_n60 b_n64 b_n65 b_n66 b_n78 b_n79 b_n80 b_n81 b_n86 b_n87 b_n88 b_n98 b_n99 b_n100 b_n104 b_n105 b_n106 b_n107 b_n108 b_n109 b_n113 b_n114 b_n115 b_n127 b_n128 b_n129 b_n130 b_n131 b_n132 b_n133 b_n134 b_n135 b_n136 b_n137 b_n138 b_n139 b_n140
+exit 0

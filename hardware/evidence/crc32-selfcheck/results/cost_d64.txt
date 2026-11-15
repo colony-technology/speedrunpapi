@@ -1,0 +1,7 @@
+$ python3 -I tools/cost.py --name colony_crc32_d64 --yosys $BIN/yosys --work $WORK/cost_d64
+design     LUT-6  x block   levels  other cells
+block        151     1.00        3  -
+detector     173     1.15        6  -
+dmr          323     2.14        7  -
+tmr          507     3.36        7  -
+exit 0
