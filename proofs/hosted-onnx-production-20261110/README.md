@@ -13,6 +13,6 @@ Run independent replay from the repository root after installing Python, `onnx` 
 
 `node bin/speedrunpapi.mjs verify-onnx proofs/hosted-onnx-production-20261110/source.onnx proofs/hosted-onnx-production-20261110/artifacts`
 
-The verifier's six source files are in `verifiers/onnx/`. It uses the supplied original ONNX bytes, plan, executable candidate, each stage proof, and the retained cost decision. It uses neither the private optimizer nor a Colony account, API key or network connection. The TEST credit ledger and customer credentials are outside this portable mathematical packet.
+The verifier's six source files are in `verifiers/onnx/`. It uses the supplied original ONNX bytes, plan, executable candidate, each stage proof, and the retained cost decision. It uses neither the private optimizer nor a colony.technology account, API key or network connection. The TEST credit ledger and customer credentials are outside this portable mathematical packet.
 
 The production test and its signed receipt are kept privately. The public packet proves the declared exact ONNX result independently; it is not a claim of generic performance improvement on every CPU.
