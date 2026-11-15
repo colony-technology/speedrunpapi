@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "speedrunpapi"
 version = "0.7.2"
-description = "Output-determinism analysis for Circom circuits and R1CS; Python entry to the shared Node engine, with an independent Python checker"
+description = "speedrunpapi, the universal engine: exact results with independent proofs; Python entry to the shared Node engine, with an independent Python checker"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{name = "colony.technology"}]
 license-files = ["LICENSE.md"]
-keywords = ["circom", "r1cs", "zero-knowledge", "under-constrained", "formal verification", "determinism"]
+keywords = ["circom", "r1cs", "zero-knowledge", "under-constrained", "formal verification", "determinism", "exact arithmetic", "onnx", "hardware verification", "rtl", "reproducibility"]
 classifiers = ["Programming Language :: Python :: 3", "Environment :: Console"]
 
 [project.urls]

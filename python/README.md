@@ -1,6 +1,6 @@
 # speedrunpapi for Python
 
-Output-determinism analysis for Circom circuits and R1CS. This package installs the same bundled command-line tool as the npm distribution, plus an independent Python checker for its reports.
+speedrunpapi, the universal engine: exact results with independent proofs; for example, output determinism for Circom circuits and R1CS. This package installs the same bundled command-line tool as the npm distribution, plus an independent Python checker for its reports.
 
 ```sh
 pip install speedrunpapi

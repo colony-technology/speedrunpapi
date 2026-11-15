@@ -1,7 +1,7 @@
 {
   "name": "speedrunpapi",
   "version": "0.7.2",
-  "description": "Output-determinism analysis for Circom circuits and R1CS: checked proofs, checked counterexamples",
+  "description": "speedrunpapi, the universal engine: exact results with independent proofs. Output determinism for Circom and R1CS, bounded exact mathematics, bit-exact ONNX plans, audited arithmetic cores, circuit blocks with proofs, exact models",
   "type": "module",
   "bin": {
     "speedrunpapi": "bin/speedrunpapi.mjs",
@@ -36,6 +36,11 @@
     "formal-verification",
     "arithmetic-circuits",
     "determinism",
+    "exact-arithmetic",
+    "onnx",
+    "hardware-verification",
+    "rtl",
+    "reproducibility",
     "snark",
     "audit"
   ]

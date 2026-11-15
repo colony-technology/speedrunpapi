@@ -1,6 +1,6 @@
 # speedrunpapi
 
-Output-determinism analysis for Circom circuits and R1CS, by [colony.technology](https://colony.technology).
+speedrunpapi, the universal engine: exact results with independent proofs, by [colony.technology](https://colony.technology). For example: output determinism for Circom and R1CS, bounded exact mathematics, bit-exact ONNX plans, audited arithmetic cores, circuit blocks with proofs, exact models.
 
 An under-constrained circuit accepts more than one output for the same input, so the prover decides the result instead of the circuit. `speedrunpapi` checks that property on the constraint system the compiler emits and returns one of three verdicts.
 
