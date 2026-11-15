@@ -1,0 +1,250 @@
+{
+ "operands": "every product operand an integer with |a| <= 2^15 - 1 = 32767",
+ "routes": {
+  "f64": "one float64 product; exact while n (2^15 - 1)^2 < 2^53, n below 2^23",
+  "f32": "a = 256 a1 + a0, a0 in [-128, 127], a1 in [-128, 128]; four float32 products in chunks of 1,024 inputs; |partial sums| <= 1024 x 2^14 = 2^24. The digits need 8 significant bits, so they are exact as TF32 (11) and bfloat16 (8) inputs too, with float32 accumulation",
+  "i8": "a1 = a >> 8 in [-128, 127] (int8), a0 = a & 255 in [0, 255] (uint8); four int32 products; |partial sums| <= n 255^2 < 2^31, n <= 33,025"
+ },
+ "products": [
+  {
+   "product": "q_proj",
+   "inputs": 576,
+   "f64_bound": 618437542464,
+   "f64_log2": 39.17,
+   "f32_chunk": 576,
+   "f32_bound": 9437184,
+   "f32_log2": 23.17,
+   "i8_bound": 37454400,
+   "i8_log2": 25.159
+  },
+  {
+   "product": "k_proj",
+   "inputs": 576,
+   "f64_bound": 618437542464,
+   "f64_log2": 39.17,
+   "f32_chunk": 576,
+   "f32_bound": 9437184,
+   "f32_log2": 23.17,
+   "i8_bound": 37454400,
+   "i8_log2": 25.159
+  },
+  {
+   "product": "v_proj",
+   "inputs": 576,
+   "f64_bound": 618437542464,
+   "f64_log2": 39.17,
+   "f32_chunk": 576,
+   "f32_bound": 9437184,
+   "f32_log2": 23.17,
+   "i8_bound": 37454400,
+   "i8_log2": 25.159
+  },
+  {
+   "product": "o_proj",
+   "inputs": 576,
+   "f64_bound": 618437542464,
+   "f64_log2": 39.17,
+   "f32_chunk": 576,
+   "f32_bound": 9437184,
+   "f32_log2": 23.17,
+   "i8_bound": 37454400,
+   "i8_log2": 25.159
+  },
+  {
+   "product": "gate_proj",
+   "inputs": 576,
+   "f64_bound": 618437542464,
+   "f64_log2": 39.17,
+   "f32_chunk": 576,
+   "f32_bound": 9437184,
+   "f32_log2": 23.17,
+   "i8_bound": 37454400,
+   "i8_log2": 25.159
+  },
+  {
+   "product": "up_proj",
+   "inputs": 576,
+   "f64_bound": 618437542464,
+   "f64_log2": 39.17,
+   "f32_chunk": 576,
+   "f32_bound": 9437184,
+   "f32_log2": 23.17,
+   "i8_bound": 37454400,
+   "i8_log2": 25.159
+  },
+  {
+   "product": "down_proj",
+   "inputs": 1536,
+   "f64_bound": 1649166779904,
+   "f64_log2": 40.585,
+   "f32_chunk": 1024,
+   "f32_bound": 16777216,
+   "f32_log2": 24.0,
+   "i8_bound": 99878400,
+   "i8_log2": 26.574
+  },
+  {
+   "product": "embed_tokens",
+   "inputs": 576,
+   "f64_bound": 618437542464,
+   "f64_log2": 39.17,
+   "f32_chunk": 576,
+   "f32_bound": 9437184,
+   "f32_log2": 23.17,
+   "i8_bound": 37454400,
+   "i8_log2": 25.159
+  },
+  {
+   "product": "scores q.k",
+   "inputs": 64,
+   "f64_bound": 68715282496,
+   "f64_log2": 36.0,
+   "f32_chunk": 64,
+   "f32_bound": 1048576,
+   "f32_log2": 20.0,
+   "i8_bound": 4161600,
+   "i8_log2": 21.989
+  },
+  {
+   "product": "context p.vh, p.vl",
+   "inputs": 512,
+   "f64_bound": 549722259968,
+   "f64_log2": 39.0,
+   "f32_chunk": 512,
+   "f32_bound": 8388608,
+   "f32_log2": 23.0,
+   "i8_bound": 33292800,
+   "i8_log2": 24.989
+  }
+ ],
+ "weight_row_scales_g": {
+  "q_proj": [
+   12,
+   19
+  ],
+  "k_proj": [
+   12,
+   18
+  ],
+  "v_proj": [
+   13,
+   17
+  ],
+  "o_proj": [
+   12,
+   17
+  ],
+  "gate_proj": [
+   11,
+   16
+  ],
+  "up_proj": [
+   12,
+   16
+  ],
+  "down_proj": [
+   12,
+   16
+  ],
+  "embed_tokens": [
+   14,
+   16
+  ]
+ },
+ "block_shift_max": {
+  "attention input": 15,
+  "down input": 16,
+  "k": 10,
+  "logits input": 17,
+  "mlp input": 14,
+  "o input": 15,
+  "q": 10
+ },
+ "int64": [
+  {
+   "operation": "q_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
+   "largest_magnitude": 1542604808454144,
+   "log2": 50.454
+  },
+  {
+   "operation": "k_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
+   "largest_magnitude": 1497159401684992,
+   "log2": 50.411
+  },
+  {
+   "operation": "v_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
+   "largest_magnitude": 1483049572909056,
+   "log2": 50.397
+  },
+  {
+   "operation": "o_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
+   "largest_magnitude": 1616228799184896,
+   "log2": 50.522
+  },
+  {
+   "operation": "gate_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 14), plus rounding constant",
+   "largest_magnitude": 795714877554688,
+   "log2": 49.499
+  },
+  {
+   "operation": "up_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 14), plus rounding constant",
+   "largest_magnitude": 798337517805568,
+   "log2": 49.504
+  },
+  {
+   "operation": "down_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 16), plus rounding constant",
+   "largest_magnitude": 6936960911966208,
+   "log2": 52.623
+  },
+  {
+   "operation": "embed_tokens: 2^sh x16 . w16 plus the peeled terms (sh <= 17), plus rounding constant",
+   "largest_magnitude": 5000508261695488,
+   "log2": 52.151
+  },
+  {
+   "operation": "logits: |y| in int64 (stored as int32; |y| < 2^31 asserted on every call)",
+   "largest_magnitude": 127802475681,
+   "log2": 36.895
+  },
+  {
+   "operation": "residual: clamp plus one linear output",
+   "largest_magnitude": 461271044337,
+   "log2": 38.747
+  },
+  {
+   "operation": "rope: q or k (a linear output) times cos, two terms",
+   "largest_magnitude": 958348293918687232,
+   "log2": 59.733
+  },
+  {
+   "operation": "scores: q16 . k16 shifted by sh_q + sh_k (<= 10 + 10), at 2^-32",
+   "largest_magnitude": 72053196058525696,
+   "log2": 56.0
+  },
+  {
+   "operation": "scores: max minus score",
+   "largest_magnitude": 144106392117051392,
+   "log2": 57.0
+  },
+  {
+   "operation": "context: 2^15 p16 . vh + p16 . vl (|vh| <= 8193, vl < 2^15), at 2^-31",
+   "largest_magnitude": 8866976726784,
+   "log2": 43.012
+  },
+  {
+   "operation": "peel key: |x| 2^11 + index, |x| within the largest clamp",
+   "largest_magnitude": 2199023257599,
+   "log2": 41.0
+  },
+  {
+   "operation": "rms: y * norm weight (as Exact)",
+   "largest_magnitude": 359032422400,
+   "log2": 38.385
+  },
+  {
+   "operation": "exp interpolation, softmax, silu, gate times up: as Exact (bounds.json)",
+   "largest_magnitude": 72057594037927936,
+   "log2": 56.0
+  }
+ ]
+}

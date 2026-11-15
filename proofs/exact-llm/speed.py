@@ -4,7 +4,8 @@ Prefill: the first text window, 512 tokens, one forward pass. Decode: the first 
 2 at batch 1, timed with 48 generated tokens and again with 1; the difference is the time of the other 47 per row.
 Peak memory is the process's own maximum resident set size. Run each engine in its own process.
 
-usage: python speed.py exact|exact-keep|float32     (exact: one matrix at a time; exact-keep: float64 kept)
+usage: python speed.py exact|exact-keep|exact16-f64|exact16-f32|exact16-i8|float32
+       (exact: one matrix at a time; exact-keep: float64 kept)
 """
 import os
 import resource
@@ -17,7 +18,7 @@ import exact_llm as X  # noqa: E402
 
 name = sys.argv[1]
 t0 = time.time()
-m = X.Exact(keep_f64=(name == "exact-keep")) if name.startswith("exact") else X.engine(name)
+m = X.Exact(keep_f64=True) if name == "exact-keep" else X.engine(name)
 load = time.time() - t0
 tok = X.tokenizer()
 w = X.text_windows(tok, n=1)[0]

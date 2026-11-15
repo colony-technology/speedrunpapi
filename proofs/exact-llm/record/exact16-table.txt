@@ -1,0 +1,51 @@
+# exact-16 width table, Apple M1. Each row: python -I measure16.py FOLDER RUNS NAME FLAGS, RUNS holding the
+# saved float32 runs (exact_llm.py hash --engine float32 --save RUNS/float32; exact_llm.py text --engine float32
+# --save RUNS/float32). The rows without peel ran on the script's first version, which differs only in how the
+# peeled terms are rounded and in what it records; both16 printed the same line on both versions.
+#
+# row, flags
+base  
+both12  --ib 12 --wb 12 --ab 12
+both14  --ib 14 --wb 14 --ab 14
+both14-peel2  --ib 14 --wb 14 --ab 14 --peel 2
+both16  --ib 16 --wb 16 --ab 16
+both16-peel1  --ib 16 --wb 16 --ab 16 --peel 1
+both16-peel2  --ib 16 --wb 16 --ab 16 --peel 2
+both16-peel4  --ib 16 --wb 16 --ab 16 --peel 4
+in12  --ib 12 --ab 12
+in14  --ib 14 --ab 14
+in16  --ib 16 --ab 16
+in16-peel1  --ib 16 --ab 16 --peel 1
+in16-peel2  --ib 16 --ab 16 --peel 2
+in16-peel4  --ib 16 --ab 16 --peel 4
+w12  --wb 12
+w14  --wb 14
+w16  --wb 16
+#
+# printed lines (e16.txt: base, in16, in14, in12; e16b.txt: w16, w14, w12, both14, both12; e16c.txt: the rest)
+base                   prompts top-1 471/471 | logit diff max 0.0215 mean 0.00123 | continuations 64/64 | text top-1 8160/8176 | perplexity 30.5799 (float32 30.5717) | extra shifts 0 | clamped 0 | 123 s
+base           1830617088  maximum resident set size
+in16                   prompts top-1 471/471 | logit diff max 1.0231 mean 0.02103 | continuations 63/64 | text top-1 8169/8176 | perplexity 30.5720 (float32 30.5717) | extra shifts 151 | clamped 0 | 172 s
+in16           2044002304  maximum resident set size
+in14                   prompts top-1 408/471 | logit diff max 3.0117 mean 0.12463 | continuations 63/64 | text top-1 8128/8176 | perplexity 30.5820 (float32 30.5717) | extra shifts 924 | clamped 0 | 196 s
+in14           2005286912  maximum resident set size
+in12                   prompts top-1 404/471 | logit diff max 7.1669 mean 0.26121 | continuations 60/64 | text top-1 8025/8176 | perplexity 30.6460 (float32 30.5717) | extra shifts 6849 | clamped 0 | 187 s
+in12           2123759616  maximum resident set size
+w16                    prompts top-1 471/471 | logit diff max 0.0528 mean 0.00292 | continuations 64/64 | text top-1 8159/8176 | perplexity 30.5800 (float32 30.5717) | extra shifts 0 | clamped 0 | 109 s
+w16           1475723264  maximum resident set size
+w14                    prompts top-1 471/471 | logit diff max 0.2466 mean 0.01095 | continuations 64/64 | text top-1 8161/8176 | perplexity 30.5795 (float32 30.5717) | extra shifts 0 | clamped 0 | 113 s
+w14           1613430784  maximum resident set size
+w12                    prompts top-1 469/471 | logit diff max 0.9972 mean 0.03816 | continuations 62/64 | text top-1 8143/8176 | perplexity 30.5820 (float32 30.5717) | extra shifts 0 | clamped 0 | 114 s
+w12           1386872832  maximum resident set size
+both14                 prompts top-1 411/471 | logit diff max 3.1328 mean 0.10905 | continuations 64/64 | text top-1 8132/8176 | perplexity 30.5800 (float32 30.5717) | extra shifts 1147 | clamped 0 | 131 s
+both14           1709932544  maximum resident set size
+both12                 prompts top-1 402/471 | logit diff max 7.0431 mean 0.26011 | continuations 59/64 | text top-1 8044/8176 | perplexity 30.6415 (float32 30.5717) | extra shifts 6128 | clamped 0 | 143 s
+both12           1602387968  maximum resident set size
+both16                 prompts top-1 471/471 | logit diff max 1.1367 mean 0.02226 | continuations 63/64 | text top-1 8167/8176 | perplexity 30.5717 (float32 30.5717) | extra shifts 192 | clamped 0 | 150 s
+both16-peel1           prompts top-1 471/471 | logit diff max 0.1753 mean 0.00776 | continuations 63/64 | text top-1 8171/8176 | perplexity 30.5711 (float32 30.5717) | extra shifts 142 | clamped 0 | 158 s
+both16-peel2           prompts top-1 471/471 | logit diff max 0.0580 mean 0.00264 | continuations 63/64 | text top-1 8173/8176 | perplexity 30.5714 (float32 30.5717) | extra shifts 219 | clamped 0 | 157 s
+both16-peel4           prompts top-1 471/471 | logit diff max 0.0591 mean 0.00299 | continuations 64/64 | text top-1 8173/8176 | perplexity 30.5713 (float32 30.5717) | extra shifts 249 | clamped 0 | 171 s
+in16-peel1             prompts top-1 471/471 | logit diff max 0.1560 mean 0.00755 | continuations 63/64 | text top-1 8171/8176 | perplexity 30.5713 (float32 30.5717) | extra shifts 178 | clamped 0 | 155 s
+in16-peel2             prompts top-1 471/471 | logit diff max 0.0340 mean 0.00182 | continuations 64/64 | text top-1 8172/8176 | perplexity 30.5717 (float32 30.5717) | extra shifts 225 | clamped 0 | 156 s
+in16-peel4             prompts top-1 471/471 | logit diff max 0.0312 mean 0.00200 | continuations 64/64 | text top-1 8172/8176 | perplexity 30.5716 (float32 30.5717) | extra shifts 184 | clamped 0 | 175 s
+both14-peel2           prompts top-1 470/471 | logit diff max 0.2883 mean 0.01330 | continuations 63/64 | text top-1 8158/8176 | perplexity 30.5723 (float32 30.5717) | extra shifts 1084 | clamped 0 | 156 s

@@ -1,0 +1,68 @@
+# exact-16 on the Apple M1 (macOS 27.2, Python 3.11.18, NumPy 2.4.6 with Accelerate, onnxruntime 1.32.0).
+# One process per step, under one turn of the machine's job gate. Elapsed: /usr/bin/time real seconds.
+== run 1: bounds16
+bounds-16: 10 product kinds on 3 routes
+  q_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  k_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  v_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  o_proj         n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  gate_proj      n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  up_proj        n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  down_proj      n  1536  f64 2^40.585  f32 2^24.000 (chunk 1024)  i8 2^26.574
+  embed_tokens   n   576  f64 2^39.170  f32 2^23.170 (chunk 576)  i8 2^25.159
+  scores q.k     n    64  f64 2^36.000  f32 2^20.000 (chunk 64)  i8 2^21.989
+  context p.vh, p.vl n   512  f64 2^39.000  f32 2^23.000 (chunk 512)  i8 2^24.989
+  weight row scales g: q_proj 12..19, k_proj 12..18, v_proj 13..17, o_proj 12..17, gate_proj 11..16, up_proj 12..16, down_proj 12..16, embed_tokens 14..16
+  int64: 17 operations below 2^63, largest 2^59.733; wrote bounds-16.json
+elapsed 1.95 s
+peak resident 456769536 bytes
+== run 1: f64
+b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc exact16-f64 batch=8
+clamped 0 {}
+peaks (real) and clamps: attention input 11.429 / 4096; down input 2630.720 / 8192; gate 50.741 / 4096; k 22.910 / 128; logits input 53.630 / 16384; mlp input 28.742 / 2048; o input 9.531 / 4096; q 22.075 / 128; residual 19509.485 / 65536; up 72.026 / 4096; v 12.972 / 4096
+route f64; vectors with one more shift 84; p held at 2^15 - 1: 20684
+elapsed 63.86 s
+peak resident 631537664 bytes
+== run 1: f32
+b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc exact16-f32 batch=8
+clamped 0 {}
+peaks (real) and clamps: attention input 11.429 / 4096; down input 2630.720 / 8192; gate 50.741 / 4096; k 22.910 / 128; logits input 53.630 / 16384; mlp input 28.742 / 2048; o input 9.531 / 4096; q 22.075 / 128; residual 19509.485 / 65536; up 72.026 / 4096; v 12.972 / 4096
+route f32; vectors with one more shift 84; p held at 2^15 - 1: 20684
+elapsed 242.87 s
+peak resident 634830848 bytes
+== run 1: i8
+b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc exact16-i8 batch=8
+clamped 0 {}
+peaks (real) and clamps: attention input 11.429 / 4096; down input 2630.720 / 8192; gate 50.741 / 4096; k 22.910 / 128; logits input 53.630 / 16384; mlp input 28.742 / 2048; o input 9.531 / 4096; q 22.075 / 128; residual 19509.485 / 65536; up 72.026 / 4096; v 12.972 / 4096
+route i8-onnxruntime-1.32.0; vectors with one more shift 84; p held at 2^15 - 1: 20684
+elapsed 397.58 s
+peak resident 582713344 bytes
+== run 1: f64-b1
+b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc exact16-f64 batch=1
+clamped 0 {}
+peaks (real) and clamps: attention input 11.429 / 4096; down input 2630.720 / 8192; gate 49.148 / 4096; k 22.910 / 128; logits input 53.630 / 16384; mlp input 28.742 / 2048; o input 9.531 / 4096; q 19.580 / 128; residual 19509.485 / 65536; up 72.026 / 4096; v 12.972 / 4096
+route f64; vectors with one more shift 82; p held at 2^15 - 1: 20174
+elapsed 408.16 s
+peak resident 396034048 bytes
+== run 1: text
+exact16-f64 perplexity 30.571461 over 8176 tokens
+elapsed 74.72 s
+peak resident 1163395072 bytes
+== run 1: distance
+prompts, 471 positions: top-1 agreement 471 (100.0000%); |logit difference| largest 0.059198, mean 0.0026972
+continuations of 48 tokens identical: 64 of 64; first differing token of the others at []
+text, 8176 predicted tokens: perplexity exact16-f64 30.571461, float32 30.571750; top-1 agreement 8171 (99.9388%); |nll difference| largest 0.010603, mean 0.0007450
+elapsed 0.50 s
+peak resident 835698688 bytes
+== run 1: speed-f64
+exact16-f64: load 0.1 s; prefill 129 tokens/s (512 tokens in 3.97 s); decode batch 8: 48.0 tokens/s (8 rows x 47 tokens in 7.84 s); decode batch 1: 9.3 tokens/s (2 rows x 47 tokens in 10.07 s); peak resident 891 MB
+elapsed 26.27 s
+peak resident 934133760 bytes
+== run 1: speed-f32
+exact16-f32: load 0.4 s; prefill 92 tokens/s (512 tokens in 5.59 s); decode batch 8: 11.6 tokens/s (8 rows x 47 tokens in 32.28 s); decode batch 1: 1.8 tokens/s (2 rows x 47 tokens in 52.12 s); peak resident 1020 MB
+elapsed 98.05 s
+peak resident 1069596672 bytes
+== run 1: speed-i8
+exact16-i8: load 0.3 s; prefill 49 tokens/s (512 tokens in 10.39 s); decode batch 8: 8.2 tokens/s (8 rows x 47 tokens in 45.67 s); decode batch 1: 1.2 tokens/s (2 rows x 47 tokens in 76.94 s); peak resident 978 MB
+elapsed 147.24 s
+peak resident 1025458176 bytes
