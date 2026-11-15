@@ -1,0 +1,2 @@
+30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  logits: int32 little-endian (scale 2^-16) of every position of the 64 prompts, prompt by prompt, 49,152 each
+a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  continuations: 64 x 48 greedy token ids, int32 little-endian
