@@ -164,3 +164,14 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | `exact_llm.ipynb`, `make_notebook.py` | the notebook, NumPy only |
 | `pins.json`, `expected.sha256` | pins; the two exact hashes |
 | `record/machines.txt` | every line of the seven machines |
+
+## Your model
+
+One model of yours, up to 500 million parameters, made exact this way: 1,800 USD, fixed.
+
+You send the model's name and revision, the inputs you care about and the machines it must agree on. You receive the code, the hashes, and the comparison against float32 as in the tables above.
+Full refund if two of your machines print different hashes.
+
+Pay: https://buy.stripe.com/4gM8wO3Ho0c7dUubo76c007 · Questions: lmtlssss@colony.technology
+
+Larger work, by contract: the same address.
