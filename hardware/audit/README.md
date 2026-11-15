@@ -24,8 +24,8 @@ For RTL cores the reference is IEEE 754 round to nearest even from the host. The
 | [bespoke-silicon-group/basejump_stl](https://github.com/bespoke-silicon-group/basejump_stl) | `bsg_fpu_add_sub`: add, sub, single and double | 2,080,000 each | 68,280, 68,308; 66,020, 65,835 | [#765](https://github.com/bespoke-silicon-group/basejump_stl/pull/765) |
 | bespoke-silicon-group/basejump_stl | `bsg_fpu_mul`, `bsg_fpu_f2i`, single and double | 3,120,000; 2,080,000 | 0 values; overflow and invalid flags in three cases | offered in #765 |
 | bespoke-silicon-group/basejump_stl | `bsg_fpu_i2f`, `bsg_fpu_cmp`, `bsg_fpu_classify`, sticky, leading zeros | 2,080,000 each | 0 | |
-| [black-parrot/black-parrot](https://github.com/black-parrot/black-parrot) | decoder, reservation stage and the aux, fma and long pipes: 29 F and D operations, single and double, five rounding modes | 6,960,000 | 907, all `fcvt.s.l` and `fcvt.s.lu` to nearest | [#1380](https://github.com/black-parrot/black-parrot/pull/1380) |
-| black-parrot/black-parrot | `fcvt.s.l`, `fcvt.s.lu` to nearest, integers aimed at halfway points | 399,621 | 37,541 | #1380 |
+| [black-parrot/black-parrot](https://github.com/black-parrot/black-parrot) | decoder, reservation stage and the aux, fma and long pipes: 29 F and D operations, single and double, five rounding modes | 6,960,000 | 907, all `fcvt.s.l` and `fcvt.s.lu` to nearest | [#1380](https://github.com/black-parrot/black-parrot/pull/1380), merged |
+| black-parrot/black-parrot | `fcvt.s.l`, `fcvt.s.lu` to nearest, integers aimed at halfway points | 399,621 | 37,541 | [#1380](https://github.com/black-parrot/black-parrot/pull/1380), merged |
 | black-parrot/black-parrot | RV64M multiply, divide and remainder through the same pipes | 1,300,000 | 0 | |
 | [lowRISC/muntjac](https://github.com/lowRISC/muntjac) | FPU: add, sub, single and double, five rounding modes | 10,000,000 each | 1,205, 1,295; 1,455, 1,330 | [#8](https://github.com/lowRISC/muntjac/issues/8) |
 | lowRISC/muntjac | FPU: fused multiply-add family, single and double | 400,000 each | 2,220 to 3,439 | #8 |
