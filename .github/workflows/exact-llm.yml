@@ -10,14 +10,27 @@ permissions:
   contents: read
 jobs:
   hashes:
-    name: hashes (${{ matrix.model }}, ${{ matrix.os }})
+    name: hashes (${{ matrix.model }}, ${{ matrix.os }}, ${{ matrix.routes }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: ${{ matrix.model == 'SmolLM2-135M' && 90 || 120 }}
+    timeout-minutes: 120
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel, windows-latest, windows-11-arm]
-        model: [SmolLM2-135M, SmolLM2-360M]
+        include:
+          - {model: SmolLM2-1.7B, os: ubuntu-latest, routes: f64, args: "--routes f64"}
+          - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: f64, args: "--routes f64"}
+          - {model: SmolLM2-1.7B, os: macos-latest, routes: f64, args: "--routes f64"}
+          - {model: SmolLM2-1.7B, os: macos-15-intel, routes: f64, args: "--routes f64"}
+          - {model: SmolLM2-1.7B, os: windows-latest, routes: f64, args: "--routes f64"}
+          - {model: SmolLM2-1.7B, os: windows-11-arm, routes: f64, args: "--routes f64"}
+          - {model: SmolLM2-1.7B, os: ubuntu-latest, routes: f32, args: "--routes f32 --no-float"}
+          - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: f32, args: "--routes f32 --no-float"}
+          - {model: SmolLM2-1.7B, os: macos-latest, routes: f32, args: "--routes f32 --no-float"}
+          - {model: SmolLM2-1.7B, os: macos-15-intel, routes: f32, args: "--routes f32 --no-float"}
+          - {model: SmolLM2-1.7B, os: ubuntu-latest, routes: i8, args: "--routes i8 --no-float"}
+          - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: i8, args: "--routes i8 --no-float"}
+          - {model: SmolLM2-1.7B, os: macos-latest, routes: i8, args: "--routes i8 --no-float"}
+          - {model: SmolLM2-1.7B, os: macos-15-intel, routes: i8, args: "--routes i8 --no-float"}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -29,14 +42,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install numpy
           python -m pip install onnxruntime || echo "onnxruntime: no wheel for this runner"
-      - name: The machine
+      - name: The machine, its memory and its free disk
         shell: bash
-        run: python -c "import platform, numpy; print(platform.platform(), platform.machine(), 'numpy', numpy.__version__); numpy.show_config()"
+        run: |
+          python -c "import platform, numpy; print(platform.platform(), platform.machine(), 'numpy', numpy.__version__)"
+          df -h . || true
       - name: The 16-bit products on their three routes against int64, random and extreme operands
         shell: bash
         working-directory: proofs/exact-llm
         run: python routes_test.py
-      - name: The hashes over the 64 prompts, exact and exact-16 on the 135M and exact-16 on the larger models, float32, onnxruntime; fails if a pair differs
+      - name: The hashes over the 64 prompts on one route, with elapsed time per stage; float32 on the f64 jobs
         shell: bash
         working-directory: proofs/exact-llm
-        run: python -u exact_llm.py check --model ${{ matrix.model }}
+        run: python -u exact_llm.py check --model ${{ matrix.model }} ${{ matrix.args }}
