@@ -1,0 +1,71 @@
+{
+ "model": "SmolLM2-135M",
+ "sites": {
+  "attention input": {
+   "peak": 11.42877197265625,
+   "clamp": 131072,
+   "margin_log2": 13.485,
+   "clamped": 0
+  },
+  "down input": {
+   "peak": 2630.719940185547,
+   "clamp": 4194304,
+   "margin_log2": 10.639,
+   "clamped": 0
+  },
+  "gate": {
+   "peak": 50.74119567871094,
+   "clamp": 32768,
+   "margin_log2": 9.335,
+   "clamped": 0
+  },
+  "k": {
+   "peak": 22.909591674804688,
+   "clamp": 1024,
+   "margin_log2": 5.482,
+   "clamped": 0
+  },
+  "logits input": {
+   "peak": 53.62968444824219,
+   "clamp": 8388608,
+   "margin_log2": 17.255,
+   "clamped": 0
+  },
+  "mlp input": {
+   "peak": 28.742446899414062,
+   "clamp": 8388608,
+   "margin_log2": 18.155,
+   "clamped": 0
+  },
+  "o input": {
+   "peak": 9.530975341796875,
+   "clamp": 8388608,
+   "margin_log2": 19.747,
+   "clamped": 0
+  },
+  "q": {
+   "peak": 22.075149536132812,
+   "clamp": 1024,
+   "margin_log2": 5.536,
+   "clamped": 0
+  },
+  "residual": {
+   "peak": 19509.48468017578,
+   "clamp": 33554432,
+   "margin_log2": 10.748,
+   "clamped": 0
+  },
+  "up": {
+   "peak": 72.0263671875,
+   "clamp": 32768,
+   "margin_log2": 8.83,
+   "clamped": 0
+  },
+  "v": {
+   "peak": 12.9720458984375,
+   "clamp": 8192,
+   "margin_log2": 9.303,
+   "clamped": 0
+  }
+ }
+}

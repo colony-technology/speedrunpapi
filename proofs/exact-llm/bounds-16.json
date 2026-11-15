@@ -1,4 +1,18 @@
 {
+ "model": "SmolLM2-135M",
+ "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+ "config": {
+  "layers": 30,
+  "hidden": 576,
+  "heads": 9,
+  "kv_heads": 3,
+  "head": 64,
+  "ff": 1536,
+  "vocab": 49152,
+  "rope_theta": 100000,
+  "norm_bits": 26,
+  "rms_y": 25
+ },
  "operands": "every product operand an integer with |a| <= 2^15 - 1 = 32767",
  "routes": {
   "f64": "one float64 product; exact while n (2^15 - 1)^2 < 2^53, n below 2^23",
@@ -23,6 +37,87 @@
    "the digits it replaces": "a1 = a >> 8 (int8), a0 = a & 255 (uint8): a uint8 by int8 kernel without VNNI adds adjacent pairs in int16 with saturation, and 2 x 255 x 128 = 65,280 > 32,767; a 7-bit unsigned digit (2 x 127 x 128 = 32,512) would hold, at six products instead of four. onnxruntime 1.23.2 (macOS x86-64) could not build a MatMulInteger session for one of the pairs with an int8 operand (NOT_IMPLEMENTED)"
   }
  ],
+ "clamp_rule": "each clamp the largest power of two (real units) at which every int64 row below stays under its limit; q and k together, gate and up together; computed in exact_llm.clamps16",
+ "clamps": {
+  "residual": {
+   "clamp_real": 33554432,
+   "clamp_log2": 25,
+   "peak": 19509.48468017578,
+   "margin_log2": 10.748,
+   "clamped": 0
+  },
+  "attention input": {
+   "clamp_real": 131072,
+   "clamp_log2": 17,
+   "peak": 11.42877197265625,
+   "margin_log2": 13.485,
+   "clamped": 0
+  },
+  "o input": {
+   "clamp_real": 8388608,
+   "clamp_log2": 23,
+   "peak": 9.530975341796875,
+   "margin_log2": 19.747,
+   "clamped": 0
+  },
+  "mlp input": {
+   "clamp_real": 8388608,
+   "clamp_log2": 23,
+   "peak": 28.742446899414062,
+   "margin_log2": 18.155,
+   "clamped": 0
+  },
+  "down input": {
+   "clamp_real": 4194304,
+   "clamp_log2": 22,
+   "peak": 2630.719940185547,
+   "margin_log2": 10.639,
+   "clamped": 0
+  },
+  "logits input": {
+   "clamp_real": 8388608,
+   "clamp_log2": 23,
+   "peak": 53.62968444824219,
+   "margin_log2": 17.255,
+   "clamped": 0
+  },
+  "q": {
+   "clamp_real": 1024,
+   "clamp_log2": 10,
+   "peak": 22.075149536132812,
+   "margin_log2": 5.536,
+   "clamped": 0
+  },
+  "k": {
+   "clamp_real": 1024,
+   "clamp_log2": 10,
+   "peak": 22.909591674804688,
+   "margin_log2": 5.482,
+   "clamped": 0
+  },
+  "v": {
+   "clamp_real": 8192,
+   "clamp_log2": 13,
+   "peak": 12.9720458984375,
+   "margin_log2": 9.303,
+   "clamped": 0
+  },
+  "gate": {
+   "clamp_real": 32768,
+   "clamp_log2": 15,
+   "peak": 50.74119567871094,
+   "margin_log2": 9.335,
+   "clamped": 0
+  },
+  "up": {
+   "clamp_real": 32768,
+   "clamp_log2": 15,
+   "peak": 72.0263671875,
+   "margin_log2": 8.83,
+   "clamped": 0
+  }
+ },
+ "peaks_from": "record/peaks-16.json",
  "products": [
   {
    "product": "q_proj",
@@ -135,144 +230,373 @@
    "i8_log2": 24.989
   }
  ],
- "weight_row_scales_g": {
-  "q_proj": [
-   12,
-   19
-  ],
-  "k_proj": [
-   12,
-   18
-  ],
-  "v_proj": [
-   13,
-   17
-  ],
-  "o_proj": [
-   12,
-   17
-  ],
-  "gate_proj": [
-   11,
-   16
-  ],
-  "up_proj": [
-   12,
-   16
-  ],
-  "down_proj": [
-   12,
-   16
-  ],
-  "embed_tokens": [
-   14,
-   16
-  ]
+ "weight_stats": {
+  "q_proj": {
+   "site": "attention input",
+   "inputs": 576,
+   "matrices": 30,
+   "col": 5746300,
+   "g_min": 12,
+   "g_max": 19,
+   "lin": 198268672
+  },
+  "k_proj": {
+   "site": "attention input",
+   "inputs": 576,
+   "matrices": 30,
+   "col": 5577013,
+   "g_min": 12,
+   "g_max": 18,
+   "lin": 109354624
+  },
+  "v_proj": {
+   "site": "attention input",
+   "inputs": 576,
+   "matrices": 30,
+   "col": 5524453,
+   "g_min": 13,
+   "g_max": 17,
+   "lin": 21027584
+  },
+  "o_proj": {
+   "site": "o input",
+   "inputs": 576,
+   "matrices": 30,
+   "col": 6020554,
+   "g_min": 12,
+   "g_max": 17,
+   "lin": 60840640
+  },
+  "gate_proj": {
+   "site": "mlp input",
+   "inputs": 576,
+   "matrices": 30,
+   "col": 5928176,
+   "g_min": 11,
+   "g_max": 16,
+   "lin": 28063536
+  },
+  "up_proj": {
+   "site": "mlp input",
+   "inputs": 576,
+   "matrices": 30,
+   "col": 5947715,
+   "g_min": 12,
+   "g_max": 16,
+   "lin": 64996192
+  },
+  "down_proj": {
+   "site": "down input",
+   "inputs": 1536,
+   "matrices": 30,
+   "col": 12920308,
+   "g_min": 12,
+   "g_max": 16,
+   "lin": 55779808
+  },
+  "embed_tokens": {
+   "site": "logits input",
+   "inputs": 576,
+   "matrices": 1,
+   "col": 4656802,
+   "g_min": 14,
+   "g_max": 16,
+   "lin": 7799968
+  }
  },
  "block_shift_max": {
-  "attention input": 15,
-  "down input": 16,
-  "k": 10,
-  "logits input": 17,
-  "mlp input": 14,
-  "o input": 15,
-  "q": 10
+  "attention input": 20,
+  "down input": 25,
+  "gate": 18,
+  "k": 13,
+  "logits input": 26,
+  "mlp input": 26,
+  "o input": 26,
+  "q": 13,
+  "residual": 28,
+  "up": 18,
+  "v": 16
  },
  "int64": [
   {
-   "operation": "q_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
-   "largest_magnitude": 1542604808454144,
-   "log2": 50.454
+   "operation": "q_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 20), plus rounding constant",
+   "largest_magnitude": 49363353862406144,
+   "limit_log2": 62,
+   "site": "attention input",
+   "log2": 55.454
   },
   {
-   "operation": "k_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
-   "largest_magnitude": 1497159401684992,
-   "log2": 50.411
+   "operation": "q_proj: largest output",
+   "largest_magnitude": 3248632190721,
+   "limit_log2": 62,
+   "site": "attention input",
+   "log2": 41.563
   },
   {
-   "operation": "v_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
-   "largest_magnitude": 1483049572909056,
-   "log2": 50.397
+   "operation": "q_proj: peel key |x| 2^11 + index",
+   "largest_magnitude": 17592186046464,
+   "limit_log2": 63,
+   "site": "attention input",
+   "log2": 44.0
   },
   {
-   "operation": "o_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 15), plus rounding constant",
-   "largest_magnitude": 1616228799184896,
-   "log2": 50.522
+   "operation": "k_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 20), plus rounding constant",
+   "largest_magnitude": 47909100849856512,
+   "limit_log2": 62,
+   "site": "attention input",
+   "log2": 55.411
   },
   {
-   "operation": "gate_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 14), plus rounding constant",
-   "largest_magnitude": 795714877554688,
-   "log2": 49.499
+   "operation": "k_proj: largest output",
+   "largest_magnitude": 3583551028481,
+   "limit_log2": 62,
+   "site": "attention input",
+   "log2": 41.705
   },
   {
-   "operation": "up_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 14), plus rounding constant",
-   "largest_magnitude": 798337517805568,
-   "log2": 49.504
+   "operation": "k_proj: peel key |x| 2^11 + index",
+   "largest_magnitude": 17592186046464,
+   "limit_log2": 63,
+   "site": "attention input",
+   "log2": 44.0
   },
   {
-   "operation": "down_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 16), plus rounding constant",
-   "largest_magnitude": 6936960911966208,
-   "log2": 52.623
+   "operation": "v_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 20), plus rounding constant",
+   "largest_magnitude": 47457586331058176,
+   "limit_log2": 62,
+   "site": "attention input",
+   "log2": 55.397
   },
   {
-   "operation": "embed_tokens: 2^sh x16 . w16 plus the peeled terms (sh <= 17), plus rounding constant",
-   "largest_magnitude": 5000508261695488,
-   "log2": 52.151
+   "operation": "v_proj: largest output",
+   "largest_magnitude": 1378147855361,
+   "limit_log2": 62,
+   "site": "attention input",
+   "log2": 40.326
   },
   {
-   "operation": "logits: |y| in int64 (stored as int32; |y| < 2^31 asserted on every call)",
-   "largest_magnitude": 127802475681,
-   "log2": 36.895
+   "operation": "v_proj: peel key |x| 2^11 + index",
+   "largest_magnitude": 17592186046464,
+   "limit_log2": 63,
+   "site": "attention input",
+   "log2": 44.0
+  },
+  {
+   "operation": "o_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 26), plus rounding constant",
+   "largest_magnitude": 3310036580596514816,
+   "limit_log2": 62,
+   "site": "o input",
+   "log2": 61.522
+  },
+  {
+   "operation": "o_proj: largest output",
+   "largest_magnitude": 255199714918401,
+   "limit_log2": 62,
+   "site": "o input",
+   "log2": 47.859
+  },
+  {
+   "operation": "o_proj: peel key |x| 2^11 + index",
+   "largest_magnitude": 1125899906844672,
+   "limit_log2": 63,
+   "site": "o input",
+   "log2": 50.0
+  },
+  {
+   "operation": "gate_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 26), plus rounding constant",
+   "largest_magnitude": 3259248138329817088,
+   "limit_log2": 62,
+   "site": "mlp input",
+   "log2": 61.499
+  },
+  {
+   "operation": "gate_proj: largest output",
+   "largest_magnitude": 235428371128321,
+   "limit_log2": 62,
+   "site": "mlp input",
+   "log2": 47.742
+  },
+  {
+   "operation": "gate_proj: peel key |x| 2^11 + index",
+   "largest_magnitude": 1125899906844672,
+   "limit_log2": 63,
+   "site": "mlp input",
+   "log2": 50.0
+  },
+  {
+   "operation": "up_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 26), plus rounding constant",
+   "largest_magnitude": 3269990472797421568,
+   "limit_log2": 62,
+   "site": "mlp input",
+   "log2": 61.504
+  },
+  {
+   "operation": "up_proj: largest output",
+   "largest_magnitude": 545260854231041,
+   "limit_log2": 62,
+   "site": "mlp input",
+   "log2": 48.954
+  },
+  {
+   "operation": "up_proj: peel key |x| 2^11 + index",
+   "largest_magnitude": 1125899906844672,
+   "limit_log2": 63,
+   "site": "mlp input",
+   "log2": 50.0
+  },
+  {
+   "operation": "down_proj: 2^sh x16 . w16 plus the peeled terms (sh <= 25), plus rounding constant",
+   "largest_magnitude": 3551723986909954048,
+   "limit_log2": 62,
+   "site": "down input",
+   "log2": 61.623
+  },
+  {
+   "operation": "down_proj: largest output",
+   "largest_magnitude": 233971751444481,
+   "limit_log2": 62,
+   "site": "down input",
+   "log2": 47.733
+  },
+  {
+   "operation": "down_proj: peel key |x| 2^11 + index",
+   "largest_magnitude": 562949953423360,
+   "limit_log2": 63,
+   "site": "down input",
+   "log2": 49.0
+  },
+  {
+   "operation": "embed_tokens: 2^sh x16 . w16 plus the peeled terms (sh <= 26), plus rounding constant",
+   "largest_magnitude": 2560260229971345408,
+   "limit_log2": 62,
+   "site": "logits input",
+   "log2": 61.151
+  },
+  {
+   "operation": "embed_tokens: largest output",
+   "largest_magnitude": 65434867548161,
+   "limit_log2": 62,
+   "site": "logits input",
+   "log2": 45.895
+  },
+  {
+   "operation": "embed_tokens: peel key |x| 2^11 + index",
+   "largest_magnitude": 1125899906844672,
+   "limit_log2": 63,
+   "site": "logits input",
+   "log2": 50.0
+  },
+  {
+   "operation": "rope: q_proj output times cos, two terms",
+   "largest_magnitude": 6812875496034926592,
+   "limit_log2": 63,
+   "site": "attention input",
+   "log2": 62.563
+  },
+  {
+   "operation": "rope: k_proj output times cos, two terms",
+   "largest_magnitude": 7515251206480986112,
+   "limit_log2": 63,
+   "site": "attention input",
+   "log2": 62.705
+  },
+  {
+   "operation": "scores: q16 . k16 shifted by sh_q + sh_k, at 2^-32; max minus score",
+   "largest_magnitude": 9222809095491289088,
+   "limit_log2": 63,
+   "site": "q, k",
+   "log2": 63.0
+  },
+  {
+   "operation": "v: the high half |v >> 15| <= 2^15 - 1",
+   "largest_magnitude": 16385,
+   "limit_log2": 15,
+   "site": "v",
+   "log2": 14.0
+  },
+  {
+   "operation": "context: 2^15 p16 . vh + p16 . vl",
+   "largest_magnitude": 17731789225728,
+   "limit_log2": 63,
+   "site": "v",
+   "log2": 44.011
+  },
+  {
+   "operation": "gate times up: silu(g) u, both clamped",
+   "largest_magnitude": 4611686018427387904,
+   "limit_log2": 63,
+   "site": "gate, up",
+   "log2": 62.0
+  },
+  {
+   "operation": "rms: max |x| below 2^(NORM_BITS + 16), so the shift is at most 16",
+   "largest_magnitude": 2199023255552,
+   "limit_log2": 42,
+   "site": "residual",
+   "log2": 41.0
   },
   {
    "operation": "residual: clamp plus one linear output",
-   "largest_magnitude": 461271044337,
-   "log2": 38.747
+   "largest_magnitude": 257398738173953,
+   "limit_log2": 63,
+   "site": "residual",
+   "log2": 47.871
   },
   {
-   "operation": "rope: q or k (a linear output) times cos, two terms",
-   "largest_magnitude": 958348293918687232,
-   "log2": 59.733
-  },
-  {
-   "operation": "scores: q16 . k16 shifted by sh_q + sh_k (<= 10 + 10), at 2^-32",
-   "largest_magnitude": 72053196058525696,
-   "log2": 56.0
-  },
-  {
-   "operation": "scores: max minus score",
-   "largest_magnitude": 144106392117051392,
-   "log2": 57.0
-  },
-  {
-   "operation": "context: 2^15 p16 . vh + p16 . vl (|vh| <= 8193, vl < 2^15), at 2^-31",
-   "largest_magnitude": 8866976726784,
-   "log2": 43.012
-  },
-  {
-   "operation": "peel key: |x| 2^11 + index, |x| within the largest clamp",
-   "largest_magnitude": 2199023257599,
-   "log2": 41.0
+   "operation": "logits: |y| in int64 (stored as int32; |y| < 2^31 asserted on every call)",
+   "largest_magnitude": 65434867548161,
+   "limit_log2": 63,
+   "site": "logits input",
+   "log2": 45.895
   },
   {
    "operation": "i8 route: sum of u_a u_b, u = a + 2^15 <= 2^16 - 1, over the widest product (n = 1536)",
    "largest_magnitude": 6596868441600,
+   "limit_log2": 63,
+   "site": "none",
    "log2": 42.585
   },
   {
    "operation": "i8 route: 2^15 (row sum of a + column sum of b) + n 2^30",
    "largest_magnitude": 4947701661696,
+   "limit_log2": 63,
+   "site": "none",
    "log2": 42.17
   },
   {
-   "operation": "rms: y * norm weight (as Exact)",
+   "operation": "rms: sum of (x >> s)^2 over 576 values, max |x >> s| < 2^26 (isqrt input)",
+   "largest_magnitude": 2594073385365405696,
+   "limit_log2": 62,
+   "site": "none",
+   "log2": 61.17
+  },
+  {
+   "operation": "rms: y * norm weight, |y| <= 25 * 2^16 (asserted at run time)",
    "largest_magnitude": 359032422400,
+   "limit_log2": 63,
+   "site": "none",
    "log2": 38.385
   },
   {
-   "operation": "exp interpolation, softmax, silu, gate times up: as Exact (bounds.json)",
-   "largest_magnitude": 72057594037927936,
-   "log2": 56.0
+   "operation": "exp interpolation: E * 256",
+   "largest_magnitude": 4294967296,
+   "limit_log2": 63,
+   "site": "none",
+   "log2": 32.0
+  },
+  {
+   "operation": "softmax: e * 2^16",
+   "largest_magnitude": 1099511627776,
+   "limit_log2": 63,
+   "site": "none",
+   "log2": 40.0
+  },
+  {
+   "operation": "silu interpolation: S * 256",
+   "largest_magnitude": 268435456,
+   "limit_log2": 63,
+   "site": "none",
+   "log2": 28.0
   }
  ]
 }

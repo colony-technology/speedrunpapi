@@ -16,6 +16,7 @@
 ```sh
 pip install numpy onnxruntime
 python exact_llm.py check        # exit 1 if the exact pair differs from expected.sha256
+python exact_llm.py check --model SmolLM2-360M      # exact-16 on three routes against expected-16-SmolLM2-360M.sha256
 ```
 
 Rows 1 to 6: GitHub Actions run [43671156245](https://github.com/lmtlssss/speedrunpapi/actions/runs/43671156245) (`.github/workflows/exact-llm.yml`, Python 3.12, NumPy 2.5.4). Row 7: Apple M1, Python 3.11.18, NumPy 2.4.6 with Accelerate, onnxruntime 1.32.0. Full hashes and every printed line: `record/machines.txt`. Batch 8, 0 values clamped on every machine.
@@ -73,7 +74,8 @@ Every cell printed logits `b0cc875f…0b4460` and continuations `a800ebad…7613
 | scores | `q16 · k16`, `q` and `k` block-shifted per head vector; `s = 2^(sh_q + sh_k) · q16 · k16` at 2^-32 |
 | softmax | as the exact model, then `p = round(floor(e · 2^16 / Σ e) / 2)` at 2^-15, held at 2^15 − 1 (20,174 values over the 64 prompts at batch 1) |
 | context | `v` whole, `v = 2^15 vh + vl`, `vl = v & (2^15 − 1)`, `\|vh\| ≤ 2^13` within the clamp; `round((2^15 · p16 · vh + p16 · vl) / 2^15)` at 2^-16. No shift, so no position reads another key's magnitude, a later token or the padding |
-| everything else | the exact model's: norms, rotary, the exp and SiLU tables, the clamps |
+| clamps | by rule, per site, for each model: the largest power of two at which every int64 operation of exact-16 stays below its limit, from the config and the 16-bit weights' largest column sum and row scales (`clamps16`, `weight_stats16`); no constant per model. The exact model keeps its own clamps |
+| everything else | the exact model's: norms, rotary, the exp and SiLU tables |
 
 | product, `bounds16.py` | inputs n | f64, below 2^53 | f32, chunk, at most 2^24 | i8, below 2^31 |
 | --- | --- | --- | --- | --- |
@@ -82,7 +84,21 @@ Every cell printed logits `b0cc875f…0b4460` and continuations `a800ebad…7613
 | scores q·k | 64 | 2^36.000 | 64, 2^20.000 | 2^21.989 |
 | context p·vh, p·vl | 512 keys at most | 2^39.000 | 512, 2^23.000 | 2^24.989 |
 
-Weight row scales `g`: q 12..19, k 12..18, v 13..17, o 12..17, gate 11..16, up 12..16, down 12..16, embedding 14..16. 19 int64 operations around the products, largest 2^59.733 (rotary): `bounds-16.json`.
+Weight row scales `g`: q 12..19, k 12..18, v 13..17, o 12..17, gate 11..16, up 12..16, down 12..16, embedding 14..16. 40 int64 operations around the products, each below its limit: `bounds-16.json`. The largest is the scores row, 2^63 − 2^49 + 2^33; it sets the clamps of q and k.
+
+| site | clamp by rule (real units) | 135M: peak, margin | 360M: clamp, peak, margin |
+| --- | --- | --- | --- |
+| residual | 2^25 | 19,509.485, 2^10.75 | 2^25, 24,019.595, 2^10.45 |
+| attention input | 2^17 | 11.429, 2^13.48 | 2^17, 10.373, 2^13.62 |
+| o input | 2^23 | 9.531, 2^19.75 | 2^22, 11.628, 2^18.46 |
+| mlp input | 2^23 | 28.742, 2^18.16 | 2^22, 28.731, 2^17.16 |
+| down input | 2^22 | 2,630.720, 2^10.64 | 2^21, 2,799.645, 2^9.55 |
+| logits input | 2^23 | 53.630, 2^17.25 | 2^22, 68.984, 2^15.89 |
+| q, k | 2^10 | 22.075 and 22.910, 2^5.48 | 2^10, 21.295 and 21.260, 2^5.59 |
+| v | 2^13 | 12.972, 2^9.30 | 2^13, 19.220, 2^8.73 |
+| gate, up | 2^15 | 50.741 and 72.026, 2^8.83 | 2^15, 117.465 and 215.929, 2^7.25 |
+
+0 values clamped in every run of either model. Each clamp is the largest power of two at which every int64 row of `bounds16_rows` stays below its limit (q and k together, gate and up together), from the config and the 16-bit weights' largest column sum and row scales; a wider model gets narrower product-input clamps. The peaks are those of the 64 prompts on the M1 (`record/peaks-16.json`, `record/peaks-16-SmolLM2-360M.json`). The exact model keeps its own clamps (`bounds.py`); the 135M's exact-16 pair is the same under these clamps as under the exact model's, since nothing reached either.
 
 ### The width, measured
 
@@ -104,6 +120,23 @@ Each row narrows the exact model's product operands and is compared with the sam
 | exact-16: both 16, peel 2, `v` in two halves | 471/471 | 0.0592 / 0.0027 | 64/64 | 8,171/8,176 | 30.5715 |
 
 The large difference at 16-bit inputs is one outlier per vector setting its shift: peel 1 brings it to 0.175, peel 2 to 0.03 to 0.06, peel 4 adds nothing; peel 2 also takes 14-bit inputs and weights from 411 to 470. `measure16.py` (rows 1 to 11, against saved float32 runs), `record/exact16-table.txt`; last row `exact_llm.py hash`, `text` and `distance.py`.
+
+## Larger models
+
+One code path: the sizes come from each model's pinned `config.json`, the clamps by rule from its own weights (above), the bound per route from the width. `python exact_llm.py check --model SmolLM2-360M` runs exact-16 on its three routes, float32 and onnxruntime.
+
+| model | weights | exact-16 pair (logits / continuations) | machines × routes printing it | top-1 against float32 | continuations equal | largest logit difference | Apple M1, tokens/s: exact-16 f64, float32 (prefill; decode batch 8) | peak resident, exact-16 f64 |
+| --- | ---: | --- | --- | --- | --- | --- | --- | --- |
+| SmolLM2-135M | 134,515,008 | `b0cc875f…0b4460` / `a800ebad…7613cc` | 7 × 3 | 471 of 471 | 64 of 64 | 0.0592 | 121; 44.5 and 1,037; 130.1 | 926 MB |
+| SmolLM2-360M | 361,821,120 | `d97a67da…2eddfe` / `f84819ca…4b1aa4` | 7 × 3 | 471 of 471 | 64 of 64 | 0.0847 | 70; 20.6 and 190; 14.8 | 1,537 MB |
+
+Machines: the six runners of GitHub Actions run [43754428621](https://github.com/lmtlssss/speedrunpapi/actions/runs/43754428621) (Python 3.12.10 and 3.12.16, NumPy 2.5.4, onnxruntime 1.23.2 and 1.32.0), where the 135M's exact pair also matched on every runner, and the Apple M1 (Python 3.11.18, NumPy 2.4.6). 0 values clamped in all 42 runs. The distance is the M1's; on the runners the 360M's largest logit difference is 0.0842 to 0.0847. Every printed line: `record/ci-43754428621.txt`, `record/exact16-360m-m1.txt`.
+
+The bound at each size, per route: the widest product is the down projection, 1,536 inputs at 135M and 2,560 at 360M. On f64 its partial sums stay below 2^40.585 and 2^41.322, under 2^53 with no chunk. On f32 the down projection is the one product wider than 1,024 inputs, so it alone is chunked: 30 matrices at 135M, 32 at 360M. On i8 the sums stay below 2^26.574 and 2^27.311, under 2^31.
+
+At 360M on the M1 float32 decodes slower at batch 8 (14.8 tokens/s) than at batch 1 (17.3), and slower than exact-16. The cause is not the machine's memory: there was no swapping, but 11.0 of its 44.6 s went to the kernel in 1,654,651 page reclaims, against 1.65 s and 120,153 for exact-16. So the time goes to fresh allocations in this baseline's NumPy decode step; that is not looked into yet.
+
+SmolLM2-1.7B (24 layers, width 2,048, feed-forward 8,192, rotary base 130,000; its tables are in `tables/`) runs on the runners only, next.
 
 ## Distance to float32
 
@@ -215,6 +248,9 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | --- | --- | --- |
 | `model.safetensors`, `tokenizer.json`, `config.json` | `HuggingFaceTB/SmolLM2-135M` @ `93efa2f097d58c2a74874c7e644dbc9b0cee75a2` | `80521b40…`, `9ca9acdd…`, `1d556eab…` |
 | `onnx/model.onnx`, `onnx/model.onnx_data` | `onnx-community/SmolLM2-135M-ONNX` @ `d0ae6834f1df45e0e95b5fdae95e536f9ca7cd3f` | `de4f7dbe…`, `3ffe0420…` |
+| `model.safetensors`, `tokenizer.json`, `config.json` | `HuggingFaceTB/SmolLM2-360M` @ `f8027fd0eaeea54caa13c31d31b9fdc459c38b49` | `7aaff666…`, `9ca9acdd…`, `34f78014…` |
+| `onnx/model.onnx` | `onnx-community/SmolLM2-360M-ONNX` @ `539c1088be2dcd673c39059d25a6bc4aec625504` | `09c21171…` |
+| `model.safetensors`, `tokenizer.json`, `config.json` | `HuggingFaceTB/SmolLM2-1.7B` @ `effd688a12921b4cc83e3312b6feb579f70f9c71` (onnx-community publishes no export of it) | `11935289…`, `9ca9acdd…`, `33397f6a…` |
 | prompts: `sentence1` of the first 64 lines of `test.jsonl.gz` | `mteb/stsbenchmark-sts` @ `96943a16ea6a35129e253c659081cb59daf81b30` | `524a7513…` |
 | text: `data/tinyshakespeare/input.txt` | `karpathy/char-rnn` @ `370cbcd448eb7daf32f21a6be560b70e0b33c4e3` | `86c4e6aa…` |
 
@@ -246,18 +282,20 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | --- | --- |
 | `exact_llm.py` | pins and downloads, safetensors parser, tokenizer, float32 and onnxruntime baselines, the exact model, exact-16 on its three routes, `hash`, `text`, `check` |
 | `bounds.py`, `bounds.json` | the bound |
-| `bounds16.py`, `bounds-16.json` | the exact-16 bound, per route |
+| `bounds16.py`, `bounds-16.json`, `bounds-16-SmolLM2-360M.json` | the exact-16 bound per route, the clamps by rule, the peaks and margins, per model |
+| `expected-16-SmolLM2-360M.sha256`, `record/exact16-360m-m1.txt`, `record/ci-43754428621.txt` | the 360M's pair; every line of its M1 run; every line of the twelve jobs (135M and 360M on six runners) |
+| `record/peaks-16.json`, `record/peaks-16-SmolLM2-360M.json` | each site's peak, clamp, margin and clamped count, from `check --peaks` |
 | `routes_test.py` | the three routes against int64 products |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
 | `expected-16.sha256`, `record/exact16-m1.txt`, `record/exact16-machines.txt` | the two exact-16 hashes; every exact-16 line of the M1; every line of the six runners, run 43736296963 |
-| `make_tables.py`, `tables/` | the four tables |
+| `make_tables.py`, `tables/` | the tables: exp, SiLU, and cos and sin for the rotary bases 100,000 and 130,000 |
 | `same_bits.py` | 1 and 4 threads × batch 1 and 8, any engine |
 | `long_run.py` | 256-token continuations |
 | `distance.py` | exact against float32 |
 | `speed.py` | tokens/s and peak memory |
 | `compare_tokenizer.py` | the tokenizer against `tokenizers` |
 | `exact_llm.ipynb`, `make_notebook.py` | the notebook, NumPy only |
-| `pins.json`, `expected.sha256` | pins; the two exact hashes |
+| `pins.json`, `expected.sha256` | pins, one block per model; the two exact hashes |
 | `record/machines.txt` | every line of the seven machines |
 
 ## Your model

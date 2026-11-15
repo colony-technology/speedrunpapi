@@ -1,4 +1,4 @@
-"""Exact inference for a language model: HuggingFaceTB/SmolLM2-135M in integer arithmetic.
+"""Exact inference for a language model: HuggingFaceTB/SmolLM2-135M (and -360M, -1.7B) in integer arithmetic.
 
 The method of proofs/exact-embeddings on a decoder. Every tensor is an integer array with a power-of-two scale;
 element-wise work is NumPy int64; the only floating-point operation is matrix multiplication by the machine's
@@ -9,9 +9,15 @@ integers at scale 2^-16, and greedy continuations computed from them.
 The same file holds the pinned downloads, a byte-level BPE tokenizer in plain Python, a plain float32 forward pass
 of the same weights (the baseline), an onnxruntime baseline on the onnx-community export, and the evaluation.
 
+The model is a block of pins.json, chosen by --model (or the environment variable EXACT_LLM_MODEL); its sizes come
+from its pinned config.json. SmolLM2-135M is the default and runs every engine; the larger two run exact-16, the
+float32 baseline and onnxruntime where an export is pinned.
+
 usage:
-  python exact_llm.py check                       digests, both hashes against expected.sha256, baselines, distance
+  python exact_llm.py check [--model M] [--routes f64,f32,i8] [--no-float] [--no-onnx] [--peaks FILE]
+                                                  digests, the hashes against expected*.sha256, baselines, distance
   python exact_llm.py hash --engine exact|exact16-f64|exact16-f32|exact16-i8|float32|onnx [--batch N] [--threads N]
+                           [--model M]
 """
 import gzip
 import hashlib
@@ -30,9 +36,7 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 PINS = json.load(open(os.path.join(HERE, "pins.json")))
 CACHE = os.environ.get("EXACT_LLM_CACHE", os.path.join(HERE, ".cache"))
-
-LAYERS, HIDDEN, HEADS, KV, HEAD, FF, VOCAB = 30, 576, 9, 3, 64, 1536, 49152
-THETA, EPS = 100000, Fraction("1e-05")          # config.json: rope_theta, rms_norm_eps
+MODELS = tuple(PINS["models"])                  # the first is the default
 GEN = 48                                        # greedy continuation length
 
 
@@ -63,9 +67,39 @@ def fetch(url, path, digest):
 
 
 def model_file(name):
-    m = PINS["model"]
-    return fetch("https://huggingface.co/%s/resolve/%s/%s" % (m["repo"], m["revision"], name),
-                 os.path.join(CACHE, "model", name), m["files"][name])
+    return fetch("https://huggingface.co/%s/resolve/%s/%s" % (PIN["repo"], PIN["revision"], name),
+                 os.path.join(MCACHE, "model", name), PIN["files"][name])
+
+
+def use_model(name):
+    """Select a model of pins.json and take its sizes from its pinned config.json. The default model's files stay at
+    the top of the cache; another model's go in a folder of its own name. Asserts what the code assumes: a Llama
+    decoder with SiLU, tied embedding, no biases, rotary positions on halves of 64-wide heads, no rope scaling."""
+    global MODEL, PIN, MCACHE, LAYERS, HIDDEN, HEADS, KV, HEAD, FF, VOCAB, THETA, EPS, NORM_BITS, RMS_Y, SUFFIX
+    if name not in PINS["models"]:
+        raise SystemExit("unknown model %s; pins.json has %s" % (name, ", ".join(MODELS)))
+    MODEL, PIN = name, PINS["models"][name]
+    MCACHE = CACHE if name == MODELS[0] else os.path.join(CACHE, name)
+    SUFFIX = "" if name == MODELS[0] else "-" + name                # expected-16<SUFFIX>.sha256, bounds-16<SUFFIX>.json
+    c = json.load(open(model_file("config.json"), encoding="utf-8"))
+    LAYERS, HIDDEN = c["num_hidden_layers"], c["hidden_size"]
+    HEADS, KV = c["num_attention_heads"], c["num_key_value_heads"]
+    HEAD = c.get("head_dim") or HIDDEN // HEADS
+    FF, VOCAB, THETA = c["intermediate_size"], c["vocab_size"], c["rope_theta"]
+    EPS = Fraction(repr(c["rms_norm_eps"]))                          # 1e-05 as the decimal it is written as
+    assert c["model_type"] == "llama" and c["hidden_act"] == "silu" and c["tie_word_embeddings"], name
+    assert not c.get("attention_bias") and not c.get("mlp_bias") and not c.get("rope_scaling"), name
+    assert not c.get("rope_interleaved", False) and HEAD == 64 and HEADS * HEAD == HIDDEN and HEADS % KV == 0, name
+    # RMS norm: x is shifted right until max |x| < 2^NORM_BITS, so the sum of HIDDEN squares stays below 2^62
+    NORM_BITS = (62 - (HIDDEN - 1).bit_length()) // 2
+    # every normalised value is at most sqrt(HIDDEN) times the root mean square; with the floors of the integer
+    # mean, square root and eps, at most sqrt(HIDDEN) (1 + 1/128): RMS_Y is the least integer at or above that
+    RMS_Y = math.isqrt(HIDDEN * 129 * 129 // (128 * 128))
+    while (128 * RMS_Y) ** 2 < HIDDEN * 129 * 129:
+        RMS_Y += 1
+
+
+use_model(os.environ.get("EXACT_LLM_MODEL", MODELS[0]))
 
 
 def prompts():
@@ -82,24 +116,30 @@ def text():
 
 
 # ---- safetensors, parsed here; bfloat16 widened to float32 exactly (the 16 bits become the high half) -------------
-def iter_safetensors(path, names=None):
-    """Yield (name, float32 array) one tensor at a time, reading only that tensor's bytes."""
+def iter_safetensors(path, names=None, raw=False):
+    """Yield (name, float32 array) one tensor at a time, reading only that tensor's bytes. names: a collection of
+    names, or a function of (name, shape) that says which tensors to read. raw: the bfloat16 bits as uint16."""
     with open(path, "rb") as f:
         n = struct.unpack("<Q", f.read(8))[0]
         header = json.loads(f.read(n).decode("utf-8"))
         header.pop("__metadata__", None)
         for name, t in header.items():
-            if names is not None and name not in names:
+            if names is not None and not (names(name, t["shape"]) if callable(names) else name in names):
                 continue
             assert t["dtype"] == "BF16", (name, t["dtype"])
             b, e = t["data_offsets"]
             f.seek(8 + n + b)
-            raw = np.frombuffer(f.read(e - b), dtype="<u2")
-            yield name, (raw.astype(np.uint32) << 16).view(np.float32).reshape(t["shape"])
+            bits = np.frombuffer(f.read(e - b), dtype="<u2").reshape(t["shape"])
+            yield name, bits if raw else widen(bits)
 
 
-def read_safetensors(path, names=None):
-    return dict(iter_safetensors(path, names))
+def widen(bits):
+    """bfloat16 bits (uint16) to float32, exactly: the 16 bits become the high half."""
+    return (bits.astype(np.uint32) << 16).view(np.float32)
+
+
+def read_safetensors(path, names=None, raw=False):
+    return dict(iter_safetensors(path, names, raw))
 
 
 # ---- tokenizer: byte-level BPE, from the pinned tokenizer.json --------------------------------------------------
@@ -242,18 +282,45 @@ def tokenizer():
 
 
 # ---- the float32 baseline: a plain forward pass of the same weights, with a key-value cache -----------------------
+def n_params():
+    """Weights of the model, from its config: embedding (tied), per layer q, k, v, o, gate, up, down and two norms."""
+    attn = HIDDEN * (2 * HIDDEN + 2 * KV * HEAD)
+    return VOCAB * HIDDEN + LAYERS * (attn + 3 * HIDDEN * FF + 2 * HIDDEN) + HIDDEN
+
+
+LEAN_F32_BYTES = 1 << 32     # float32 weights above 4 GB are kept as bfloat16 and widened one matrix at a time
+
+
+class _Layer(dict):
+    """One layer's float32 weights; a matrix kept as bfloat16 bits is widened to float32 [in, out] at each read."""
+    def __getitem__(self, k):
+        v = dict.__getitem__(self, k)
+        return np.ascontiguousarray(widen(v).T) if v.dtype == np.uint16 else v
+
+
 class Float32:
-    def __init__(self, P, stats=None):
-        self.E = P["model.embed_tokens.weight"]
-        self.norm = P["model.norm.weight"]
+    def __init__(self, P=None, stats=None, lean=None):
+        """P: the weights as float32, or None to read them here. lean: keep the matrices as bfloat16 bits and widen
+        each at its use, giving BLAS the same float32 arrays (so the same results) in half the memory; by default
+        when the float32 weights would exceed LEAN_F32_BYTES."""
+        if P is None:
+            self.lean = 4 * n_params() > LEAN_F32_BYTES if lean is None else lean
+            P = read_safetensors(model_file("model.safetensors"), raw=self.lean)
+        else:
+            self.lean = False
+        f32 = lambda a: widen(a) if a.dtype == np.uint16 else a
+        self.E = f32(P["model.embed_tokens.weight"])
+        self.norm = f32(P["model.norm.weight"])
         self.L = []
         for i in range(LAYERS):
             p = "model.layers.%d." % i
-            T = lambda n: np.ascontiguousarray(P[p + n + ".weight"].T)
-            self.L.append({"q": T("self_attn.q_proj"), "k": T("self_attn.k_proj"), "v": T("self_attn.v_proj"),
-                           "o": T("self_attn.o_proj"), "g": T("mlp.gate_proj"), "u": T("mlp.up_proj"),
-                           "d": T("mlp.down_proj"), "n1": P[p + "input_layernorm.weight"],
-                           "n2": P[p + "post_attention_layernorm.weight"]})
+            T = lambda n: P[p + n + ".weight"] if self.lean else np.ascontiguousarray(P[p + n + ".weight"].T)
+            self.L.append(_Layer({"q": T("self_attn.q_proj"), "k": T("self_attn.k_proj"),
+                                  "v": T("self_attn.v_proj"), "o": T("self_attn.o_proj"), "g": T("mlp.gate_proj"),
+                                  "u": T("mlp.up_proj"), "d": T("mlp.down_proj"),
+                                  "n1": f32(P[p + "input_layernorm.weight"]),
+                                  "n2": f32(P[p + "post_attention_layernorm.weight"])}))
+        del P
         inv = (np.float32(1.0) / (np.float32(THETA) ** (np.arange(0, HEAD, 2, dtype=np.float32) / np.float32(HEAD))))
         self.inv_freq = inv.astype(np.float32)
         self.stats = stats
@@ -265,7 +332,7 @@ class Float32:
 
     def rms(self, x, w):
         var = (x * x).mean(-1, keepdims=True)
-        return (x / np.sqrt(var + np.float32(1e-5))) * w
+        return (x / np.sqrt(var + np.float32(float(EPS)))) * w
 
     def rope(self, x, pos):
         f = pos[..., None].astype(np.float32) * self.inv_freq                  # [B, L, 32]
@@ -319,15 +386,18 @@ class Float32:
 
 # ---- the onnxruntime baseline: the onnx-community float32 export of the same model --------------------------------
 def onnx_file(name):
-    o = PINS["onnx"]
+    o = PIN["onnx"]
     return fetch("https://huggingface.co/%s/resolve/%s/%s" % (o["repo"], o["revision"], name),
-                 os.path.join(CACHE, "onnx", name), o["files"][name])
+                 os.path.join(MCACHE, "onnx", name), o["files"][name])
 
 
 class Onnx:
     def __init__(self, threads=0):
         import onnxruntime as ort
-        onnx_file("onnx/model.onnx_data")
+        if PIN["onnx"] is None:
+            raise LookupError(PIN.get("onnx_note", "no onnx export pinned for " + MODEL))
+        for name in PIN["onnx"]["files"]:                                    # the graph and its external data, if any
+            onnx_file(name)
         so = ort.SessionOptions()
         if threads:
             so.intra_op_num_threads = threads
@@ -364,7 +434,7 @@ EXP_STEP, EXP_N = 8, 24 * 256
 SILU_STEP, SILU_LO, SILU_N = 8, 16, 32 * 256
 ROPE = 20                    # cos and sin at 2^-20
 ROPE_POS = 512
-NORM_BITS = 26               # RMS norm: x is shifted right until max |x| < 2^26, so the sum of squares stays below 2^62
+# NORM_BITS and RMS_Y come from the width, in use_model: 26 and 25 at 576 (135M), 26 and 32 at 960, 25 and 46 at 2,048
 
 
 def rshift_round(v, k):
@@ -398,16 +468,18 @@ def load_table(name, shape=None):
     return t.reshape(shape) if shape else t
 
 
-def int_weights(wb=None):
+def int_weights(wb=None, small=False):
     """The integer weights: round(w * 2^WB) of each bfloat16 value, ties to even (exact arithmetic plus one rounding;
     most values need no rounding). Computed once from model.safetensors and kept as int32 .npy files in the cache,
-    transposed to [in, out]; opened memory-mapped."""
+    transposed to [in, out]; opened memory-mapped. small: only the embedding and the norm weights, which is all
+    exact-16 reads at this scale (its products use int16_weights)."""
     wb = WB if wb is None else wb
-    d = os.path.join(CACHE, "int32-wb%d" % wb)
+    d = os.path.join(MCACHE, "int32-wb%d%s" % (wb, "-small" if small else ""))
     done = os.path.join(d, "DONE")
+    want = (lambda name, shape: len(shape) == 1 or name == "model.embed_tokens.weight") if small else None
     if not os.path.exists(done):
         os.makedirs(d, exist_ok=True)
-        for name, a in iter_safetensors(model_file("model.safetensors")):
+        for name, a in iter_safetensors(model_file("model.safetensors"), want):
             if a.ndim == 2:
                 a = a.T if name != "model.embed_tokens.weight" else a          # [in, out]; the embedding stays [V, 576]
                 out = np.empty(a.shape, dtype=np.int32)
@@ -418,19 +490,26 @@ def int_weights(wb=None):
             else:
                 out = np.rint(a.astype(np.float64) * 2.0 ** A).astype(np.int64)  # norm weights at 2^-16
             np.save(os.path.join(d, name + ".npy"), np.ascontiguousarray(out))
-        open(done, "w").write("from %s\n" % PINS["model"]["files"]["model.safetensors"])
+        open(done, "w").write("from %s\n" % PIN["files"]["model.safetensors"])
     return {f[:-4]: np.load(os.path.join(d, f), mmap_mode="r") for f in os.listdir(d) if f.endswith(".npy")}
 
 
+def rope_table_names():
+    """cos and sin tables of the model's rotary base (make_tables.py): the 135M's 100,000 keeps its first names."""
+    return ("cos.txt", "sin.txt") if THETA == 100000 else ("cos-%d.txt" % THETA, "sin-%d.txt" % THETA)
+
+
 class Exact:
-    def __init__(self, W=None, keep_f64=False):
+    def __init__(self, W=None, keep_f64=False, clamps=None):
         self.W = W if W is not None else int_weights()
-        self.E = self.W["model.embed_tokens.weight"]                          # [V, 576] at 2^-WB
+        self.E = self.W["model.embed_tokens.weight"]                          # [V, HIDDEN] at 2^-WB
         self.Et = load_table("exp.txt")
         self.St = load_table("silu.txt")
-        self.cos = load_table("cos.txt", (ROPE_POS, HEAD // 2))
-        self.sin = load_table("sin.txt", (ROPE_POS, HEAD // 2))
-        self.C = {k: v << A for k, v in CLAMP.items()}
+        cname, sname = rope_table_names()
+        self.cos = load_table(cname, (ROPE_POS, HEAD // 2))
+        self.sin = load_table(sname, (ROPE_POS, HEAD // 2))
+        self.clamps = CLAMP if clamps is None else clamps                    # real units, per site
+        self.C = {k: v << A for k, v in self.clamps.items()}
         self.clamped, self.peak, self.layer_peak = {}, {}, {}
         self.keep = keep_f64
         self.f64 = {}
@@ -466,9 +545,9 @@ class Exact:
         return rshift_round(y, WB)
 
     def rms(self, x, wname):
-        """RMS normalisation of each token (last axis, 576 values), x and result at 2^-16."""
+        """RMS normalisation of each token (last axis, HIDDEN values), x and result at 2^-16."""
         top = np.abs(x).max(-1, keepdims=True)
-        sh = np.maximum(0, np.frexp(top.astype(np.float64))[1] - NORM_BITS).astype(np.int64)  # bit length - 26
+        sh = np.maximum(0, np.frexp(top.astype(np.float64))[1] - NORM_BITS).astype(np.int64)  # bit length - NORM_BITS
         xs = x >> sh
         ss = (xs * xs).sum(-1, keepdims=True)                                 # at 2^-(32 - 2 sh), below 2^62
         ms = fdiv(ss, HIDDEN)
@@ -476,7 +555,7 @@ class Exact:
         eps = np.array(self.eps, dtype=np.int64)[sh]
         r = isqrt(ms + np.maximum(eps, 1))                                    # sqrt(mean x^2 + eps) at 2^-(16 - sh)
         y = fdiv(x << (A - sh), r)                                            # x / r at 2^-16
-        assert (np.abs(y) <= 25 << A).all()                                   # |x_i| <= sqrt(576) rms: bounds.py
+        assert (np.abs(y) <= RMS_Y << A).all()                                # |x_i| <= sqrt(HIDDEN) rms: bounds.py
         return rshift_round(y * np.asarray(self.W[wname]), A)
 
     def rope_tables(self, pos):
@@ -608,7 +687,7 @@ def int16_weights():
     """Each weight matrix as int16 [in, out] = round(w 2^g), g per output row the largest with every entry inside
     +-(2^15 - 1) (the embedding as [576, V], one g per token), from the bfloat16 values: the scaling is a power of
     two, so it is exact in float32 and the one rounding is rint's (ties to even). Kept as .npy files in the cache."""
-    d = os.path.join(CACHE, "int16-rows")
+    d = os.path.join(MCACHE, "int16-rows")
     if not os.path.exists(os.path.join(d, "DONE")):
         os.makedirs(d, exist_ok=True)
         for name, a in iter_safetensors(model_file("model.safetensors")):
@@ -621,7 +700,7 @@ def int16_weights():
             assert np.abs(wq).max() <= LIM16
             np.save(os.path.join(d, name + ".npy"), np.ascontiguousarray(wq.T.astype(np.int16)))
             np.save(os.path.join(d, name + ".g.npy"), g.astype(np.int64))
-        open(os.path.join(d, "DONE"), "w").write("from %s\n" % PINS["model"]["files"]["model.safetensors"])
+        open(os.path.join(d, "DONE"), "w").write("from %s\n" % PIN["files"]["model.safetensors"])
     return {f[:-4]: np.load(os.path.join(d, f), mmap_mode="r") for f in os.listdir(d) if f.endswith(".npy")}
 
 
@@ -706,20 +785,122 @@ def mm16(a, b, route, mmi=None):
     return (G(a1, b1) << 16) + ((G(a1, b0) + G(a0, b1)) << 8) + G(a0, b0)
 
 
+def peel_bits(n):
+    """Index bits of the peel key for rows of n values: 11 up to 2,048 (the 135M's keys), more for wider rows."""
+    return max(11, (n - 1).bit_length())
+
+
 def peel_index(x, k):
-    """The k largest |x| of each row, ties to the lower index: unique keys |x| 2^11 + (2^11 - 1 - i), so the set
-    does not depend on the selection algorithm (rows of at most 2^11 values, |x| below 2^52)."""
+    """The k largest |x| of each row, ties to the lower index: unique keys |x| 2^b + (2^b - 1 - i), b = peel_bits(n),
+    so the set does not depend on the selection algorithm (|x| 2^b below 2^63: bounds16.py)."""
     n = x.shape[-1]
-    assert n <= 1 << 11
-    key = (np.abs(x) << 11) + ((1 << 11) - 1 - np.arange(n))
+    b = peel_bits(n)
+    key = (np.abs(x) << b) + ((1 << b) - 1 - np.arange(n))
     return np.argpartition(-key, k - 1, axis=-1)[:, :k]
+
+
+def shmax(c):
+    """Largest block shift for integers within [-c, c]: bitlen(c) - 15, plus one for the rounding."""
+    return max(0, c.bit_length() - (B16 - 1)) + 1
+
+
+SITE16 = {"q_proj": "attention input", "k_proj": "attention input", "v_proj": "attention input",
+          "o_proj": "o input", "gate_proj": "mlp input", "up_proj": "mlp input", "down_proj": "down input",
+          "embed_tokens": "logits input"}
+
+
+def weight_stats16():
+    """Per matrix kind, from the 16-bit weights and their row scales g: inputs n, the largest sum of |w16| over one
+    output's inputs (col), the g range, and lin = max over outputs of col 2^(g_max - g), so that an output is at
+    most (input bound) lin 2^-g_max. Computed once and kept beside the weights (stats16.json); each matrix is
+    opened on its own and let go, so at most one is in memory."""
+    d = os.path.join(MCACHE, "int16-rows")
+    path = os.path.join(d, "stats16.json")
+    if os.path.exists(path):
+        return json.load(open(path))
+    int16_weights()
+    st = {}
+    for kind in SITE16:
+        names = sorted(f[:-4] for f in os.listdir(d) if f.endswith("." + kind + ".weight.npy"))
+        gs = [np.load(os.path.join(d, n + ".g.npy")) for n in names]
+        gmin, gmax = min(int(g.min()) for g in gs), max(int(g.max()) for g in gs)
+        col, lin, n_in = 0, 0, None
+        for name, g in zip(names, gs):
+            w = np.load(os.path.join(d, name + ".npy"), mmap_mode="r")
+            n_in = w.shape[0]
+            for s in range(0, w.shape[1], 8192):
+                c = np.abs(np.asarray(w[:, s:s + 8192], dtype=np.int64)).sum(axis=0)
+                col = max(col, int(c.max()))
+                lin = max(lin, int((c << (gmax - g[s:s + 8192].astype(np.int64))).max()))   # below 2^41
+            del w
+        st[kind] = {"site": SITE16[kind], "inputs": int(n_in), "matrices": len(names),
+                    "col": col, "g_min": gmin, "g_max": gmax, "lin": lin}
+    json.dump(st, open(path, "w"), indent=1)
+    return st
+
+
+def bounds16_rows(C, st):
+    """The int64 operations of exact-16 that depend on the clamps C (integers at 2^-16, per site), each with its
+    largest magnitude and its limit, from the weight statistics st. The clamp rule and bounds16.py use these."""
+    rows = []
+    lin_out = {}
+    for kind, k in st.items():
+        c = C[k["site"]]
+        sh = shmax(c)
+        T = k["col"] * (c + (1 << (sh - 1))) + (1 << (k["g_max"] - 1))     # 2^sh x16 . w16 + peeled + rounding
+        lin_out[kind] = ((k["lin"] * (c + (1 << (sh - 1)))) >> k["g_max"]) + 1
+        rows.append(("%s: 2^sh x16 . w16 plus the peeled terms (sh <= %d), plus rounding constant" % (kind, sh),
+                     T, 1 << 62, k["site"]))
+        rows.append(("%s: largest output" % kind, lin_out[kind], 1 << 62, k["site"]))
+        b = peel_bits(k["inputs"])
+        rows.append(("%s: peel key |x| 2^%d + index" % (kind, b), (c << b) + (1 << b), 1 << 63, k["site"]))
+    for kind in ("q_proj", "k_proj"):
+        rows.append(("rope: %s output times cos, two terms" % kind, 2 * lin_out[kind] << ROPE, 1 << 63,
+                     st[kind]["site"]))
+    qk = HEAD * LIM16 * LIM16 << (shmax(C["q"]) + shmax(C["k"]))
+    rows.append(("scores: q16 . k16 shifted by sh_q + sh_k, at 2^-32; max minus score", 2 * qk, 1 << 63, "q, k"))
+    rows.append(("v: the high half |v >> 15| <= 2^15 - 1", (C["v"] >> (B16 - 1)) + 1, 1 << (B16 - 1), "v"))
+    sp = ((1 << A) + ROPE_POS) // 2                                          # sum of p at 2^-15 over one row
+    rows.append(("context: 2^15 p16 . vh + p16 . vl", sp * (((C["v"] >> (B16 - 1)) + 1) << (B16 - 1)) + sp * LIM16,
+                 1 << 63, "v"))
+    rows.append(("gate times up: silu(g) u, both clamped", C["gate"] * C["up"], 1 << 63, "gate, up"))
+    rows.append(("rms: max |x| below 2^(NORM_BITS + 16), so the shift is at most 16", C["residual"],
+                 1 << (NORM_BITS + A), "residual"))
+    rows.append(("residual: clamp plus one linear output", C["residual"] + max(lin_out[k] for k in ("o_proj", "down_proj")),
+                 1 << 63, "residual"))
+    return rows, lin_out
+
+
+def clamps16(st):
+    """The exact-16 clamps, in real units, by rule: for each site the largest power of two at which every row of
+    bounds16_rows below its limit still holds, the others held at 2^0; q and k together, gate and up together."""
+    groups = [("residual",), ("attention input",), ("o input",), ("mlp input",), ("down input",),
+              ("logits input",), ("q", "k"), ("v",), ("gate", "up")]
+    sites = [s for g in groups for s in g]
+    e = {s: 0 for s in sites}
+
+    def ok(group, x):
+        C = {s: 1 << (e[s] + A) for s in sites}
+        for s in group:
+            C[s] = 1 << (x + A)
+        rows, _ = bounds16_rows(C, st)
+        return all(v < lim for _, v, lim, _ in rows)
+    for g in groups:
+        assert ok(g, 0), g
+        x = 0
+        while x < 46 and ok(g, x + 1):
+            x += 1
+        for s in g:
+            e[s] = x
+    return {s: 1 << e[s] for s in sites}
 
 
 class Exact16(Exact):
     def __init__(self, route="f64"):
-        super().__init__()
-        self.route = route
+        self.stats16 = weight_stats16()
         self.W16 = int16_weights()
+        super().__init__(W=int_weights(small=True), clamps=clamps16(self.stats16))
+        self.route = route
         self.mmi = MatMulInteger() if route == "i8" else None
         self.extra = 0                                   # vectors whose rounding needed one more shift
         self.p_held = 0                                  # p values held at 2^15 - 1
@@ -841,7 +1022,7 @@ def engine(name, threads=0):
     if name in ("exact16-" + r for r in ROUTES):
         return Exact16(name.split("-")[1])
     if name == "float32":
-        return Float32(read_safetensors(model_file("model.safetensors")))
+        return Float32()
     if name == "onnx":
         return Onnx(threads)
     raise SystemExit("unknown engine " + name)
@@ -885,15 +1066,30 @@ def text_run(eng):
 
 
 def expected(bits=None):
-    path = os.path.join(HERE, "expected.sha256" if bits is None else "expected-%d.sha256" % bits)
+    """The pinned pair: expected.sha256 (exact) and expected-16.sha256 (exact-16) for the default model;
+    expected-16-<model>.sha256 for another."""
+    path = os.path.join(HERE, "expected%s%s.sha256" % ("" if bits is None else "-%d" % bits, SUFFIX))
     if not os.path.exists(path):
         return None
     lines = open(path).read().split("\n")
     return lines[0].split()[0], lines[1].split()[0]
 
 
+def peaks_line(eng):
+    return "; ".join("%s %.3f / %s" % (k, v / 2.0 ** A, eng.clamps[k]) for k, v in sorted(eng.peak.items()))
+
+
+def peaks_record(eng):
+    """The measured peaks, clamps and clamped counts of a run, per site, in real units (for bounds16.py)."""
+    return {"model": MODEL, "sites": {k: {"peak": v / 2.0 ** A, "clamp": eng.clamps[k],
+                                          "margin_log2": round(math.log2(eng.clamps[k] * 2.0 ** A / v), 3) if v else None,
+                                          "clamped": eng.clamped.get(k, 0)} for k, v in sorted(eng.peak.items())}}
+
+
 def main(argv):
     arg = lambda k, d: argv[argv.index(k) + 1] if k in argv else d
+    if "--model" in argv:
+        use_model(arg("--model", MODELS[0]))
     if len(argv) > 1 and argv[1] == "hash":
         name, batch, threads = arg("--engine", "exact"), int(arg("--batch", "8")), int(arg("--threads", "0"))
         save = arg("--save", None)
@@ -905,8 +1101,9 @@ def main(argv):
             np.save(save + ".cont.npy", np.array(cont, dtype=np.int32))
         if name.startswith("exact"):
             print("clamped", sum(eng.clamped.values()), eng.clamped)
-            print("peaks (real) and clamps:", "; ".join("%s %.3f / %d" % (k, v / 2.0 ** A, CLAMP[k])
-                                                        for k, v in sorted(eng.peak.items())))
+            print("peaks (real) and clamps:", peaks_line(eng))
+            if arg("--peaks", None):
+                json.dump(peaks_record(eng), open(arg("--peaks", None), "w"), indent=1)
         if name.startswith("exact16"):
             print("route %s; vectors with one more shift %d; p held at 2^15 - 1: %d" % (
                 eng.mmi.name if eng.mmi else eng.route, eng.extra, eng.p_held))
@@ -928,46 +1125,72 @@ def main(argv):
         print("versions: Python %s, NumPy %s, onnxruntime %s; %s %s" % (
             sys.version.split()[0], np.__version__, ort_version, sys.platform, os.uname().machine
             if hasattr(os, "uname") else os.environ.get("PROCESSOR_ARCHITECTURE", "")))
-        ex = Exact()
-        hl, hc, cont_e, lg_e = prompt_run(ex, 8, keep=True)
-        el, ec = expected()
-        ok = hl == el and hc == ec
-        print("exact    logits %s  continuations %s  %s" % (hl, hc, "MATCH" if ok else "DIFFERENT"))
-        print("         clamped values: %d" % sum(ex.clamped.values()))
-        del ex
+        print("model %s @ %s: %d layers, width %d, %d/%d heads, feed-forward %d, rotary base %d, %d weights" % (
+            MODEL, PIN["revision"][:7], LAYERS, HIDDEN, HEADS, KV, FF, THETA, n_params()))
+        t_all = time.time()
+        ok, runs = True, []                                    # runs: (name, logits, continuations) for the distance
+        if MODEL == MODELS[0]:                                 # the exact engine runs on the default model only
+            ex = Exact()
+            hl, hc, cont_e, lg_e = prompt_run(ex, 8, keep=True)
+            el, ec = expected()
+            ok = hl == el and hc == ec
+            print("exact    logits %s  continuations %s  %s" % (hl, hc, "MATCH" if ok else "DIFFERENT"))
+            print("         clamped values: %d" % sum(ex.clamped.values()))
+            runs.append(("exact", lg_e, cont_e))
+            del ex
+        t0 = time.time()
+        weight_stats16()
+        int_weights(small=True)
+        print("exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in %.0f s" % (time.time() - t0))
         e16 = expected(16)
-        lg_16 = cont_16 = None
-        for r in ROUTES:
+        if e16 is None:
+            print("exact16  no expected-16%s.sha256: the hashes below are not compared" % SUFFIX)
+        kept16 = False
+        for r in arg("--routes", ",".join(ROUTES)).split(","):
             m16 = Exact16(r)
             t0 = time.time()
-            h16l, h16c, cont, lg = prompt_run(m16, 8, keep=lg_16 is None)
+            h16l, h16c, cont, lg = prompt_run(m16, 8, keep=not kept16)
             ok16 = (h16l, h16c) == e16
             ok = ok and ok16
             print("exact16  logits %s  continuations %s  %s  route %s, %.0f s, clamped %d" % (
                 h16l, h16c, "MATCH" if ok16 else "DIFFERENT", m16.mmi.name if m16.mmi else r, time.time() - t0,
                 sum(m16.clamped.values())))
-            if lg_16 is None:
-                lg_16, cont_16 = lg, cont
+            if not kept16:
+                print("         peaks (real) / clamps: %s" % peaks_line(m16))
+                if arg("--peaks", None):
+                    json.dump(peaks_record(m16), open(arg("--peaks", None), "w"), indent=1)
+                runs.append(("exact16", lg, cont))
+                kept16 = True
             del m16
-        f = Float32(read_safetensors(model_file("model.safetensors")))
-        fl, fc, cont_f, lg_f = prompt_run(f, 8, keep=True)
-        print("float32  logits %s  continuations %s" % (fl, fc))
-        del f
-        g = np.concatenate(lg_f).astype(np.float64)
-        for nm, lg, cont in (("exact", lg_e, cont_e), ("exact16", lg_16, cont_16)):
-            e = np.concatenate(lg).astype(np.float64) / 2.0 ** A
-            print("%s against float32 over %d prompt positions: top-1 agreement %d, largest |logit difference| %.5f, "
-                  "mean %.6f; continuations equal %d of %d" % (
-                      nm, e.shape[0], int((e.argmax(-1) == g.argmax(-1)).sum()), np.abs(e - g).max(),
-                      np.abs(e - g).mean(), sum(a == b for a, b in zip(cont, cont_f)), len(cont)))
-            del e
-        try:
-            o = Onnx()
-        except ImportError:
-            print("onnx     onnxruntime is not installed here")
-        else:
-            ol, oc, _, _ = prompt_run(o, 8)
-            print("onnx     logits %s  continuations %s" % (ol, oc))
+        if "--no-float" not in argv:
+            t0 = time.time()
+            f = Float32()
+            fl, fc, cont_f, lg_f = prompt_run(f, 8, keep=True)
+            print("float32  logits %s  continuations %s  %.0f s%s" % (
+                fl, fc, time.time() - t0, ", matrices widened from bfloat16 at each use" if f.lean else ""))
+            del f
+            g = np.concatenate(lg_f).astype(np.float64)
+            for nm, lg, cont in runs:
+                e = np.concatenate(lg).astype(np.float64) / 2.0 ** A
+                print("%s against float32 over %d prompt positions: top-1 agreement %d, largest |logit difference| "
+                      "%.5f, mean %.6f; continuations equal %d of %d" % (
+                          nm, e.shape[0], int((e.argmax(-1) == g.argmax(-1)).sum()), np.abs(e - g).max(),
+                          np.abs(e - g).mean(), sum(a == b for a, b in zip(cont, cont_f)), len(cont)))
+                del e
+            del g, lg_f
+        if "--no-float" not in argv and "--no-onnx" not in argv:
+            t0 = time.time()
+            try:
+                o = Onnx()
+            except ImportError:
+                print("onnx     onnxruntime is not installed here")
+            except LookupError as why:
+                print("onnx     skipped: %s" % why)
+            else:
+                ol, oc, _, _ = prompt_run(o, 8)
+                print("onnx     logits %s  continuations %s  %.0f s" % (ol, oc, time.time() - t0))
+                del o
+        print("check    %s, %.0f s" % ("every pair MATCH" if ok else "a pair DIFFERENT or not pinned", time.time() - t_all))
         return 0 if ok else 1
     print(__doc__)
     return 2
