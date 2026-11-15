@@ -1,0 +1,6 @@
+chains of three forks on one path: 152
+1. rotation of the third fork's plane against the first: median 40.5, quartiles 13.7 65.9; below 30: 0.421; above 60: 0.303; bins of 15 from 0: 41 23 17 25 18 28
+   control, third forks with other trees' first forks: median 44.4 (2.5 to 97.5: 37.6 to 52.0); pairings as far as measured: 0.2860
+2. signed turn of the shed side from one fork to the next about the path (152): bins of 30 from -180: 3 9 18 22 22 11 12 24 13 10 2 6
+   share turning one way (positive): 0.441; median of the size of the turn 64.2
+3. chains with two signed turns in a row (2): same hand twice 0.500 (0.5 if the hand is drawn afresh at each fork)
