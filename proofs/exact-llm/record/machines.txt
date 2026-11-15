@@ -1,0 +1,118 @@
+GitHub Actions run 43671156245, workflow "Exact LLM", repository lmtlssss/speedrunpapi, branch exact-llm-ci, commit f586a83, 2026-11-15T03:10:38Z to 03:17:34Z, six jobs, all success.
+Every result line each runner printed (python exact_llm.py check):
+
+== ubuntu-latest
+Linux-7.0.0-1019-azure-x86_64-with-glibc2.43 x86_64 numpy 2.5.4
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+float32  logits e1f142df7b0ca494d3f7537c642881204899393477db8f436834bec3d32b018f  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02158, mean 0.001221; continuations equal 64 of 64
+onnx     logits b0fd10d581dfa57098cd6e05b2cd2295c8748399f86dcd2b8b35897b1c90e05b  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+
+== ubuntu-24.04-arm
+Linux-7.0.0-1017-azure-aarch64-with-glibc2.39 aarch64 numpy 2.5.4
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+float32  logits b2f3e0296b6f9a65e7ce6faa1a6d44d30c845cd4b9625daaef1f31fc7df99637  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02166, mean 0.001220; continuations equal 64 of 64
+onnx     logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+
+== macos-latest
+macOS-26.7.2-arm64-arm-64bit arm64 numpy 2.5.4
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+float32  logits 32b192d5b62c3a0db32654605a06bec7f590238ca6e21b0b20ef2dba22fa2db1  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02151, mean 0.001230; continuations equal 64 of 64
+onnx     logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+
+== macos-15-intel
+macOS-15.7.9-x86_64-i386-64bit x86_64 numpy 2.5.4
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+float32  logits 83ccea5a7330d39fd2cf3e308e823e882da175ac324af1e9e6ef0c94ed40be9c  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02160, mean 0.001215; continuations equal 64 of 64
+onnx     logits 761b6fb262e3317033accdf6d28e438fd687f8263b2588fe78d07a02977e5d89  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+
+== windows-latest
+Windows-2025Server-10.0.26100-SP0 AMD64 numpy 2.5.4
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+float32  logits da18301e36fac6714c0703bd9ea439d0c157c33a046516ffb01a9c436971040d  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02158, mean 0.001220; continuations equal 64 of 64
+onnx     logits b0fd10d581dfa57098cd6e05b2cd2295c8748399f86dcd2b8b35897b1c90e05b  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+
+== windows-11-arm
+Windows-11-10.0.26200-SP0 ARM64 numpy 2.5.4
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+float32  logits b2f3e0296b6f9a65e7ce6faa1a6d44d30c845cd4b9625daaef1f31fc7df99637  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02166, mean 0.001220; continuations equal 64 of 64
+onnx     logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc
+
+== apple-m1 (the bench, 14 November 2026; Python 3.11.18, NumPy 2.4.6 with Accelerate, onnxruntime 1.32.0)
+macOS-27.2-arm64-arm-64bit arm64 numpy 2.4.6
+python exact_llm.py hash --engine E --batch 8:
+30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc exact batch=8
+clamped 0 {}
+aafc4308a017f736d5bfe17d5b3dbe72d5d03dd473669b2c35a4abd50df738c2 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc float32 batch=8
+bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc onnx batch=8
+python same_bits.py (1 and 4 threads, batches of 1 and 8):
+exact    threads=1 batch=1 logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (311 s)
+exact    threads=1 batch=8 logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (51 s)
+exact    threads=4 batch=1 logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (394 s)
+exact    threads=4 batch=8 logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (101 s)
+float32  threads=1 batch=1 logits 883b972afd43b612aa72da462df8bc50eb48a65c43c8dfdf3b647ab3b1bb89be continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (82 s)
+float32  threads=1 batch=8 logits aafc4308a017f736d5bfe17d5b3dbe72d5d03dd473669b2c35a4abd50df738c2 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (40 s)
+float32  threads=4 batch=1 logits 883b972afd43b612aa72da462df8bc50eb48a65c43c8dfdf3b647ab3b1bb89be continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (83 s)
+float32  threads=4 batch=8 logits aafc4308a017f736d5bfe17d5b3dbe72d5d03dd473669b2c35a4abd50df738c2 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (33 s)
+onnx     threads=1 batch=1 logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (53 s)
+onnx     threads=1 batch=8 logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (17 s)
+onnx     threads=4 batch=1 logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (71 s)
+onnx     threads=4 batch=8 logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc (14 s)
+exact    1 distinct pair over the four runs
+float32  2 distinct pairs over the four runs
+onnx     1 distinct pair over the four runs
+python exact_llm.py hash --engine exact --batch 8 (one float64 matrix at a time):
+30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773 a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc exact batch=8
+clamped 0 {}
+python exact_llm.py text --engine E:
+exact perplexity 30.579936 over 8176 tokens
+float32 perplexity 30.571750 over 8176 tokens
+onnx perplexity 30.571743 over 8176 tokens
+python distance.py runs exact float32 / float32 onnx / exact onnx:
+prompts, 471 positions: top-1 agreement 471 (100.0000%); |logit difference| largest 0.021512, mean 0.0012298
+continuations of 48 tokens identical: 64 of 64; first differing token of the others at []
+text, 8176 predicted tokens: perplexity exact 30.579936, float32 30.571750; top-1 agreement 8160 (99.8043%); |nll difference| largest 0.092211, mean 0.0033591
+prompts, 471 positions: top-1 agreement 471 (100.0000%); |logit difference| largest 0.000615, mean 0.0000179
+continuations of 48 tokens identical: 64 of 64; first differing token of the others at []
+text, 8176 predicted tokens: perplexity float32 30.571750, onnx 30.571743; top-1 agreement 8176 (100.0000%); |nll difference| largest 0.000090, mean 0.0000057
+prompts, 471 positions: top-1 agreement 471 (100.0000%); |logit difference| largest 0.021843, mean 0.0012329
+continuations of 48 tokens identical: 64 of 64; first differing token of the others at []
+text, 8176 predicted tokens: perplexity exact 30.579936, onnx 30.571743; top-1 agreement 8160 (99.8043%); |nll difference| largest 0.092209, mean 0.0033591
+python speed.py exact / exact-keep / float32:
+exact: load 0.2 s; prefill 236 tokens/s (512 tokens in 2.17 s); decode batch 8: 79.7 tokens/s (8 rows x 47 tokens in 4.72 s); decode batch 1: 11.8 tokens/s (2 rows x 47 tokens in 7.96 s); peak resident 1088 MB
+exact-keep: load 0.0 s; prefill 224 tokens/s (512 tokens in 2.28 s); decode batch 8: 92.2 tokens/s (8 rows x 47 tokens in 4.08 s); decode batch 1: 14.5 tokens/s (2 rows x 47 tokens in 6.48 s); peak resident 1775 MB
+float32: load 0.5 s; prefill 1037 tokens/s (512 tokens in 0.49 s); decode batch 8: 130.1 tokens/s (8 rows x 47 tokens in 2.89 s); decode batch 1: 55.2 tokens/s (2 rows x 47 tokens in 1.70 s); peak resident 1116 MB
+python long_run.py ENGINE BATCH (64 prompts x 256 tokens), then --compare:
+float32 batch 1: 64 x 256 tokens, SHA-256 0362e9ccdf51eeb2e0bb986f556a48b0a50c732b19d7930f7f33d9714ffe86fa
+float32 batch 8: 64 x 256 tokens, SHA-256 0362e9ccdf51eeb2e0bb986f556a48b0a50c732b19d7930f7f33d9714ffe86fa
+onnx batch 1: 64 x 256 tokens, SHA-256 0362e9ccdf51eeb2e0bb986f556a48b0a50c732b19d7930f7f33d9714ffe86fa
+onnx batch 8: 64 x 256 tokens, SHA-256 0362e9ccdf51eeb2e0bb986f556a48b0a50c732b19d7930f7f33d9714ffe86fa
+exact-lean batch 8: 64 x 256 tokens, SHA-256 0362e9ccdf51eeb2e0bb986f556a48b0a50c732b19d7930f7f33d9714ffe86fa
+exact-b8       float32-b1     identical 64 of 64; first differing token of the others at []
+exact-b8       float32-b8     identical 64 of 64; first differing token of the others at []
+exact-b8       onnx-b1        identical 64 of 64; first differing token of the others at []
+exact-b8       onnx-b8        identical 64 of 64; first differing token of the others at []
+float32-b1     float32-b8     identical 64 of 64; first differing token of the others at []
+float32-b1     onnx-b1        identical 64 of 64; first differing token of the others at []
+float32-b1     onnx-b8        identical 64 of 64; first differing token of the others at []
+float32-b8     onnx-b1        identical 64 of 64; first differing token of the others at []
+float32-b8     onnx-b8        identical 64 of 64; first differing token of the others at []
+onnx-b1        onnx-b8        identical 64 of 64; first differing token of the others at []
+the notebook's cells, one script, fresh directory, empty cache:
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  (63 s, 0 values clamped)
+float32  logits aafc4308a017f736d5bfe17d5b3dbe72d5d03dd473669b2c35a4abd50df738c2  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  (29 s)
+over 471 prompt positions: top-1 agreement 471; |logit difference| largest 0.02151, mean 0.001230
+greedy continuations of 48 tokens identical: 64 of 64
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+float32  logits aafc4308a017f736d5bfe17d5b3dbe72d5d03dd473669b2c35a4abd50df738c2  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  (this machine)

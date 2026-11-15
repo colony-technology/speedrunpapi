@@ -1,0 +1,32 @@
+{
+  "model": {
+    "repo": "HuggingFaceTB/SmolLM2-135M",
+    "revision": "93efa2f097d58c2a74874c7e644dbc9b0cee75a2",
+    "license": "apache-2.0",
+    "files": {
+      "config.json": "1d556eab73b69c7f11f64c557a2f9c6f440bd4c6b89bb2584a6b498c92603843",
+      "tokenizer.json": "9ca9acddb6525a194ec8ac7a87f24fbba7232a9a15ffa1af0c1224fcd888e47c",
+      "model.safetensors": "80521b40281d6ce74e35c9282c22539e75aa0ac8578892b2a59955ef78d55da1"
+    }
+  },
+  "prompts": {
+    "repo": "mteb/stsbenchmark-sts",
+    "revision": "96943a16ea6a35129e253c659081cb59daf81b30",
+    "file": "test.jsonl.gz",
+    "sha256": "524a75137d413dbfc40c3e84905f733714232647c3848521acb6bc375b834e1c",
+    "take": "sentence1 of the first 64 lines, in file order"
+  },
+  "text": {
+    "url": "https://raw.githubusercontent.com/karpathy/char-rnn/370cbcd448eb7daf32f21a6be560b70e0b33c4e3/data/tinyshakespeare/input.txt",
+    "sha256": "86c4e6aa9db7c042ec79f339dcb96d42b0075e16b8fc2e86bf0ca57e2dc565ed",
+    "take": "the first 8,192 tokens as sixteen windows of 512; the first 2,000 lines for the tokenizer comparison"
+  },
+  "onnx": {
+    "repo": "onnx-community/SmolLM2-135M-ONNX",
+    "revision": "d0ae6834f1df45e0e95b5fdae95e536f9ca7cd3f",
+    "files": {
+      "onnx/model.onnx": "de4f7dbed6420825147b1fd97d7ea000042ad667ce30316bedd87a3ed49c48b1",
+      "onnx/model.onnx_data": "3ffe0420181424138de643144c94bd4c30126221cc636590f3ccb2fa352ae602"
+    }
+  }
+}
