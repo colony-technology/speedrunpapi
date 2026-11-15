@@ -49,14 +49,14 @@ python3 tools/run_all.py --bin "$BIN" --work ../../../../work-secded
 
 ## Recorded run
 
-14 November 2026, Apple M1, macOS 27.2, `tools/run_all.py`: ALL PASS.
+15 November 2026, Apple M1, macOS 27.2, `tools/run_all.py` run from a fresh clone of this branch: ALL PASS; the clone's `git status` was clean after the run, so the files in `results/` are the ones that run wrote.
 
 | Check | Result |
 | --- | --- |
 | matrix | (72, 64): 72 columns non-zero, distinct, odd; 56 of weight 3, 8 of weight 5; rows 27 each. (39, 32): 32 data columns of weight 3; rows 15 (six) and 13. Both: decoder table equals the columns |
 | proof 1 | M, E, S, K accepted for both codes; C1, C2, C3 derived from them |
 | negative controls | 151 and 79 LUT mutants rejected; 3 bad matrices rejected for each code |
-| proof 2, SAT, LUT6 and plain forms | C1, C2 proved; C3 proved in 71 and 38 miters; the false-claim control gives a counterexample |
+| proof 2, SAT, LUT6 and plain forms | C1, C2 proved; C3 proved in 71 and 38 miters; controls, each a counterexample: C1 with check bit 0 stuck at 0, C1 with the top check bit stuck at 1, and the false claim "two flips give `corrected = 1`" |
 | cost | (72, 64) encoder 31 against 59, decoder 120 against 151; (39, 32) encoder 17 against 26, decoder 62 against 77 |
 | detector, smallest r | (72, 64) encoder 2, syndrome generator 3; (39, 32) 2 and 2 (no smaller r exists) |
 

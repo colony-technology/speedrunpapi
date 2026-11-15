@@ -10,7 +10,11 @@ s = syn(r); (q, corrected, uncorrectable) = cor(r[k-1:0], s).
       --split-c3: one miter for each p1 = 0 .. n-2 with p2 free above it; together they cover every pair once
       (for (72, 64) a single miter with both positions free did not finish in 300 s)
 d and the positions are free inputs: one miter per claim covers every data word and every position.
-Control: the false claim "two flipped bits give corrected = 1" must give a counterexample.
+Controls, each must give a counterexample:
+  C3-control         the false claim "two flipped bits give corrected = 1";
+  C1-control-c0s0    the C1 miter with check bit 0 stuck at 0 between encoder and channel;
+  C1-control-cTs1    the C1 miter with the top check bit (r - 1) stuck at 1.
+The two C1 controls show that the C1 miter can fail: a C1 miter whose assumption is false proves nothing.
 --form lut6 reads the LUT6 files (primitives as Yosys $lut through proof/lut_to_dollar_lut.v), --form v the plain files.
 """
 import argparse
@@ -20,7 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 TOP = """module chain (input [%(km)d:0] d, input [7:0] p1, input [7:0] p2, output bad);
-  wire [%(rm)d:0] c; wire [%(nm)d:0] x = {c, d}; wire [%(nm)d:0] e; wire [%(nm)d:0] r = x ^ e; wire [%(rm)d:0] s;
+  wire [%(rm)d:0] c; wire [%(rm)d:0] cf = %(cf)s; wire [%(nm)d:0] x = {cf, d}; wire [%(nm)d:0] e; wire [%(nm)d:0] r = x ^ e; wire [%(rm)d:0] s;
   wire [%(km)d:0] q; wire corr, unc;
   colony_secded%(n)d_enc%(f)s E (.d(d), .c(c));
   colony_secded%(n)d_syn%(f)s S (.r(r), .s(s));
@@ -31,9 +35,13 @@ endmodule
 """
 
 
-def cases(n, split):
+def cases(n, k, split):
     one = lambda p: "(%d'd1 << %s)" % (n, p)
-    c = {"C1": ("%d'd0" % n, "1'b1", "(q != d) | corr | unc"),
+    rr = n - k
+    c1 = ("%d'd0" % n, "1'b1", "(q != d) | corr | unc")
+    c = {"C1": c1,
+         "C1-control-c0s0": c1 + ("c & ~%d'd1" % rr,),
+         "C1-control-cTs1": c1 + ("c | (%d'd1 << %d)" % (rr, rr - 1),),
          "C2": (one("p1"), "(p1 < 8'd%d)" % n, "(q != d) | ~corr | unc")}
     if split:
         for p1 in range(n - 1):
@@ -44,9 +52,9 @@ def cases(n, split):
     return c
 
 
-def run(yosys, work, tag, form, n, k, e, assume, bad, seconds):
+def run(yosys, work, tag, form, n, k, e, assume, bad, seconds, cf="c"):
     top = work / ("chain_%s.v" % tag)
-    top.write_text(TOP % {"n": n, "km": k - 1, "rm": n - k - 1, "nm": n - 1, "f": "_lut6" if form == "lut6" else "", "e": e,
+    top.write_text(TOP % {"n": n, "km": k - 1, "rm": n - k - 1, "nm": n - 1, "f": "_lut6" if form == "lut6" else "", "e": e, "cf": cf,
                           "bad": "(%s) & (%s)" % (assume, bad)})
     reads = ["read_verilog %s" % (ROOT / "block" / ("colony_secded%d_%s%s.v" % (n, b, "_lut6" if form == "lut6" else ""))) for b in ("enc", "syn", "cor")]
     if form == "lut6":
@@ -80,17 +88,17 @@ if __name__ == "__main__":
     n, k = (int(x) for x in a.code.split("_"))
     a.work.mkdir(parents=True, exist_ok=True)
     bad, split = 0, {}
-    for tag, (e, assume, cond) in cases(n, a.split_c3).items():
-        r = run(a.yosys, a.work, tag, a.form, n, k, e, assume, cond, a.seconds)
-        want = "COUNTEREXAMPLE" if tag == "C3-control" else "PROVED"
+    for tag, (e, assume, cond, *cf) in cases(n, k, a.split_c3).items():
+        r = run(a.yosys, a.work, tag, a.form, n, k, e, assume, cond, a.seconds, *cf)
+        want = "COUNTEREXAMPLE" if "control" in tag else "PROVED"
         bad += r != want
         if tag.startswith("C3.p1="):
             split[r] = split.get(r, 0) + 1
             if r != want:
-                print("%-11s %-5s %s   <-- expected %s" % (tag, a.form, r, want), flush=True)
+                print("%-15s %-5s %s   <-- expected %s" % (tag, a.form, r, want), flush=True)
             continue
-        print("%-11s %-5s %s%s" % (tag, a.form, r, "" if r == want else "   <-- expected " + want), flush=True)
+        print("%-15s %-5s %s%s" % (tag, a.form, r, "" if r == want else "   <-- expected " + want), flush=True)
     if split:
-        print("%-11s %-5s %s (%d miters: p1 = 0..%d fixed, p2 free, p1 < p2 < %d; every pair once)" % (
+        print("%-15s %-5s %s (%d miters: p1 = 0..%d fixed, p2 free, p1 < p2 < %d; every pair once)" % (
             "C3", a.form, ", ".join("%s %d" % kv for kv in sorted(split.items())), n - 1, n - 2, n))
     raise SystemExit(1 if bad else 0)

@@ -1,6 +1,8 @@
 $ python3 -I proof/sat_secded.py --code 72_64 --yosys $BIN/yosys --work $WORK/sat_72_64_lut6 --form lut6 --split-c3
-C1          lut6  PROVED
-C2          lut6  PROVED
-C3-control  lut6  COUNTEREXAMPLE
-C3          lut6  PROVED 71 (71 miters: p1 = 0..70 fixed, p2 free, p1 < p2 < 72; every pair once)
+C1              lut6  PROVED
+C1-control-c0s0 lut6  COUNTEREXAMPLE
+C1-control-cTs1 lut6  COUNTEREXAMPLE
+C2              lut6  PROVED
+C3-control      lut6  COUNTEREXAMPLE
+C3              lut6  PROVED 71 (71 miters: p1 = 0..70 fixed, p2 free, p1 < p2 < 72; every pair once)
 exit 0

@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 NAMES = []
+CONTROLS = ("C1-control-c0s0", "C1-control-cTs1", "C3-control")
 
 
 def run(name, cmd, out):
@@ -52,6 +53,9 @@ if __name__ == "__main__":
         for form in ("lut6", "v"):
             ok &= run("sat_%s_%s" % (C, form), py + ["proof/sat_secded.py", "--code", C, "--yosys", ys, "--work", str(w / ("sat_%s_%s" % (C, form))),
                                                      "--form", form, "--split-c3"], out)
+            text = (out / ("sat_%s_%s.txt" % (C, form))).read_text().split("\n")
+            for ctl in CONTROLS:                                         # each planted fault must give a counterexample
+                ok &= any(l.split()[:3] == [ctl, form, "COUNTEREXAMPLE"] for l in text)
         ok &= run("cost_" + C, py + ["tools/cost.py", "--code", C, "--yosys", ys, "--work", str(w / ("cost_" + C))], out)
         for blk in ("enc", "syn"):
             ok &= run("detector_r_%s_%s" % (C, blk), py + ["tools/detector_r.py", "--blif", "proof/%s_%s.blif" % (N, blk),
