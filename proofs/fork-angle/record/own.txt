@@ -1,0 +1,12 @@
+689 forks
+condition                    forks  stored Angle  arcs at their first points  first points apart, mm  mm back to reach the stored Angle
+Air_133mbar_10kV                44    94.8 ( 86.2, 108.0)     79.3 ( 73.7,  88.2)         0.67                   6.72
+Air_133mbar_7kV                 75    86.4 ( 79.4,  94.4)     76.1 ( 70.9,  81.7)         0.39                   4.51
+Air_133mbar_9kV                206    86.2 ( 80.7,  98.7)     77.2 ( 71.8,  83.9)         0.95                   5.81
+Air_167mbar_11kV               152    89.3 ( 79.5,  99.7)     75.9 ( 68.9,  82.1)         0.95                   6.37
+Air_200mbar_13kV               160    85.7 ( 79.3,  96.8)     73.8 ( 68.6,  79.6)         1.24                   6.21
+O2pct5_133mbar_9kV              45    86.0 ( 75.2,  98.8)     73.4 ( 66.0,  80.0)         0.98                   6.34
+all                            689    87.1 ( 79.8,  98.8)     75.6 ( 70.2,  82.1)         0.97                   5.99
+opening gained per mm back along the arcs: median 2.05 degrees
+stored Angle against the arcs at their first points: rank correlation 0.943; median difference 11.6 (quartiles 8.3, 17.0)
+stored Angle, counts in 10-degree bins from 40: 2 3 41 130 214 141 77 37 18
