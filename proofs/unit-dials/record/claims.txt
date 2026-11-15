@@ -1,0 +1,12 @@
+claim 2: coprime pairs <= 1000: 303192; unit <=> |b - a| = 1 fails on 0
+claim 1, triples <= 300: 1264341 pairwise coprime, 8 sign vectors each; disagreements 0
+claim 3, triples <= 300: 620 unit triples; unit <=> some z(x+y) = xy +- 1 fails on 0: []
+claim 3: triples <= 300 satisfying the equation that are not pairwise coprime: 0
+claim 3: unit triples with an all-plus sign vector (sum of the fractions past a whole turn): [(2, 3, 5)]
+claim 3 family: triples <= 300 from (s, x): 620; equal to the unit triples: True; missing 0, extra 0
+Fibonacci line (F_n, F_n+1, F_n+2), n = 3..55 (F_1 = F_2 = 1): unit 53 of 53; F_n F_n+3 - F_n+1 F_n+2 = (-1)^(n+1): True
+delta lines, odd delta 3..199: 197 triples with all moduli >= 2, unit 197; first: [(3, 5, 8), (5, 8, 13), (7, 12, 17), (11, 19, 26), (13, 23, 30), (19, 34, 43), (21, 38, 47), (29, 53, 64), (31, 57, 68)]
+(2^k - 1, 2^k + 1, 2^(2k-1)), k = 2..128: unit with signs (+1, -1, -1): 127 of 127
+(2^n - 1, 2^n, 2^n + 1), n = 2..128: not unit 127; inverses 2^(n-1), -1, -2^(n-1): 127, 127, 127 of 127
+claim 1, quadruples <= 60: 50257 pairwise coprime, 32 unit; disagreements 0
+claim 4, quadruples <= 60: factor form <=> equation fails on 0

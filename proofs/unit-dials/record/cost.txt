@@ -1,0 +1,56 @@
+Yosys 0.70+385 (git sha1 098e46a36, Release, Clang /usr/local/osxcross/target/bin/aarch64-apple-darwin25.5-clang++ 21.1.8)
+== 5 8 13
+{"moduli": [5, 8, 13], "M": 520, "log2M": 9.022, "b": 10, "unit": true, "signs": [-1, 1, 1], "constants": [-104, 65, 40], "sum_range": [-416, 935], "multiples_compared": 3, "sum_width": 12}
+back: 45 LUT-6, 5 levels
+binadd: 14 LUT-6, 4 levels
+binmul: 74 LUT-6, 5 levels
+chadd_13: 21 LUT-6, 3 levels
+chadd_5: 3 LUT-6, 1 levels
+chadd_8: 3 LUT-6, 1 levels
+chmul_13: 24 LUT-6, 3 levels
+chmul_5: 3 LUT-6, 1 levels
+chmul_8: 3 LUT-6, 1 levels
+== 7 9 32
+{"moduli": [7, 9, 32], "M": 2016, "log2M": 10.977, "b": 11, "unit": true, "signs": [1, -1, -1], "constants": [288, -224, -63], "sum_range": [-3745, 1728], "multiples_compared": 3, "sum_width": 14}
+back: 53 LUT-6, 5 levels
+binadd: 17 LUT-6, 4 levels
+binmul: 87 LUT-6, 5 levels
+chadd_32: 7 LUT-6, 3 levels
+chadd_7: 3 LUT-6, 1 levels
+chadd_9: 12 LUT-6, 3 levels
+chmul_32: 24 LUT-6, 4 levels
+chmul_7: 3 LUT-6, 1 levels
+chmul_9: 20 LUT-6, 2 levels
+== 15 17 128
+{"moduli": [15, 17, 128], "M": 32640, "log2M": 14.994, "b": 15, "unit": true, "signs": [1, -1, -1], "constants": [2176, -1920, -255], "sum_range": [-63105, 30464], "multiples_compared": 3, "sum_width": 18}
+back: 89 LUT-6, 7 levels
+binadd: 26 LUT-6, 6 levels
+binmul: 190 LUT-6, 7 levels
+chadd_128: 19 LUT-6, 4 levels
+chadd_15: 24 LUT-6, 3 levels
+chadd_17: 62 LUT-6, 4 levels
+chmul_128: 238 LUT-6, 5 levels
+chmul_15: 27 LUT-6, 3 levels
+chmul_17: 70 LUT-6, 4 levels
+== 7 8 9
+{"moduli": [7, 8, 9], "M": 504, "log2M": 8.977, "b": 9, "unit": false, "signs": [0, -1, 0], "constants": [288, -63, 280], "sum_range": [-441, 3968], "multiples_compared": 9, "sum_width": 14}
+back: 94 LUT-6, 8 levels
+binadd: 12 LUT-6, 4 levels
+binmul: 55 LUT-6, 5 levels
+chadd_7: 3 LUT-6, 1 levels
+chadd_8: 3 LUT-6, 1 levels
+chadd_9: 12 LUT-6, 3 levels
+chmul_7: 3 LUT-6, 1 levels
+chmul_8: 3 LUT-6, 1 levels
+chmul_9: 20 LUT-6, 2 levels
+== 15 16 17
+{"moduli": [15, 16, 17], "M": 4080, "log2M": 11.994, "b": 12, "unit": false, "signs": [0, -1, 0], "constants": [2176, -255, 2160], "sum_range": [-3825, 65024], "multiples_compared": 17, "sum_width": 18}
+back: 203 LUT-6, 12 levels
+binadd: 17 LUT-6, 5 levels
+binmul: 115 LUT-6, 6 levels
+chadd_15: 24 LUT-6, 3 levels
+chadd_16: 5 LUT-6, 2 levels
+chadd_17: 62 LUT-6, 4 levels
+chmul_15: 27 LUT-6, 3 levels
+chmul_16: 6 LUT-6, 2 levels
+chmul_17: 70 LUT-6, 4 levels

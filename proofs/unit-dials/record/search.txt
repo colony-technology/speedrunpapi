@@ -1,0 +1,8 @@
+B=2000 R=4: candidates 3140, unit sets of four 549
+real 45.24
+user 44.47
+sys 0.22
+B=600 R=4: candidates 397, unit sets of five 52
+real 84.91
+user 83.94
+sys 0.27
