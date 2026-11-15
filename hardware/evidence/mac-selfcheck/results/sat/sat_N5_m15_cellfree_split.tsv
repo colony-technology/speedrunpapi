@@ -1,0 +1,17 @@
+UNSATISFIABLE	13.22	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0000
+UNSATISFIABLE	13.73	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0001
+UNSATISFIABLE	10.10	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0010
+UNSATISFIABLE	13.38	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0011
+UNSATISFIABLE	15.67	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0100
+UNSATISFIABLE	14.22	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0101
+UNSATISFIABLE	11.22	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0110
+UNSATISFIABLE	13.45	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=0111
+UNSATISFIABLE	14.85	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1000
+UNSATISFIABLE	13.12	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1001
+UNSATISFIABLE	13.35	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1010
+UNSATISFIABLE	14.92	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1011
+UNSATISFIABLE	13.26	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1100
+UNSATISFIABLE	13.45	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1101
+UNSATISFIABLE	15.19	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1110
+UNSATISFIABLE	13.63	cell13:w28+w29+w30	free split c[9]c[8]c[7]c[6]=1111
+SUMMARY scm5_m15 N = 5 m = 15 mode cellfree: 16 queries, UNSATISFIABLE 16; slowest 15.67 s, this run 216.8 s, limit 300 s per query

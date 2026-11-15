@@ -1,0 +1,4 @@
+PROVED: p = a * b + c for every a, b below 2^4 and c below 2^8.
+  multiplier tables 54 (22 cells, 9 p buffers), columns 0..9; detector tables 53, 1844 rows checked; alarm leaves 3 (2 mismatch, 1 above the top); p wires from 9 adder cells in one ripple over columns 0..8, 0 single AND cells, 0 tree cells
+PROVED claim A: N = 4, m = 15. For every a, b below 2^4, every c below 2^(2N) and every one lookup table of the multiplier with a wrong output (any wrong function), p != a x b + c implies alarm = 1. Also with the final adder on a carry chain, for a wrong propagate LUT.
+PROVED claim B: N = 4, m = 15. All outputs of one cell wrong at once: d lies in -4..7 over all 22 cells (p buffers: -1..1), no nonzero multiple of 15, and p != a x b + c implies alarm = 1.

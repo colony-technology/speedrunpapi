@@ -1,0 +1,3 @@
+scm4_c3_m3, N = 4, m = 3, faults table3: 162 faults over 1096 pairs (72 corner, 1024 random, seed 2026). Fault-free: 0 wrong product bits, 0 alarms. Faults that make some product wrong: 159. Wrong (fault, pair) cases: 122112; with alarm: 121730; escapes: 382. Alarms with a right product: 2304. Compile 0.2 s, run 0.1 s.
+ESCAPE w10 stuck1: a = 0, b = 0, c = 0, a x b + c = 0
+ESCAPE w10 inverted: a = 0, b = 0, c = 0, a x b + c = 0

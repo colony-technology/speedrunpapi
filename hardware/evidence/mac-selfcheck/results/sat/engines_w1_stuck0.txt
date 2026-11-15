@@ -1,0 +1,4 @@
+strash; iprove | 300 s | no verdict within 300 s
+strash; dsat | 300 s | no verdict within 300 s
+strash; dprove | 300 s |     Unsat        =     0.00 sec     Unsat        =     0.00 sec 
+strash; &get; &sat | 0 s | no verdict within 300 s

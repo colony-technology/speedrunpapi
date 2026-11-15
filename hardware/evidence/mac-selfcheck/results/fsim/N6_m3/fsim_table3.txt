@@ -1,0 +1,2 @@
+scm6_m3, N = 6, m = 3, faults table3: 300 faults over 1152 pairs (128 corner, 1024 random, seed 2026). Fault-free: 0 wrong product bits, 0 alarms. Faults that make some product wrong: 297. Wrong (fault, pair) cases: 228096; with alarm: 228096; escapes: 0. Alarms with a right product: 2304. Compile 0.2 s, run 0.1 s.
+
