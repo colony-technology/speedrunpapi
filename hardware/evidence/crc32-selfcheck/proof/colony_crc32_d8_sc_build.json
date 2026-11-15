@@ -1,0 +1,14 @@
+{
+ "name": "colony_crc32_d8",
+ "r": 2,
+ "H": [
+  "3821cee9",
+  "c7df3336"
+ ],
+ "predictor_lut6": 7,
+ "predictor_levels": 2,
+ "checker_lut6": 7,
+ "checker_levels": 2,
+ "alarm_lut6": 1,
+ "block_lut6": 41
+}

@@ -1,0 +1,69 @@
+{
+ "r": 2,
+ "H": [
+  "3821cee9",
+  "c7df3336"
+ ],
+ "checker_weights": [
+  15,
+  20
+ ],
+ "predictor_rows": [
+  "20043821ce",
+  "1c38c7df33"
+ ],
+ "predictor_weights": [
+  12,
+  22
+ ],
+ "inputs": [
+  "s[0]",
+  "s[1]",
+  "s[2]",
+  "s[3]",
+  "s[4]",
+  "s[5]",
+  "s[6]",
+  "s[7]",
+  "s[8]",
+  "s[9]",
+  "s[10]",
+  "s[11]",
+  "s[12]",
+  "s[13]",
+  "s[14]",
+  "s[15]",
+  "s[16]",
+  "s[17]",
+  "s[18]",
+  "s[19]",
+  "s[20]",
+  "s[21]",
+  "s[22]",
+  "s[23]",
+  "s[24]",
+  "s[25]",
+  "s[26]",
+  "s[27]",
+  "s[28]",
+  "s[29]",
+  "s[30]",
+  "s[31]",
+  "d[0]",
+  "d[1]",
+  "d[2]",
+  "d[3]",
+  "d[4]",
+  "d[5]",
+  "d[6]",
+  "d[7]"
+ ],
+ "objective": 69,
+ "search": {
+  "method": "local search from the solver H: 2000 restarts of a 300-step random feasible walk then descent, seed 1; not a proven optimum",
+  "distinct_local_optima": 2000,
+  "best_ones": 68,
+  "measured": 12,
+  "chosen_predictor_plus_checker_lut6": 14
+ }
+}

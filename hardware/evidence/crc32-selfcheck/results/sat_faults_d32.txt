@@ -1,0 +1,44 @@
+$ python3 -I proof/sat_faults.py --name colony_crc32_d32 --yosys $BIN/yosys --work $WORK/sat_d32 --pins --init --batch 200
+progress 200 / 6439
+progress 400 / 6439
+progress 600 / 6439
+progress 800 / 6439
+progress 1000 / 6439
+progress 1200 / 6439
+progress 1400 / 6439
+progress 1600 / 6439
+progress 1800 / 6439
+progress 2000 / 6439
+progress 2200 / 6439
+progress 2400 / 6439
+progress 2600 / 6439
+progress 2800 / 6439
+progress 3000 / 6439
+progress 3200 / 6439
+progress 3400 / 6439
+progress 3600 / 6439
+progress 3800 / 6439
+progress 4000 / 6439
+progress 4200 / 6439
+progress 4400 / 6439
+progress 4600 / 6439
+progress 4800 / 6439
+progress 5000 / 6439
+progress 5200 / 6439
+progress 5400 / 6439
+progress 5600 / 6439
+progress 5800 / 6439
+progress 6000 / 6439
+progress 6200 / 6439
+progress 6400 / 6439
+progress 6439 / 6439
+free     PROVED 100
+init     PROVED 4488
+inv      PROVED 100
+pin inv  PROVED 517
+pin s0   PROVED 517
+pin s1   PROVED 517
+s0       PROVED 100
+s1       PROVED 100
+FAULTS 6439  PROVED 6439  NOT PROVED 0
+exit 0

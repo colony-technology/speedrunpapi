@@ -1,0 +1,8 @@
+$ python3 -I sim/sim_faults.py --name colony_crc32_d8 --n 4096 --drop 1
+samples 4096, seed 1, healthy alarms 0, check bit 1 dropped
+inv   faults    41  changed o    41  samples with o changed    167936  of those with alarm 0: 106496
+s0    faults    41  changed o    41  samples with o changed     83922  of those with alarm 0: 53030
+s1    faults    41  changed o    41  samples with o changed     84014  of those with alarm 0: 53466
+faults that never changed o on these samples: 0
+ESCAPES 78: b_n0 inv b_n0 s0 b_n0 s1 b_n1 inv b_n1 s0 b_n1 s1 b_n3 inv b_n3 s0 b_n3 s1 b_n4 inv b_n4 s0 b_n4 s1 b_n5 inv b_n5 s0 b_n5 s1 b_n6 inv b_n6 s0 b_n6 s1 b_n7 inv b_n7 s0 b_n7 s1 b_n8 inv b_n8 s0 b_n8 s1 b_n9 inv b_n9 s0 b_n9 s1 b_n10 inv b_n10 s0 b_n10 s1 b_n11 inv b_n11 s0 b_n11 s1 b_n13 inv b_n13 s0 b_n13 s1 b_n17 inv b_n17 s0 b_n17 s1 b_n21 inv b_n21 s0 b_n21 s1 b_n22 inv b_n22 s0 b_n22 s1 b_n26 inv b_n26 s0 b_n26 s1 b_n27 inv b_n27 s0 b_n27 s1 b_n28 inv b_n28 s0 b_n28 s1 b_n29 inv b_n29 s0 b_n29 s1 b_n31 inv b_n31 s0 b_n31 s1 b_n32 inv b_n32 s0 b_n32 s1 b_n33 inv b_n33 s0 b_n33 s1 b_n34 inv b_n34 s0 b_n34 s1 b_n35 inv b_n35 s0 b_n35 s1 b_n39 inv b_n39 s0 b_n39 s1 b_n40 inv b_n40 s0 b_n40 s1
+exit 0
