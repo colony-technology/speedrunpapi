@@ -1,0 +1,12 @@
+/opt/intelFPGA/quartus/adm/qenv.sh: line 83: warning: setlocale: LC_CTYPE: cannot change locale (en_US.UTF-8): No such file or directory
+------------------------------------------------
+invalid command name "load_package"
+    while executing
+"unknown_original load_package chip"
+    ("eval" body line 1)
+    invoked from within
+"eval unknown_original $cmd $args"
+    (procedure "::unknown" line 7)
+    invoked from within
+""load_package chip; puts [join [info commands *atom*] n]""
+------------------------------------------------

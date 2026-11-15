@@ -1,0 +1,622 @@
+Analysis & Synthesis report for colony
+Thu Nov 12 22:07:09 2026
+Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Post-Synthesis Netlist Statistics for Top Partition
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Thu Nov 12 22:07:09 2026       ;
+; Quartus Prime Version           ; 21.1.1 Build 850 06/23/2022 SJ Lite Edition ;
+; Revision Name                   ; colony                                      ;
+; Top-level Entity Name           ; registered_top                              ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 256                                         ;
+; Total pins                      ; 0                                           ;
+; Total virtual pins              ; 257                                         ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 35                                          ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CGXFC9E7F35C8     ;                    ;
+; Top-level entity name                                                           ; registered_top     ; colony             ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation                             ; 1                  ;                    ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 5      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                          ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                            ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
+; registered_top.v                 ; yes             ; User Verilog HDL File  ; /mnt/data/quartus-work/results/udivf64/registered_top.v ;         ;
+; udivf64.v                        ; yes             ; User Verilog HDL File  ; /mnt/data/quartus-work/results/udivf64/udivf64.v        ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimate of Logic utilization (ALMs needed) ; 1921  ;
+;                                             ;       ;
+; Combinational ALUT usage for logic          ; 2799  ;
+;     -- 7 input functions                    ; 52    ;
+;     -- 6 input functions                    ; 606   ;
+;     -- 5 input functions                    ; 91    ;
+;     -- 4 input functions                    ; 101   ;
+;     -- <=3 input functions                  ; 1949  ;
+;                                             ;       ;
+; Dedicated logic registers                   ; 256   ;
+;                                             ;       ;
+; Virtual pins                                ; 257   ;
+; I/O pins                                    ; 0     ;
+;                                             ;       ;
+; Total DSP Blocks                            ; 35    ;
+;                                             ;       ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 256   ;
+; Total fan-out                               ; 11604 ;
+; Average fan-out                             ; 3.47  ;
++---------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                  ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------+----------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name            ; Entity Name    ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------+----------------+--------------+
+; |registered_top            ; 2799 (2)            ; 256 (256)                 ; 0                 ; 35         ; 0    ; 257          ; |registered_top                ; registered_top ; work         ;
+;    |udivf64:u_core|        ; 2797 (2797)         ; 0 (0)                     ; 0                 ; 35         ; 0    ; 0            ; |registered_top|udivf64:u_core ; udivf64        ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------+----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary  ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Independent 18x18 plus 36       ; 8           ;
+; Independent 27x27               ; 27          ;
+; Total number of DSP blocks      ; 35          ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 35          ;
++---------------------------------+-------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 256   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------+
+; 4:1                ; 63 bits   ; 126 LEs       ; 126 LEs              ; 0 LEs                  ; Yes        ; |registered_top|q[49]~reg0                ;
+; 4:1                ; 63 bits   ; 126 LEs       ; 126 LEs              ; 0 LEs                  ; Yes        ; |registered_top|r[47]~reg0                ;
+; 4:1                ; 57 bits   ; 114 LEs       ; 114 LEs              ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 4:1                ; 61 bits   ; 122 LEs       ; 122 LEs              ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 4:1                ; 36 bits   ; 72 LEs        ; 72 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 55 bits   ; 110 LEs       ; 110 LEs              ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 4:1                ; 31 bits   ; 62 LEs        ; 62 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft1 ;
+; 7:1                ; 12 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 10:1               ; 4 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|ShiftLeft0 ;
+; 49:1               ; 2 bits    ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |registered_top|udivf64:u_core|s[5]       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 256                         ;
+;     plain             ; 256                         ;
+; arriav_lcell_comb     ; 2799                        ;
+;     arith             ; 1283                        ;
+;         0 data inputs ; 6                           ;
+;         1 data inputs ; 613                         ;
+;         2 data inputs ; 664                         ;
+;     extend            ; 52                          ;
+;         7 data inputs ; 52                          ;
+;     normal            ; 955                         ;
+;         2 data inputs ; 82                          ;
+;         3 data inputs ; 75                          ;
+;         4 data inputs ; 101                         ;
+;         5 data inputs ; 91                          ;
+;         6 data inputs ; 606                         ;
+;     shared            ; 509                         ;
+;         0 data inputs ; 83                          ;
+;         1 data inputs ; 121                         ;
+;         2 data inputs ; 241                         ;
+;         3 data inputs ; 64                          ;
+; arriav_mac            ; 35                          ;
+; boundary_port         ; 257                         ;
+;                       ;                             ;
+; Max LUT depth         ; 22.10                       ;
+; Average LUT depth     ; 14.90                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:04     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+    Info: Copyright (C) 2022  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Thu Nov 12 22:07:03 2026
+Info: Command: quartus_map colony -c colony
+Warning (12473): User specified to use only one processors but 5 processors were detected which could be used to decrease run time.
+Info (12021): Found 1 design units, including 1 entities, in source file registered_top.v
+    Info (12023): Found entity 1: registered_top File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file udivf64.v
+    Info (12023): Found entity 1: udivf64 File: /mnt/data/quartus-work/results/udivf64/udivf64.v Line: 6
+Info (12127): Elaborating entity "registered_top" for the top level hierarchy
+Info (12128): Elaborating entity "udivf64" for hierarchy "udivf64:u_core" File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 4
+Warning (10230): Verilog HDL assignment warning at udivf64.v(2060): truncated value with size 32 to match size of target (6) File: /mnt/data/quartus-work/results/udivf64/udivf64.v Line: 2060
+Warning (10230): Verilog HDL assignment warning at udivf64.v(2064): truncated value with size 76 to match size of target (65) File: /mnt/data/quartus-work/results/udivf64/udivf64.v Line: 2064
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276007): RAM logic "udivf64:u_core|Ram0" is uninferred due to asynchronous read logic File: /mnt/data/quartus-work/results/udivf64/udivf64.v Line: 8
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Critical Warning (15725): clock port is fed by virtual pin "clk~input"; timing analysis treats input to the clock port as a ripple clock
+Info (15717): Design contains 257 virtual pins; timing numbers associated with paths containing virtual pins are estimates
+    Info (15719): Pin "q[0]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[1]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[2]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[3]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[4]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[5]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[6]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[7]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[8]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[9]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[10]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[11]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[12]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[13]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[14]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[15]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[16]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[17]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[18]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[19]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[20]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[21]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[22]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[23]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[24]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[25]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[26]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[27]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[28]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[29]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[30]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[31]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[32]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[33]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[34]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[35]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[36]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[37]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[38]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[39]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[40]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[41]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[42]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[43]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[44]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[45]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[46]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[47]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[48]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[49]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[50]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[51]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[52]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[53]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[54]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[55]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[56]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[57]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[58]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[59]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[60]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[61]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[62]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "q[63]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[0]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[1]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[2]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[3]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[4]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[5]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[6]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[7]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[8]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[9]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[10]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[11]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[12]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[13]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[14]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[15]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[16]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[17]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[18]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[19]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[20]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[21]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[22]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[23]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[24]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[25]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[26]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[27]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[28]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[29]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[30]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[31]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[32]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[33]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[34]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[35]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[36]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[37]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[38]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[39]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[40]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[41]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[42]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[43]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[44]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[45]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[46]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[47]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[48]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[49]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[50]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[51]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[52]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[53]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[54]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[55]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[56]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[57]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[58]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[59]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[60]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[61]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[62]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15719): Pin "r[63]" is virtual output pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 3
+    Info (15718): Pin "clk" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[62]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[63]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[8]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[9]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[10]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[11]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[12]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[13]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[14]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[15]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[6]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[7]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[4]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[5]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[0]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[1]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[2]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[3]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[16]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[17]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[18]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[19]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[20]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[21]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[22]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[23]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[24]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[25]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[26]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[27]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[28]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[29]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[30]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[31]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[61]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[60]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[48]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[49]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[50]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[51]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[52]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[53]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[54]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[55]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[56]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[57]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[58]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[59]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[32]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[33]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[34]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[35]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[36]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[37]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[38]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[39]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[40]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[41]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[42]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[43]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[44]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[45]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[46]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "b[47]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[0]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[1]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[2]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[3]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[4]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[5]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[6]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[7]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[8]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[9]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[10]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[11]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[12]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[13]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[14]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[15]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[16]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[17]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[18]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[19]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[20]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[21]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[22]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[23]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[24]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[25]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[26]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[27]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[28]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[29]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[30]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[31]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[32]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[33]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[34]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[35]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[36]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[37]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[38]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[39]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[40]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[41]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[42]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[43]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[44]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[45]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[46]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[47]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[48]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[49]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[50]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[51]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[52]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[53]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[54]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[55]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[56]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[57]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[58]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[59]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[60]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[61]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[62]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+    Info (15718): Pin "a[63]" is virtual input pin File: /mnt/data/quartus-work/results/udivf64/registered_top.v Line: 1
+Info (21057): Implemented 3091 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 0 input pins
+    Info (21059): Implemented 0 output pins
+    Info (21061): Implemented 3056 logic cells
+    Info (21062): Implemented 35 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 439 megabytes
+    Info: Processing ended: Thu Nov 12 22:07:09 2026
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
+
+

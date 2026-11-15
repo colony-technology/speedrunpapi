@@ -1,0 +1,234 @@
+[
+  {
+    "module": "crc32_d512_plain",
+    "map_exit": 0,
+    "map_state": "passed",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 1081,
+    "aluts": 776,
+    "registers": 576,
+    "dsp": 0,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 108.48,
+        "restricted_mhz": 108.48
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 108.48,
+        "restricted_mhz": 108.48
+      }
+    },
+    "fmax_mhz": 108.48,
+    "period_ns": 9.218,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 99937,
+    "fit_rpt_bytes": 262359,
+    "sta_rpt_bytes": 158912
+  },
+  {
+    "module": "crc32_d512_colony_keep",
+    "map_exit": null,
+    "map_state": "running",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 1203,
+    "aluts": 844,
+    "registers": 576,
+    "dsp": 0,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 109.9,
+        "restricted_mhz": 109.9
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 109.9,
+        "restricted_mhz": 109.9
+      }
+    },
+    "fmax_mhz": 109.9,
+    "period_ns": 9.099,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 215664,
+    "fit_rpt_bytes": 263356,
+    "sta_rpt_bytes": 158905
+  },
+  {
+    "module": "crc32_d1024_plain",
+    "map_exit": 0,
+    "map_state": "passed",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 2019,
+    "aluts": 1384,
+    "registers": 1088,
+    "dsp": 0,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 109.75,
+        "restricted_mhz": 109.75
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 109.75,
+        "restricted_mhz": 109.75
+      }
+    },
+    "fmax_mhz": 109.75,
+    "period_ns": 9.112,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 168171,
+    "fit_rpt_bytes": 263539,
+    "sta_rpt_bytes": 263360
+  },
+  {
+    "module": "crc32_d1024_colony_keep",
+    "map_exit": 0,
+    "map_state": "passed",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 2112,
+    "aluts": 1302,
+    "registers": 1088,
+    "dsp": 0,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 108.47,
+        "restricted_mhz": 108.47
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 108.47,
+        "restricted_mhz": 108.47
+      }
+    },
+    "fmax_mhz": 108.47,
+    "period_ns": 9.219,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 360224,
+    "fit_rpt_bytes": 264565,
+    "sta_rpt_bytes": 263360
+  },
+  {
+    "module": "crc32_b64_colony_plain",
+    "map_exit": 0,
+    "map_state": "passed",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 1506,
+    "aluts": 1331,
+    "registers": 582,
+    "dsp": 0,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 44.16,
+        "restricted_mhz": 44.16
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 44.16,
+        "restricted_mhz": 44.16
+      }
+    },
+    "fmax_mhz": 44.16,
+    "period_ns": 22.645,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 398532,
+    "fit_rpt_bytes": 262743,
+    "sta_rpt_bytes": 160748
+  },
+  {
+    "module": "div64_plain",
+    "map_exit": 0,
+    "map_state": "passed",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 5094,
+    "aluts": 8633,
+    "registers": 256,
+    "dsp": 0,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 4.03,
+        "restricted_mhz": 4.03
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 4.03,
+        "restricted_mhz": 4.03
+      }
+    },
+    "fmax_mhz": 4.03,
+    "period_ns": 248.139,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 68666,
+    "fit_rpt_bytes": 260719,
+    "sta_rpt_bytes": 94818
+  },
+  {
+    "module": "udiv",
+    "map_exit": 0,
+    "map_state": "passed",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 1350,
+    "aluts": 2420,
+    "registers": 256,
+    "dsp": 0,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 3.83,
+        "restricted_mhz": 3.83
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 3.83,
+        "restricted_mhz": 3.83
+      }
+    },
+    "fmax_mhz": 3.83,
+    "period_ns": 261.097,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 55676,
+    "fit_rpt_bytes": 261749,
+    "sta_rpt_bytes": 94818
+  },
+  {
+    "module": "udivf64",
+    "map_exit": 0,
+    "map_state": "passed",
+    "fit_exit": 0,
+    "fit_state": "passed",
+    "sta_exit": 0,
+    "sta_state": "passed",
+    "alms": 1866,
+    "aluts": 2800,
+    "registers": 256,
+    "dsp": 35,
+    "timing_corners": {
+      "Slow 1100mV 85C": {
+        "fmax_mhz": 6.26,
+        "restricted_mhz": 6.26
+      },
+      "Slow 1100mV 0C": {
+        "fmax_mhz": 6.26,
+        "restricted_mhz": 6.26
+      }
+    },
+    "fmax_mhz": 6.26,
+    "period_ns": 159.744,
+    "worst_corner": "Slow 1100mV 0C",
+    "map_rpt_bytes": 61791,
+    "fit_rpt_bytes": 328153,
+    "sta_rpt_bytes": 94817
+  }
+]
