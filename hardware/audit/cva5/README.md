@@ -81,3 +81,18 @@ fclass.s  rs1 = 0x3ff0000000000000           expected 0x200                    m
 
 Addition, subtraction, fused multiply-add, double-precision multiplication, division and single-precision square root issued one at a time, the conversions between formats and to and from integers, comparisons, minimum and maximum, sign injection and the moves: 5,000,000 operands per operation and precision over five rounding modes, 0 wrong values and 0 wrong flags.
 With the three patches, every stream above and five mixed streams of 3,200,000 requests issued back to back return no wrong value, no wrong flag and no missing answer.
+
+## The maintainer's fix
+
+The maintainer wrote the fixes on branch [`fpu-fixes`](https://github.com/openhwfoundation/cva5/tree/fpu-fixes), three commits on `2acf79f`: `33885ac` (#34), `924f368` (#36) and `372dcdf` (#35). Run on 15 November 2026 through the same harness, campaigns and seeds as the reports: 403,402,400 vectors, no wrong value, no wrong flag, no missing answer. Every unit takes the same number of cycles as with the three patches above.
+
+| issue | vector set | `2acf79f` | `372dcdf` |
+| --- | --- | --- | --- |
+| #34 | requests issued back to back, 1,000,000 per operation and precision | never answered: 67,439 `fdiv.s`, 37,932 `fdiv.d`, 54,971 `fsqrt.s`, 39,437 `fsqrt.d` | 0 |
+| #34 | a special division offered while a square root finishes, 50 to 60 idle cycles between | 3 of 33 wrong | 0 of 33 |
+| #35 | `fsqrt.d`, 1,000,000 shaped operands, five rounding modes | 556,146 operands wrong | 0 |
+| #36 | `fmul.s`, registers that are not NaN-boxed, 288,000 vectors | 140 wrong values, 560 wrong flags | 0 |
+| #36 | `fclass.s`, registers that are not NaN-boxed, 518,400 vectors | 14,400 wrong classes | 0 |
+| all | seven mixed streams of 3,200,000 vectors, six of them overlapping in the unit | 6,819 to 20,536 missing answers in each overlapping stream | 0 |
+
+`924f368` changes `fp_mul.sv` and `fp_wb2int_misc.sv` where `nan_boxing.patch` changes `fp_rs_preprocess.sv`. The special-pattern set gives every single-precision operation registers that are not NaN-boxed, and it is clean on the branch.
