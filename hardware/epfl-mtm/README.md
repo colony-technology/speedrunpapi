@@ -137,9 +137,10 @@ python3 verify.py sixteen /path/to/EPFLfull/MtM/sixteen/aiger/sixteen.aig sixtee
 
 ## Your block
 
-One table, ROM or netlist of yours taken apart this way: 1,800 USD, fixed.
+One table, ROM or netlist of yours, rebuilt this way in your flow: 1,800 USD, fixed.
 
-You send the netlist or the table. You receive the rule behind it if it has one, the LUT netlist built from that rule, and the proof of equivalence with the tools to rerun it.
+You send the netlist or the table, the FPGA family and your reference. You receive the rule behind it if it has one, the LUT netlist built from that rule, the proof of equivalence with the tools to rerun it, and a comparison sheet measured in your flow.
+Full refund if the delivered block does not beat your reference on LUT count or logic depth.
 
 Pay: https://buy.stripe.com/7sY9AS1zg5wr9Ee63N6c005 · Questions: lmtlssss@colony.technology
 

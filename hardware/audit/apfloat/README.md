@@ -84,6 +84,8 @@ The values are right in all of them. A sum or a difference that small is exact, 
 
 The patch changes LLVM's source. It is offered under LLVM's Apache-2.0 licence with LLVM exceptions.
 
+Reported: [llvm/llvm-project#242633](https://github.com/llvm/llvm-project/issues/242633). Rust's port, rustc_apfloat 0.2.3+llvm-462a31f5a5ab, returns the same status: [rust-lang/rustc_apfloat#47](https://github.com/rust-lang/rustc_apfloat/issues/47).
+
 ## The overflow flag
 
 When an overflow is rounded to the largest finite number, in the directed modes, the status is `opInexact` without `opOverflow`: 33,102,374 results of the release sweep. That is [llvm/llvm-project#220018](https://github.com/llvm/llvm-project/issues/220018), with a fix open as #220020.

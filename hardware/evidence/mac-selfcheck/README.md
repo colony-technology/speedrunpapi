@@ -3,19 +3,19 @@
 An unsigned multiply-accumulate p = a × b + c in 6-input lookup tables: a and b of N bits, c of 2N bits, p of 2N + 1 bits, for N = 4, 5, 6, 8, 16, 32 and 64. The addend enters the same tree as the partial products, one more term per column.
 - Beside it is the detector of [`../mul-selfcheck/`](../mul-selfcheck/), with one more residue. It compares ((a mod m)(b mod m) + c mod m) mod m with p mod m, the residues of a, b and c taken from the pins.
 - It also watches the one wire the tree leaves above its top column.
-- For m = 3 it is 195 LUTs at N = 64, against 6,139 tables for the multiply-accumulate. A second multiply-accumulate and a comparison would cost 6,210.
+- For m = 3 it is 206 tables at N = 64 as built (195 LUTs through Yosys), against 6,139 for the multiply-accumulate. A second multiply-accumulate and a comparison would cost 6,210.
 
 The folder holds a proof of each netlist over all inputs with the independent checker that accepts it, SAT at N = 4 and 5, fault simulation at N = 4 to 32, and three negative controls. `evidence.md` is the summary in DO-254 / ISO 26262 terms.
 
-| N | Multiply-accumulate, tables | Detector m = 3 (Yosys) | Detector m = 15 (Yosys) | Second MAC and (2N+1)-bit compare |
+| N | Multiply-accumulate, tables | Detector m = 3 | Detector m = 15 | Second MAC and (2N+1)-bit compare |
 | --- | --- | --- | --- | --- |
-| 4 | 45 | 22 (14 LUTs, 4 levels) | 53 (39 LUTs, 5 levels) | 49 |
-| 5 | 67 | 22 (18 LUTs, 4 levels) | 53 (49 LUTs, 5 levels) | 72 |
-| 6 | 87 | 24 (19 LUTs, 4 levels) | 61 (54 LUTs, 5 levels) | 92 |
-| 8 | 137 | 34 (27 LUTs, 4 levels) | 89 (77 LUTs, 6 levels) | 146 |
-| 16 | 468 | 58 (53 LUTs, 5 levels) | 161 (154 LUTs, 7 levels) | 487 |
-| 32 | 1,788 | 110 (98 LUTs, 6 levels) | 309 (293 LUTs, 8 levels) | 1,825 |
-| 64 | 6,139 | 206 (195 LUTs, 6 levels) | 597 (584 LUTs, 9 levels) | 6,210 |
+| 4 | 45 | 22 (Yosys: 14 LUTs, 4 levels) | 53 (Yosys: 39 LUTs, 5 levels) | 49 |
+| 5 | 67 | 22 (Yosys: 18 LUTs, 4 levels) | 53 (Yosys: 49 LUTs, 5 levels) | 72 |
+| 6 | 87 | 24 (Yosys: 19 LUTs, 4 levels) | 61 (Yosys: 54 LUTs, 5 levels) | 92 |
+| 8 | 137 | 34 (Yosys: 27 LUTs, 4 levels) | 89 (Yosys: 77 LUTs, 6 levels) | 146 |
+| 16 | 468 | 58 (Yosys: 53 LUTs, 5 levels) | 161 (Yosys: 154 LUTs, 7 levels) | 487 |
+| 32 | 1,788 | 110 (Yosys: 98 LUTs, 6 levels) | 309 (Yosys: 293 LUTs, 8 levels) | 1,825 |
+| 64 | 6,139 | 206 (Yosys: 195 LUTs, 6 levels) | 597 (Yosys: 584 LUTs, 9 levels) | 6,210 |
 
 Tables are counted as built. "Yosys" is `synth; abc -lut 6` on the detector alone; the levels run from the detector's inputs to `alarm`.
 

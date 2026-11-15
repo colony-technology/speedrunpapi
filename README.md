@@ -190,6 +190,10 @@ The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, 
 
 [`proofs/exact-embeddings/`](proofs/exact-embeddings/) holds the sentence-embedding model `sentence-transformers/all-MiniLM-L6-v2` computed in integer arithmetic. The 2,758 sentences of the STS-B test set give one SHA-256 on seven machines, x86-64 and ARM64 under Linux, macOS and Windows, where the float32 model and onnxruntime each give six. STS-B Spearman is 0.8203 for all three. The only floating-point operation is a product of integer matrices whose partial sums are bounded below 2^53, and the bound is checked for every weight matrix. [The notebook](https://colab.research.google.com/github/lmtlssss/speedrunpapi/blob/main/proofs/exact-embeddings/exact_embeddings.ipynb) runs it in Colab with NumPy alone.
 
+## Exact language model
+
+[`proofs/exact-llm/`](proofs/exact-llm/) holds the language model `HuggingFaceTB/SmolLM2-135M` computed in integer arithmetic. The logits at the 471 prompt positions of 64 prompts give one SHA-256 on seven machines, where the float32 model gives six and onnxruntime three; the top token equals float32's at 471 of 471 prompt positions. exact-16, in the same folder, makes every operand of every matrix product an integer within ±(2^15 − 1); its three routes, one float64 product, float32 byte products and onnxruntime `MatMulInteger`, print one pair of hashes: 21 runs on seven machines.
+
 ## Hardware
 
 Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
@@ -232,6 +236,7 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 [`hardware/divider/udiv.v`](hardware/divider/) is a drop-in unsigned divider: 4,889 cells at 64 bits on Lattice ECP5, placed and routed, where the Verilog operators take 12,246.
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.
 [`hardware/linear/`](hardware/linear/) builds XOR logic: CRC-32 over a 512-bit bus in 701 LUT-6 at 4 levels, where Yosys takes 2,344; with any number of valid bytes, 1,172.
+[`hardware/linear/taxi/`](hardware/linear/taxi/) holds CRC-32 modules for the taxi Ethernet MACs. Alex Forencich built them into taxi's MACs on his HTG9200 design (Virtex UltraScale+ VU9P, 60 MACs): about 83 LUTs saved per channel on the 64-bit datapath, 4.7 per MAC on the 32-bit one.
 
 [`hardware/evidence/crc32/`](hardware/evidence/crc32/) holds the Ethernet and ARINC 664 frame check sequence at 8, 32 and 64 bits per clock and 64 bits with byte enables, 41, 100, 151 and 348 LUT-6, as verification evidence for a DO-254 or ISO 26262 applicant. Each block is proven equal to the bit-serial definition on every input by an independent checker and again in Yosys, simulated on 1,000,776 vectors, and replayed on 53 known-answer messages.
 
@@ -241,10 +246,14 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 
 [`hardware/evidence/mul-selfcheck/`](hardware/evidence/mul-selfcheck/) holds an unsigned multiplier in LUT-6 at 8, 16, 32 and 64 bits with a detector beside it that compares the remainders of the operands and of the product modulo 3: 136 lookup tables beside the 6,299 of the 64-bit multiplier, where a second multiplier and a comparison take 6,384. An independent checker proves for every input that one wrong table of the multiplier that changes the product raises the alarm; SAT at 8 bits and fault simulation at every width agree, and three negative controls each escape as they should.
 
+[`hardware/evidence/mac-selfcheck/`](hardware/evidence/mac-selfcheck/) does the same for an unsigned multiply-accumulate a × b + c, with one more residue: for m = 3 the detector is 206 tables as built beside the 6,139 of the multiply-accumulate at N = 64, where a second multiply-accumulate and a comparison would cost 6,210.
+
 [`hardware/certificate/hardfloat/`](hardware/certificate/hardfloat/) holds a certificate for the rounding module of Berkeley HardFloat Release 1, `roundRawFNToRecFN` with options 0: the IEEE 754-2019 value and the overflow, underflow and inexact flags for every valid finite nonzero raw input. The whole module is proved by machine at 135 formats, binary16, binary32, binary64, binary128 and x87 extended among them, and every input of 17 small formats is compared with exact rational arithmetic, 3,297,497,088 inputs with 0 differences.
 
-[`hardware/audit/`](hardware/audit/) runs open arithmetic cores beside exact arithmetic: a double-precision divider in dawsonjon/fpu returns 2^29 times the quotient for a band of subnormal results. The floating-point adder of BaseJump STL returns the smallest normal number for 0 + 0. The floating-point unit of OpenHW's CVA5 never answers 0.0 / 2.0 when that division directly follows another one. NOEL-V, Gaisler's RISC-V processor, returns 1.65e-24 for 3.0 * 5.0 - 15.0 at the target of a mispredicted branch. The float package of the VHDL standard, as the IEEE publishes it and GHDL and NVC ship it, returns -15 for (-6)(-1) + (-5) and the wrong last bit for the square root of two in double precision; the patch beside it passes 32 million calls.
+[`hardware/audit/`](hardware/audit/) runs open arithmetic cores beside exact arithmetic: a double-precision divider in dawsonjon/fpu returns 2^29 times the quotient for a band of subnormal results. The floating-point adder of BaseJump STL returns the smallest normal number for 0 + 0. The floating-point unit of OpenHW's CVA5 never answers 0.0 / 2.0 when that division directly follows another one. NOEL-V, Gaisler's RISC-V processor, returns 1.65e-24 for 3.0 * 5.0 - 15.0 at the target of a mispredicted branch. The float package of the VHDL standard, as the IEEE publishes it and GHDL and NVC ship it, returns -15 for (-6)(-1) + (-5) and the wrong last bit for the square root of two in double precision; the patch beside it passes 32 million calls. Two fixes are merged upstream: neorv32 #1692 and black-parrot #1380.
 Every netlist has an independent checker; the division and square-root recurrences are proved in Lean 4.
+
+One unit of work, 1,800 USD, fixed, in three forms, each with its own refund: [a core or IP block audited](hardware/audit/#your-block), refunded if no defect is found; [an arithmetic block in your flow](hardware/multiplier/#paid-evaluation), refunded if it does not beat your reference on LUT count or logic depth; [a model made exact](proofs/exact-llm/#your-model), up to 500 million parameters, refunded if two of your machines print different hashes. Larger work, by contract: lmtlssss@colony.technology.
 
 [Terms](https://colony.technology/terms) · [Releases](https://github.com/lmtlssss/speedrunpapi/releases)
 Questions: lmtlssss@colony.technology

@@ -28,6 +28,8 @@ Hardware libraries ship tables of feedback taps that are meant to give a linear-
 - The 8-bit register of the same library is maximal.
 - `finding-cc_lfsr_16bit/` holds the shipped file with the headers it includes and its licence, a test bench of a few lines (`tb_period.sv`), the full cycle count (`cycles.py`) and the one-line fix (`fix.diff`).
 
+Reported: [pulp-platform/common_cells#375](https://github.com/pulp-platform/common_cells/issues/375).
+
 ## Method
 
 For a table entry and an update rule, the rule is a map s ↦ A s + b on the state s ∈ GF(2)^n. Here b = 0 for XOR feedback, and b is one bit for XNOR feedback.
