@@ -1,0 +1,220 @@
+# GitHub Actions run 43754428621: the lines each job printed (routes_test.py, then exact_llm.py check --model M)
+== SmolLM2-135M, ubuntu-latest
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 1 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 82 s, clamped 0
+         peaks (real) / clamps: attention input 11.429 / 131072; down input 2630.720 / 4194304; gate 50.741 / 32768; k 22.910 / 1024; logits input 53.630 / 8388608; mlp input 28.742 / 8388608; o input 9.531 / 8388608; q 22.075 / 1024; residual 19509.485 / 33554432; up 72.026 / 32768; v 12.972 / 8192
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f32, 174 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route i8-onnxruntime-1.32.0, 132 s, clamped 0
+float32  logits e1f142df7b0ca494d3f7537c642881204899393477db8f436834bec3d32b018f  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  32 s
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02158, mean 0.001221; continuations equal 64 of 64
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05927, mean 0.002689; continuations equal 64 of 64
+onnx     logits b0fd10d581dfa57098cd6e05b2cd2295c8748399f86dcd2b8b35897b1c90e05b  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  12 s
+check    every pair MATCH, 499 s
+== SmolLM2-135M, ubuntu-24.04-arm
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 1 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 77 s, clamped 0
+         peaks (real) / clamps: attention input 11.429 / 131072; down input 2630.720 / 4194304; gate 50.741 / 32768; k 22.910 / 1024; logits input 53.630 / 8388608; mlp input 28.742 / 8388608; o input 9.531 / 8388608; q 22.075 / 1024; residual 19509.485 / 33554432; up 72.026 / 32768; v 12.972 / 8192
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f32, 175 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route i8-onnxruntime-1.32.0, 131 s, clamped 0
+float32  logits b2f3e0296b6f9a65e7ce6faa1a6d44d30c845cd4b9625daaef1f31fc7df99637  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  30 s
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02166, mean 0.001220; continuations equal 64 of 64
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05925, mean 0.002690; continuations equal 64 of 64
+onnx     logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  23 s
+check    every pair MATCH, 502 s
+== SmolLM2-135M, macos-latest
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 8 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 151 s, clamped 0
+         peaks (real) / clamps: attention input 11.429 / 131072; down input 2630.720 / 4194304; gate 50.741 / 32768; k 22.910 / 1024; logits input 53.630 / 8388608; mlp input 28.742 / 8388608; o input 9.531 / 8388608; q 22.075 / 1024; residual 19509.485 / 33554432; up 72.026 / 32768; v 12.972 / 8192
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f32, 351 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route i8-onnxruntime-1.32.0, 191 s, clamped 0
+float32  logits 32b192d5b62c3a0db32654605a06bec7f590238ca6e21b0b20ef2dba22fa2db1  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  35 s
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02151, mean 0.001230; continuations equal 64 of 64
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05920, mean 0.002698; continuations equal 64 of 64
+onnx     logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  28 s
+check    every pair MATCH, 924 s
+== SmolLM2-135M, macos-15-intel
+i8 product engine: i8-onnxruntime-1.23.2
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 10 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 219 s, clamped 0
+         peaks (real) / clamps: attention input 11.429 / 131072; down input 2630.720 / 4194304; gate 50.741 / 32768; k 22.910 / 1024; logits input 53.630 / 8388608; mlp input 28.742 / 8388608; o input 9.531 / 8388608; q 22.075 / 1024; residual 19509.485 / 33554432; up 72.026 / 32768; v 12.972 / 8192
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f32, 483 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route i8-onnxruntime-1.23.2, 258 s, clamped 0
+float32  logits 83ccea5a7330d39fd2cf3e308e823e882da175ac324af1e9e6ef0c94ed40be9c  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  71 s
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02160, mean 0.001215; continuations equal 64 of 64
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05924, mean 0.002685; continuations equal 64 of 64
+onnx     logits 761b6fb262e3317033accdf6d28e438fd687f8263b2588fe78d07a02977e5d89  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  20 s
+check    every pair MATCH, 1216 s
+== SmolLM2-135M, windows-latest
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 AMD64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 4 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 205 s, clamped 0
+         peaks (real) / clamps: attention input 11.429 / 131072; down input 2630.720 / 4194304; gate 50.741 / 32768; k 22.910 / 1024; logits input 53.630 / 8388608; mlp input 28.742 / 8388608; o input 9.531 / 8388608; q 22.075 / 1024; residual 19509.485 / 33554432; up 72.026 / 32768; v 12.972 / 8192
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f32, 820 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route i8-onnxruntime-1.32.0, 393 s, clamped 0
+float32  logits 4cb43f7cf3f072badea3d1e498b28d9d9728c5dc09ffd8220e364fcfe81f9f0b  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  57 s
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02167, mean 0.001216; continuations equal 64 of 64
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05928, mean 0.002686; continuations equal 64 of 64
+onnx     logits b0fd10d581dfa57098cd6e05b2cd2295c8748399f86dcd2b8b35897b1c90e05b  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  16 s
+check    every pair MATCH, 1684 s
+== SmolLM2-135M, windows-11-arm
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 ARM64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 8 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 119 s, clamped 0
+         peaks (real) / clamps: attention input 11.429 / 131072; down input 2630.720 / 4194304; gate 50.741 / 32768; k 22.910 / 1024; logits input 53.630 / 8388608; mlp input 28.742 / 8388608; o input 9.531 / 8388608; q 22.075 / 1024; residual 19509.485 / 33554432; up 72.026 / 32768; v 12.972 / 8192
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f32, 329 s, clamped 0
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route i8-onnxruntime-1.32.0, 179 s, clamped 0
+float32  logits b2f3e0296b6f9a65e7ce6faa1a6d44d30c845cd4b9625daaef1f31fc7df99637  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  74 s
+exact against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.02166, mean 0.001220; continuations equal 64 of 64
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05925, mean 0.002690; continuations equal 64 of 64
+onnx     logits bd9dd1592df51250f4286faeb72c58e324f78441a3d964db7b5d932e6ffb6374  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  19 s
+check    every pair MATCH, 844 s
+== SmolLM2-360M, ubuntu-latest
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64
+model SmolLM2-360M @ f8027fd: 32 layers, width 960, 15/5 heads, feed-forward 2560, rotary base 100000, 361821120 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 16 s
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f64, 217 s, clamped 0
+         peaks (real) / clamps: attention input 10.373 / 131072; down input 2799.645 / 2097152; gate 117.465 / 32768; k 21.260 / 1024; logits input 68.984 / 4194304; mlp input 28.731 / 4194304; o input 11.628 / 4194304; q 21.295 / 1024; residual 24019.595 / 33554432; up 215.929 / 32768; v 19.220 / 8192
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f32, 439 s, clamped 0
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route i8-onnxruntime-1.32.0, 335 s, clamped 0
+float32  logits 9b824fbb813559dbb5c4fabe9b2ea6fe3bcc548bb8d85a2ba5b154a40cade033  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  84 s
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08436, mean 0.004261; continuations equal 64 of 64
+onnx     logits 8079784bf376457ba5ae0260640963da8a30f1fdd2f2232c4bda55fb6e15d72a  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  38 s
+check    every pair MATCH, 1129 s
+== SmolLM2-360M, ubuntu-24.04-arm
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64
+model SmolLM2-360M @ f8027fd: 32 layers, width 960, 15/5 heads, feed-forward 2560, rotary base 100000, 361821120 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 14 s
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f64, 146 s, clamped 0
+         peaks (real) / clamps: attention input 10.373 / 131072; down input 2799.645 / 2097152; gate 117.465 / 32768; k 21.260 / 1024; logits input 68.984 / 4194304; mlp input 28.731 / 4194304; o input 11.628 / 4194304; q 21.295 / 1024; residual 24019.595 / 33554432; up 215.929 / 32768; v 19.220 / 8192
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f32, 363 s, clamped 0
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route i8-onnxruntime-1.32.0, 253 s, clamped 0
+float32  logits 74cb1c92e16358678965f53d5fffae934428560ca3745f9938e450515a679a92  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  70 s
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08423, mean 0.004266; continuations equal 64 of 64
+onnx     logits 815f47d6dedfa0ae43728766724bebe141d9a18b73203261074f4a9b55708e10  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  36 s
+check    every pair MATCH, 883 s
+== SmolLM2-360M, macos-latest
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-360M @ f8027fd: 32 layers, width 960, 15/5 heads, feed-forward 2560, rotary base 100000, 361821120 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 31 s
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f64, 366 s, clamped 0
+         peaks (real) / clamps: attention input 10.373 / 131072; down input 2799.645 / 2097152; gate 117.465 / 32768; k 21.260 / 1024; logits input 68.984 / 4194304; mlp input 28.731 / 4194304; o input 11.628 / 4194304; q 21.295 / 1024; residual 24019.595 / 33554432; up 215.929 / 32768; v 19.220 / 8192
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f32, 1009 s, clamped 0
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route i8-onnxruntime-1.32.0, 519 s, clamped 0
+float32  logits 53c466f7548fb1dbcf70cc498a13344008c9b4624cab55c6beb8f7256495c4d3  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  118 s
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08467, mean 0.004281; continuations equal 64 of 64
+onnx     logits dd50304fc4461c5d87989ab64be8a58351816aeec780293517830d7dd96e388f  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  87 s
+check    every pair MATCH, 2132 s
+== SmolLM2-360M, macos-15-intel
+i8 product engine: i8-onnxruntime-1.23.2
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64
+model SmolLM2-360M @ f8027fd: 32 layers, width 960, 15/5 heads, feed-forward 2560, rotary base 100000, 361821120 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 48 s
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f64, 622 s, clamped 0
+         peaks (real) / clamps: attention input 10.373 / 131072; down input 2799.645 / 2097152; gate 117.465 / 32768; k 21.260 / 1024; logits input 68.984 / 4194304; mlp input 28.731 / 4194304; o input 11.628 / 4194304; q 21.295 / 1024; residual 24019.595 / 33554432; up 215.929 / 32768; v 19.220 / 8192
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f32, 1279 s, clamped 0
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route i8-onnxruntime-1.23.2, 763 s, clamped 0
+float32  logits b01970be5af48af01aa55a1c0328e0f0704e52b1fbd13ea72cda7583fd63a9ca  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  284 s
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08428, mean 0.004262; continuations equal 64 of 64
+onnx     logits a388d7d0b7f8028f428b84d624990e62de0691c83a5cdb23bd9e88d644894f80  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  115 s
+check    every pair MATCH, 3117 s
+== SmolLM2-360M, windows-latest
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 AMD64
+model SmolLM2-360M @ f8027fd: 32 layers, width 960, 15/5 heads, feed-forward 2560, rotary base 100000, 361821120 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 69 s
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f64, 392 s, clamped 0
+         peaks (real) / clamps: attention input 10.373 / 131072; down input 2799.645 / 2097152; gate 117.465 / 32768; k 21.260 / 1024; logits input 68.984 / 4194304; mlp input 28.731 / 4194304; o input 11.628 / 4194304; q 21.295 / 1024; residual 24019.595 / 33554432; up 215.929 / 32768; v 19.220 / 8192
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f32, 1289 s, clamped 0
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route i8-onnxruntime-1.32.0, 613 s, clamped 0
+float32  logits d31b22e09f463ec48aa1df53fd718bf17e34006957f7f654c0a3b3ec1e35f7d2  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  81 s
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08423, mean 0.004264; continuations equal 64 of 64
+onnx     logits 8079784bf376457ba5ae0260640963da8a30f1fdd2f2232c4bda55fb6e15d72a  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  50 s
+check    every pair MATCH, 2495 s
+== SmolLM2-360M, windows-11-arm
+i8 product engine: i8-onnxruntime-1.32.0
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 3, different 0
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 ARM64
+model SmolLM2-360M @ f8027fd: 32 layers, width 960, 15/5 heads, feed-forward 2560, rotary base 100000, 361821120 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 42 s
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f64, 326 s, clamped 0
+         peaks (real) / clamps: attention input 10.373 / 131072; down input 2799.645 / 2097152; gate 117.465 / 32768; k 21.260 / 1024; logits input 68.984 / 4194304; mlp input 28.731 / 4194304; o input 11.628 / 4194304; q 21.295 / 1024; residual 24019.595 / 33554432; up 215.929 / 32768; v 19.220 / 8192
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route f32, 852 s, clamped 0
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  MATCH  route i8-onnxruntime-1.32.0, 374 s, clamped 0
+float32  logits 74cb1c92e16358678965f53d5fffae934428560ca3745f9938e450515a679a92  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  195 s
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08423, mean 0.004266; continuations equal 64 of 64
+onnx     logits 5d7de085573a4cdff5716797975f79705c2f46035ac6b7b812941576b5539354  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  124 s
+check    every pair MATCH, 1914 s
+
+## SmolLM2-135M
+| runner | Python, NumPy, onnxruntime; platform | exact-16 logits / continuations | f64 | f32 | i8 | clamped |
+| --- | --- | --- | --- | --- | --- | --- |
+| ubuntu-latest | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64 | b0cc875f…0b4460 / a800ebad…7613cc | MATCH 82 s | MATCH 174 s | MATCH 132 s | 0 |
+| ubuntu-24.04-arm | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64 | b0cc875f…0b4460 / a800ebad…7613cc | MATCH 77 s | MATCH 175 s | MATCH 131 s | 0 |
+| macos-latest | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64 | b0cc875f…0b4460 / a800ebad…7613cc | MATCH 151 s | MATCH 351 s | MATCH 191 s | 0 |
+| macos-15-intel | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64 | b0cc875f…0b4460 / a800ebad…7613cc | MATCH 219 s | MATCH 483 s | MATCH 258 s | 0 |
+| windows-latest | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 AMD64 | b0cc875f…0b4460 / a800ebad…7613cc | MATCH 205 s | MATCH 820 s | MATCH 393 s | 0 |
+| windows-11-arm | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 ARM64 | b0cc875f…0b4460 / a800ebad…7613cc | MATCH 119 s | MATCH 329 s | MATCH 179 s | 0 |
+distinct exact-16 pairs over the runners and routes: 1
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05920, mean 0.002698; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05924, mean 0.002685; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05925, mean 0.002690; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05927, mean 0.002689; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.05928, mean 0.002686; continuations equal 64 of 64
+
+## SmolLM2-360M
+| runner | Python, NumPy, onnxruntime; platform | exact-16 logits / continuations | f64 | f32 | i8 | clamped |
+| --- | --- | --- | --- | --- | --- | --- |
+| ubuntu-latest | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64 | d97a67da…2eddfe / f84819ca…4b1aa4 | MATCH 217 s | MATCH 439 s | MATCH 335 s | 0 |
+| ubuntu-24.04-arm | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64 | d97a67da…2eddfe / f84819ca…4b1aa4 | MATCH 146 s | MATCH 363 s | MATCH 253 s | 0 |
+| macos-latest | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64 | d97a67da…2eddfe / f84819ca…4b1aa4 | MATCH 366 s | MATCH 1009 s | MATCH 519 s | 0 |
+| macos-15-intel | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64 | d97a67da…2eddfe / f84819ca…4b1aa4 | MATCH 622 s | MATCH 1279 s | MATCH 763 s | 0 |
+| windows-latest | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 AMD64 | d97a67da…2eddfe / f84819ca…4b1aa4 | MATCH 392 s | MATCH 1289 s | MATCH 613 s | 0 |
+| windows-11-arm | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 ARM64 | d97a67da…2eddfe / f84819ca…4b1aa4 | MATCH 326 s | MATCH 852 s | MATCH 374 s | 0 |
+distinct exact-16 pairs over the runners and routes: 1
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08423, mean 0.004264; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08423, mean 0.004266; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08428, mean 0.004262; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08436, mean 0.004261; continuations equal 64 of 64
+  exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08467, mean 0.004281; continuations equal 64 of 64
+
