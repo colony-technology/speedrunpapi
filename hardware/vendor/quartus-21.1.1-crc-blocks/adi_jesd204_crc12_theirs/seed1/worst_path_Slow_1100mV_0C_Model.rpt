@@ -1,0 +1,122 @@
+----------------
+; Command Info ;
+----------------
+Report Timing: Found 1 setup paths (1 violated).  Worst case slack is -0.083 
+
+Tcl Command:
+    report_timing -setup -file worst_path_Slow_1100mV_0C_Model.rpt -from [all_registers] -to [all_registers] -npaths 1 -detail full_path
+
+Options:
+    -from [all_registers] 
+    -to [all_registers] 
+    -setup 
+    -npaths 1 
+    -detail full_path 
+    -file {worst_path_Slow_1100mV_0C_Model.rpt} 
+
+Delay Model:
+    Slow 1100mV 0C Model
+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Summary of Paths                                                                                                                       ;
++--------+---------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node     ; To Node                                 ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+---------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+; -0.083 ; r_data_in[41] ; jesd204_crc12:u_core|state[4]~DUPLICATE ; clk          ; clk         ; 4.000        ; -0.101     ; 3.882      ;
++--------+---------------+-----------------------------------------+--------------+-------------+--------------+------------+------------+
+
+Path #1: Setup slack is -0.083 (VIOLATED)
+===============================================================================
++--------------------------------------------------------------+
+; Path Summary                                                 ;
++--------------------+-----------------------------------------+
+; Property           ; Value                                   ;
++--------------------+-----------------------------------------+
+; From Node          ; r_data_in[41]                           ;
+; To Node            ; jesd204_crc12:u_core|state[4]~DUPLICATE ;
+; Launch Clock       ; clk                                     ;
+; Latch Clock        ; clk                                     ;
+; Data Arrival Time  ; 8.913                                   ;
+; Data Required Time ; 8.830                                   ;
+; Slack              ; -0.083 (VIOLATED)                       ;
++--------------------+-----------------------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 4.000  ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.101 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 3.882  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 3     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 3.296       ; 66         ; 0.000 ; 2.798 ;
+;    Cell                ;        ; 3     ; 1.735       ; 34         ; 0.385 ; 0.747 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 4     ; 1.506       ; 39         ; 0.000 ; 0.743 ;
+;    Cell                ;        ; 5     ; 2.376       ; 61         ; 0.000 ; 0.722 ;
+;    uTco                ;        ; 1     ; 0.000       ; 0          ; 0.000 ; 0.000 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 2.872       ; 64         ; 0.000 ; 2.673 ;
+;    Cell                ;        ; 3     ; 1.649       ; 36         ; 0.358 ; 0.747 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++---------------------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                                       ;
++---------+---------+----+------+--------+----------------------+-----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location             ; Element                                 ;
++---------+---------+----+------+--------+----------------------+-----------------------------------------+
+; 0.000   ; 0.000   ;    ;      ;        ;                      ; launch edge time                        ;
+; 5.031   ; 5.031   ;    ;      ;        ;                      ; clock path                              ;
+;   0.000 ;   0.000 ;    ;      ;        ;                      ; source latency                          ;
+;   0.000 ;   0.000 ;    ;      ; 1      ; PIN_AC17             ; clk                                     ;
+;   0.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X46_Y0_N18    ; clk~input|i                             ;
+;   0.747 ;   0.747 ; RR ; CELL ; 1      ; IOIBUF_X46_Y0_N18    ; clk~input|o                             ;
+;   1.245 ;   0.498 ; RR ; IC   ; 1      ; CLKCTRL_G6           ; clk~inputCLKENA0|inclk                  ;
+;   1.630 ;   0.385 ; RR ; CELL ; 97     ; CLKCTRL_G6           ; clk~inputCLKENA0|outclk                 ;
+;   4.428 ;   2.798 ; RR ; IC   ; 1      ; FF_X41_Y64_N32       ; r_data_in[41]|clk                       ;
+;   5.031 ;   0.603 ; RR ; CELL ; 1      ; FF_X41_Y64_N32       ; r_data_in[41]                           ;
+; 8.913   ; 3.882   ;    ;      ;        ;                      ; data path                               ;
+;   5.031 ;   0.000 ;    ; uTco ; 1      ; FF_X41_Y64_N32       ; r_data_in[41]                           ;
+;   5.031 ;   0.000 ; FF ; CELL ; 3      ; FF_X41_Y64_N32       ; r_data_in[41]|q                         ;
+;   5.774 ;   0.743 ; FF ; IC   ; 1      ; MLABCELL_X41_Y64_N24 ; u_core|feedback[0]~5|datac              ;
+;   6.407 ;   0.633 ; FF ; CELL ; 3      ; MLABCELL_X41_Y64_N24 ; u_core|feedback[0]~5|combout            ;
+;   6.951 ;   0.544 ; FF ; IC   ; 1      ; LABCELL_X44_Y64_N45  ; u_core|feedback[0]~8|datad              ;
+;   7.631 ;   0.680 ; FF ; CELL ; 3      ; LABCELL_X44_Y64_N45  ; u_core|feedback[0]~8|combout            ;
+;   7.850 ;   0.219 ; FF ; IC   ; 1      ; LABCELL_X44_Y64_N24  ; u_core|state~14|datab                   ;
+;   8.572 ;   0.722 ; FR ; CELL ; 2      ; LABCELL_X44_Y64_N24  ; u_core|state~14|combout                 ;
+;   8.572 ;   0.000 ; RR ; IC   ; 1      ; FF_X44_Y64_N26       ; u_core|state[4]~DUPLICATE|d             ;
+;   8.913 ;   0.341 ; RR ; CELL ; 1      ; FF_X44_Y64_N26       ; jesd204_crc12:u_core|state[4]~DUPLICATE ;
++---------+---------+----+------+--------+----------------------+-----------------------------------------+
+
++------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                   ;
++---------+---------+----+------+--------+-------------------+-----------------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location          ; Element                                 ;
++---------+---------+----+------+--------+-------------------+-----------------------------------------+
+; 4.000   ; 4.000   ;    ;      ;        ;                   ; latch edge time                         ;
+; 8.930   ; 4.930   ;    ;      ;        ;                   ; clock path                              ;
+;   4.000 ;   0.000 ;    ;      ;        ;                   ; source latency                          ;
+;   4.000 ;   0.000 ;    ;      ; 1      ; PIN_AC17          ; clk                                     ;
+;   4.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X46_Y0_N18 ; clk~input|i                             ;
+;   4.747 ;   0.747 ; RR ; CELL ; 1      ; IOIBUF_X46_Y0_N18 ; clk~input|o                             ;
+;   4.946 ;   0.199 ; RR ; IC   ; 1      ; CLKCTRL_G6        ; clk~inputCLKENA0|inclk                  ;
+;   5.304 ;   0.358 ; RR ; CELL ; 97     ; CLKCTRL_G6        ; clk~inputCLKENA0|outclk                 ;
+;   7.977 ;   2.673 ; RR ; IC   ; 1      ; FF_X44_Y64_N26    ; u_core|state[4]~DUPLICATE|clk           ;
+;   8.521 ;   0.544 ; RR ; CELL ; 1      ; FF_X44_Y64_N26    ; jesd204_crc12:u_core|state[4]~DUPLICATE ;
+;   8.930 ;   0.409 ;    ;      ;        ;                   ; clock pessimism removed                 ;
+; 8.830   ; -0.100  ;    ;      ;        ;                   ; clock uncertainty                       ;
+; 8.830   ; 0.000   ;    ; uTsu ; 1      ; FF_X44_Y64_N26    ; jesd204_crc12:u_core|state[4]~DUPLICATE ;
++---------+---------+----+------+--------+-------------------+-----------------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+

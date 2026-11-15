@@ -1,0 +1,155 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+    Info: Copyright (C) 2022  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Sat Nov 14 20:26:04 2026
+Info: Command: quartus_map colony -c colony
+Info (20032): Parallel compilation is enabled and will use up to 2 processors
+Info (12021): Found 1 design units, including 1 entities, in source file registered_top.v
+    Info (12023): Found entity 1: registered_top File: /p/registered_top.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file prim_crc32_w6.sv
+    Info (12023): Found entity 1: prim_crc32_w6 File: /p/prim_crc32_w6.sv Line: 4
+Info (12127): Elaborating entity "registered_top" for the top level hierarchy
+Info (12128): Elaborating entity "prim_crc32_w6" for hierarchy "prim_crc32_w6:u_core" File: /p/registered_top.v Line: 8
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (15717): Design contains 115 virtual pins; timing numbers associated with paths containing virtual pins are estimates
+    Info (15719): Pin "o_crc_out_o[0]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[1]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[2]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[3]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[4]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[5]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[6]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[7]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[8]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[9]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[10]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[11]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[12]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[13]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[14]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[15]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[16]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[17]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[18]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[19]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[20]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[21]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[22]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[23]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[24]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[25]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[26]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[27]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[28]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[29]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[30]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15719): Pin "o_crc_out_o[31]" is virtual output pin File: /p/registered_top.v Line: 7
+    Info (15718): Pin "i_data_i[42]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[24]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[4]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[32]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[38]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[16]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[20]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[11]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[22]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[0]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[19]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[39]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[17]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[1]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[23]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[3]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[36]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[18]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[14]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[0]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_rst_ni[0]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_set_crc_i[0]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_valid_i[0]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[5]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[25]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[12]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[33]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[37]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[43]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[40]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[2]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[21]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[15]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[1]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[41]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[44]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[34]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[13]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[6]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[26]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[2]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[45]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[7]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[27]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[35]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[3]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[28]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[8]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[46]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[4]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[47]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[29]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[9]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[5]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[30]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[10]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[6]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_data_i[31]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[7]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[8]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[9]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[10]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[11]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[12]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[13]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[14]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[15]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[16]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[17]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[18]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[19]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[20]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[21]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[22]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[23]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[24]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[25]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[26]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[27]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[28]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[29]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[30]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc_in_i[31]" is virtual input pin File: /p/registered_top.v Line: 1
+Info (21057): Implemented 297 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 0 output pins
+    Info (21061): Implemented 296 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 519 megabytes
+    Info: Processing ended: Sat Nov 14 20:26:14 2026
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:15
+mesg: ttyname failed: Inappropriate ioctl for device

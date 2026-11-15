@@ -1,0 +1,2579 @@
+{
+ "quartus_version": [
+  "Quartus Prime Shell",
+  "Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition",
+  "Copyright (C) 2022  Intel Corporation. All rights reserved."
+ ],
+ "device": "5CGXFC9E7F35C8",
+ "period_ns": 4.0,
+ "designs": [
+  {
+   "name": "adi_jesd204_crc12_theirs",
+   "top": "jesd204_crc12",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 96 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 76                 ;",
+      "registers": "; Dedicated logic registers                                   ; 97                 ;"
+     },
+     "alms": 96,
+     "aluts": 76,
+     "registers": 97,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 250.75,
+       "restricted": 250.75,
+       "line": "; 250.75 MHz ; 250.75 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 244.92,
+       "restricted": 244.92,
+       "line": "; 244.92 MHz ; 244.92 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 244.92,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": 0.012,
+       "levels": "3",
+       "data_delay": 3.793,
+       "frm": "r_data_in[57]",
+       "to": "jesd204_crc12:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.083,
+       "levels": "3",
+       "data_delay": 3.882,
+       "frm": "r_data_in[41]",
+       "to": "jesd204_crc12:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.188,
+       "levels": "3",
+       "data_delay": 1.679,
+       "frm": "r_data_in[57]",
+       "to": "jesd204_crc12:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.336,
+       "levels": "3",
+       "data_delay": 1.537,
+       "frm": "r_data_in[57]",
+       "to": "jesd204_crc12:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 98 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 76                 ;",
+      "registers": "; Dedicated logic registers                                   ; 97                 ;"
+     },
+     "alms": 98,
+     "aluts": 76,
+     "registers": 97,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 248.63,
+       "restricted": 248.63,
+       "line": "; 248.63 MHz ; 248.63 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 245.34,
+       "restricted": 245.34,
+       "line": "; 245.34 MHz ; 245.34 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 245.34,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.022,
+       "levels": "3",
+       "data_delay": 3.792,
+       "frm": "jesd204_crc12:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.076,
+       "levels": "3",
+       "data_delay": 3.85,
+       "frm": "jesd204_crc12:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.192,
+       "levels": "3",
+       "data_delay": 1.676,
+       "frm": "r_data_in[22]",
+       "to": "jesd204_crc12:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.358,
+       "levels": "3",
+       "data_delay": 1.514,
+       "frm": "r_data_in[22]",
+       "to": "jesd204_crc12:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 95 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 76                 ;",
+      "registers": "; Dedicated logic registers                                   ; 98                 ;"
+     },
+     "alms": 95,
+     "aluts": 76,
+     "registers": 98,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 241.02,
+       "restricted": 241.02,
+       "line": "; 241.02 MHz ; 241.02 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 237.25,
+       "restricted": 237.25,
+       "line": "; 237.25 MHz ; 237.25 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 237.25,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.149,
+       "levels": "3",
+       "data_delay": 3.93,
+       "frm": "r_data_in[19]",
+       "to": "jesd204_crc12:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.215,
+       "levels": "3",
+       "data_delay": 3.978,
+       "frm": "r_data_in[24]",
+       "to": "jesd204_crc12:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.134,
+       "levels": "2",
+       "data_delay": 1.732,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.287,
+       "levels": "3",
+       "data_delay": 1.582,
+       "frm": "r_data_in[24]",
+       "to": "jesd204_crc12:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    }
+   ]
+  },
+  {
+   "name": "adi_jesd204_crc12_ours_keep",
+   "top": "jesd204_crc12_w64",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 89 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 74                 ;",
+      "registers": "; Dedicated logic registers                                   ; 95                 ;"
+     },
+     "alms": 89,
+     "aluts": 74,
+     "registers": 95,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 215.89,
+       "restricted": 215.89,
+       "line": "; 215.89 MHz ; 215.89 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 210.84,
+       "restricted": 210.84,
+       "line": "; 210.84 MHz ; 210.84 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 210.84,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.632,
+       "levels": "3",
+       "data_delay": 4.426,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.743,
+       "levels": "3",
+       "data_delay": 4.545,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.972,
+       "levels": "3",
+       "data_delay": 1.893,
+       "frm": "r_data_in[37]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.122,
+       "levels": "3",
+       "data_delay": 1.749,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 93 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 74                 ;",
+      "registers": "; Dedicated logic registers                                   ; 95                 ;"
+     },
+     "alms": 93,
+     "aluts": 74,
+     "registers": 95,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 250.69,
+       "restricted": 250.69,
+       "line": "; 250.69 MHz ; 250.69 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 245.7,
+       "restricted": 245.7,
+       "line": "; 245.7 MHz ; 245.7 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 245.7,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": 0.011,
+       "levels": "3",
+       "data_delay": 3.777,
+       "frm": "r_data_in[29]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.07,
+       "levels": "3",
+       "data_delay": 3.862,
+       "frm": "r_data_in[29]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.271,
+       "levels": "3",
+       "data_delay": 1.596,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.411,
+       "levels": "3",
+       "data_delay": 1.458,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 91 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 74                 ;",
+      "registers": "; Dedicated logic registers                                   ; 95                 ;"
+     },
+     "alms": 91,
+     "aluts": 74,
+     "registers": 95,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 226.35,
+       "restricted": 226.35,
+       "line": "; 226.35 MHz ; 226.35 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 226.65,
+       "restricted": 226.65,
+       "line": "; 226.65 MHz ; 226.65 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 226.35,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.418,
+       "levels": "2",
+       "data_delay": 4.206,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.412,
+       "levels": "2",
+       "data_delay": 4.202,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.879,
+       "levels": "2",
+       "data_delay": 1.987,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.078,
+       "levels": "2",
+       "data_delay": 1.792,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "2",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    }
+   ]
+  },
+  {
+   "name": "adi_jesd204_crc12_ours_keepbare",
+   "top": "jesd204_crc12_w64",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 95 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 73                 ;",
+      "registers": "; Dedicated logic registers                                   ; 101                ;"
+     },
+     "alms": 95,
+     "aluts": 73,
+     "registers": 101,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 250.19,
+       "restricted": 250.19,
+       "line": "; 250.19 MHz ; 250.19 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 243.19,
+       "restricted": 243.19,
+       "line": "; 243.19 MHz ; 243.19 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 243.19,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": 0.003,
+       "levels": "3",
+       "data_delay": 3.795,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.112,
+       "levels": "3",
+       "data_delay": 3.904,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.263,
+       "levels": "3",
+       "data_delay": 1.605,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.389,
+       "levels": "3",
+       "data_delay": 1.482,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 54,
+      "post_fitter": 54
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 95 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 73                 ;",
+      "registers": "; Dedicated logic registers                                   ; 95                 ;"
+     },
+     "alms": 95,
+     "aluts": 73,
+     "registers": 95,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 257.2,
+       "restricted": 257.2,
+       "line": "; 257.2 MHz ; 257.2 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 258.06,
+       "restricted": 258.06,
+       "line": "; 258.06 MHz ; 258.06 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 257.2,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": 0.112,
+       "levels": "4",
+       "data_delay": 3.681,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": 0.125,
+       "levels": "3",
+       "data_delay": 3.673,
+       "frm": "r_data_in[12]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.292,
+       "levels": "4",
+       "data_delay": 1.57,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.431,
+       "levels": "4",
+       "data_delay": 1.435,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 54,
+      "post_fitter": 54
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 93 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 73                 ;",
+      "registers": "; Dedicated logic registers                                   ; 97                 ;"
+     },
+     "alms": 93,
+     "aluts": 73,
+     "registers": 97,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 244.98,
+       "restricted": 244.98,
+       "line": "; 244.98 MHz ; 244.98 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 242.95,
+       "restricted": 242.95,
+       "line": "; 242.95 MHz ; 242.95 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 242.95,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.082,
+       "levels": "3",
+       "data_delay": 3.876,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.116,
+       "levels": "3",
+       "data_delay": 3.916,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.232,
+       "levels": "3",
+       "data_delay": 1.632,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.375,
+       "levels": "3",
+       "data_delay": 1.494,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 54,
+      "post_fitter": 54
+     }
+    }
+   ]
+  },
+  {
+   "name": "adi_jesd204_crc12_ours_nokeep",
+   "top": "jesd204_crc12_w64",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 89 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 74                 ;",
+      "registers": "; Dedicated logic registers                                   ; 95                 ;"
+     },
+     "alms": 89,
+     "aluts": 74,
+     "registers": 95,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 215.89,
+       "restricted": 215.89,
+       "line": "; 215.89 MHz ; 215.89 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 210.84,
+       "restricted": 210.84,
+       "line": "; 210.84 MHz ; 210.84 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 210.84,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.632,
+       "levels": "3",
+       "data_delay": 4.426,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.743,
+       "levels": "3",
+       "data_delay": 4.545,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.972,
+       "levels": "3",
+       "data_delay": 1.893,
+       "frm": "r_data_in[37]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.122,
+       "levels": "3",
+       "data_delay": 1.749,
+       "frm": "r_init[0]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 93 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 74                 ;",
+      "registers": "; Dedicated logic registers                                   ; 95                 ;"
+     },
+     "alms": 93,
+     "aluts": 74,
+     "registers": 95,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 250.69,
+       "restricted": 250.69,
+       "line": "; 250.69 MHz ; 250.69 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 245.7,
+       "restricted": 245.7,
+       "line": "; 245.7 MHz ; 245.7 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 245.7,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": 0.011,
+       "levels": "3",
+       "data_delay": 3.777,
+       "frm": "r_data_in[29]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.07,
+       "levels": "3",
+       "data_delay": 3.862,
+       "frm": "r_data_in[29]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.271,
+       "levels": "3",
+       "data_delay": 1.596,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.411,
+       "levels": "3",
+       "data_delay": 1.458,
+       "frm": "r_data_in[34]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 91 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 74                 ;",
+      "registers": "; Dedicated logic registers                                   ; 95                 ;"
+     },
+     "alms": 91,
+     "aluts": 74,
+     "registers": 95,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 226.35,
+       "restricted": 226.35,
+       "line": "; 226.35 MHz ; 226.35 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 226.65,
+       "restricted": 226.65,
+       "line": "; 226.65 MHz ; 226.65 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 226.35,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.418,
+       "levels": "2",
+       "data_delay": 4.206,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.412,
+       "levels": "2",
+       "data_delay": 4.202,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.879,
+       "levels": "2",
+       "data_delay": 1.987,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.078,
+       "levels": "2",
+       "data_delay": 1.792,
+       "frm": "r_data_in[16]",
+       "to": "jesd204_crc12_w64:u_core"
+      }
+     ],
+     "levels": "2",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 54,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    }
+   ]
+  },
+  {
+   "name": "eth10g_crc_eqn_theirs",
+   "top": "crc_eqn",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 692 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 738                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 692,
+     "aluts": 738,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 188.61,
+       "restricted": 188.61,
+       "line": "; 188.61 MHz ; 188.61 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 187.3,
+       "restricted": 187.3,
+       "line": "; 187.3 MHz ; 187.3 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 187.3,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.302,
+       "levels": "3",
+       "data_delay": 5.054,
+       "frm": "r_skd_data[1]",
+       "to": "o_next_crc_wide[150]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.339,
+       "levels": "4",
+       "data_delay": 5.108,
+       "frm": "r_skd_data[24]",
+       "to": "o_next_crc_wide[250]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.3,
+       "levels": "3",
+       "data_delay": 2.563,
+       "frm": "r_crc32[14]",
+       "to": "o_next_crc_wide[224]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.609,
+       "levels": "3",
+       "data_delay": 2.26,
+       "frm": "r_crc32[14]",
+       "to": "o_next_crc_wide[224]~reg0"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 694 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 738                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 694,
+     "aluts": 738,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 186.36,
+       "restricted": 186.36,
+       "line": "; 186.36 MHz ; 186.36 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 185.15,
+       "restricted": 185.15,
+       "line": "; 185.15 MHz ; 185.15 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 185.15,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.366,
+       "levels": "3",
+       "data_delay": 5.141,
+       "frm": "r_skd_data[15]",
+       "to": "o_next_crc_wide[154]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.401,
+       "levels": "3",
+       "data_delay": 5.147,
+       "frm": "r_skd_data[7]",
+       "to": "o_next_crc_wide[248]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.458,
+       "levels": "3",
+       "data_delay": 2.373,
+       "frm": "r_crc32[0]",
+       "to": "o_next_crc_wide[65]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.733,
+       "levels": "3",
+       "data_delay": 2.104,
+       "frm": "r_crc32[0]",
+       "to": "o_next_crc_wide[65]~reg0"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 695 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 738                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 695,
+     "aluts": 738,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 198.97,
+       "restricted": 198.97,
+       "line": "; 198.97 MHz ; 198.97 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 195.35,
+       "restricted": 195.35,
+       "line": "; 195.35 MHz ; 195.35 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 195.35,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.026,
+       "levels": "3",
+       "data_delay": 4.793,
+       "frm": "r_crc32[16]",
+       "to": "o_next_crc_wide[218]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.119,
+       "levels": "3",
+       "data_delay": 4.894,
+       "frm": "r_crc32[16]",
+       "to": "o_next_crc_wide[218]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.554,
+       "levels": "2",
+       "data_delay": 2.303,
+       "frm": "r_skd_data[8]",
+       "to": "o_next_crc_wide[192]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.818,
+       "levels": "2",
+       "data_delay": 2.044,
+       "frm": "r_skd_data[8]",
+       "to": "o_next_crc_wide[192]~reg0"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    }
+   ]
+  },
+  {
+   "name": "eth10g_crc_eqn_ours_keep",
+   "top": "crc_eqn_dw64",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 667 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 698                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 667,
+     "aluts": 698,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 200.84,
+       "restricted": 200.84,
+       "line": "; 200.84 MHz ; 200.84 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 198.14,
+       "restricted": 198.14,
+       "line": "; 198.14 MHz ; 198.14 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 198.14,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.979,
+       "levels": "3",
+       "data_delay": 4.654,
+       "frm": "r_crc32[11]",
+       "to": "o_next_crc_wide[121]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.047,
+       "levels": "3",
+       "data_delay": 4.828,
+       "frm": "r_skd_data[12]",
+       "to": "o_next_crc_wide[201]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.515,
+       "levels": "3",
+       "data_delay": 2.341,
+       "frm": "r_crc32[1]",
+       "to": "o_next_crc_wide[115]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.784,
+       "levels": "3",
+       "data_delay": 2.076,
+       "frm": "r_crc32[1]",
+       "to": "o_next_crc_wide[115]~reg0"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 637,
+      "post_synthesis": 369,
+      "post_fitter": 369
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 668 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 698                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 668,
+     "aluts": 698,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 197.59,
+       "restricted": 197.59,
+       "line": "; 197.59 MHz ; 197.59 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 197.36,
+       "restricted": 197.36,
+       "line": "; 197.36 MHz ; 197.36 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 197.36,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.061,
+       "levels": "2",
+       "data_delay": 4.869,
+       "frm": "r_skd_data[62]",
+       "to": "o_next_crc_wide[228]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.067,
+       "levels": "2",
+       "data_delay": 4.875,
+       "frm": "r_skd_data[62]",
+       "to": "o_next_crc_wide[228]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.35,
+       "levels": "3",
+       "data_delay": 2.505,
+       "frm": "r_crc32[10]",
+       "to": "o_next_crc_wide[194]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.662,
+       "levels": "3",
+       "data_delay": 2.195,
+       "frm": "r_crc32[10]",
+       "to": "o_next_crc_wide[194]~reg0"
+      }
+     ],
+     "levels": "2",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 637,
+      "post_synthesis": 369,
+      "post_fitter": 369
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 671 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 698                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 671,
+     "aluts": 698,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 195.24,
+       "restricted": 195.24,
+       "line": "; 195.24 MHz ; 195.24 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 197.71,
+       "restricted": 197.71,
+       "line": "; 197.71 MHz ; 197.71 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 195.24,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.122,
+       "levels": "3",
+       "data_delay": 4.856,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[251]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.058,
+       "levels": "3",
+       "data_delay": 4.792,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[251]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.439,
+       "levels": "3",
+       "data_delay": 2.413,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[243]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.718,
+       "levels": "3",
+       "data_delay": 2.14,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[243]~reg0"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 637,
+      "post_synthesis": 369,
+      "post_fitter": 369
+     }
+    }
+   ]
+  },
+  {
+   "name": "eth10g_crc_eqn_ours_keepbare",
+   "top": "crc_eqn_dw64",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 650 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 705                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 650,
+     "aluts": 705,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 179.92,
+       "restricted": 179.92,
+       "line": "; 179.92 MHz ; 179.92 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 177.56,
+       "restricted": 177.56,
+       "line": "; 177.56 MHz ; 177.56 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 177.56,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.558,
+       "levels": "4",
+       "data_delay": 5.283,
+       "frm": "r_crc32[4]",
+       "to": "o_next_crc_wide[136]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.632,
+       "levels": "4",
+       "data_delay": 5.38,
+       "frm": "r_crc32[12]",
+       "to": "o_next_crc_wide[244]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.44,
+       "levels": "3",
+       "data_delay": 2.418,
+       "frm": "r_skd_data[22]",
+       "to": "o_next_crc_wide[143]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.688,
+       "levels": "3",
+       "data_delay": 2.174,
+       "frm": "r_skd_data[22]",
+       "to": "o_next_crc_wide[143]~reg0"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 637,
+      "post_synthesis": 637,
+      "post_fitter": 637
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 648 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 705                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 648,
+     "aluts": 705,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 186.64,
+       "restricted": 186.64,
+       "line": "; 186.64 MHz ; 186.64 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 184.77,
+       "restricted": 184.77,
+       "line": "; 184.77 MHz ; 184.77 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 184.77,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.358,
+       "levels": "4",
+       "data_delay": 5.115,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[227]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.412,
+       "levels": "4",
+       "data_delay": 5.171,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[227]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.353,
+       "levels": "4",
+       "data_delay": 2.505,
+       "frm": "r_skd_data[32]",
+       "to": "o_next_crc_wide[242]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.647,
+       "levels": "4",
+       "data_delay": 2.215,
+       "frm": "r_skd_data[32]",
+       "to": "o_next_crc_wide[242]~reg0"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 637,
+      "post_synthesis": 637,
+      "post_fitter": 637
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 655 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 705                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 655,
+     "aluts": 705,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 194.78,
+       "restricted": 194.78,
+       "line": "; 194.78 MHz ; 194.78 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 190.29,
+       "restricted": 190.29,
+       "line": "; 190.29 MHz ; 190.29 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 190.29,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.134,
+       "levels": "4",
+       "data_delay": 4.885,
+       "frm": "r_skd_data[11]",
+       "to": "o_next_crc_wide[224]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.255,
+       "levels": "4",
+       "data_delay": 5.016,
+       "frm": "r_skd_data[11]",
+       "to": "o_next_crc_wide[224]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.585,
+       "levels": "4",
+       "data_delay": 2.279,
+       "frm": "r_crc32[16]",
+       "to": "o_next_crc_wide[102]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.838,
+       "levels": "4",
+       "data_delay": 2.031,
+       "frm": "r_crc32[16]",
+       "to": "o_next_crc_wide[102]~reg0"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 637,
+      "post_synthesis": 637,
+      "post_fitter": 637
+     }
+    }
+   ]
+  },
+  {
+   "name": "eth10g_crc_eqn_ours_nokeep",
+   "top": "crc_eqn_dw64",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 667 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 698                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 667,
+     "aluts": 698,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 200.84,
+       "restricted": 200.84,
+       "line": "; 200.84 MHz ; 200.84 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 198.14,
+       "restricted": 198.14,
+       "line": "; 198.14 MHz ; 198.14 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 198.14,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.979,
+       "levels": "3",
+       "data_delay": 4.654,
+       "frm": "r_crc32[11]",
+       "to": "o_next_crc_wide[121]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.047,
+       "levels": "3",
+       "data_delay": 4.828,
+       "frm": "r_skd_data[12]",
+       "to": "o_next_crc_wide[201]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.515,
+       "levels": "3",
+       "data_delay": 2.341,
+       "frm": "r_crc32[1]",
+       "to": "o_next_crc_wide[115]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.784,
+       "levels": "3",
+       "data_delay": 2.076,
+       "frm": "r_crc32[1]",
+       "to": "o_next_crc_wide[115]~reg0"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 381,
+      "post_synthesis": 113,
+      "post_fitter": 113
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 668 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 698                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 668,
+     "aluts": 698,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 197.59,
+       "restricted": 197.59,
+       "line": "; 197.59 MHz ; 197.59 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 197.36,
+       "restricted": 197.36,
+       "line": "; 197.36 MHz ; 197.36 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 197.36,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.061,
+       "levels": "2",
+       "data_delay": 4.869,
+       "frm": "r_skd_data[62]",
+       "to": "o_next_crc_wide[228]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.067,
+       "levels": "2",
+       "data_delay": 4.875,
+       "frm": "r_skd_data[62]",
+       "to": "o_next_crc_wide[228]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.35,
+       "levels": "3",
+       "data_delay": 2.505,
+       "frm": "r_crc32[10]",
+       "to": "o_next_crc_wide[194]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.662,
+       "levels": "3",
+       "data_delay": 2.195,
+       "frm": "r_crc32[10]",
+       "to": "o_next_crc_wide[194]~reg0"
+      }
+     ],
+     "levels": "2",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 381,
+      "post_synthesis": 113,
+      "post_fitter": 113
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 671 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 698                   ;",
+      "registers": "; Dedicated logic registers                                   ; 352                   ;"
+     },
+     "alms": 671,
+     "aluts": 698,
+     "registers": 352,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 195.24,
+       "restricted": 195.24,
+       "line": "; 195.24 MHz ; 195.24 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 197.71,
+       "restricted": 197.71,
+       "line": "; 197.71 MHz ; 197.71 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 195.24,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -1.122,
+       "levels": "3",
+       "data_delay": 4.856,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[251]~reg0"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -1.058,
+       "levels": "3",
+       "data_delay": 4.792,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[251]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.439,
+       "levels": "3",
+       "data_delay": 2.413,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[243]~reg0"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 1.718,
+       "levels": "3",
+       "data_delay": 2.14,
+       "frm": "r_skd_data[13]",
+       "to": "o_next_crc_wide[243]~reg0"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 381,
+      "post_synthesis": 113,
+      "post_fitter": 113
+     }
+    }
+   ]
+  },
+  {
+   "name": "opentitan_prim_crc32_theirs",
+   "top": "prim_crc32",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 196 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 223                ;",
+      "registers": "; Dedicated logic registers                                   ; 148                ;"
+     },
+     "alms": 196,
+     "aluts": 223,
+     "registers": 148,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 94.11,
+       "restricted": 94.11,
+       "line": "; 94.11 MHz ; 94.11 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 94.98,
+       "restricted": 94.98,
+       "line": "; 94.98 MHz ; 94.98 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 94.11,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -6.626,
+       "levels": "8",
+       "data_delay": 10.367,
+       "frm": "prim_crc32:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -6.528,
+       "levels": "9",
+       "data_delay": 10.269,
+       "frm": "r_data_i[2]",
+       "to": "prim_crc32:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": -0.81,
+       "levels": "8",
+       "data_delay": 4.665,
+       "frm": "prim_crc32:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": -0.351,
+       "levels": "8",
+       "data_delay": 4.209,
+       "frm": "prim_crc32:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "8",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 198 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 223                ;",
+      "registers": "; Dedicated logic registers                                   ; 148                ;"
+     },
+     "alms": 198,
+     "aluts": 223,
+     "registers": 148,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 94.46,
+       "restricted": 94.46,
+       "line": "; 94.46 MHz ; 94.46 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 94.88,
+       "restricted": 94.88,
+       "line": "; 94.88 MHz ; 94.88 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 94.46,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -6.587,
+       "levels": "8",
+       "data_delay": 10.316,
+       "frm": "r_data_i[4]",
+       "to": "prim_crc32:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -6.54,
+       "levels": "8",
+       "data_delay": 10.275,
+       "frm": "r_data_i[4]",
+       "to": "prim_crc32:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": -0.798,
+       "levels": "8",
+       "data_delay": 4.647,
+       "frm": "r_data_i[4]",
+       "to": "prim_crc32:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": -0.333,
+       "levels": "8",
+       "data_delay": 4.186,
+       "frm": "r_data_i[4]",
+       "to": "prim_crc32:u_core"
+      }
+     ],
+     "levels": "8",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 195 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 223                ;",
+      "registers": "; Dedicated logic registers                                   ; 148                ;"
+     },
+     "alms": 195,
+     "aluts": 223,
+     "registers": 148,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 92.32,
+       "restricted": 92.32,
+       "line": "; 92.32 MHz ; 92.32 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 91.91,
+       "restricted": 91.91,
+       "line": "; 91.91 MHz ; 91.91 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 91.91,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -6.832,
+       "levels": "9",
+       "data_delay": 10.559,
+       "frm": "prim_crc32:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -6.88,
+       "levels": "9",
+       "data_delay": 10.627,
+       "frm": "prim_crc32:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": -0.868,
+       "levels": "8",
+       "data_delay": 4.721,
+       "frm": "prim_crc32:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": -0.375,
+       "levels": "8",
+       "data_delay": 4.233,
+       "frm": "prim_crc32:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "9",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 0,
+      "post_synthesis": 0,
+      "post_fitter": 0
+     }
+    }
+   ]
+  },
+  {
+   "name": "opentitan_prim_crc32_ours_keep",
+   "top": "prim_crc32_w6",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 156 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 150                ;",
+      "registers": "; Dedicated logic registers                                   ; 147                ;"
+     },
+     "alms": 156,
+     "aluts": 150,
+     "registers": 147,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 227.58,
+       "restricted": 227.58,
+       "line": "; 227.58 MHz ; 227.58 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 224.27,
+       "restricted": 224.27,
+       "line": "; 224.27 MHz ; 224.27 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 224.27,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.394,
+       "levels": "3",
+       "data_delay": 4.13,
+       "frm": "r_data_i[42]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.459,
+       "levels": "3",
+       "data_delay": 4.201,
+       "frm": "r_data_i[42]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.978,
+       "levels": "3",
+       "data_delay": 1.886,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.192,
+       "levels": "3",
+       "data_delay": 1.678,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 75,
+      "post_fitter": 75
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 161 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 150                ;",
+      "registers": "; Dedicated logic registers                                   ; 147                ;"
+     },
+     "alms": 161,
+     "aluts": 150,
+     "registers": 147,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 219.64,
+       "restricted": 219.64,
+       "line": "; 219.64 MHz ; 219.64 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 218.87,
+       "restricted": 218.87,
+       "line": "; 218.87 MHz ; 218.87 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 218.87,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.553,
+       "levels": "3",
+       "data_delay": 4.307,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.569,
+       "levels": "3",
+       "data_delay": 4.329,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.826,
+       "levels": "3",
+       "data_delay": 2.026,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.05,
+       "levels": "3",
+       "data_delay": 1.808,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 75,
+      "post_fitter": 75
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 162 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 150                ;",
+      "registers": "; Dedicated logic registers                                   ; 147                ;"
+     },
+     "alms": 162,
+     "aluts": 150,
+     "registers": 147,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 228.1,
+       "restricted": 228.1,
+       "line": "; 228.1 MHz ; 228.1 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 226.4,
+       "restricted": 226.4,
+       "line": "; 226.4 MHz ; 226.4 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 226.4,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.384,
+       "levels": "3",
+       "data_delay": 4.116,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.417,
+       "levels": "3",
+       "data_delay": 4.167,
+       "frm": "r_data_i[1]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.032,
+       "levels": "3",
+       "data_delay": 1.814,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.197,
+       "levels": "3",
+       "data_delay": 1.655,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 75,
+      "post_fitter": 75
+     }
+    }
+   ]
+  },
+  {
+   "name": "opentitan_prim_crc32_ours_keepbare",
+   "top": "prim_crc32_w6",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 174 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 163                ;",
+      "registers": "; Dedicated logic registers                                   ; 173                ;"
+     },
+     "alms": 174,
+     "aluts": 163,
+     "registers": 173,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 221.78,
+       "restricted": 221.78,
+       "line": "; 221.78 MHz ; 221.78 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 219.3,
+       "restricted": 219.3,
+       "line": "; 219.3 MHz ; 219.3 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 219.3,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.509,
+       "levels": "4",
+       "data_delay": 4.241,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.56,
+       "levels": "4",
+       "data_delay": 4.301,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.917,
+       "levels": "3",
+       "data_delay": 1.929,
+       "frm": "r_data_i[19]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.099,
+       "levels": "3",
+       "data_delay": 1.753,
+       "frm": "r_data_i[19]",
+       "to": "prim_crc32_w6:u_core"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 123,
+      "post_fitter": 123
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 178 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 163                ;",
+      "registers": "; Dedicated logic registers                                   ; 172                ;"
+     },
+     "alms": 178,
+     "aluts": 163,
+     "registers": 172,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 225.53,
+       "restricted": 225.53,
+       "line": "; 225.53 MHz ; 225.53 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 221.73,
+       "restricted": 221.73,
+       "line": "; 221.73 MHz ; 221.73 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 221.73,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.434,
+       "levels": "4",
+       "data_delay": 4.171,
+       "frm": "r_data_i[2]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.51,
+       "levels": "4",
+       "data_delay": 4.293,
+       "frm": "r_data_i[14]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.934,
+       "levels": "0",
+       "data_delay": 1.927,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.181,
+       "levels": "0",
+       "data_delay": 1.683,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 123,
+      "post_fitter": 123
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 175 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 163                ;",
+      "registers": "; Dedicated logic registers                                   ; 171                ;"
+     },
+     "alms": 175,
+     "aluts": 163,
+     "registers": 171,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 214.59,
+       "restricted": 214.59,
+       "line": "; 214.59 MHz ; 214.59 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 216.92,
+       "restricted": 216.92,
+       "line": "; 216.92 MHz ; 216.92 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 85C",
+     "fmax_mhz": 214.59,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.66,
+       "levels": "4",
+       "data_delay": 4.373,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.61,
+       "levels": "4",
+       "data_delay": 4.342,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.879,
+       "levels": "4",
+       "data_delay": 1.971,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.073,
+       "levels": "4",
+       "data_delay": 1.781,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "4",
+     "levels_corner": "Slow 1100mV 85C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 123,
+      "post_fitter": 123
+     }
+    }
+   ]
+  },
+  {
+   "name": "opentitan_prim_crc32_ours_nokeep",
+   "top": "prim_crc32_w6",
+   "map_exit": 0,
+   "seeds": [
+    {
+     "seed": 1,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 156 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 150                ;",
+      "registers": "; Dedicated logic registers                                   ; 147                ;"
+     },
+     "alms": 156,
+     "aluts": 150,
+     "registers": 147,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 227.58,
+       "restricted": 227.58,
+       "line": "; 227.58 MHz ; 227.58 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 224.27,
+       "restricted": 224.27,
+       "line": "; 224.27 MHz ; 224.27 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 224.27,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.394,
+       "levels": "3",
+       "data_delay": 4.13,
+       "frm": "r_data_i[42]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.459,
+       "levels": "3",
+       "data_delay": 4.201,
+       "frm": "r_data_i[42]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.978,
+       "levels": "3",
+       "data_delay": 1.886,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.192,
+       "levels": "3",
+       "data_delay": 1.678,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 75,
+      "post_fitter": 75
+     }
+    },
+    {
+     "seed": 2,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 161 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 150                ;",
+      "registers": "; Dedicated logic registers                                   ; 147                ;"
+     },
+     "alms": 161,
+     "aluts": 150,
+     "registers": 147,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 219.64,
+       "restricted": 219.64,
+       "line": "; 219.64 MHz ; 219.64 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 218.87,
+       "restricted": 218.87,
+       "line": "; 218.87 MHz ; 218.87 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 218.87,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.553,
+       "levels": "3",
+       "data_delay": 4.307,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.569,
+       "levels": "3",
+       "data_delay": 4.329,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 1.826,
+       "levels": "3",
+       "data_delay": 2.026,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.05,
+       "levels": "3",
+       "data_delay": 1.808,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 75,
+      "post_fitter": 75
+     }
+    },
+    {
+     "seed": 3,
+     "fit_exit": 0,
+     "sta_exit": 0,
+     "measure_exit": 0,
+     "tool_lines": {
+      "alms": "; Logic utilization (in ALMs)     ; 162 /",
+      "aluts": "; Combinational ALUT usage for logic                          ; 150                ;",
+      "registers": "; Dedicated logic registers                                   ; 147                ;"
+     },
+     "alms": 162,
+     "aluts": 150,
+     "registers": 147,
+     "fmax_by_corner": {
+      "Slow 1100mV 85C": {
+       "fmax": 228.1,
+       "restricted": 228.1,
+       "line": "; 228.1 MHz ; 228.1 MHz"
+      },
+      "Slow 1100mV 0C": {
+       "fmax": 226.4,
+       "restricted": 226.4,
+       "line": "; 226.4 MHz ; 226.4 MHz"
+      }
+     },
+     "worst_slow_corner": "Slow 1100mV 0C",
+     "fmax_mhz": 226.4,
+     "paths": [
+      {
+       "corner": "Slow 1100mV 85C Model",
+       "slack": -0.384,
+       "levels": "3",
+       "data_delay": 4.116,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Slow 1100mV 0C Model",
+       "slack": -0.417,
+       "levels": "3",
+       "data_delay": 4.167,
+       "frm": "r_data_i[1]",
+       "to": "prim_crc32_w6:u_core"
+      },
+      {
+       "corner": "Fast 1100mV 85C Model",
+       "slack": 2.032,
+       "levels": "3",
+       "data_delay": 1.814,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      },
+      {
+       "corner": "Fast 1100mV 0C Model",
+       "slack": 2.197,
+       "levels": "3",
+       "data_delay": 1.655,
+       "frm": "prim_crc32_w6:u_core",
+       "to": "TO"
+      }
+     ],
+     "levels": "3",
+     "levels_corner": "Slow 1100mV 0C Model",
+     "keep_nodes": {
+      "pre_synthesis": 123,
+      "post_synthesis": 75,
+      "post_fitter": 75
+     }
+    }
+   ]
+  }
+ ]
+}
