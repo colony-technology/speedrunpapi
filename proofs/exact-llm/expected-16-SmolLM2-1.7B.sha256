@@ -1,0 +1,2 @@
+eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  logits: SmolLM2-1.7B, exact-16, int32 little-endian (scale 2^-16) of every position of the 64 prompts, prompt by prompt, 49,152 each; the same on the f64, f32 and i8 routes
+f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  continuations: SmolLM2-1.7B, exact-16, 64 x 48 greedy token ids, int32 little-endian; the same on the f64, f32 and i8 routes

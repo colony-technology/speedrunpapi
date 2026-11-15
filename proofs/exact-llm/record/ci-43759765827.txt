@@ -1,0 +1,151 @@
+# GitHub Actions run 43759765827: the lines each job printed (exact_llm.py check)
+# job end: failure = check exited 1, here because no pair was pinned yet ("a pair DIFFERENT or not pinned"); cancelled = stopped at the 120-minute limit
+== SmolLM2-1.7B, ubuntu-latest, f64: cancelled, 120 min
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 149 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f64, 828 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+##[error]The operation was canceled.
+== SmolLM2-1.7B, ubuntu-24.04-arm, f64: failure, 53 min
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 99 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f64, 558 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+float32  logits 88ae9028f70ddb1a9a15f0c23b92b3ecf92a1f9aadea56708862199c01d3a789  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  2520 s, matrices widened from bfloat16 at each use
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.14773, mean 0.004416; continuations equal 64 of 64
+onnx     skipped: onnx-community publishes no export of this model; check skips onnxruntime for it
+check    a pair DIFFERENT or not pinned, 3177 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, macos-latest, f64: failure, 86 min
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 79 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f64, 1226 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+float32  logits a00f04c54d96b3fc3e7ace8e35659814178d8c27dd5d98b52ec0bda0fc993579  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  3834 s, matrices widened from bfloat16 at each use
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.14740, mean 0.004401; continuations equal 64 of 64
+onnx     skipped: onnx-community publishes no export of this model; check skips onnxruntime for it
+check    a pair DIFFERENT or not pinned, 5140 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, macos-15-intel, f64: cancelled, 120 min
+versions: Python 3.12.10, NumPy 2.5.5, onnxruntime 1.23.2; darwin x86_64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 294 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f64, 3388 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+##[error]The operation was canceled.
+== SmolLM2-1.7B, windows-latest, f64: cancelled, 120 min
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 AMD64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 98 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f64, 2454 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+##[error]The operation was canceled.
+== SmolLM2-1.7B, windows-11-arm, f64: failure, 100 min
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 ARM64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 180 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f64, 1472 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+float32  logits 88ae9028f70ddb1a9a15f0c23b92b3ecf92a1f9aadea56708862199c01d3a789  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  4301 s, matrices widened from bfloat16 at each use
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.14773, mean 0.004416; continuations equal 64 of 64
+onnx     skipped: onnx-community publishes no export of this model; check skips onnxruntime for it
+check    a pair DIFFERENT or not pinned, 5955 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, ubuntu-latest, f32: failure, 67 min
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 67 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f32, 3933 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+check    a pair DIFFERENT or not pinned, 4000 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, ubuntu-24.04-arm, f32: failure, 29 min
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 103 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f32, 1598 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+check    a pair DIFFERENT or not pinned, 1701 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, macos-latest, f32: cancelled, 120 min
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 101 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+##[error]The operation was canceled.
+== SmolLM2-1.7B, macos-15-intel, f32: failure, 108 min
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 211 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route f32, 6231 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+check    a pair DIFFERENT or not pinned, 6442 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, ubuntu-latest, i8: failure, 28 min
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 67 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route i8-onnxruntime-1.32.0, 1604 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+check    a pair DIFFERENT or not pinned, 1670 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, ubuntu-24.04-arm, i8: failure, 20 min
+versions: Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 97 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route i8-onnxruntime-1.32.0, 1092 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+check    a pair DIFFERENT or not pinned, 1189 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, macos-latest, i8: failure, 83 min
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 125 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route i8-onnxruntime-1.32.0, 4816 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+check    a pair DIFFERENT or not pinned, 4942 s
+##[error]Process completed with exit code 1.
+== SmolLM2-1.7B, macos-15-intel, i8: failure, 65 min
+versions: Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64
+model SmolLM2-1.7B @ effd688: 24 layers, width 2048, 32/32 heads, feed-forward 8192, rotary base 130000, 1711376384 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 208 s
+exact16  no expected-16-SmolLM2-1.7B.sha256: the hashes below are not compared
+exact16  logits eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7  continuations f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340  DIFFERENT  route i8-onnxruntime-1.23.2, 3656 s, clamped 0
+         peaks (real) / clamps: attention input 14.939 / 32768; down input 2849.063 / 1048576; gate 65.331 / 32768; k 30.640 / 1024; logits input 77.561 / 2097152; mlp input 29.838 / 2097152; o input 32.489 / 2097152; q 21.587 / 1024; residual 26331.875 / 16777216; up 113.170 / 32768; v 32.515 / 8192
+check    a pair DIFFERENT or not pinned, 3864 s
+##[error]Process completed with exit code 1.
+
+| model | runner | route | job | Python, NumPy, onnxruntime; platform | exact-16 logits / continuations | exact-16 s | float32 s | check s |
+| --- | --- | --- | --- | --- | --- | ---: | ---: | ---: |
+| SmolLM2-1.7B | ubuntu-latest | f64 | stopped at the limit, 120 min | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64 | `eee059ce…321bb7` / `f4787fa5…182340` | 828 |  |  |
+| SmolLM2-1.7B | ubuntu-24.04-arm | f64 | done, 53 min | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64 | `eee059ce…321bb7` / `f4787fa5…182340` | 558 | 2520 | 3177 |
+| SmolLM2-1.7B | macos-latest | f64 | done, 86 min | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64 | `eee059ce…321bb7` / `f4787fa5…182340` | 1226 | 3834 | 5140 |
+| SmolLM2-1.7B | macos-15-intel | f64 | stopped at the limit, 120 min | Python 3.12.10, NumPy 2.5.5, onnxruntime 1.23.2; darwin x86_64 | `eee059ce…321bb7` / `f4787fa5…182340` | 3388 |  |  |
+| SmolLM2-1.7B | windows-latest | f64 | stopped at the limit, 120 min | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 AMD64 | `eee059ce…321bb7` / `f4787fa5…182340` | 2454 |  |  |
+| SmolLM2-1.7B | windows-11-arm | f64 | done, 100 min | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; win32 ARM64 | `eee059ce…321bb7` / `f4787fa5…182340` | 1472 | 4301 | 5955 |
+| SmolLM2-1.7B | ubuntu-latest | f32 | done, 67 min | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64 | `eee059ce…321bb7` / `f4787fa5…182340` | 3933 |  | 4000 |
+| SmolLM2-1.7B | ubuntu-24.04-arm | f32 | done, 29 min | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64 | `eee059ce…321bb7` / `f4787fa5…182340` | 1598 |  | 1701 |
+| SmolLM2-1.7B | macos-latest | f32 | stopped at the limit, 120 min | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64 | not printed |  |  |  |
+| SmolLM2-1.7B | macos-15-intel | f32 | done, 108 min | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64 | `eee059ce…321bb7` / `f4787fa5…182340` | 6231 |  | 6442 |
+| SmolLM2-1.7B | ubuntu-latest | i8 | done, 28 min | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux x86_64 | `eee059ce…321bb7` / `f4787fa5…182340` | 1604 |  | 1670 |
+| SmolLM2-1.7B | ubuntu-24.04-arm | i8 | done, 20 min | Python 3.12.16, NumPy 2.5.4, onnxruntime 1.32.0; linux aarch64 | `eee059ce…321bb7` / `f4787fa5…182340` | 1092 |  | 1189 |
+| SmolLM2-1.7B | macos-latest | i8 | done, 83 min | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.32.0; darwin arm64 | `eee059ce…321bb7` / `f4787fa5…182340` | 4816 |  | 4942 |
+| SmolLM2-1.7B | macos-15-intel | i8 | done, 65 min | Python 3.12.10, NumPy 2.5.4, onnxruntime 1.23.2; darwin x86_64 | `eee059ce…321bb7` / `f4787fa5…182340` | 3656 |  | 3864 |
+
+distinct exact-16 pairs: 1
+  eee059ce2d2ef9f290092d58e74b8244115a53b02d221c28894b47caab321bb7 f4787fa5635aaaae6d1393f0cc9873d7064893db57dcc2e5a97e955c8f182340: 13 jobs
