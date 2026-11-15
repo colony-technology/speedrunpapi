@@ -1,0 +1,2 @@
+scm16_m15, N = 16, m = 15, faults cell: 1818 faults over 1672 pairs (648 corner, 1024 random, seed 2026). Fault-free: 0 wrong product bits, 0 alarms. Faults that make some product wrong: 1817. Wrong (fault, pair) cases: 2768256; with alarm: 2768256; escapes: 0. Alarms with a right product: 3456. Compile 0.6 s, run 0.2 s.
+

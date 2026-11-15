@@ -1,0 +1,11 @@
+scm4_m3_notop, N = 4, m = 3, faults table3: 162 faults over 1096 pairs (72 corner, 1024 random, seed 2026). Fault-free: 0 wrong product bits, 0 alarms. Faults that make some product wrong: 159. Wrong (fault, pair) cases: 122112; with alarm: 122028; escapes: 84. Alarms with a right product: 0. Compile 0.1 s, run 0.1 s.
+ESCAPE w18 stuck1: a = 15, b = 15, c = 255, a x b + c = 480
+ESCAPE w18 inverted: a = 15, b = 15, c = 255, a x b + c = 480
+ESCAPE w20 stuck1: a = 15, b = 15, c = 255, a x b + c = 480
+ESCAPE w20 inverted: a = 15, b = 15, c = 255, a x b + c = 480
+ESCAPE w25 stuck1: a = 15, b = 12, c = 208, a x b + c = 388
+ESCAPE w25 inverted: a = 15, b = 12, c = 208, a x b + c = 388
+ESCAPE w26 stuck1: a = 15, b = 15, c = 255, a x b + c = 480
+ESCAPE w26 inverted: a = 15, b = 15, c = 255, a x b + c = 480
+ESCAPE w41 stuck1: a = 15, b = 15, c = 255, a x b + c = 480
+ESCAPE w41 inverted: a = 15, b = 15, c = 255, a x b + c = 480

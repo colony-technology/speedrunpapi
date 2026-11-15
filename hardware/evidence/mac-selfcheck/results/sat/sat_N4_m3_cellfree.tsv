@@ -1,0 +1,23 @@
+SATISFIABLE	0.09	cell0:w1+w2	free	cex a[0]=1 a[1]=0 a[2]=0 a[3]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=1 c[7]=0 w1=1 w2=1
+SATISFIABLE	0.09	cell1:w3+w4	free	cex a[0]=1 a[1]=0 a[2]=0 a[3]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=1 w3=1 w4=1
+SATISFIABLE	0.09	cell2:w5+w6	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 b[0]=0 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=1 c[7]=1 w5=1 w6=1
+SATISFIABLE	0.09	cell3:w7+w8	free	cex a[0]=1 a[1]=0 a[2]=0 a[3]=0 b[0]=1 b[1]=0 b[2]=1 b[3]=1 c[0]=1 c[1]=0 c[2]=1 c[3]=1 c[4]=0 c[5]=1 c[6]=0 c[7]=0 w7=1 w8=1
+SATISFIABLE	0.10	cell4:w9+w10	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=1 c[5]=0 c[6]=0 c[7]=0 w9=1 w10=1
+SATISFIABLE	0.10	cell5:w11+w12	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=1 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=1 w11=0 w12=0
+SATISFIABLE	0.09	cell6:w13+w14	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=1 w13=1 w14=1
+SATISFIABLE	0.09	cell7:w15+w16	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=1 c[7]=1 w15=0 w16=0
+SATISFIABLE	0.09	cell8:w17+w18+w19	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 c[0]=1 c[1]=1 c[2]=0 c[3]=0 c[4]=1 c[5]=0 c[6]=0 c[7]=0 w17=1 w18=0 w19=1
+SATISFIABLE	0.09	cell9:w20+w21	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=1 c[7]=1 w20=1 w21=1
+SATISFIABLE	0.09	cell10:w22+w23	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=0 b[0]=1 b[1]=0 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=0 w22=1 w23=1
+SATISFIABLE	0.09	cell11:w24+w25	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=0 b[0]=1 b[1]=0 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=0 w24=1 w25=1
+SATISFIABLE	0.09	cell12:w26+w27	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=0 c[2]=1 c[3]=1 c[4]=1 c[5]=1 c[6]=0 c[7]=0 w26=1 w27=1
+SATISFIABLE	0.09	cell13:w28+w29	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 b[0]=0 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=0 w28=1 w29=1
+SATISFIABLE	0.09	cell14:w30+w31	free	cex a[0]=1 a[1]=0 a[2]=0 a[3]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=0 w30=1 w31=1
+SATISFIABLE	0.09	cell15:w32+w33	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=1 c[0]=0 c[1]=0 c[2]=1 c[3]=1 c[4]=0 c[5]=1 c[6]=1 c[7]=0 w32=1 w33=1
+SATISFIABLE	0.09	cell16:w34+w35	free	cex a[0]=1 a[1]=0 a[2]=0 a[3]=1 b[0]=0 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=1 w34=1 w35=1
+SATISFIABLE	0.10	cell17:w36+w37	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=0 c[0]=1 c[1]=0 c[2]=0 c[3]=0 c[4]=1 c[5]=1 c[6]=0 c[7]=0 w36=1 w37=1
+SATISFIABLE	0.09	cell18:w38+w39	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=1 w38=1 w39=1
+SATISFIABLE	0.09	cell19:w40+w41	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=0 b[0]=1 b[1]=0 b[2]=0 b[3]=0 c[0]=0 c[1]=1 c[2]=0 c[3]=0 c[4]=0 c[5]=0 c[6]=0 c[7]=0 w40=1 w41=1
+SATISFIABLE	0.10	cell20:w42+w43	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 c[0]=0 c[1]=0 c[2]=1 c[3]=1 c[4]=1 c[5]=1 c[6]=0 c[7]=0 w42=1 w43=1
+UNSATISFIABLE	0.47	cell21:w44+w45	free
+SUMMARY scm4_m3 N = 4 m = 3 mode cellfree: 22 queries, SATISFIABLE 21, UNSATISFIABLE 1; slowest 0.47 s, this run 2.4 s, limit 300 s per query

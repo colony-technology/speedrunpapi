@@ -1,0 +1,27 @@
+{
+ "fault": "w10 inverted (column 6)",
+ "cell": 10,
+ "cell_column": 6,
+ "row": {
+  "w10": 1,
+  "c[6]": 0,
+  "a[3]": 0,
+  "b[3]": 0
+ },
+ "terms_value": 1,
+ "outputs_value_set_to": 3,
+ "inputs": [
+  0,
+  0,
+  0
+ ],
+ "ab_plus_c": 0,
+ "p_with_fault": 192,
+ "residues": [
+  0,
+  0
+ ],
+ "top_wires": [
+  0
+ ]
+}
