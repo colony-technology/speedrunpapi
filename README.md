@@ -186,6 +186,10 @@ Before 0.7.1, sources were classified by template name and keyword. A circuit wi
 
 The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, `check`) and the offline ONNX checker (`verify-onnx`) are described in [docs/hosted-jobs.md](docs/hosted-jobs.md).
 
+## Exact embeddings
+
+[`proofs/exact-embeddings/`](proofs/exact-embeddings/) holds the sentence-embedding model `sentence-transformers/all-MiniLM-L6-v2` computed in integer arithmetic. The 2,758 sentences of the STS-B test set give one SHA-256 on seven machines, x86-64 and ARM64 under Linux, macOS and Windows, where the float32 model and onnxruntime each give six. STS-B Spearman is 0.8203 for all three. The only floating-point operation is a product of integer matrices whose partial sums are bounded below 2^53, and the bound is checked for every weight matrix. [The notebook](https://colab.research.google.com/github/lmtlssss/speedrunpapi/blob/main/proofs/exact-embeddings/exact_embeddings.ipynb) runs it in Colab with NumPy alone.
+
 ## Hardware
 
 Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
