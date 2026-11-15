@@ -2,6 +2,8 @@
 
 Pairwise coprime moduli m_1 … m_k, M = m_1 ⋯ m_k. The set is a **unit set** when every Chinese-remainder reading-back constant is ±M/m_i, that is M/m_i ≡ ±1 (mod m_i) for every i. A unit set reads back to binary with no constant multiplication.
 
+The criterion is Mordell's. L. J. Mordell, "Systems of congruences", Canad. Math. Bull. 16 (1973) 457–462, solves x_r | x_1 ⋯ x_n / x_r ± 1 in integers of either sign. With the signs allowed, his solutions are exactly the unit sets: the one congruence below, its unit-fraction form, the automatic coprimality, the three-dial equation with all its solutions, and the factoring by which he solves four and five dials are on his pages 457 to 462. No residue-arithmetic paper found cites him.
+
 ## The law, oldest form: a signed sum of unit fractions
 
   Σ ε_i / m_i ≡ 1/M (mod 1), ε_i = ±1. With every modulus at least 6 and up to five moduli, this is an equality: Σ ε_i / m_i = 1/M.
@@ -153,12 +155,13 @@ Rebuilt on a clean runner: GitHub Actions run 43701616486, 15 November 2026, 09:
 | a fraction as a sum of unit fractions | Rhind papyrus (MacTutor) |
 | dials n and n + 1 | Vernier 1631, Nunes 1542 |
 | 3, 5, 7 with 70, 21, 15 | Sunzi; Liber Abaci ch. 12 |
-| 70, 21, 15 ≡ −35, +21, +15 (mod 105) | not found |
-| every constant of three consecutive Fibonacci moduli is ±1 | Babb 1989, p. 5 |
-| unit triples are exactly z(x + y) = xy ± 1 | not found |
-| (2^k − 1, 2^k + 1, 2^(2k−1)) with constants (+1, −1, −1) | not found |
-| (2^(n−1), 2^n − 1, 2^n + 1) | Hiasat and Sweidan 2003: not read |
-| one congruence for any k; the four- and five-dial factor forms | not found |
+| 70, 21, 15 ≡ −35, +21, +15 (mod 105) | not found; searched in the Sunzi and Liber Abaci passages and course notes; Libbrecht, Needham and Martzloff not opened |
+| every constant of three consecutive Fibonacci moduli is ±1 | Babb 1989, p. 5; Murakami 2003, Theorem 2.1; as arccot F_2n = arccot F_2n+1 + arccot F_2n+2, Lehmer 1936 |
+| one congruence for any k, its unit-fraction form, coprimality automatic | Mordell 1973, p. 457, eqs. (1) to (4) |
+| unit triples are exactly z(x + y) = xy ± 1, and every one of them | Mordell 1973, p. 457; the + case is the arccot relation of Wallace 1839 and Dodgson 1884 |
+| the four- and five-dial factor forms | the method is Mordell's, pp. 459 to 462, used there for y = ±1; the y = 0 forms on this page not found stated |
+| (2^(n−1), 2^n − 1, 2^n + 1), constants (−1, +1, +1) | Hiasat and Sweidan 2003, J. Systems Architecture 49, 53–58; abstract and snippets read, full text not |
+| (2^k − 1, 2^k + 1, 2^(2k−1)), constants (+1, −1, −1) | the member k = n − 1 of the family {2^n + 1, 2^(n+k), 2^n − 1} of Chaves and Sousa 2004 (metadata), whose inverses Mohan 2016 eq. (5.10) gives (snippet); that they are ±1 at this member not found stated |
 
 Quotations, pages and links: `sources.md`.
 
