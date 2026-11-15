@@ -1,0 +1,13 @@
+five.txt: 52 unit sets of 5
+sign multisets (of M/m_i mod m_i): {(-1, -1, -1, 1, 1): 13, (-1, -1, 1, 1, 1): 39}
+most balanced (largest / smallest):
+  (59, 69, 82, 101, 107) signs (-1, -1, 1, 1, 1) ratio 1.8136 range 31.7 bits
+  (121, 133, 172, 181, 225) signs (-1, -1, 1, 1, 1) ratio 1.8595 range 36.7 bits
+  (67, 95, 109, 119, 127) signs (-1, -1, 1, 1, 1) ratio 1.8955 range 33.3 bits
+  (247, 269, 331, 353, 523) signs (-1, -1, 1, 1, 1) ratio 2.1174 range 41.9 bits
+  (227, 253, 283, 362, 485) signs (-1, -1, 1, 1, 1) ratio 2.1366 range 41.4 bits
+  (247, 341, 365, 411, 553) signs (-1, -1, 1, 1, 1) ratio 2.2389 range 42.7 bits
+  (199, 269, 306, 307, 451) signs (1, 1, -1, -1, -1) ratio 2.2663 range 41.0 bits
+  (167, 267, 337, 377, 391) signs (-1, 1, -1, 1, 1) ratio 2.3413 range 41.0 bits
+all moduli cheap (2^k, 2^k +- 1 or <= 16): 0
+largest M: (247, 341, 365, 411, 553), 42.7 bits

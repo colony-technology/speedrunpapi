@@ -1,0 +1,16 @@
+four.txt: 549 unit sets of 4
+sign multisets (of M/m_i mod m_i): {(-1, 1, 1, 1): 24, (-1, -1, 1, 1): 512, (-1, -1, -1, 1): 13}
+most balanced (largest / smallest):
+  (1828, 1857, 1859, 1889) signs (-1, 1, 1, -1) ratio 1.0334 range 43.4 bits
+  (1709, 1737, 1739, 1768) signs (-1, 1, 1, -1) ratio 1.0345 range 43.1 bits
+  (1594, 1621, 1623, 1651) signs (-1, 1, 1, -1) ratio 1.0358 range 42.7 bits
+  (1483, 1509, 1511, 1538) signs (-1, 1, 1, -1) ratio 1.0371 range 42.2 bits
+  (1376, 1401, 1403, 1429) signs (-1, 1, 1, -1) ratio 1.0385 range 41.8 bits
+  (1273, 1297, 1299, 1324) signs (-1, 1, 1, -1) ratio 1.0401 range 41.4 bits
+  (1174, 1197, 1199, 1223) signs (-1, 1, 1, -1) ratio 1.0417 range 40.9 bits
+  (1079, 1101, 1103, 1126) signs (-1, 1, 1, -1) ratio 1.0436 range 40.4 bits
+all moduli cheap (2^k, 2^k +- 1 or <= 16): 2
+  (3, 7, 10, 11) signs (-1, 1, 1, 1) ratio 3.667
+  (8, 9, 11, 13) signs (-1, 1, 1, -1) ratio 1.625
+sets with two + and two - signs: 512; the factor criterion holds for 512
+largest M: (1828, 1857, 1859, 1889), 43.4 bits

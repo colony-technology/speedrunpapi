@@ -1,0 +1,59 @@
+Icarus Verilog version 14.0 (devel) (s20260301-978-g70cee475f-dirty)
+== s5_8_13
+chadd_5: vectors 25 mismatches 0
+chmul_5: vectors 25 mismatches 0
+chadd_8: vectors 64 mismatches 0
+chmul_8: vectors 64 mismatches 0
+chadd_13: vectors 169 mismatches 0
+chmul_13: vectors 169 mismatches 0
+back: vectors 520 mismatches 0
+binadd: vectors 1048576 mismatches 0
+binmul: vectors 1048576 mismatches 0
+== s7_9_32
+chadd_7: vectors 49 mismatches 0
+chmul_7: vectors 49 mismatches 0
+chadd_9: vectors 81 mismatches 0
+chmul_9: vectors 81 mismatches 0
+chadd_32: vectors 1024 mismatches 0
+chmul_32: vectors 1024 mismatches 0
+back: vectors 2016 mismatches 0
+binadd: vectors 4194304 mismatches 0
+binmul: vectors 4194304 mismatches 0
+== s15_17_128
+chadd_15: vectors 225 mismatches 0
+chmul_15: vectors 225 mismatches 0
+chadd_17: vectors 289 mismatches 0
+chmul_17: vectors 289 mismatches 0
+chadd_128: vectors 16384 mismatches 0
+chmul_128: vectors 16384 mismatches 0
+back: vectors 32640 mismatches 0
+binadd, binmul: 2^30 pairs, not simulated (SAT in cost.sh)
+== s7_8_9
+chadd_7: vectors 49 mismatches 0
+chmul_7: vectors 49 mismatches 0
+chadd_8: vectors 64 mismatches 0
+chmul_8: vectors 64 mismatches 0
+chadd_9: vectors 81 mismatches 0
+chmul_9: vectors 81 mismatches 0
+back: vectors 504 mismatches 0
+binadd: vectors 262144 mismatches 0
+binmul: vectors 262144 mismatches 0
+== s15_16_17
+chadd_15: vectors 225 mismatches 0
+chmul_15: vectors 225 mismatches 0
+chadd_16: vectors 256 mismatches 0
+chmul_16: vectors 256 mismatches 0
+chadd_17: vectors 289 mismatches 0
+chmul_17: vectors 289 mismatches 0
+back: vectors 4080 mismatches 0
+binadd: vectors 16777216 mismatches 0
+binmul: vectors 16777216 mismatches 0
+== negative control
+back: vectors 520 mismatches 455
+== ABC cec, binmul of (15, 17, 128)
+======== ABC command line "cec cost/s15_17_128/binmul.gold.aig cost/s15_17_128/binmul.gate.aig"
+Networks are equivalent.  Time =     0.24 sec
+cec exit 0 after 1s
+== negative control, ABC cec: gold (a * b) ^ 1 against the mapped binmul of (15, 17, 128)
+Input pattern:  pi00=0 pi15=0
+Time =     0.00 sec

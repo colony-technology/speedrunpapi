@@ -1,0 +1,27 @@
+{
+ "moduli": [
+  5,
+  8,
+  13
+ ],
+ "M": 520,
+ "log2M": 9.022,
+ "b": 10,
+ "unit": true,
+ "signs": [
+  -1,
+  1,
+  1
+ ],
+ "constants": [
+  -104,
+  65,
+  40
+ ],
+ "sum_range": [
+  -416,
+  935
+ ],
+ "multiples_compared": 3,
+ "sum_width": 12
+}
