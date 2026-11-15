@@ -1,0 +1,2 @@
+b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  logits: exact-16, int32 little-endian (scale 2^-16) of every position of the 64 prompts, prompt by prompt, 49,152 each; the same on the f64, f32 and i8 routes
+a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  continuations: exact-16, 64 x 48 greedy token ids, int32 little-endian; the same on the f64, f32 and i8 routes

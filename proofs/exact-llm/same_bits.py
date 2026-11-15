@@ -3,9 +3,9 @@ every prompt position, and over the 64 greedy continuations of 48 tokens.
 
 Each run is a fresh process, so the thread count is set before NumPy loads its BLAS: OPENBLAS_NUM_THREADS,
 OMP_NUM_THREADS, MKL_NUM_THREADS and VECLIB_MAXIMUM_THREADS (Accelerate) all get the same value; onnxruntime gets
-intra_op_num_threads. The exact engine must give one pair of hashes; the others are reported as measured.
+intra_op_num_threads. Each exact engine (exact, exact16-ROUTE) must give one pair of hashes; the others are reported as measured.
 
-usage: python same_bits.py [exact float32 onnx]
+usage: python same_bits.py [exact exact16-f64 exact16-f32 exact16-i8 float32 onnx]
 """
 import os
 import subprocess
@@ -29,8 +29,8 @@ for eng in engines:
                 sys.exit(r.returncode)
             hl, hc = r.stdout.split()[:2]
             seen.setdefault(eng, set()).add((hl, hc))
-            print("%-8s threads=%d batch=%d logits %s continuations %s (%.0f s)"
+            print("%-11s threads=%d batch=%d logits %s continuations %s (%.0f s)"
                   % (eng, threads, batch, hl, hc, time.time() - t0), flush=True)
 for eng, hs in seen.items():
-    print("%-8s %d distinct pair%s over the four runs" % (eng, len(hs), "" if len(hs) == 1 else "s"))
-sys.exit(0 if len(seen.get("exact", {""})) == 1 else 1)
+    print("%-11s %d distinct pair%s over the four runs" % (eng, len(hs), "" if len(hs) == 1 else "s"))
+sys.exit(0 if all(len(hs) == 1 for e, hs in seen.items() if e.startswith("exact")) else 1)

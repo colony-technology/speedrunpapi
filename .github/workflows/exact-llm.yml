@@ -29,7 +29,11 @@ jobs:
       - name: The machine
         shell: bash
         run: python -c "import platform, numpy; print(platform.platform(), platform.machine(), 'numpy', numpy.__version__); numpy.show_config()"
-      - name: Exact, float32 and onnxruntime hashes over the 64 prompts; fails if the exact hashes differ
+      - name: The 16-bit products on their three routes against int64, random and extreme operands
+        shell: bash
+        working-directory: proofs/exact-llm
+        run: python routes_test.py
+      - name: Exact, exact-16 on three routes, float32 and onnxruntime hashes over the 64 prompts; fails if an exact pair differs
         shell: bash
         working-directory: proofs/exact-llm
         run: python exact_llm.py check

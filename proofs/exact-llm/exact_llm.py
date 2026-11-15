@@ -11,7 +11,7 @@ of the same weights (the baseline), an onnxruntime baseline on the onnx-communit
 
 usage:
   python exact_llm.py check                       digests, both hashes against expected.sha256, baselines, distance
-  python exact_llm.py hash --engine exact|float32|onnx [--batch N] [--threads N]
+  python exact_llm.py hash --engine exact|exact16-f64|exact16-f32|exact16-i8|float32|onnx [--batch N] [--threads N]
 """
 import gzip
 import hashlib
@@ -20,6 +20,7 @@ import math
 import os
 import struct
 import sys
+import time
 import unicodedata
 import urllib.request
 from fractions import Fraction
@@ -478,9 +479,12 @@ class Exact:
         assert (np.abs(y) <= 25 << A).all()                                   # |x_i| <= sqrt(576) rms: bounds.py
         return rshift_round(y * np.asarray(self.W[wname]), A)
 
-    def rope(self, x, pos):
-        c = self.cos[pos][:, None]                                            # [B, 1, L, 32] at 2^-20
-        s = self.sin[pos][:, None]
+    def rope_tables(self, pos):
+        """cos and sin of each position, read once per forward pass: [B, 1, L, 32] at 2^-20."""
+        return self.cos[pos][:, None], self.sin[pos][:, None]
+
+    def rope(self, x, cs):
+        c, s = cs
         x1, x2 = x[..., :HEAD // 2], x[..., HEAD // 2:]
         return np.concatenate([rshift_round(x1 * c - x2 * s, ROPE), rshift_round(x2 * c + x1 * s, ROPE)], -1)
 
@@ -497,13 +501,18 @@ class Exact:
         g = (self.St[k] * ((1 << SILU_STEP) - r) + self.St[k + 1] * r) >> SILU_STEP
         return np.where((u >= 0) & (u < top), g, np.where(u < 0, 0, x))
 
+    def cache_entry(self, k, v):
+        """What the key-value cache keeps for each new position: k and v clamped. Done once per position; the
+        cache is read at every later step."""
+        return self.clamp(k, "k"), self.clamp(v, "v")
+
     def attention(self, q, k, v, kvalid):
-        """q [B, 9, L, 64]; k, v [B, 3, T, 64]; head h reads key-value head h // 3. Scores at 2^-32; the scale
-        1/sqrt(64) = 2^-3 is the 3 in the shift by 19."""
+        """q [B, 9, L, 64]; k, v [B, 3, T, 64], clamped (cache_entry); head h reads key-value head h // 3. Scores at
+        2^-32; the scale 1/sqrt(64) = 2^-3 is the 3 in the shift by 19."""
         B, _, L, _ = q.shape
         qc = self.clamp(q, "q").astype(np.float64).reshape(B, KV, HEADS // KV, L, HEAD)
-        kc = self.clamp(k, "k").astype(np.float64)[:, :, None]
-        vc = self.clamp(v, "v").astype(np.float64)[:, :, None]
+        kc = k.astype(np.float64)[:, :, None]
+        vc = v.astype(np.float64)[:, :, None]
         s = (qc @ kc.swapaxes(-1, -2)).astype(np.int64)                     # [B, 3, 3, L, T]
         key = kvalid[:, None, None]
         m = np.where(key, s, -(1 << 62)).max(-1, keepdims=True)
@@ -516,6 +525,7 @@ class Exact:
     def forward(self, ids, pos, cache, kvalid):
         B, L = ids.shape
         x = rshift_round(np.asarray(self.E[ids], dtype=np.int64), WB - A)
+        cs = self.rope_tables(pos)
         new = []
         for i in range(LAYERS):
             p = "model.layers.%d." % i
@@ -524,14 +534,13 @@ class Exact:
             q = self.linear(h, p + "self_attn.q_proj.weight", "attention input").reshape(B, L, HEADS, HEAD)
             k = self.linear(h, p + "self_attn.k_proj.weight", "attention input").reshape(B, L, KV, HEAD)
             v = self.linear(h, p + "self_attn.v_proj.weight", "attention input").reshape(B, L, KV, HEAD)
-            q = self.rope(q.transpose(0, 2, 1, 3), pos)
-            k = self.rope(k.transpose(0, 2, 1, 3), pos)
-            v = v.transpose(0, 2, 1, 3)
+            q = self.rope(q.transpose(0, 2, 1, 3), cs)
+            k = self.rope(k.transpose(0, 2, 1, 3), cs)
+            kv = self.cache_entry(k, v.transpose(0, 2, 1, 3))                 # each array [B, KV, L, ...]
             if cache is not None:
-                k = np.concatenate([cache[i][0], k], 2)
-                v = np.concatenate([cache[i][1], v], 2)
-            new.append((k, v))
-            ctx = self.attention(q, k, v, kvalid).transpose(0, 2, 1, 3).reshape(B * L, HIDDEN)
+                kv = tuple(np.concatenate([c, e], 2) for c, e in zip(cache[i], kv))
+            new.append(kv)
+            ctx = self.attention(q, *kv, kvalid).transpose(0, 2, 1, 3).reshape(B * L, HIDDEN)
             x = x + self.linear(ctx, p + "self_attn.o_proj.weight", "o input").reshape(B, L, HIDDEN)
             x = self.clamp(x, "residual", i)
             h = self.rms(x, p + "post_attention_layernorm.weight").reshape(B * L, HIDDEN)
@@ -553,6 +562,228 @@ class Exact:
             assert np.abs(blk).max() < (1 << 31)
             out[:, s:s + 8192] = blk
         return out
+
+
+# ---- exact-16: every product a 16-bit by 16-bit integer product -------------------------------------------------
+# Every product operand is a signed 16-bit integer with its own power-of-two scale; everything between products is
+# Exact's. Product inputs: one shift per token vector (block16). Weights: one scale 2^g per output row, from the
+# bfloat16 values (int16_weights). q, k: one shift per head vector. v: whole, as two 16-bit halves 2^15 vh + vl
+# (two products, no shift, so nothing depends on other keys or later positions). p: at 2^-15, at most 2^15 - 1.
+# The PEEL16 largest |x| of each product input are kept whole and multiply the same 16-bit weights; each output is
+# rounded once. The integer products are exact on three routes (mm16), and the routes give the same bits.
+B16 = 16
+LIM16 = (1 << (B16 - 1)) - 1      # 32,767
+PEEL16 = 2
+CHUNK32 = 1024                    # f32 route: inputs per chunk, 1,024 x 2^14 = 2^24
+N_I8 = 33025                      # i8 route: n 255^2 < 2^31 for n <= 33,025
+ROUTES = ("f64", "f32", "i8")
+
+
+def shift_round(v, k):
+    """round(v 2^-k), halves up, for integers k >= 0 (an array broadcast against v); k = 0 leaves v."""
+    k = np.asarray(k, dtype=np.int64)
+    assert (k >= 0).all()
+    return (v + (np.left_shift(1, k) >> 1)) >> k
+
+
+def bitlen(a):
+    """Bit length of each integer 0 <= a < 2^53 (frexp is exact there)."""
+    return np.frexp(a.astype(np.float64))[1].astype(np.int64)
+
+
+def block16(x, axes=-1):
+    """x int64 -> (x16, sh, n): x16 = round(x 2^-sh) with |x16| <= 2^15 - 1, sh >= 0 the least shift that fits, one
+    shift per vector along `axes`; n counts the vectors whose rounding needed one more shift."""
+    top = np.abs(x).max(axis=axes, keepdims=True)
+    sh = np.maximum(0, bitlen(top) - (B16 - 1))
+    xb = shift_round(x, sh)
+    over = (np.abs(xb) > LIM16).any(axis=axes, keepdims=True)
+    sh = sh + over
+    xb = np.where(over, shift_round(x, sh), xb)
+    assert (np.abs(xb) <= LIM16).all()
+    return xb, sh, int(over.sum())
+
+
+def int16_weights():
+    """Each weight matrix as int16 [in, out] = round(w 2^g), g per output row the largest with every entry inside
+    +-(2^15 - 1) (the embedding as [576, V], one g per token), from the bfloat16 values: the scaling is a power of
+    two, so it is exact in float32 and the one rounding is rint's (ties to even). Kept as .npy files in the cache."""
+    d = os.path.join(CACHE, "int16-rows")
+    if not os.path.exists(os.path.join(d, "DONE")):
+        os.makedirs(d, exist_ok=True)
+        for name, a in iter_safetensors(model_file("model.safetensors")):
+            if a.ndim != 2:
+                continue
+            top = np.abs(a).max(1).astype(np.float64)                         # a: [out, in]
+            g = (B16 - 1) - np.frexp(top)[1]
+            g = np.where(top * np.exp2(g) > LIM16, g - 1, g)
+            wq = np.rint(a * np.exp2(g).astype(np.float32)[:, None])
+            assert np.abs(wq).max() <= LIM16
+            np.save(os.path.join(d, name + ".npy"), np.ascontiguousarray(wq.T.astype(np.int16)))
+            np.save(os.path.join(d, name + ".g.npy"), g.astype(np.int64))
+        open(os.path.join(d, "DONE"), "w").write("from %s\n" % PINS["model"]["files"]["model.safetensors"])
+    return {f[:-4]: np.load(os.path.join(d, f), mmap_mode="r") for f in os.listdir(d) if f.endswith(".npy")}
+
+
+def _pb(num, payload):
+    """One length-delimited protobuf field."""
+    def varint(n):
+        out = bytearray()
+        while True:
+            out.append((n & 0x7F) | (0x80 if n >> 7 else 0))
+            n >>= 7
+            if not n:
+                return bytes(out)
+    return varint(num << 3 | 2) + varint(len(payload)) + payload if isinstance(payload, bytes) else \
+        varint(num << 3) + varint(payload)
+
+
+def _mmi_model(ta, tb):
+    """ONNX model bytes: Y (int32) = MatMulInteger(A, B), element types ta, tb (2 uint8, 3 int8), opset 13."""
+    vi = lambda name, t: _pb(1, name) + _pb(2, _pb(1, _pb(1, t)))           # ValueInfo: name, tensor type, any shape
+    node = _pb(1, b"A") + _pb(1, b"B") + _pb(2, b"Y") + _pb(3, b"m") + _pb(4, b"MatMulInteger")
+    graph = _pb(1, node) + _pb(2, b"g") + _pb(11, vi(b"A", ta)) + _pb(11, vi(b"B", tb)) + _pb(12, vi(b"Y", 6))
+    return _pb(1, 8) + _pb(8, _pb(1, b"") + _pb(2, 13)) + _pb(7, graph)
+
+
+class MatMulInteger:
+    """int32-accumulating products of unsigned bytes: onnxruntime's MatMulInteger (uint8 by uint8, the pair every
+    onnxruntime version implements, and one whose kernels add the byte products in 32 bits) where onnxruntime is
+    installed, else NumPy int32 (a stand-in, named "i8-numpy")."""
+
+    def __init__(self):
+        try:
+            import onnxruntime as ort
+        except ImportError:
+            self.name, self.s = "i8-numpy", None
+            return
+        self.name = "i8-onnxruntime-%s" % ort.__version__
+        self.s = ort.InferenceSession(_mmi_model(2, 2), providers=["CPUExecutionProvider"])
+
+    def __call__(self, a, b):
+        assert a.dtype == np.uint8 and b.dtype == np.uint8
+        if self.s is None:
+            return (a.astype(np.int32) @ b.astype(np.int32)).astype(np.int64)
+        return self.s.run(None, {"A": a, "B": b})[0].astype(np.int64)
+
+
+def mm16(a, b, route, mmi=None):
+    """a @ b exactly, as int64, for integer arrays with every |entry| <= 2^15 - 1 (a [..., N, n], b [..., n, M]).
+    f64: one float64 product, |partial sums| <= n 2^30 < 2^53.
+    f32: a = 256 a1 + a0 with a0 in [-128, 127], a1 in [-128, 128], the same for b; four float32 products in chunks
+         of 1,024 inputs, |partial sums| <= 1024 x 2^14 = 2^24; the chunks added in int64.
+    i8:  unsigned: u = a + 2^15 in [1, 2^16 - 1], u = 256 u1 + u0 with u1, u0 in [0, 255] (uint8), the same for b;
+         four int32 MatMulInteger products of uint8 by uint8, partial sums <= n 255^2 < 2^31; then, in int64,
+         a b = u_a u_b - 2^15 (row sums of a) - 2^15 (column sums of b) - n 2^30.
+    Then a b (u_a u_b on the i8 route) = 2^16 G11 + 2^8 (G10 + G01) + G00, G_ij = a_i b_j, in int64."""
+    n = a.shape[-1]
+    if route == "f64":
+        return (a.astype(np.float64) @ b.astype(np.float64)).astype(np.int64)
+    # the digits in the operand's own type when it is int16 (the weights: no widening; every step below stays within
+    # [-2^15, 2^15)), else in int64
+    a = np.asarray(a, dtype=np.int64)
+    b = np.asarray(b) if np.asarray(b).dtype == np.int16 else np.asarray(b, dtype=np.int64)
+    if route == "f32":
+        def bal(x):                                   # x = 256 x1 + x0: x0 = (x & 255) - 256 [x & 255 >= 128]
+            x0 = ((x & 255) ^ 128) - 128
+            return (x >> 8) + (x0 < 0), x0
+        (a1, a0), (b1, b0) = bal(a), bal(b)
+        f = lambda x: x.astype(np.float32)
+        G = lambda x, y: sum((f(x[..., s:s + CHUNK32]) @ f(y[..., s:s + CHUNK32, :])).astype(np.int64)
+                             for s in range(0, n, CHUNK32))
+    elif route == "i8":
+        assert n <= N_I8
+        ua = a + (1 << 15)                                                    # int64, in [1, 2^16 - 1]
+        ub = (b.view(np.uint16) ^ 0x8000) if b.dtype == np.int16 else b + (1 << 15)   # int16: b + 2^15, mod 2^16
+        a1, a0, b1, b0 = (ua >> 8).astype(np.uint8), (ua & 255).astype(np.uint8), \
+            (ub >> 8).astype(np.uint8), (ub & 255).astype(np.uint8)
+        U = (mmi(a1, b1) << 16) + ((mmi(a1, b0) + mmi(a0, b1)) << 8) + mmi(a0, b0)   # sum u_a u_b, exact
+        ra = a.sum(axis=-1, keepdims=True)                                    # [..., N, 1]
+        cb = b.sum(axis=-2, dtype=np.int64, keepdims=True)                    # [..., 1, M]
+        return U - ((ra + cb) << 15) - (n << 30)
+    else:
+        raise SystemExit("unknown route " + route)
+    return (G(a1, b1) << 16) + ((G(a1, b0) + G(a0, b1)) << 8) + G(a0, b0)
+
+
+def peel_index(x, k):
+    """The k largest |x| of each row, ties to the lower index: unique keys |x| 2^11 + (2^11 - 1 - i), so the set
+    does not depend on the selection algorithm (rows of at most 2^11 values, |x| below 2^52)."""
+    n = x.shape[-1]
+    assert n <= 1 << 11
+    key = (np.abs(x) << 11) + ((1 << 11) - 1 - np.arange(n))
+    return np.argpartition(-key, k - 1, axis=-1)[:, :k]
+
+
+class Exact16(Exact):
+    def __init__(self, route="f64"):
+        super().__init__()
+        self.route = route
+        self.W16 = int16_weights()
+        self.mmi = MatMulInteger() if route == "i8" else None
+        self.extra = 0                                   # vectors whose rounding needed one more shift
+        self.p_held = 0                                  # p values held at 2^15 - 1
+
+    def product(self, x, name, dtype=np.int64):
+        """x int64 [N, in] at 2^-16, the matrix `name`; y at 2^-16:
+        y = round(2^-g (2^sh x16 . w16 + sum of the peeled x w16))."""
+        w, g = self.W16[name], self.W16[name + ".g"]
+        if PEEL16:
+            idx = peel_index(x, PEEL16)
+            xp = np.take_along_axis(x, idx, -1)
+            x = x.copy()
+            np.put_along_axis(x, idx, 0, -1)
+        xb, sh, n = block16(x)
+        self.extra += n
+        y = np.empty((x.shape[0], w.shape[1]), dtype=dtype)
+        for c in range(0, w.shape[1], 8192):                                  # output columns in blocks of 8,192
+            wc = w[:, c:c + 8192]                                             # int16, memory-mapped
+            T = np.left_shift(mm16(xb, wc, self.route, self.mmi), sh)
+            for j in range(PEEL16):
+                T += xp[:, j:j + 1] * wc[idx[:, j]]                           # int64 times int16: int64
+            blk = shift_round(T, g[None, c:c + 8192])
+            assert dtype == np.int64 or np.abs(blk).max() < (1 << 31)
+            y[:, c:c + 8192] = blk
+        return y
+
+    def linear(self, x, name, site):
+        return self.product(self.clamp(x, site), name)
+
+    def logits(self, h):
+        y = self.product(self.clamp(h, "logits input"), "model.embed_tokens.weight", np.int32)
+        return y
+
+    def cache_entry(self, k, v):
+        """What the cache keeps for each new position, made once: k clamped and block-shifted per head vector (k16
+        and its shift), v clamped and split in two 16-bit halves, v = 2^15 vh + vl, vl in [0, 2^15 - 1], |vh| <= 2^13
+        within the clamp."""
+        kb, shk, n = block16(self.clamp(k, "k"))
+        self.extra += n
+        v = self.clamp(v, "v")
+        vh, vl = v >> (B16 - 1), v & LIM16
+        assert (np.abs(vh) <= LIM16).all()
+        return kb, shk, vh, vl
+
+    def attention(self, q, kb, shk, vh, vl, kvalid):
+        """As Exact's, with q k^T and p v as 16-bit products (k16, its shifts and the halves of v from the cache).
+        Scores at 2^-32, p at 2^-15."""
+        B, _, L, _ = q.shape
+        T, G = kb.shape[2], HEADS // KV
+        qb, shq, n1 = block16(self.clamp(q, "q"))                            # per head vector
+        qb = qb.reshape(B, KV, G * L, HEAD)
+        S = mm16(qb, kb.swapaxes(-1, -2), self.route, self.mmi).reshape(B, KV, G, L, T)
+        s = np.left_shift(S, shq.reshape(B, KV, G, L, 1) + shk[:, :, None].swapaxes(-1, -2))
+        key = kvalid[:, None, None]
+        m = np.where(key, s, -(1 << 62)).max(-1, keepdims=True)
+        t = np.maximum(m - s, 0) >> (A + 3)
+        e = np.where(key, self.exp(t), 0)
+        p = shift_round(fdiv(e << A, e.sum(-1, keepdims=True)), 1)            # at 2^-15
+        self.p_held += int((p > LIM16).sum())
+        pb = np.minimum(p, LIM16).reshape(B, KV, G * L, T)
+        self.extra += n1
+        c = np.left_shift(mm16(pb, vh, self.route, self.mmi), B16 - 1) + mm16(pb, vl, self.route, self.mmi)
+        ctx = shift_round(c, B16 - 1)                                         # 2^-15 x 2^-16 -> 2^-16
+        return ctx.reshape(B, KV, G, L, HEAD).reshape(B, HEADS, L, HEAD)
 
 
 # ---- drivers ------------------------------------------------------------------------------------------------------
@@ -607,6 +838,8 @@ def run_window(model, ids):
 def engine(name, threads=0):
     if name == "exact":
         return Exact()
+    if name in ("exact16-" + r for r in ROUTES):
+        return Exact16(name.split("-")[1])
     if name == "float32":
         return Float32(read_safetensors(model_file("model.safetensors")))
     if name == "onnx":
@@ -651,8 +884,11 @@ def text_run(eng):
     return np.concatenate(nll), np.concatenate(top)
 
 
-def expected():
-    lines = open(os.path.join(HERE, "expected.sha256")).read().split("\n")
+def expected(bits=None):
+    path = os.path.join(HERE, "expected.sha256" if bits is None else "expected-%d.sha256" % bits)
+    if not os.path.exists(path):
+        return None
+    lines = open(path).read().split("\n")
     return lines[0].split()[0], lines[1].split()[0]
 
 
@@ -667,10 +903,13 @@ def main(argv):
         if save:
             np.save(save + ".logits.npy", np.concatenate(kept))
             np.save(save + ".cont.npy", np.array(cont, dtype=np.int32))
-        if name == "exact":
+        if name.startswith("exact"):
             print("clamped", sum(eng.clamped.values()), eng.clamped)
             print("peaks (real) and clamps:", "; ".join("%s %.3f / %d" % (k, v / 2.0 ** A, CLAMP[k])
                                                         for k, v in sorted(eng.peak.items())))
+        if name.startswith("exact16"):
+            print("route %s; vectors with one more shift %d; p held at 2^15 - 1: %d" % (
+                eng.mmi.name if eng.mmi else eng.route, eng.extra, eng.p_held))
         return 0
     if len(argv) > 1 and argv[1] == "text":
         name, save = arg("--engine", "exact"), arg("--save", None)
@@ -681,6 +920,14 @@ def main(argv):
             np.save(save + ".top.npy", top)
         return 0
     if len(argv) > 1 and argv[1] == "check":
+        try:
+            import onnxruntime
+            ort_version = onnxruntime.__version__
+        except ImportError:
+            ort_version = "not installed (the i8 route uses NumPy int32)"
+        print("versions: Python %s, NumPy %s, onnxruntime %s; %s %s" % (
+            sys.version.split()[0], np.__version__, ort_version, sys.platform, os.uname().machine
+            if hasattr(os, "uname") else os.environ.get("PROCESSOR_ARCHITECTURE", "")))
         ex = Exact()
         hl, hc, cont_e, lg_e = prompt_run(ex, 8, keep=True)
         el, ec = expected()
@@ -688,16 +935,32 @@ def main(argv):
         print("exact    logits %s  continuations %s  %s" % (hl, hc, "MATCH" if ok else "DIFFERENT"))
         print("         clamped values: %d" % sum(ex.clamped.values()))
         del ex
+        e16 = expected(16)
+        lg_16 = cont_16 = None
+        for r in ROUTES:
+            m16 = Exact16(r)
+            t0 = time.time()
+            h16l, h16c, cont, lg = prompt_run(m16, 8, keep=lg_16 is None)
+            ok16 = (h16l, h16c) == e16
+            ok = ok and ok16
+            print("exact16  logits %s  continuations %s  %s  route %s, %.0f s, clamped %d" % (
+                h16l, h16c, "MATCH" if ok16 else "DIFFERENT", m16.mmi.name if m16.mmi else r, time.time() - t0,
+                sum(m16.clamped.values())))
+            if lg_16 is None:
+                lg_16, cont_16 = lg, cont
+            del m16
         f = Float32(read_safetensors(model_file("model.safetensors")))
         fl, fc, cont_f, lg_f = prompt_run(f, 8, keep=True)
         print("float32  logits %s  continuations %s" % (fl, fc))
         del f
-        e = np.concatenate(lg_e).astype(np.float64) / 2.0 ** A
         g = np.concatenate(lg_f).astype(np.float64)
-        print("exact against float32 over %d prompt positions: top-1 agreement %d, largest |logit difference| %.5f, "
-              "mean %.6f; continuations equal %d of %d" % (
-                  e.shape[0], int((e.argmax(-1) == g.argmax(-1)).sum()), np.abs(e - g).max(), np.abs(e - g).mean(),
-                  sum(a == b for a, b in zip(cont_e, cont_f)), len(cont_e)))
+        for nm, lg, cont in (("exact", lg_e, cont_e), ("exact16", lg_16, cont_16)):
+            e = np.concatenate(lg).astype(np.float64) / 2.0 ** A
+            print("%s against float32 over %d prompt positions: top-1 agreement %d, largest |logit difference| %.5f, "
+                  "mean %.6f; continuations equal %d of %d" % (
+                      nm, e.shape[0], int((e.argmax(-1) == g.argmax(-1)).sum()), np.abs(e - g).max(),
+                      np.abs(e - g).mean(), sum(a == b for a, b in zip(cont, cont_f)), len(cont)))
+            del e
         try:
             o = Onnx()
         except ImportError:
