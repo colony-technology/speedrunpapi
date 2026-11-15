@@ -174,3 +174,5 @@ bash replay.sh      # python3, cc, Yosys with yosys-abc, Icarus Verilog; exit 0 
 | 2 | `src/prove_sim.sh` on every netlist in `netlists/`; ABC `cec` for the 15-bit adder and multiplier | 0 mismatches; equivalent; both controls fail |
 | 3 | `src/gen_cost.py`, `src/map.sh`, `src/cost_table.py` with the local Yosys | equal to `record/cost_table.md` with Yosys 0.70+385, mapped from the recorded relative paths (ABC's result follows the source path); counts can differ with another Yosys |
 | Lean, apart from `replay.sh` | `cd lean; lake exe cache get; lake build; lake env lean P7DialsCheck.lean` | builds; the axioms in the Lean table |
+
+Recorded run: 15 November 2026, Apple M1, macOS 27.2, `replay.sh` from a fresh clone of this branch: 17 ok, 0 failed, 677 s. `shasum -a 256 -c MANIFEST.sha256` confirms every file of this folder.
