@@ -1,0 +1,59 @@
+# SmolLM2-360M on the Apple M1 (macOS 27.2, Python 3.11.18, NumPy 2.4.6 with Accelerate, onnxruntime 1.32.0).
+# One process per step, under one turn of the machine's job gate (Work/.build.nosync/llm/src/e19_360m.sh). Elapsed: /usr/bin/time real seconds.
+# This run came before expected-16-SmolLM2-360M.sha256 existed: the pair was pinned from its lines, so check printed DIFFERENT (nothing to compare) and exited 1.
+== check
+versions: Python 3.11.18, NumPy 2.4.6, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-360M @ f8027fd: 32 layers, width 960, 15/5 heads, feed-forward 2560, rotary base 100000, 361821120 weights
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 22 s
+exact16  no expected-16-SmolLM2-360M.sha256: the hashes below are not compared
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  DIFFERENT  route f64, 159 s, clamped 0
+         peaks (real) / clamps: attention input 10.373 / 131072; down input 2799.645 / 2097152; gate 117.465 / 32768; k 21.260 / 1024; logits input 68.984 / 4194304; mlp input 28.731 / 4194304; o input 11.628 / 4194304; q 21.295 / 1024; residual 24019.595 / 33554432; up 215.929 / 32768; v 19.220 / 8192
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  DIFFERENT  route f32, 590 s, clamped 0
+exact16  logits d97a67da35407cac2a681cddb14a559467cd0e7119c6e79dcca1d3f60b2eddfe  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  DIFFERENT  route i8-onnxruntime-1.32.0, 280 s, clamped 0
+float32  logits 445404db7180bf60c50c5cc4691df7d42f954a73e2b74665efa5b9380a65514e  continuations f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4  97 s
+exact16 against float32 over 471 prompt positions: top-1 agreement 471, largest |logit difference| 0.08467, mean 0.004281; continuations equal 64 of 64
+check    a pair DIFFERENT or not pinned, 1150 s
+elapsed 1150.43 s
+exit 1
+peak resident 2014724096 bytes
+== onnx
+dd50304fc4461c5d87989ab64be8a58351816aeec780293517830d7dd96e388f f84819cab95e48c305a5f33e0dba2a1b2d9c283eb35473bd85e9c59bc04b1aa4 onnx batch=8
+elapsed 72.96 s
+peak resident 1924759552 bytes
+== speed-f64
+exact16-f64: load 0.1 s; prefill 70 tokens/s (512 tokens in 7.36 s); decode batch 8: 20.6 tokens/s (8 rows x 47 tokens in 18.26 s); decode batch 1: 2.3 tokens/s (2 rows x 47 tokens in 40.32 s); peak resident 1537 MB
+elapsed 73.73 s
+peak resident 1611497472 bytes
+== speed-float32
+float32: load 3.2 s; prefill 190 tokens/s (512 tokens in 2.69 s); decode batch 8: 14.8 tokens/s (8 rows x 47 tokens in 25.33 s); decode batch 1: 17.3 tokens/s (2 rows x 47 tokens in 5.43 s); peak resident 1490 MB
+elapsed 44.64 s
+peak resident 1562787840 bytes
+== bounds16
+bounds-16 SmolLM2-360M: 10 product kinds on 3 routes
+  q_proj             n   960  f64 2^39.907  f32 2^23.907 (chunk 960)  i8 2^25.896
+  k_proj             n   960  f64 2^39.907  f32 2^23.907 (chunk 960)  i8 2^25.896
+  v_proj             n   960  f64 2^39.907  f32 2^23.907 (chunk 960)  i8 2^25.896
+  o_proj             n   960  f64 2^39.907  f32 2^23.907 (chunk 960)  i8 2^25.896
+  gate_proj          n   960  f64 2^39.907  f32 2^23.907 (chunk 960)  i8 2^25.896
+  up_proj            n   960  f64 2^39.907  f32 2^23.907 (chunk 960)  i8 2^25.896
+  down_proj          n  2560  f64 2^41.322  f32 2^24.000 (chunk 1024)  i8 2^27.311
+  embed_tokens       n   960  f64 2^39.907  f32 2^23.907 (chunk 960)  i8 2^25.896
+  scores q.k         n    64  f64 2^36.000  f32 2^20.000 (chunk 64)  i8 2^21.989
+  context p.vh, p.vl n   512  f64 2^39.000  f32 2^23.000 (chunk 512)  i8 2^24.989
+  weight row scales g: q_proj 12..19, k_proj 12..18, v_proj 13..18, o_proj 12..17, gate_proj 12..16, up_proj 12..16, down_proj 12..16, embed_tokens 13..17
+  clamps by rule (real), peak, margin, clamped:
+    residual         2^25  peak 24019.595, margin 2^10.45, clamped 0
+    attention input  2^17  peak 10.373, margin 2^13.62, clamped 0
+    o input          2^22  peak 11.628, margin 2^18.46, clamped 0
+    mlp input        2^22  peak 28.731, margin 2^17.16, clamped 0
+    down input       2^21  peak 2799.645, margin 2^9.55, clamped 0
+    logits input     2^22  peak 68.984, margin 2^15.89, clamped 0
+    q                2^10  peak 21.295, margin 2^5.59, clamped 0
+    k                2^10  peak 21.260, margin 2^5.59, clamped 0
+    v                2^13  peak 19.220, margin 2^8.73, clamped 0
+    gate             2^15  peak 117.465, margin 2^8.12, clamped 0
+    up               2^15  peak 215.929, margin 2^7.25, clamped 0
+  kernel intermediate: f64 partial sums < 2^53; f32 partial sums <= 2^24 per chunk; i8 uint8 x uint8, a pair 2 x 255^2 = 130,050 (no int16 lane holds one product), any k products < 2^31 for k <= 33,025
+  int64: 40 operations below their limits, largest 2^63.000; wrote bounds-16-SmolLM2-360M.json
+elapsed 0.15 s
+peak resident 35799040 bytes

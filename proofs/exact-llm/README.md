@@ -73,7 +73,8 @@ Every cell printed logits `b0cc875f…0b4460` and continuations `a800ebad…7613
 | scores | `q16 · k16`, `q` and `k` block-shifted per head vector; `s = 2^(sh_q + sh_k) · q16 · k16` at 2^-32 |
 | softmax | as the exact model, then `p = round(floor(e · 2^16 / Σ e) / 2)` at 2^-15, held at 2^15 − 1 (20,174 values over the 64 prompts at batch 1) |
 | context | `v` whole, `v = 2^15 vh + vl`, `vl = v & (2^15 − 1)`, `\|vh\| ≤ 2^13` within the clamp; `round((2^15 · p16 · vh + p16 · vl) / 2^15)` at 2^-16. No shift, so no position reads another key's magnitude, a later token or the padding |
-| everything else | the exact model's: norms, rotary, the exp and SiLU tables, the clamps |
+| clamps | by rule, per site, for each model: the largest power of two at which every int64 operation of exact-16 stays below its limit, from the config and the 16-bit weights' largest column sum and row scales (`clamps16`, `weight_stats16`); no constant per model. The exact model keeps its own clamps |
+| everything else | the exact model's: norms, rotary, the exp and SiLU tables |
 
 | product, `bounds16.py` | inputs n | f64, below 2^53 | f32, chunk, at most 2^24 | i8, below 2^31 |
 | --- | --- | --- | --- | --- |
@@ -215,6 +216,9 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | --- | --- | --- |
 | `model.safetensors`, `tokenizer.json`, `config.json` | `HuggingFaceTB/SmolLM2-135M` @ `93efa2f097d58c2a74874c7e644dbc9b0cee75a2` | `80521b40…`, `9ca9acdd…`, `1d556eab…` |
 | `onnx/model.onnx`, `onnx/model.onnx_data` | `onnx-community/SmolLM2-135M-ONNX` @ `d0ae6834f1df45e0e95b5fdae95e536f9ca7cd3f` | `de4f7dbe…`, `3ffe0420…` |
+| `model.safetensors`, `tokenizer.json`, `config.json` | `HuggingFaceTB/SmolLM2-360M` @ `f8027fd0eaeea54caa13c31d31b9fdc459c38b49` | `7aaff666…`, `9ca9acdd…`, `34f78014…` |
+| `onnx/model.onnx` | `onnx-community/SmolLM2-360M-ONNX` @ `539c1088be2dcd673c39059d25a6bc4aec625504` | `09c21171…` |
+| `model.safetensors`, `tokenizer.json`, `config.json` | `HuggingFaceTB/SmolLM2-1.7B` @ `effd688a12921b4cc83e3312b6feb579f70f9c71` (onnx-community publishes no export of it) | `11935289…`, `9ca9acdd…`, `33397f6a…` |
 | prompts: `sentence1` of the first 64 lines of `test.jsonl.gz` | `mteb/stsbenchmark-sts` @ `96943a16ea6a35129e253c659081cb59daf81b30` | `524a7513…` |
 | text: `data/tinyshakespeare/input.txt` | `karpathy/char-rnn` @ `370cbcd448eb7daf32f21a6be560b70e0b33c4e3` | `86c4e6aa…` |
 
@@ -250,14 +254,14 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | `routes_test.py` | the three routes against int64 products |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
 | `expected-16.sha256`, `record/exact16-m1.txt`, `record/exact16-machines.txt` | the two exact-16 hashes; every exact-16 line of the M1; every line of the six runners, run 43736296963 |
-| `make_tables.py`, `tables/` | the four tables |
+| `make_tables.py`, `tables/` | the tables: exp, SiLU, and cos and sin for the rotary bases 100,000 and 130,000 |
 | `same_bits.py` | 1 and 4 threads × batch 1 and 8, any engine |
 | `long_run.py` | 256-token continuations |
 | `distance.py` | exact against float32 |
 | `speed.py` | tokens/s and peak memory |
 | `compare_tokenizer.py` | the tokenizer against `tokenizers` |
 | `exact_llm.ipynb`, `make_notebook.py` | the notebook, NumPy only |
-| `pins.json`, `expected.sha256` | pins; the two exact hashes |
+| `pins.json`, `expected.sha256` | pins, one block per model; the two exact hashes |
 | `record/machines.txt` | every line of the seven machines |
 
 ## Your model

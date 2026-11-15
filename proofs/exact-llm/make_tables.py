@@ -4,6 +4,8 @@ exp.txt   E[k] = round(2^24 exp(-k / 256)),               k = 0 .. 6144   (0 .. 
 silu.txt  S[k] = round(2^16 x / (1 + exp(-x))),            x = -16 + k / 256, k = 0 .. 8192
 cos.txt   C[p, i] = round(2^20 cos(p * 100000^(-i/32))),   p = 0 .. 511, i = 0 .. 31   (row p, then i)
 sin.txt   the same with sin
+cos-130000.txt, sin-130000.txt   the same with the rotary base 130,000 (SmolLM2-1.7B); 100,000 is the base of the
+          135M and the 360M
 
 round is to the nearest integer. Every value is computed with mpmath at 60 significant digits and again at 100;
 both must give the same integer, and the exact value must lie further than 10^-30 from a half-integer.
@@ -17,7 +19,8 @@ import sys
 import mpmath
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-EXP_N, SILU_N, POS, FREQ, THETA = 24 * 256, 32 * 256, 512, 32, 100000
+EXP_N, SILU_N, POS, FREQ = 24 * 256, 32 * 256, 512, 32
+THETAS = (100000, 130000)                  # rotary bases of the pinned models
 
 
 def exp_v(k, dps):
@@ -31,18 +34,16 @@ def silu_v(k, dps):
         return mpmath.mpf(2) ** 16 * x / (1 + mpmath.exp(-x))
 
 
-def angle(p, i):
-    return mpmath.mpf(p) * mpmath.power(THETA, -mpmath.mpf(i) / FREQ)
+def angle(p, i, theta):
+    return mpmath.mpf(p) * mpmath.power(theta, -mpmath.mpf(i) / FREQ)
 
 
-def cos_v(n, dps):
-    with mpmath.workdps(dps):
-        return mpmath.mpf(2) ** 20 * mpmath.cos(angle(n // FREQ, n % FREQ))
-
-
-def sin_v(n, dps):
-    with mpmath.workdps(dps):
-        return mpmath.mpf(2) ** 20 * mpmath.sin(angle(n // FREQ, n % FREQ))
+def trig(fn, theta):
+    def v(n, dps):
+        with mpmath.workdps(dps):
+            return mpmath.mpf(2) ** 20 * fn(angle(n // FREQ, n % FREQ, theta))
+    v.__name__ = "%s_%d" % (fn.__name__, theta)
+    return v
 
 
 def rounded(f, k):
@@ -57,11 +58,14 @@ def rounded(f, k):
 def build():
     t = {"exp.txt": ("E[k] = round(2^24 exp(-k/256)), k = 0 .. %d" % EXP_N, [rounded(exp_v, k) for k in range(EXP_N + 1)]),
          "silu.txt": ("S[k] = round(2^16 x / (1 + exp(-x))), x = -16 + k/256, k = 0 .. %d" % SILU_N,
-                      [rounded(silu_v, k) for k in range(SILU_N + 1)]),
-         "cos.txt": ("C[p, i] = round(2^20 cos(p 100000^(-i/32))), p = 0 .. %d, i = 0 .. %d, row p then i" % (POS - 1, FREQ - 1),
-                     [rounded(cos_v, n) for n in range(POS * FREQ)]),
-         "sin.txt": ("S[p, i] = round(2^20 sin(p 100000^(-i/32))), p = 0 .. %d, i = 0 .. %d, row p then i" % (POS - 1, FREQ - 1),
-                     [rounded(sin_v, n) for n in range(POS * FREQ)])}
+                      [rounded(silu_v, k) for k in range(SILU_N + 1)])}
+    for theta in THETAS:
+        tail = "" if theta == 100000 else "-%d" % theta
+        for nm, fn, letter in (("cos", mpmath.cos, "C"), ("sin", mpmath.sin, "S")):
+            f = trig(fn, theta)
+            t["%s%s.txt" % (nm, tail)] = (
+                "%s[p, i] = round(2^20 %s(p %d^(-i/32))), p = 0 .. %d, i = 0 .. %d, row p then i" % (
+                    letter, nm, theta, POS - 1, FREQ - 1), [rounded(f, n) for n in range(POS * FREQ)])
     e, s = t["exp.txt"][1], t["silu.txt"][1]
     assert e[0] == 1 << 24 and e[-1] == 0 and s[0] == 0 and s[-1] == 16 << 16 and s[SILU_N // 2] == 0
     return t
