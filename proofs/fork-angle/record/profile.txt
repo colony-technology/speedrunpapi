@@ -1,0 +1,14 @@
+forks with both daughters at least 16 mm: 689
+daughter's first point to parent's last point: median 0.61 mm, 90th percentile 3.00 mm
+points per mm in a daughter's first 4 mm: median 1.50
+stored diameter near the fork (field D, first 8 points): median 2.55, quartiles 2.01 3.25
+stretch  0.5 to  2.0 mm: n  113  median  71.6  quartiles  67.0  76.6
+stretch  1.0 to  3.0 mm: n  282  median  70.4  quartiles  65.8  75.1
+stretch  2.0 to  4.0 mm: n  420  median  68.7  quartiles  64.2  73.3
+stretch  3.0 to  5.0 mm: n  398  median  67.2  quartiles  63.6  71.1
+stretch  4.0 to  6.0 mm: n  398  median  65.4  quartiles  61.9  69.1
+stretch  5.0 to  8.0 mm: n  683  median  62.1  quartiles  58.3  65.5
+stretch  6.0 to 10.0 mm: n  689  median  58.4  quartiles  55.2  62.1
+stretch  8.0 to 12.0 mm: n  689  median  54.3  quartiles  50.6  58.0
+stretch 10.0 to 14.0 mm: n  689  median  50.2  quartiles  45.9  53.9
+stretch 12.0 to 16.0 mm: n  689  median  46.2  quartiles  40.7  50.1

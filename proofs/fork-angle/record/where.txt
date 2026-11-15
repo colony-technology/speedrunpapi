@@ -1,0 +1,12 @@
+condition                    forks  median z   z under 22: n, opening, closing   z 22 to 30: n, opening, closing   z over 30: n, opening, closing
+Air_133mbar_7kV                 75     35.5        5,  62.6,  1.47            16,  66.2,  1.78            54,  67.7,  2.84        
+Air_133mbar_9kV                146     23.4       61,  66.6,  1.34            48,  68.3,  1.79            37,  72.0,  2.73        
+Air_167mbar_11kV                72     29.8       18,  61.5,  1.39            19,  66.7,  1.90            35,  70.3,  2.65        
+Air_200mbar_13kV                77     28.4       17,  62.3,  1.43            26,  66.2,  1.87            34,  68.8,  2.43        
+O2pct5_133mbar_9kV              22     27.4        8,  62.8,  1.34             5,  66.4,  1.89             9,  68.9,  2.52        
+all conditions, closing against z: 0.168 + 0.0717 z degrees per mm (z in mm); residual spread 0.55
+  Air_133mbar_7kV              closing left over after the place is taken out: median -0.18 degrees per mm
+  Air_133mbar_9kV              closing left over after the place is taken out: median +0.06 degrees per mm
+  Air_167mbar_11kV             closing left over after the place is taken out: median -0.06 degrees per mm
+  Air_200mbar_13kV             closing left over after the place is taken out: median -0.09 degrees per mm
+  O2pct5_133mbar_9kV           closing left over after the place is taken out: median -0.06 degrees per mm

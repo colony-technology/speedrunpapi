@@ -1,0 +1,8 @@
+drawn 43, bent back  0:  w2_6  42.7  w4_10  42.8  w8_16  43.1  at0  43.5  turn_small  19.0  turn_large  24.3  out_of_plane   2.6
+drawn 43, bent back 20:  w2_6  38.7  w4_10  35.2  w8_16  28.5  at0  44.4  turn_small  17.3  turn_large  22.3  out_of_plane   2.6
+drawn 60, bent back  0:  w2_6  60.2  w4_10  60.1  w8_16  59.9  at0  59.9  turn_small  28.0  turn_large  32.5  out_of_plane   2.6
+drawn 60, bent back 20:  w2_6  55.9  w4_10  51.9  w8_16  45.5  at0  60.5  turn_small  25.3  turn_large  30.7  out_of_plane   2.5
+drawn 72, bent back  0:  w2_6  72.3  w4_10  72.3  w8_16  72.0  at0  72.3  turn_small  33.7  turn_large  39.1  out_of_plane   2.8
+drawn 72, bent back 20:  w2_6  67.6  w4_10  63.9  w8_16  57.7  at0  72.8  turn_small  31.4  turn_large  36.6  out_of_plane   2.5
+drawn 90, bent back  0:  w2_6  89.8  w4_10  89.8  w8_16  89.9  at0  89.5  turn_small  42.5  turn_large  47.7  out_of_plane   3.2
+drawn 90, bent back 20:  w2_6  85.4  w4_10  81.7  w8_16  75.6  at0  90.3  turn_small  40.1  turn_large  45.5  out_of_plane   2.8

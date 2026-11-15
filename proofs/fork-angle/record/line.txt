@@ -1,0 +1,6 @@
+straight line through four stretches (3 to 16 mm), 398 forks: median 74.6, quartiles 70.1 80.6
+second degree through four stretches, 398 forks: median 74.6, quartiles 70.1 80.8
+straight line through five stretches (1 to 16 mm), 200 forks: median 73.7, quartiles 69.9 78.6
+second degree through five stretches, 200 forks: median 73.8, quartiles 69.9 78.5
+bootstrap of the straight-line median (four stretches): 74.0 to 75.4
+bootstrap of the second-degree median (five stretches): 72.7 to 74.9

@@ -1,0 +1,15 @@
+1. closed form against direct summation (alpha in degrees, kappa): T closed, T direct
+    50.0  0.50   +0.15516   +0.15527
+    60.0  0.50   +0.02073   +0.02085
+    72.0  0.75   +0.00015   +0.00030
+    80.0  1.00   -0.00125   -0.00109
+   100.0  1.00   -0.22874   -0.22855
+2. the opening that holds, by kappa
+   kappa 0.50   opening 61.77 degrees
+   kappa 0.60   opening 66.24 degrees
+   kappa 0.70   opening 70.19 degrees
+   kappa 0.75   opening 72.01 degrees
+   kappa 0.80   opening 73.74 degrees
+   kappa 0.90   opening 76.96 degrees
+   kappa 1.00   opening 79.90 degrees
+   72 degrees holds at kappa = 0.74965

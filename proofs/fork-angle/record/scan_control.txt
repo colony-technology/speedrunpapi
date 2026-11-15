@@ -1,0 +1,15 @@
+drawn 60 (median of those kept 59.7), rule power 0.8   : 123 forks, p 0.93, spread 2.06, read 62.4; straight-line way reads 60.9
+drawn 60 (median of those kept 59.6), rule power 1.3   : 114 forks, p 1.21, spread 2.77, read 58.2; straight-line way reads 58.2
+drawn 60 (median of those kept 59.3), rule power 1.8   : 108 forks, p 1.83, spread 0.78, read 61.9; straight-line way reads 60.4
+drawn 60 (median of those kept 60.5), rule late        : 124 forks, p 1.28, spread 0.55, read 69.5; straight-line way reads 69.0
+drawn 60 (median of those kept 58.9), rule linear      : 115 forks, p 0.58, spread 2.25, read 56.9; straight-line way reads 58.2
+drawn 72 (median of those kept 72.0), rule power 0.8   : 110 forks, p 0.83, spread 1.62, read 73.1; straight-line way reads 72.9
+drawn 72 (median of those kept 70.8), rule power 1.3   : 104 forks, p 1.30, spread 0.94, read 70.9; straight-line way reads 70.7
+drawn 72 (median of those kept 71.2), rule power 1.8   : 107 forks, p 1.80, spread 1.20, read 72.4; straight-line way reads 69.4
+drawn 72 (median of those kept 71.1), rule late        : 102 forks, p 1.25, spread 1.47, read 80.5; straight-line way reads 80.8
+drawn 72 (median of those kept 72.5), rule linear      : 120 forks, p 0.68, spread 1.05, read 71.9; straight-line way reads 72.2
+drawn 85 (median of those kept 84.4), rule power 0.8   : 114 forks, p 0.81, spread 0.95, read 85.0; straight-line way reads 85.6
+drawn 85 (median of those kept 84.1), rule power 1.3   : 113 forks, p 1.36, spread 1.33, read 85.7; straight-line way reads 84.7
+drawn 85 (median of those kept 84.0), rule power 1.8   : 113 forks, p 1.92, spread 1.27, read 86.8; straight-line way reads 84.1
+drawn 85 (median of those kept 85.8), rule late        : 113 forks, p 1.28, spread 1.01, read 95.5; straight-line way reads 95.5
+drawn 85 (median of those kept 84.5), rule linear      : 120 forks, p 0.46, spread 1.26, read 82.9; straight-line way reads 84.6

@@ -1,0 +1,5 @@
+stored z: 0.5th percentile -11.2, median 34.2, 99.5th percentile 67.3 mm (taken as the plate)
+398 forks: measured closing over opening / distance left: median 0.87, quartiles 0.82 0.92; rank correlation 0.946
+  z   -1 to   22: 110 forks, measured 1.36, opening / distance left 1.48, ratio 0.91
+  z   22 to   30: 116 forks, measured 1.84, opening / distance left 2.05, ratio 0.89
+  z   30 to   51: 172 forks, measured 2.69, opening / distance left 3.20, ratio 0.82
