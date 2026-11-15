@@ -134,6 +134,8 @@ Machines: the six runners of GitHub Actions run [43754428621](https://github.com
 
 The bound at each size, per route: the widest product is the down projection, 1,536 inputs at 135M and 2,560 at 360M. On f64 its partial sums stay below 2^40.585 and 2^41.322, under 2^53 with no chunk. On f32 the down projection is the one product wider than 1,024 inputs, so it alone is chunked: 30 matrices at 135M, 32 at 360M. On i8 the sums stay below 2^26.574 and 2^27.311, under 2^31.
 
+At 360M on the M1 float32 decodes slower at batch 8 (14.8 tokens/s) than at batch 1 (17.3), and slower than exact-16. The cause is not the machine's memory: there was no swapping, but 11.0 of its 44.6 s went to the kernel in 1,654,651 page reclaims, against 1.65 s and 120,153 for exact-16. So the time goes to fresh allocations in this baseline's NumPy decode step; that is not looked into yet.
+
 SmolLM2-1.7B (24 layers, width 2,048, feed-forward 8,192, rotary base 130,000; its tables are in `tables/`) runs on the runners only, next.
 
 ## Distance to float32
