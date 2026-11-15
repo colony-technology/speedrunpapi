@@ -106,6 +106,8 @@ Channels: (a + b) mod m and (a · b) mod m, each written as a full table over ev
 | (15, 16, 17) | 7.59 | 1.42 | 8.59 | 9.59 | 16.93 |
 | (15, 17, 128) | 7.00 | 1.73 | 22.34 | 12.67 | 5.94 |
 
+ABC's result follows the order of the cells, which Yosys names after the source path. The same modules, read by an absolute path with the same Yosys, gave these reading-back counts in LUT / levels: (5, 8, 13) 44 / 5; (7, 9, 32) 51 / 6; (15, 17, 128) 89 / 7; (7, 8, 9) 89 / 8; (15, 16, 17) 239 / 10. Every other column was unchanged. The unit sets stay at about half the textbook sets, or less.
+
 `record/cost.txt`, `record/cost_table.md`; mapped netlists in `netlists/`
 
 ## Netlist checks
