@@ -1,0 +1,4 @@
+COND|Slow 1100mV 85C Model|SLACK|-6.626|LEVELS|8|DATA|10.367|FROM|prim_crc32:u_core|crc_q[1]|TO|prim_crc32:u_core|crc_q[20]
+COND|Slow 1100mV 0C Model|SLACK|-6.528|LEVELS|9|DATA|10.269|FROM|r_data_i[2]|TO|prim_crc32:u_core|crc_q[20]
+COND|Fast 1100mV 85C Model|SLACK|-0.810|LEVELS|8|DATA|4.665|FROM|prim_crc32:u_core|crc_q[1]|TO|prim_crc32:u_core|crc_q[20]
+COND|Fast 1100mV 0C Model|SLACK|-0.351|LEVELS|8|DATA|4.209|FROM|prim_crc32:u_core|crc_q[1]|TO|prim_crc32:u_core|crc_q[20]

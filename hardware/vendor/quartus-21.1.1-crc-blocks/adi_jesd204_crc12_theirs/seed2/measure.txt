@@ -1,0 +1,4 @@
+COND|Slow 1100mV 85C Model|SLACK|-0.022|LEVELS|3|DATA|3.792|FROM|jesd204_crc12:u_core|state[0]|TO|jesd204_crc12:u_core|state[9]
+COND|Slow 1100mV 0C Model|SLACK|-0.076|LEVELS|3|DATA|3.850|FROM|jesd204_crc12:u_core|state[0]|TO|jesd204_crc12:u_core|state[9]
+COND|Fast 1100mV 85C Model|SLACK|2.192|LEVELS|3|DATA|1.676|FROM|r_data_in[22]|TO|jesd204_crc12:u_core|state[11]~DUPLICATE
+COND|Fast 1100mV 0C Model|SLACK|2.358|LEVELS|3|DATA|1.514|FROM|r_data_in[22]|TO|jesd204_crc12:u_core|state[11]~DUPLICATE

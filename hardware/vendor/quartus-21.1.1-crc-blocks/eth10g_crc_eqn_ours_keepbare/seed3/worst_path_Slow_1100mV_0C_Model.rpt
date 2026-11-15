@@ -1,0 +1,124 @@
+----------------
+; Command Info ;
+----------------
+Report Timing: Found 1 setup paths (1 violated).  Worst case slack is -1.255 
+
+Tcl Command:
+    report_timing -setup -file worst_path_Slow_1100mV_0C_Model.rpt -from [all_registers] -to [all_registers] -npaths 1 -detail full_path
+
+Options:
+    -from [all_registers] 
+    -to [all_registers] 
+    -setup 
+    -npaths 1 
+    -detail full_path 
+    -file {worst_path_Slow_1100mV_0C_Model.rpt} 
+
+Delay Model:
+    Slow 1100mV 0C Model
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Summary of Paths                                                                                                          ;
++--------+----------------+---------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node      ; To Node                   ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------+---------------------------+--------------+-------------+--------------+------------+------------+
+; -1.255 ; r_skd_data[11] ; o_next_crc_wide[224]~reg0 ; clk          ; clk         ; 4.000        ; -0.139     ; 5.016      ;
++--------+----------------+---------------------------+--------------+-------------+--------------+------------+------------+
+
+Path #1: Setup slack is -1.255 (VIOLATED)
+===============================================================================
++------------------------------------------------+
+; Path Summary                                   ;
++--------------------+---------------------------+
+; Property           ; Value                     ;
++--------------------+---------------------------+
+; From Node          ; r_skd_data[11]            ;
+; To Node            ; o_next_crc_wide[224]~reg0 ;
+; Launch Clock       ; clk                       ;
+; Latch Clock        ; clk                       ;
+; Data Arrival Time  ; 10.316                    ;
+; Data Required Time ; 9.061                     ;
+; Slack              ; -1.255 (VIOLATED)         ;
++--------------------+---------------------------+
+
++------------------------------------------------------------------------------------+
+; Statistics                                                                         ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Property               ; Value  ; Count ; Total Delay ; % of Total ; Min   ; Max   ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+; Setup Relationship     ; 4.000  ;       ;             ;            ;       ;       ;
+; Clock Skew             ; -0.139 ;       ;             ;            ;       ;       ;
+; Data Delay             ; 5.016  ;       ;             ;            ;       ;       ;
+; Number of Logic Levels ;        ; 4     ;             ;            ;       ;       ;
+; Physical Delays        ;        ;       ;             ;            ;       ;       ;
+;  Arrival Path          ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 3.412       ; 64         ; 0.000 ; 2.823 ;
+;    Cell                ;        ; 3     ; 1.888       ; 36         ; 0.538 ; 0.747 ;
+;   Data                 ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 5     ; 2.109       ; 42         ; 0.000 ; 1.162 ;
+;    Cell                ;        ; 6     ; 2.907       ; 58         ; 0.000 ; 0.751 ;
+;    uTco                ;        ; 1     ; 0.000       ; 0          ; 0.000 ; 0.000 ;
+;  Required Path         ;        ;       ;             ;            ;       ;       ;
+;   Clock                ;        ;       ;             ;            ;       ;       ;
+;    IC                  ;        ; 3     ; 3.252       ; 64         ; 0.000 ; 2.691 ;
+;    Cell                ;        ; 3     ; 1.795       ; 36         ; 0.505 ; 0.747 ;
++------------------------+--------+-------+-------------+------------+-------+-------+
+Note: Negative delays are omitted from totals when calculating percentages
+
++----------------------------------------------------------------------------------------------+
+; Data Arrival Path                                                                            ;
++----------+---------+----+------+--------+----------------------+-----------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location             ; Element                     ;
++----------+---------+----+------+--------+----------------------+-----------------------------+
+; 0.000    ; 0.000   ;    ;      ;        ;                      ; launch edge time            ;
+; 5.300    ; 5.300   ;    ;      ;        ;                      ; clock path                  ;
+;   0.000  ;   0.000 ;    ;      ;        ;                      ; source latency              ;
+;   0.000  ;   0.000 ;    ;      ; 1      ; PIN_W27              ; clk                         ;
+;   0.000  ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X121_Y43_N61  ; clk~input|i                 ;
+;   0.747  ;   0.747 ; RR ; CELL ; 1      ; IOIBUF_X121_Y43_N61  ; clk~input|o                 ;
+;   1.336  ;   0.589 ; RR ; IC   ; 1      ; CLKCTRL_G10          ; clk~inputCLKENA0|inclk      ;
+;   1.874  ;   0.538 ; RR ; CELL ; 352    ; CLKCTRL_G10          ; clk~inputCLKENA0|outclk     ;
+;   4.697  ;   2.823 ; RR ; IC   ; 1      ; FF_X77_Y50_N32       ; r_skd_data[11]|clk          ;
+;   5.300  ;   0.603 ; RR ; CELL ; 1      ; FF_X77_Y50_N32       ; r_skd_data[11]              ;
+; 10.316   ; 5.016   ;    ;      ;        ;                      ; data path                   ;
+;   5.300  ;   0.000 ;    ; uTco ; 1      ; FF_X77_Y50_N32       ; r_skd_data[11]              ;
+;   5.300  ;   0.000 ; RR ; CELL ; 2      ; FF_X77_Y50_N32       ; r_skd_data[11]|q            ;
+;   5.643  ;   0.343 ; RR ; IC   ; 1      ; LABCELL_X77_Y50_N45  ; u_core|n8|datab             ;
+;   6.394  ;   0.751 ; RR ; CELL ; 22     ; LABCELL_X77_Y50_N45  ; u_core|n8|combout           ;
+;   6.777  ;   0.383 ; RR ; IC   ; 1      ; MLABCELL_X78_Y50_N3  ; u_core|n61|dataa            ;
+;   7.524  ;   0.747 ; RF ; CELL ; 15     ; MLABCELL_X78_Y50_N3  ; u_core|n61|combout          ;
+;   8.686  ;   1.162 ; FF ; IC   ; 1      ; MLABCELL_X78_Y51_N36 ; u_core|n537|datad           ;
+;   9.368  ;   0.682 ; FF ; CELL ; 1      ; MLABCELL_X78_Y51_N36 ; u_core|n537|combout         ;
+;   9.589  ;   0.221 ; FF ; IC   ; 1      ; MLABCELL_X78_Y51_N45 ; u_core|n538|datae           ;
+;   10.001 ;   0.412 ; FR ; CELL ; 1      ; MLABCELL_X78_Y51_N45 ; u_core|n538|combout         ;
+;   10.001 ;   0.000 ; RR ; IC   ; 1      ; FF_X78_Y51_N46       ; o_next_crc_wide[224]~reg0|d ;
+;   10.316 ;   0.315 ; RR ; CELL ; 1      ; FF_X78_Y51_N46       ; o_next_crc_wide[224]~reg0   ;
++----------+---------+----+------+--------+----------------------+-----------------------------+
+
++----------------------------------------------------------------------------------------------+
+; Data Required Path                                                                           ;
++---------+---------+----+------+--------+---------------------+-------------------------------+
+; Total   ; Incr    ; RF ; Type ; Fanout ; Location            ; Element                       ;
++---------+---------+----+------+--------+---------------------+-------------------------------+
+; 4.000   ; 4.000   ;    ;      ;        ;                     ; latch edge time               ;
+; 9.161   ; 5.161   ;    ;      ;        ;                     ; clock path                    ;
+;   4.000 ;   0.000 ;    ;      ;        ;                     ; source latency                ;
+;   4.000 ;   0.000 ;    ;      ; 1      ; PIN_W27             ; clk                           ;
+;   4.000 ;   0.000 ; RR ; IC   ; 1      ; IOIBUF_X121_Y43_N61 ; clk~input|i                   ;
+;   4.747 ;   0.747 ; RR ; CELL ; 1      ; IOIBUF_X121_Y43_N61 ; clk~input|o                   ;
+;   5.308 ;   0.561 ; RR ; IC   ; 1      ; CLKCTRL_G10         ; clk~inputCLKENA0|inclk        ;
+;   5.813 ;   0.505 ; RR ; CELL ; 352    ; CLKCTRL_G10         ; clk~inputCLKENA0|outclk       ;
+;   8.504 ;   2.691 ; RR ; IC   ; 1      ; FF_X78_Y51_N46      ; o_next_crc_wide[224]~reg0|clk ;
+;   9.047 ;   0.543 ; RR ; CELL ; 1      ; FF_X78_Y51_N46      ; o_next_crc_wide[224]~reg0     ;
+;   9.161 ;   0.114 ;    ;      ;        ;                     ; clock pessimism removed       ;
+; 9.061   ; -0.100  ;    ;      ;        ;                     ; clock uncertainty             ;
+; 9.061   ; 0.000   ;    ; uTsu ; 1      ; FF_X78_Y51_N46      ; o_next_crc_wide[224]~reg0     ;
++---------+---------+----+------+--------+---------------------+-------------------------------+
+
+----------------------------
+; Extra Fitter Information ;
+----------------------------
+HTML report is unavailable in plain text report export.
+
+

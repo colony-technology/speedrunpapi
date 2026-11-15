@@ -1,0 +1,660 @@
+Analysis & Synthesis report for colony
+Sat Nov 14 20:12:25 2026
+Quartus Prime Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Post-Synthesis Netlist Statistics for Top Partition
+ 10. Elapsed Time Per Partition
+ 11. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2022  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Sat Nov 14 20:12:25 2026       ;
+; Quartus Prime Version           ; 21.1.1 Build 850 06/23/2022 SJ Lite Edition ;
+; Revision Name                   ; colony                                      ;
+; Top-level Entity Name           ; registered_top                              ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 352                                         ;
+; Total pins                      ; 1                                           ;
+; Total virtual pins              ; 352                                         ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CGXFC9E7F35C8     ;                    ;
+; Top-level entity name                                                           ; registered_top     ; colony             ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation                             ; 2                  ;                    ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                               ;
++----------------------------------+-----------------+------------------------+------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path ; Library ;
++----------------------------------+-----------------+------------------------+------------------------------+---------+
+; registered_top.v                 ; yes             ; User Verilog HDL File  ; /p/registered_top.v          ;         ;
+; crc_eqn_dw64.v                   ; yes             ; User Verilog HDL File  ; /p/crc_eqn_dw64.v            ;         ;
++----------------------------------+-----------------+------------------------+------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 642       ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 697       ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 138       ;
+;     -- 5 input functions                    ; 232       ;
+;     -- 4 input functions                    ; 190       ;
+;     -- <=3 input functions                  ; 137       ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 352       ;
+;                                             ;           ;
+; Virtual pins                                ; 352       ;
+; I/O pins                                    ; 1         ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 352       ;
+; Total fan-out                               ; 4057      ;
+; Average fan-out                             ; 2.89      ;
++---------------------------------------------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                       ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------+----------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                 ; Entity Name    ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------+----------------+--------------+
+; |registered_top            ; 697 (0)             ; 352 (352)                 ; 0                 ; 0          ; 1    ; 352          ; |registered_top                     ; registered_top ; work         ;
+;    |crc_eqn_dw64:u_core|   ; 697 (697)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |registered_top|crc_eqn_dw64:u_core ; crc_eqn_dw64   ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------+----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 352   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 352                         ;
+;     plain             ; 352                         ;
+; arriav_lcell_comb     ; 697                         ;
+;     normal            ; 697                         ;
+;         2 data inputs ; 63                          ;
+;         3 data inputs ; 74                          ;
+;         4 data inputs ; 190                         ;
+;         5 data inputs ; 232                         ;
+;         6 data inputs ; 138                         ;
+; boundary_port         ; 353                         ;
+;                       ;                             ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 1.98                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+    Info: Copyright (C) 2022  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Sat Nov 14 20:12:15 2026
+Info: Command: quartus_map colony -c colony
+Info (20032): Parallel compilation is enabled and will use up to 2 processors
+Info (12021): Found 1 design units, including 1 entities, in source file registered_top.v
+    Info (12023): Found entity 1: registered_top File: /p/registered_top.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file crc_eqn_dw64.v
+    Info (12023): Found entity 1: crc_eqn_dw64 File: /p/crc_eqn_dw64.v Line: 5
+Info (12127): Elaborating entity "registered_top" for the top level hierarchy
+Info (12128): Elaborating entity "crc_eqn_dw64" for hierarchy "crc_eqn_dw64:u_core" File: /p/registered_top.v Line: 5
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (15717): Design contains 352 virtual pins; timing numbers associated with paths containing virtual pins are estimates
+    Info (15719): Pin "o_next_crc_wide[0]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[1]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[2]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[3]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[4]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[5]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[6]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[7]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[8]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[9]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[10]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[11]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[12]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[13]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[14]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[15]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[16]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[17]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[18]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[19]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[20]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[21]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[22]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[23]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[24]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[25]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[26]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[27]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[28]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[29]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[30]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[31]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[32]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[33]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[34]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[35]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[36]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[37]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[38]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[39]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[40]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[41]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[42]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[43]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[44]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[45]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[46]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[47]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[48]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[49]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[50]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[51]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[52]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[53]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[54]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[55]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[56]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[57]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[58]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[59]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[60]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[61]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[62]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[63]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[64]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[65]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[66]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[67]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[68]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[69]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[70]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[71]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[72]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[73]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[74]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[75]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[76]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[77]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[78]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[79]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[80]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[81]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[82]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[83]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[84]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[85]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[86]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[87]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[88]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[89]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[90]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[91]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[92]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[93]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[94]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[95]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[96]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[97]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[98]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[99]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[100]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[101]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[102]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[103]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[104]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[105]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[106]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[107]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[108]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[109]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[110]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[111]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[112]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[113]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[114]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[115]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[116]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[117]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[118]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[119]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[120]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[121]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[122]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[123]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[124]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[125]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[126]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[127]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[128]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[129]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[130]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[131]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[132]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[133]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[134]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[135]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[136]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[137]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[138]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[139]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[140]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[141]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[142]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[143]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[144]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[145]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[146]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[147]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[148]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[149]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[150]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[151]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[152]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[153]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[154]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[155]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[156]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[157]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[158]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[159]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[160]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[161]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[162]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[163]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[164]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[165]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[166]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[167]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[168]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[169]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[170]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[171]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[172]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[173]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[174]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[175]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[176]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[177]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[178]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[179]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[180]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[181]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[182]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[183]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[184]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[185]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[186]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[187]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[188]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[189]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[190]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[191]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[192]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[193]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[194]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[195]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[196]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[197]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[198]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[199]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[200]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[201]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[202]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[203]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[204]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[205]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[206]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[207]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[208]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[209]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[210]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[211]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[212]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[213]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[214]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[215]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[216]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[217]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[218]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[219]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[220]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[221]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[222]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[223]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[224]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[225]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[226]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[227]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[228]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[229]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[230]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[231]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[232]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[233]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[234]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[235]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[236]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[237]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[238]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[239]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[240]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[241]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[242]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[243]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[244]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[245]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[246]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[247]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[248]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[249]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[250]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[251]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[252]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[253]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[254]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15719): Pin "o_next_crc_wide[255]" is virtual output pin File: /p/registered_top.v Line: 4
+    Info (15718): Pin "i_crc32[8]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[2]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[2]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[9]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[0]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[0]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[3]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[3]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[10]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[4]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[4]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[1]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[1]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[11]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[5]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[5]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[12]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[6]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[6]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[13]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[7]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[7]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[14]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[15]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[16]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[17]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[18]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[19]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[20]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[21]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[22]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[23]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[24]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[25]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[26]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[27]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[28]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[29]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[30]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_crc32[31]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[10]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[8]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[11]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[9]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[12]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[13]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[14]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[15]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[18]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[19]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[16]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[20]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[17]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[21]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[22]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[23]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[26]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[24]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[27]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[25]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[28]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[29]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[30]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[31]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[34]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[32]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[35]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[36]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[33]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[37]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[38]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[39]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[42]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[40]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[43]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[41]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[44]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[45]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[46]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[47]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[50]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[51]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[48]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[49]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[52]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[53]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[54]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[55]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[58]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[56]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[59]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[60]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[57]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[61]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[62]" is virtual input pin File: /p/registered_top.v Line: 1
+    Info (15718): Pin "i_skd_data[63]" is virtual input pin File: /p/registered_top.v Line: 1
+Info (21057): Implemented 1052 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 0 output pins
+    Info (21061): Implemented 1051 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 523 megabytes
+    Info: Processing ended: Sat Nov 14 20:12:25 2026
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:16
+
+

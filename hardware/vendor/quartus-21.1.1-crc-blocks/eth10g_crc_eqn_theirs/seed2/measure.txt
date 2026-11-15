@@ -1,0 +1,4 @@
+COND|Slow 1100mV 85C Model|SLACK|-1.366|LEVELS|3|DATA|5.141|FROM|r_skd_data[15]|TO|o_next_crc_wide[154]~reg0
+COND|Slow 1100mV 0C Model|SLACK|-1.401|LEVELS|3|DATA|5.147|FROM|r_skd_data[7]|TO|o_next_crc_wide[248]~reg0
+COND|Fast 1100mV 85C Model|SLACK|1.458|LEVELS|3|DATA|2.373|FROM|r_crc32[0]|TO|o_next_crc_wide[65]~reg0
+COND|Fast 1100mV 0C Model|SLACK|1.733|LEVELS|3|DATA|2.104|FROM|r_crc32[0]|TO|o_next_crc_wide[65]~reg0
