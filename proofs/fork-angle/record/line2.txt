@@ -1,0 +1,7 @@
+398 forks; opening by stretch (medians): 67.2 62.3 55.5 48.2
+  three nearer stretches   straight line carried to the fork: 74.6    power law carried to the fork: 72.2 72.2 72.2 (mean 72.2)
+  three farther stretches  straight line carried to the fork: 74.5    power law carried to the fork: 72.2 72.2 72.3 (mean 72.2)
+  all four                 straight line carried to the fork: 74.6    power law carried to the fork: 72.2 72.2 72.2 72.3 (mean 72.2)
+closing between neighbouring stretches, degrees per mm of path: 1.95, 1.95, 1.82
+height of the parent's last point above the mean height of the two daughters' first points: median 0.86 mm, quartiles 0.48 1.56, mean 1.07
+power law carried back to the daughters' first points instead of the parent's last point: 74.4 74.5 74.5 74.7 (mean 74.5)

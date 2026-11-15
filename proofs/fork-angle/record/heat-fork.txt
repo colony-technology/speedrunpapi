@@ -1,0 +1,29 @@
+398 forks
+  turn strong                  median 18.757  quartiles 11.008 25.416
+  turn weak                    median 48.933  quartiles 41.178 56.472
+  opening                      median 67.218  quartiles 63.601 71.088
+  kappa strong (from angles)   median  0.957  quartiles  0.745  1.211
+  kappa weak (from angles)     median  0.334  quartiles  0.195  0.479
+  D strong / D parent          median  0.885  quartiles  0.737  1.053
+  D weak / D parent            median  0.593  quartiles  0.505  0.709
+  V strong / V parent          median  1.016  quartiles  0.927  1.124
+  V weak / V parent            median  0.797  quartiles  0.632  0.933
+  D parent                     median  3.434  quartiles  3.009  3.926
+  V parent                     median  7.254  quartiles  6.428  8.030
+  sum of turns                 median 67.563  quartiles 64.006 71.678
+the strong daughter (smaller turn) is the thicker one in 0.887 of forks, the faster one in 0.897
+in-plane check: sum of the two turns over the opening, median 1.000 (1 when the parent's line lies between the daughters)
+  rank correlation kappa strong (angles) vs D strong / D parent     +0.283  (shuffles as far: 0.000, n 398)
+  rank correlation kappa weak (angles) vs D weak / D parent         +0.331  (shuffles as far: 0.000, n 398)
+  rank correlation kappa weak / kappa strong vs D weak / D strong   +0.621  (shuffles as far: 0.000, n 398)
+  rank correlation kappa strong vs V strong / V parent              +0.121  (shuffles as far: 0.015, n 398)
+  rank correlation kappa weak vs V weak / V parent                  +0.597  (shuffles as far: 0.000, n 398)
+  rank correlation opening vs D parent (the move before)            +0.165  (shuffles as far: 0.001, n 398)
+  rank correlation opening vs V parent (the move before)            -0.119  (shuffles as far: 0.015, n 398)
+  rank correlation turn weak vs D weak / D strong                   -0.562  (shuffles as far: 0.000, n 398)
+the move before: forked parents against unforked discharges of the same condition (share of pairs in which the forked one is larger)
+  Air_133mbar_7kV              forked  75, unforked  373: thicker 0.805, faster 0.012
+  Air_133mbar_9kV              forked 146, unforked  270: thicker 0.733, faster 0.366
+  Air_167mbar_11kV             forked  72, unforked  245: thicker 0.722, faster 0.500
+  Air_200mbar_13kV             forked  77, unforked  129: thicker 0.725, faster 0.512
+  O2pct5_133mbar_9kV           forked  22, unforked   21: thicker 0.714, faster 0.273

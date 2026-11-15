@@ -1,0 +1,14 @@
+air, 133 mbar, 9 kV: 146 forks; opening at 3 to 5 mm median 68.3; closing median 1.73 degrees per mm
+  by height z of the fork, mm    [-0.644 to 19.3: opening 66.5, closing 1.31]  [19.7 to 27.2: opening 68.3, closing 1.73]  [27.2 to 48.6: opening 72.0, closing 2.64]
+     rank correlation with the closing +0.878 (0.000); with the opening at 3 to 5 mm +0.355 (0.000)
+  by daughters' diameter         [2.04 to 2.69: opening 66.4, closing 1.49]  [2.69 to 2.95: opening 68.6, closing 1.63]  [2.95 to 4.5: opening 70.2, closing 1.98]
+     rank correlation with the closing +0.370 (0.000); with the opening at 3 to 5 mm +0.274 (0.001)
+  by daughters' speed            [3.54 to 5.96: opening 70.1, closing 1.53]  [5.97 to 6.46: opening 66.5, closing 1.50]  [6.5 to 7.92: opening 68.4, closing 2.18]
+     rank correlation with the closing +0.373 (0.000); with the opening at 3 to 5 mm -0.000 (0.997)
+all conditions: 398 forks; opening at 3 to 5 mm median 67.2; closing median 1.96 degrees per mm
+  by height z of the fork, mm    [-0.644 to 23.5: opening 65.8, closing 1.43]  [23.5 to 32.5: opening 67.1, closing 1.96]  [32.6 to 51.3: opening 69.4, closing 2.90]
+     rank correlation with the closing +0.880 (0.000); with the opening at 3 to 5 mm +0.308 (0.000)
+  by daughters' diameter         [1.51 to 2.37: opening 66.1, closing 1.99]  [2.37 to 2.79: opening 66.6, closing 1.81]  [2.79 to 4.5: opening 69.0, closing 2.09]
+     rank correlation with the closing +0.087 (0.076); with the opening at 3 to 5 mm +0.228 (0.000)
+  by daughters' speed            [3.54 to 5.91: opening 67.5, closing 2.11]  [5.92 to 6.68: opening 67.1, closing 1.73]  [6.69 to 8.16: opening 67.2, closing 2.21]
+     rank correlation with the closing +0.100 (0.043); with the opening at 3 to 5 mm +0.011 (0.825)

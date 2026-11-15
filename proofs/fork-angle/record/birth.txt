@@ -1,0 +1,16 @@
+689 forks; 200 have all five stretches. Power 0.87, plate at 67.3 mm.
+the same 200 forks, stretch by stretch: opening as stored, and carried back to the fork
+   1 to  3 mm   stored  70.4   at the fork  71.5  (quartiles  67.2  75.8)
+   3 to  5 mm   stored  66.6   at the fork  70.4  (quartiles  66.4  74.1)
+   5 to  8 mm   stored  62.3   at the fork  69.1  (quartiles  65.3  71.9)
+   8 to 12 mm   stored  56.4   at the fork  66.8  (quartiles  63.6  69.5)
+  12 to 16 mm   stored  49.6   at the fork  63.9  (quartiles  61.0  66.5)
+opening at the fork, from the 3 to 5 mm stretch, 398 forks: median 70.6, quartiles 66.4 74.7; within 5 degrees of 72: 0.533
+  z under 22: 110 forks, at the fork 67.4 (63.8, 70.9)
+  z 22 to 30: 116 forks, at the fork 70.3 (66.8, 73.1)
+  z over 30: 172 forks, at the fork 73.8 (69.2, 78.3)
+  Air_133mbar_7kV               75 forks, at the fork 71.9 (67.6, 75.4)
+  Air_133mbar_9kV              146 forks, at the fork 71.6 (67.6, 75.2)
+  Air_167mbar_11kV              72 forks, at the fork 69.6 (64.8, 75.5)
+  Air_200mbar_13kV              77 forks, at the fork 68.5 (64.5, 73.3)
+  O2pct5_133mbar_9kV            22 forks, at the fork 67.7 (65.0, 72.8)
