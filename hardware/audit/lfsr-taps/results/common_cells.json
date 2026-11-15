@@ -1,0 +1,950 @@
+[
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 4,
+"entry": "Masks[4] = c",
+"poly": "13",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+15,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 5,
+"entry": "Masks[5] = 1e",
+"poly": "2f",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+31,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 6,
+"entry": "Masks[6] = 39",
+"poly": "67",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+63,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 7,
+"entry": "Masks[7] = 7e",
+"poly": "bf",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+127,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 8,
+"entry": "Masks[8] = fa",
+"poly": "15f",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+255,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 9,
+"entry": "Masks[9] = 1fd",
+"poly": "37f",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+511,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 10,
+"entry": "Masks[10] = 3fc",
+"poly": "4ff",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+1023,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 11,
+"entry": "Masks[11] = 64b",
+"poly": "e93",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+2047,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 12,
+"entry": "Masks[12] = d8f",
+"poly": "1f1b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+4095,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 13,
+"entry": "Masks[13] = 1296",
+"poly": "2d29",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+8191,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 14,
+"entry": "Masks[14] = 2496",
+"poly": "5a49",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+16383,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 15,
+"entry": "Masks[15] = 4357",
+"poly": "f561",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+32767,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 16,
+"entry": "Masks[16] = 8679",
+"poly": "19e61",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+65535,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 17,
+"entry": "Masks[17] = 1030e",
+"poly": "2e181",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+131071,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 18,
+"entry": "Masks[18] = 206cd",
+"poly": "6cd81",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+262143,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 19,
+"entry": "Masks[19] = 403fe",
+"poly": "bfe01",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+524287,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 20,
+"entry": "Masks[20] = 807b8",
+"poly": "11de01",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+1048575,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 21,
+"entry": "Masks[21] = 1004b2",
+"poly": "29a401",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 22,
+"entry": "Masks[22] = 2006a8",
+"poly": "455801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 23,
+"entry": "Masks[23] = 4004b2",
+"poly": "a69001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 24,
+"entry": "Masks[24] = 800b87",
+"poly": "1e1d001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 25,
+"entry": "Masks[25] = 10004f3",
+"poly": "39e4001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 26,
+"entry": "Masks[26] = 200072d",
+"poly": "6d38001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 27,
+"entry": "Masks[27] = 40006ae",
+"poly": "bab0001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 28,
+"entry": "Masks[28] = 80009e3",
+"poly": "1c790001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 29,
+"entry": "Masks[29] = 10000583",
+"poly": "38340001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 30,
+"entry": "Masks[30] = 20000c92",
+"poly": "524c0001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 31,
+"entry": "Masks[31] = 400005b6",
+"poly": "b6d00001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 32,
+"entry": "Masks[32] = 80000ea6",
+"poly": "165700001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 33,
+"entry": "Masks[33] = 1000007a3",
+"poly": "38bc00001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 34,
+"entry": "Masks[34] = 200000abf",
+"poly": "7f5400001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 35,
+"entry": "Masks[35] = 400000842",
+"poly": "a10800001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 36,
+"entry": "Masks[36] = 80000123e",
+"poly": "17c4800001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 37,
+"entry": "Masks[37] = 100000074e",
+"poly": "2e5c000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 38,
+"entry": "Masks[38] = 2000000ae9",
+"poly": "65d4000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 39,
+"entry": "Masks[39] = 400000086a",
+"poly": "ab08000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 40,
+"entry": "Masks[40] = 8000001213",
+"poly": "1c848000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 41,
+"entry": "Masks[41] = 1000000077e",
+"poly": "2fdc0000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 42,
+"entry": "Masks[42] = 2000000123b",
+"poly": "77120000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 43,
+"entry": "Masks[43] = 40000000877",
+"poly": "f7080000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 44,
+"entry": "Masks[44] = 8000000108d",
+"poly": "1b1080000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 45,
+"entry": "Masks[45] = 100000000ae9",
+"poly": "32ea00000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 46,
+"entry": "Masks[46] = 200000000e9f",
+"poly": "7e5c00000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 47,
+"entry": "Masks[47] = 4000000008a6",
+"poly": "b28800000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 48,
+"entry": "Masks[48] = 80000000191e",
+"poly": "1789800000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 49,
+"entry": "Masks[49] = 100000000090e",
+"poly": "2e12000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 50,
+"entry": "Masks[50] = 2000000000fb3",
+"poly": "737c000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 51,
+"entry": "Masks[51] = 4000000000d7d",
+"poly": "df58000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 52,
+"entry": "Masks[52] = 80000000016a5",
+"poly": "1a568000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 53,
+"entry": "Masks[53] = 10000000000b4b",
+"poly": "3a5a0000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 54,
+"entry": "Masks[54] = 200000000010af",
+"poly": "7d420000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 55,
+"entry": "Masks[55] = 40000000000dde",
+"poly": "bdd80000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 56,
+"entry": "Masks[56] = 8000000000181a",
+"poly": "158180000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 57,
+"entry": "Masks[57] = 100000000000b65",
+"poly": "34da00000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 58,
+"entry": "Masks[58] = 20000000000102d",
+"poly": "6d0200000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 59,
+"entry": "Masks[59] = 400000000000cd5",
+"poly": "d59800000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 60,
+"entry": "Masks[60] = 8000000000024c1",
+"poly": "1832400000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 61,
+"entry": "Masks[61] = 1000000000000ef6",
+"poly": "2dee000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 62,
+"entry": "Masks[62] = 2000000000001363",
+"poly": "71b2000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 63,
+"entry": "Masks[63] = 4000000000000fcd",
+"poly": "d9f8000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "gal_right",
+"width": 64,
+"entry": "Masks[64] = 80000000000019e2",
+"poly": "14798000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "common_cells",
+"rule": "fib_xnor_taps",
+"width": 8,
+"entry": "cc_lfsr_8bit.sv taps [7, 3, 2, 1]",
+"poly": "171",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+255,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "common_cells",
+"rule": "fib_xnor_taps",
+"width": 16,
+"entry": "cc_lfsr_16bit.sv taps [15, 12, 5, 1]",
+"poly": "14409",
+"closed_form_matches": true,
+"verdict": "reducible",
+"detail": "",
+"brute": {
+"cycles": [
+[
+64897,
+1
+],
+[
+511,
+1
+],
+[
+127,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": false,
+"agrees": true
+}
+}
+]

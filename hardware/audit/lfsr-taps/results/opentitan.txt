@@ -1,0 +1,1 @@
+opentitan: 332 entries; primitive 332; brute force agreed on 36 of 36 entries up to width 20; closed form matched 332 of 332; 3 s

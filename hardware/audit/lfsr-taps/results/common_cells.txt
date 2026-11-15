@@ -1,0 +1,1 @@
+common_cells: 63 entries; primitive 62, reducible 1; brute force agreed on 19 of 19 entries up to width 20; closed form matched 63 of 63; 1 s
