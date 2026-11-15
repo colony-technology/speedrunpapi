@@ -1,0 +1,186 @@
+{
+ "scales": {
+  "activation_fraction_bits": 16,
+  "weight_fraction_bits": 16,
+  "rope_fraction_bits": 20,
+  "clamps_real": {
+   "residual": 65536,
+   "attention input": 4096,
+   "q": 128,
+   "k": 128,
+   "v": 4096,
+   "o input": 4096,
+   "mlp input": 2048,
+   "gate": 4096,
+   "up": 4096,
+   "down input": 8192,
+   "logits input": 16384
+  },
+  "norm_bits": 26
+ },
+ "limit": "2^53 = 9007199254740992",
+ "weight_products": [
+  {
+   "site": "down input",
+   "clamp_int": 536870912,
+   "inputs_per_product": 256,
+   "max_row_sum_abs_int": 9976648,
+   "matrix": "down_proj",
+   "bound": 5356172110462976,
+   "log2": 52.25
+  },
+  {
+   "site": "mlp input",
+   "clamp_int": 134217728,
+   "inputs_per_product": 576,
+   "max_row_sum_abs_int": 28063545,
+   "matrix": "gate_proj",
+   "bound": 3766625249525760,
+   "log2": 51.742
+  },
+  {
+   "site": "mlp input",
+   "clamp_int": 134217728,
+   "inputs_per_product": 576,
+   "max_row_sum_abs_int": 64996192,
+   "matrix": "up_proj",
+   "bound": 8723641218891776,
+   "log2": 52.954
+  },
+  {
+   "site": "attention input",
+   "clamp_int": 268435456,
+   "inputs_per_product": 576,
+   "max_row_sum_abs_int": 27338729,
+   "matrix": "k_proj",
+   "bound": 7338684185575424,
+   "log2": 52.704
+  },
+  {
+   "site": "o input",
+   "clamp_int": 268435456,
+   "inputs_per_product": 576,
+   "max_row_sum_abs_int": 30420307,
+   "matrix": "o_proj",
+   "bound": 8165888981204992,
+   "log2": 52.859
+  },
+  {
+   "site": "attention input",
+   "clamp_int": 268435456,
+   "inputs_per_product": 576,
+   "max_row_sum_abs_int": 24783561,
+   "matrix": "q_proj",
+   "bound": 6652786498338816,
+   "log2": 52.563
+  },
+  {
+   "site": "attention input",
+   "clamp_int": 268435456,
+   "inputs_per_product": 576,
+   "max_row_sum_abs_int": 10513790,
+   "matrix": "v_proj",
+   "bound": 2822274012938240,
+   "log2": 51.326
+  },
+  {
+   "site": "logits input",
+   "clamp_int": 1073741824,
+   "max_row_sum_abs_int": 7799976,
+   "matrix": "lm_head (tied embedding)",
+   "bound": 8375160457396224,
+   "log2": 52.895
+  }
+ ],
+ "activation_products": [
+  {
+   "product": "scores q.k",
+   "bound": "64 C_q C_k",
+   "value": 4503599627370496,
+   "log2": 52.0
+  },
+  {
+   "product": "context p.v",
+   "bound": "2^16 C_v",
+   "value": 17592186044416,
+   "log2": 44.0
+  }
+ ],
+ "int64": [
+  {
+   "operation": "linear: product (below 2^53) plus rounding constant",
+   "largest_magnitude": 8723641218924544,
+   "log2": 52.954
+  },
+  {
+   "operation": "linear, chunked: the chunks added in int64, plus rounding constant",
+   "largest_magnitude": 29946558002790400,
+   "log2": 54.733
+  },
+  {
+   "operation": "residual: clamp plus one linear output",
+   "largest_magnitude": 461243179008,
+   "log2": 38.747
+  },
+  {
+   "operation": "rms: sum of (x >> s)^2 over 576, s chosen so max |x >> s| < 2^26 (isqrt input, below 2^62)",
+   "largest_magnitude": 2594073385365405696,
+   "log2": 61.17
+  },
+  {
+   "operation": "rms: x * 2^16 (s = 0, x within the residual clamp)",
+   "largest_magnitude": 281474976710656,
+   "log2": 48.0
+  },
+  {
+   "operation": "rms: y * norm weight (|y| <= 25 * 2^16, asserted at run time: no coordinate exceeds sqrt(576) times the root mean square)",
+   "largest_magnitude": 359032422400,
+   "log2": 38.385
+  },
+  {
+   "operation": "rms: max |x| below 2^42, so the shift is at most 16 (asserted at run time)",
+   "largest_magnitude": 4294967296,
+   "log2": 32.0
+  },
+  {
+   "operation": "rope: q or k (a linear output) times cos, two terms",
+   "largest_magnitude": 958289856088244224,
+   "log2": 59.733
+  },
+  {
+   "operation": "scores: max minus score",
+   "largest_magnitude": 9007199254740992,
+   "log2": 53.0
+  },
+  {
+   "operation": "exp interpolation: E * 256",
+   "largest_magnitude": 4294967296,
+   "log2": 32.0
+  },
+  {
+   "operation": "softmax: e * 2^16",
+   "largest_magnitude": 1099511627776,
+   "log2": 40.0
+  },
+  {
+   "operation": "silu interpolation: S * 256",
+   "largest_magnitude": 268435456,
+   "log2": 28.0
+  },
+  {
+   "operation": "gate times up: silu(g) u, both clamped",
+   "largest_magnitude": 72057594037927936,
+   "log2": 56.0
+  },
+  {
+   "operation": "logits: product (below 2^53) plus rounding constant",
+   "largest_magnitude": 8375160457428992,
+   "log2": 52.895
+  }
+ ],
+ "largest_weight_product_bound_log2": 52.954,
+ "brackets": {
+  "isqrt": "s^2 <= n < (s + 1)^2 asserted on every call (RMS norm)",
+  "floor division": "q d <= n < (q + 1) d asserted on every call (RMS mean, normalised value, softmax probabilities)"
+ }
+}

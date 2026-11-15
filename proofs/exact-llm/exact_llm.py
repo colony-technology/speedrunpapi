@@ -422,7 +422,7 @@ def int_weights(wb=None):
 
 
 class Exact:
-    def __init__(self, W=None, keep_f64=True):
+    def __init__(self, W=None, keep_f64=False):
         self.W = W if W is not None else int_weights()
         self.E = self.W["model.embed_tokens.weight"]                          # [V, 576] at 2^-WB
         self.Et = load_table("exp.txt")
@@ -661,7 +661,7 @@ def main(argv):
     if len(argv) > 1 and argv[1] == "hash":
         name, batch, threads = arg("--engine", "exact"), int(arg("--batch", "8")), int(arg("--threads", "0"))
         save = arg("--save", None)
-        eng = Exact(keep_f64=False) if name == "exact" and "--lean" in argv else engine(name, threads)
+        eng = Exact(keep_f64=True) if name == "exact" and "--keep" in argv else engine(name, threads)
         hl, hc, cont, kept = prompt_run(eng, batch, keep=save is not None)
         print("%s %s %s batch=%d" % (hl, hc, name, batch))
         if save:
