@@ -9,6 +9,8 @@ The CRC-32 block `colony_crc32_d64` of [`../crc32/`](../crc32/) (IEEE 802.3 / AR
 | duplicate and compare | 323 | 7 | detects a fault in one copy |
 | triple modular redundancy | 507 | 7 | corrects a fault in one copy |
 
+The same for the 8- and 32-bit blocks of `../crc32/`: `colony_crc32_d8` 41 LUT-6, with detector 56, duplicate and compare 103; `colony_crc32_d32` 100, with detector 114, duplicate and compare 221. Two check bits each.
+
 ## Contents
 
 | Path | What |
@@ -60,6 +62,8 @@ python3 tools/run_all.py --bin "$BIN" --work ../../../../work-selfcheck --sat
 | fault injection, 4,096 inputs | 7,981 faults, each changes `o`; 0 escapes; 0 false alarms |
 | check bit removed | 58 nets escape for each bit; checker, simulation and SAT list the same nets |
 | cost | 151, 173, 323, 507 LUT-6 (table above) |
+| d8 | checker accepted; SAT 1,315 of 1,315; injection 839 faults, 0 escapes; check bit removed: 12 and 26 nets, same in all three methods |
+| d32 | checker accepted; SAT 6,439 of 6,439; injection 4,788 faults, 0 escapes; check bit removed: 29 and 47 nets, same in all three methods |
 
 Tool versions, as printed (`results/tools.txt`):
 

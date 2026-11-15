@@ -1,0 +1,1 @@
+{"data": 8, "k": 6, "kind": "crc", "levels": 2, "lut_count": 41, "netlist_digest": "sha256:a718cdc8c81a21972483b1a6627f0131fdd813970291d2c80c315f2958b3899a", "poly": 79764919, "schema": "colony.lut-linear.v1", "width": 32}

@@ -1,0 +1,8 @@
+$ python3 -I sim/sim_faults.py --name colony_crc32_d8 --n 4096 --drop 0
+samples 4096, seed 1, healthy alarms 0, check bit 0 dropped
+inv   faults    41  changed o    41  samples with o changed    167936  of those with alarm 0: 49152
+s0    faults    41  changed o    41  samples with o changed     83922  of those with alarm 0: 24640
+s1    faults    41  changed o    41  samples with o changed     84014  of those with alarm 0: 24512
+faults that never changed o on these samples: 0
+ESCAPES 36: b_n2 inv b_n2 s0 b_n2 s1 b_n12 inv b_n12 s0 b_n12 s1 b_n15 inv b_n15 s0 b_n15 s1 b_n16 inv b_n16 s0 b_n16 s1 b_n19 inv b_n19 s0 b_n19 s1 b_n20 inv b_n20 s0 b_n20 s1 b_n23 inv b_n23 s0 b_n23 s1 b_n24 inv b_n24 s0 b_n24 s1 b_n30 inv b_n30 s0 b_n30 s1 b_n36 inv b_n36 s0 b_n36 s1 b_n37 inv b_n37 s0 b_n37 s1 b_n38 inv b_n38 s0 b_n38 s1
+exit 0

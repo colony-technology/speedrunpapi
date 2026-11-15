@@ -1,0 +1,5 @@
+$ python3 -I tools/fault_vectors.py --blif proof/colony_crc32_d32.blif --out $WORK/d32_faults.json --solver $BIN/z3 --work $WORK/fv_d32 --rmax 4
+r=1: no solution (Gaussian elimination)
+r=2: sat H=4eaea752,bb555efd
+nets 100, distinct nonzero e_w 66, zero e_w 0, weights [1, 2, 3, 4, 5, 6, 7, 8, 9, 12]
+exit 0

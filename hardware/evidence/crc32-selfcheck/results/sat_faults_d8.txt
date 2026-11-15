@@ -1,0 +1,18 @@
+$ python3 -I proof/sat_faults.py --name colony_crc32_d8 --yosys $BIN/yosys --work $WORK/sat_d8 --pins --init --batch 200
+progress 200 / 1315
+progress 400 / 1315
+progress 600 / 1315
+progress 800 / 1315
+progress 1000 / 1315
+progress 1200 / 1315
+progress 1315 / 1315
+free     PROVED 41
+init     PROVED 716
+inv      PROVED 41
+pin inv  PROVED 145
+pin s0   PROVED 145
+pin s1   PROVED 145
+s0       PROVED 41
+s1       PROVED 41
+FAULTS 1315  PROVED 1315  NOT PROVED 0
+exit 0

@@ -18,6 +18,13 @@ H, bit i of each row selecting `o[i]`: row 0 `32'h9f8b6d47`, row 1 `32'he0f4bafa
 
 Inside: the block, the detector, the alarm wire. Outside: what the system does on an alarm, the register and clock, and any test of the alarm path.
 
+The same construction for the 8- and 32-bit blocks, each unchanged; everything below holds for each with its own H and numbers:
+
+| Top | Block | Predictor | Checker | Alarm | Total | Levels | H rows |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `colony_crc32_d8_sc` | `colony_crc32_d8`, 41 | 7 | 7 | 1 | 56 | 5 | `32'h3821cee9`, `32'hc7df3336` |
+| `colony_crc32_d32_sc` | `colony_crc32_d32`, 100 | 6 | 7 | 1 | 114 | 6 | `32'h66aee762`, `32'h9b551ffd` |
+
 ## Requirements
 
 | Id | Requirement |
@@ -58,6 +65,13 @@ Outside the requirements:
 | block + detector | 173 | 1.15 | 6 | detects every listed single fault (this package) |
 | duplicate and compare | 323 | 2.14 | 7 | detects a fault in one copy |
 | triple modular redundancy | 507 | 3.36 | 7 | corrects a fault in one copy |
+
+**The 8- and 32-bit blocks**, same methods, recorded run (`results/*_d8.txt`, `results/*_d32.txt`):
+
+| Block | Nets | Distinct e_w | Smallest r | Proof 1 | SAT faults proven | Injection, 4,096 inputs | One check bit removed | LUT-6: block, + detector, duplicate and compare, TMR |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| d8 | 41 | 41 | 2 (r = 1 none) | accepted | 1,315 of 1,315 | 839 faults, 0 escapes | 12 and 26 nets escape, same in all three methods | 41, 56, 103, 177 |
+| d32 | 100 | 66 | 2 (r = 1 none) | accepted | 6,439 of 6,439 | 4,788 faults, 0 escapes | 29 and 47 nets escape, same in all three methods | 100, 114, 221, 354 |
 
 ## What the applicant can and cannot claim from this package
 
