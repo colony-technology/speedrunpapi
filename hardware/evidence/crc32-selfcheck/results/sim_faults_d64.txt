@@ -1,0 +1,8 @@
+$ python3 -I sim/sim_faults.py --name colony_crc32_d64 --n 4096 --init
+samples 4096, seed 1, healthy alarms 0
+inv   faults   151  changed o   151  samples with o changed    618496  of those with alarm 0: 0
+s0    faults   151  changed o   151  samples with o changed    309035  of those with alarm 0: 0
+s1    faults   151  changed o   151  samples with o changed    309461  of those with alarm 0: 0
+init  faults  7528  changed o  7528  samples with o changed    618496  of those with alarm 0: 0
+faults that never changed o on these samples: 0
+exit 0

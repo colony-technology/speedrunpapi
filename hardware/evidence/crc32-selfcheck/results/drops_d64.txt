@@ -1,0 +1,4 @@
+$ python3 -I tools/compare_drops.py --name colony_crc32_d64 --results results
+check bit 0 removed: checker 58  sim 58  sat 58  equal
+check bit 1 removed: checker 58  sim 58  sat 58  equal
+exit 0

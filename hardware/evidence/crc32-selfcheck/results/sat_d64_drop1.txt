@@ -1,0 +1,8 @@
+$ python3 -I proof/sat_faults.py --name colony_crc32_d64 --yosys $BIN/yosys --work $WORK/satd_d64_1 --drop 1
+progress 40 / 151
+progress 80 / 151
+progress 120 / 151
+progress 151 / 151
+inv      ESCAPES 58  PROVED 93
+check bit 1 dropped: 58 of 151 inverted-net faults escape: b_n1 b_n3 b_n8 b_n9 b_n12 b_n14 b_n15 b_n16 b_n25 b_n28 b_n29 b_n30 b_n33 b_n34 b_n38 b_n41 b_n45 b_n48 b_n52 b_n56 b_n67 b_n68 b_n69 b_n70 b_n71 b_n72 b_n75 b_n76 b_n77 b_n82 b_n83 b_n84 b_n85 b_n91 b_n92 b_n93 b_n94 b_n101 b_n102 b_n103 b_n110 b_n111 b_n112 b_n116 b_n117 b_n118 b_n119 b_n120 b_n121 b_n122 b_n123 b_n141 b_n142 b_n143 b_n144 b_n145 b_n146 b_n147
+exit 0
