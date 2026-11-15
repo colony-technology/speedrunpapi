@@ -3,7 +3,7 @@
 An unsigned N by N multiplier in 6-input lookup tables, for N = 8, 16, 32 and 64. Beside it is a detector that raises `alarm` when one table of the multiplier is wrong and the product is wrong with it.
 - The detector compares (a mod m)(b mod m) mod m with p mod m, the remainders of `a` and `b` taken from the pins.
 - It also watches the one wire the multiplier leaves above its top column.
-- For m = 3 it is 136 lookup tables at N = 64, against 6,299 for the multiplier. A second multiplier and a comparison would cost 6,384.
+- For m = 3 it is 136 tables at N = 64 as built (133 LUTs through Yosys), against 6,299 for the multiplier. A second multiplier and a comparison would cost 6,384.
 
 The folder holds a proof of each netlist over all inputs with the independent checker that accepts it, SAT at N = 8, fault simulation at every N, and three negative controls. `evidence.md` is the summary in DO-254 / ISO 26262 terms.
 

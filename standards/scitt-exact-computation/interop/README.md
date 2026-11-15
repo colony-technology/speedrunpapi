@@ -48,6 +48,6 @@ Expected results:
 
 Signature alteration; source-digest mismatch; evidence-digest mismatch; malformed COSE tagging; false transition identity; altered affine cross-term; two distinct outputs; forged witness counterexample; falsely claimed unique witnesses. Both readers also require deterministic CBOR, the protected issuer/key, checker implementation digest, and complete versioned claim map.
 
-The independent check covers each declared finite domain. It does not imply arbitrary Circom/R1CS/BitVM/zkVM source verification by this reference suite. The existing JSON certificate API is a separate signing format.
+The independent check covers each declared finite domain. It does not imply verification of arbitrary Circom or R1CS sources, or of other source formats, by this reference suite. The existing JSON certificate API is a separate signing format.
 
 [Manifest](vectors/manifest.json) · [Node issuer](node/generate.mjs) · [Node verifier](node/verify.mjs) · [Python verifier](python/verify.py) · [Python round-trip](python/roundtrip.py) · [Signed-false-claim cases](python/negative_predicates.py)

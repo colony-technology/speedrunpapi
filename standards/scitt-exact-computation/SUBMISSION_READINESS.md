@@ -5,7 +5,7 @@
 - Draft name: `draft-lmtlssss-exact-state-contraction-00` ([Datatracker](https://datatracker.ietf.org/doc/draft-lmtlssss-exact-state-contraction/)).
 - Source: [RFCXML v3](https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.xml).
 - Rendered copy: [plain text](https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.txt) · [HTML](https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.html).
-- The earlier package `draft-lmtlssss-scitt-exact-computation-00` in this directory was not submitted; its profile is contained in the submitted draft.
+- The earlier package `draft-lmtlssss-scitt-exact-computation-00`, in [`superseded/`](superseded/), was not submitted; its profile is contained in the submitted draft.
 - Technical profile: [SCITT Exact Computation Claim Profile](SCITT_EXACT_COMPUTATION_PROFILE.md).
 - Interoperability evidence: [four finite-domain predicates with Node and Python verification](interop/).
 - Revision: `-00`; Informational, individual submission; no area or working group.

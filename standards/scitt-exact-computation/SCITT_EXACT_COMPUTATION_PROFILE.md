@@ -101,7 +101,7 @@ An issuer key can be compromised. A verifier can contain a bug. A claim can omit
 
 ## 8. Standards path
 
-The individual Internet-Draft source is `draft-lmtlssss-scitt-exact-computation-00.xml`. Its intended entry point is IETF Datatracker. On 8 November 2026, the IETF draft submission portal is closed for the IETF meeting interval and says it will reopen after 14 November (Pacific meeting time). Publication on GitHub is an open technical proposal. It is not a Datatracker submission.
+The posted Internet-Draft is [draft-lmtlssss-exact-state-contraction-00](https://datatracker.ietf.org/doc/draft-lmtlssss-exact-state-contraction/) (IETF Datatracker, 15 November 2026), an individual submission, Informational, with no IETF adoption status. It contains this profile. The earlier package `draft-lmtlssss-scitt-exact-computation-00`, kept in [`superseded/`](superseded/), was not submitted and is superseded by it.
 
 ## References
 

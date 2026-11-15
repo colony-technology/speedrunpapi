@@ -33,4 +33,4 @@ jobs:
           python ../python/negative_predicates.py
           npm run verify
       - name: Render IETF RFCXML v3
-        run: xml2rfc --text standards/scitt-exact-computation/draft-lmtlssss-scitt-exact-computation-00.xml --out /tmp/scitt-exact-computation.txt
+        run: xml2rfc --text standards/scitt-exact-computation/superseded/draft-lmtlssss-scitt-exact-computation-00.xml --out /tmp/scitt-exact-computation.txt
