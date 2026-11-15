@@ -1,0 +1,9 @@
+$ python3 -I proof/mutate_secded.py 72_64
+original accepted: True
+enc: 31 LUT mutants, 31 rejected, 0 accepted and equal to the original, 0 accepted and different
+syn: 35 LUT mutants, 35 rejected, 0 accepted and equal to the original, 0 accepted and different
+cor: 85 LUT mutants, 85 rejected, 0 accepted and equal to the original, 0 accepted and different
+matrix with column 0 replaced by even weight: rejected
+matrix with column 0 replaced by copy of column 1: rejected
+matrix with column 0 replaced by zero: rejected
+exit 0

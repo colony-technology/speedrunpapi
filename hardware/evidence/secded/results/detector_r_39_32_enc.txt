@@ -1,0 +1,3 @@
+$ python3 -I tools/detector_r.py --blif proof/colony_secded39_enc.blif --out $WORK/39_32_enc_detector_r.json --rmax 2 --solver $BIN/z3
+r=1: no H among all 128; r=2: H found, fewest ones 34 | nets 17, distinct e_w 11, zero e_w 0
+exit 0

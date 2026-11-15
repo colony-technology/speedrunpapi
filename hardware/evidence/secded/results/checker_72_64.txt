@@ -1,0 +1,13 @@
+$ python3 -I proof/independent_secded_checker.py --source source/prim_secded_72_64_dec.sv --enc proof/colony_secded72_enc.blif --syn proof/colony_secded72_syn.blif --cor proof/colony_secded72_cor.blif
+{
+ "code": "(72, 64)",
+ "M": true,
+ "E": true,
+ "S": true,
+ "K": true,
+ "ok": true,
+ "C1": "s = H [d; P d] = P d + P d = 0 (S, E, M: H = [P | I]); K at s = 0: q = r, both flags 0",
+ "C2": "one bit j flipped: s = H(x + e_j) = 0 + column j (S, linearity); K at s = column j (odd weight, M): q[j] flipped back if j < k, corrected = 1, uncorrectable = 0; no other q[i] flips since columns are distinct (M)",
+ "C3": "bits i != j flipped: s = column i + column j: non-zero (distinct, M), even weight (two odd weights, M), so not a column (all odd, M): no q flips, and K gives uncorrectable = 1, corrected = 0"
+}
+exit 0

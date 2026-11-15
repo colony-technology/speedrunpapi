@@ -1,0 +1,11 @@
+$ python3 -I tools/matrix.py --source source/prim_secded_72_64_dec.sv --out $WORK/H_72_64.json
+(72, 64), 8 check bits
+nonzero                        True
+distinct                       True
+odd_weight                     True
+check_columns_unit             True
+data_column_weights            {'3': 56, '5': 8}
+row_weights                    [27, 27, 27, 27, 27, 27, 27, 27]
+total_weight                   216
+decoder_table_matches_columns  True
+exit 0

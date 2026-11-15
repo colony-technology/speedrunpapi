@@ -1,0 +1,1 @@
+{"inputs": 39, "k": 6, "kind": "matrix", "levels": 2, "lut_count": 19, "netlist_digest": "sha256:3b5419884e68bb8804c2fe89bf71a991d0527953af142e934c7a1851ac947d5c", "rows": ["12606bd25", "2deba8050", "4413d89aa", "831234ed1", "10c2c1323b", "202dcc624c", "4098505586"], "schema": "colony.lut-linear.v1"}

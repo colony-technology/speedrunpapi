@@ -1,0 +1,8 @@
+$ python3 -I proof/sat_secded.py --code 39_32 --yosys $BIN/yosys --work $WORK/sat_39_32_v --form v --split-c3
+C1              v     PROVED
+C1-control-c0s0 v     COUNTEREXAMPLE
+C1-control-cTs1 v     COUNTEREXAMPLE
+C2              v     PROVED
+C3-control      v     COUNTEREXAMPLE
+C3              v     PROVED 38 (38 miters: p1 = 0..37 fixed, p2 free, p1 < p2 < 39; every pair once)
+exit 0
