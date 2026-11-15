@@ -51,6 +51,18 @@ The i8 route first used `a >> 8` as int8 with `a & 255` as uint8. A uint8 · int
 
 The continuations are the exact model's and float32's. `python exact_llm.py check` runs the three routes against `expected-16.sha256`; exit 1 if any route differs. Full hashes: `record/exact16-m1.txt`.
 
+| seven machines, 64 prompts, batch 8 | Python | NumPy | onnxruntime | f64 | f32 | i8 |
+| --- | --- | --- | --- | --- | --- | --- |
+| ubuntu-latest, Linux x86-64 | 3.12.16 | 2.5.4 | 1.32.0 | 88 s | 177 s | 134 s |
+| ubuntu-24.04-arm, Linux AArch64 | 3.12.16 | 2.5.4 | 1.32.0 | 76 s | 167 s | 127 s |
+| macos-latest, macOS arm64 | 3.12.10 | 2.5.4 | 1.32.0 | 112 s | 295 s | 136 s |
+| macos-15-intel, macOS x86-64 | 3.12.10 | 2.5.4 | 1.23.2 | 252 s | 545 s | 290 s |
+| windows-latest, Windows x86-64 | 3.12.10 | 2.5.4 | 1.32.0 | 168 s | 631 s | 328 s |
+| windows-11-arm, Windows ARM64 | 3.12.10 | 2.5.4 | 1.32.0 | 117 s | 311 s | 170 s |
+| Apple M1, macOS arm64 (Accelerate) | 3.11.18 | 2.4.6 | 1.32.0 | 80 s | 248 s | 206 s |
+
+Every cell printed logits `b0cc875f…0b4460` and continuations `a800ebad…7613cc`, MATCH, 0 clamped: 21 runs on seven machines, one pair, across Python 3.11.18 to 3.12.16, NumPy 2.4.6 and 2.5.4 and onnxruntime 1.23.2 and 1.32.0. Seconds are the hash run of each route. Rows 1 to 6: GitHub Actions run [43736296963](https://github.com/lmtlssss/speedrunpapi/actions/runs/43736296963) at `fdeb23b`, where the exact model also printed its pair (`30ed613b…cee773`) on every runner; every printed line: `record/exact16-machines.txt`.
+
 | exact-16, in the order `Exact16` computes | |
 | --- | --- |
 | weights | `w16 = rint(w · 2^g)` from the bfloat16 values, `g` per output row the largest with every entry within ±(2^15 − 1) (the tied embedding: one `g` per token); int16 `.npy`, memory-mapped; `int16_weights` |
@@ -70,7 +82,7 @@ The continuations are the exact model's and float32's. `python exact_llm.py chec
 | scores q·k | 64 | 2^36.000 | 64, 2^20.000 | 2^21.989 |
 | context p·vh, p·vl | 512 keys at most | 2^39.000 | 512, 2^23.000 | 2^24.989 |
 
-Weight row scales `g`: q 12..19, k 12..18, v 13..17, o 12..17, gate 11..16, up 12..16, down 12..16, embedding 14..16. 17 int64 operations around the products, largest 2^59.733 (rotary): `bounds-16.json`.
+Weight row scales `g`: q 12..19, k 12..18, v 13..17, o 12..17, gate 11..16, up 12..16, down 12..16, embedding 14..16. 19 int64 operations around the products, largest 2^59.733 (rotary): `bounds-16.json`.
 
 ### The width, measured
 
@@ -237,7 +249,7 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | `bounds16.py`, `bounds-16.json` | the exact-16 bound, per route |
 | `routes_test.py` | the three routes against int64 products |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
-| `expected-16.sha256`, `record/exact16-m1.txt` | the two exact-16 hashes; every exact-16 line of the M1 |
+| `expected-16.sha256`, `record/exact16-m1.txt`, `record/exact16-machines.txt` | the two exact-16 hashes; every exact-16 line of the M1; every line of the six runners, run 43736296963 |
 | `make_tables.py`, `tables/` | the four tables |
 | `same_bits.py` | 1 and 4 threads × batch 1 and 8, any engine |
 | `long_run.py` | 256-token continuations |
