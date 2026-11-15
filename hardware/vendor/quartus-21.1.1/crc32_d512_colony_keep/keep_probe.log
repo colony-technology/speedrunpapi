@@ -1,0 +1,94 @@
+/opt/intelFPGA/quartus/adm/qenv.sh: line 83: warning: setlocale: LC_CTYPE: cannot change locale (en_US.UTF-8): No such file or directory
+Info: *******************************************************************
+Info: Running Quartus Prime Compiler Database Interface
+    Info: Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition
+    Info: Copyright (C) 2022  Intel Corporation. All rights reserved.
+    Info: Your use of Intel Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Intel Program License 
+    Info: Subscription Agreement, the Intel Quartus Prime License Agreement,
+    Info: the Intel FPGA IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Intel and sold by Intel or its authorized distributors.  Please
+    Info: refer to the applicable agreement for further details, at
+    Info: https://fpgasoftware.intel.com/eula.
+    Info: Processing started: Thu Nov 12 21:58:08 2026
+Info: Command: quartus_cdb -t keep_probe.tcl
+read_atom_netlist HELP
+0 
+get_atom_nodes HELP
+0 
+get_atom_node_info HELP
+0 
+get_names HELP
+0 Usage: get_names [-h] [-help] [-long_help] [-entity <wildcard>] -filter <wildcard> [-library <wildcard>] [-node_type <all|comb|reg|pin|input|output|bidir|hierarchy|mem|bus|qsf|state_machine>] [-observable_type <all|pre_synthesis|post_synthesis|post_fitter|post_asm|stp_pre_synthesis>]
+For more detailed help, type get_names -help
+---------------------------------------------------------------------------
+
+Usage: get_names [-h] [-help] [-long_help] [-entity <wildcard>] -filter <wildcard> [-library <wildcard>] [-node_type <all|comb|reg|pin|input|output|bidir|hierarchy|mem|bus|qsf|state_machine>] [-observable_type <all|pre_synthesis|post_synthesis|post_fitter|post_asm|stp_pre_synthesis>]
+
+        -h: Quick usage
+        -help: Short help
+        -long_help: Long help with examples and possible return values
+
+        -entity <wildcard>: Option to specify the entity to get names from hierarchies instantiated by the entity
+        -filter <wildcard>: Option to specify the node's full path name and/or wildcard character(s)
+        -library <wildcard>: Option to specify the containing library
+        -node_type <all|comb|reg|pin|input|output|bidir|hierarchy|mem|bus|qsf|state_machine>: Option to filter based on the specified node type.
+        -observable_type <all|pre_synthesis|post_synthesis|post_fitter|post_asm|stp_pre_synthesis>: Option to filter based on the specified observable type
+
+------------------------
+Tcl Package and Version:
+------------------------
+
+Belongs to ::quartus::project 6.0
+
+------------
+Description:
+------------
+
+Returns a filtered output collection of all matching
+node name IDs found in a compiled Quartus Prime project. 
+
+To access each element of the output collection, use the Tcl 
+command "foreach_in_collection". To see example usage, type 
+"get_names -long_help" or "foreach_in_collection -long_help".
+
+If the "-node_type" option is not specified, the default
+value is "all". Similarly, if the "-observable_type" option
+is not specified, the default value is "all".
+
+The node type "pin" includes "input", "output", and "bidir".
+The node type "qsf" include names from qsf settings file.
+The node type "all" includes all node types.
+ 
+The value for "-observable_type" option can be one of 
+the following:
+
+Observable Type      Description
+---------------      -----------------------------------
+all                  Use post-Fitter information. If it is
+                     not available, post-Synthesis
+                     information is used. Otherwise,
+                     pre-synthesis information is used if it
+                     exists.
+pre_synthesis        Use pre-synthesis information.
+post_synthesis       Use post-synthesis information.
+post_fitter          Use post-Fitter information.
+post_asm             Use post-Assembler information. The
+                     post-Assembler information is only supported
+                     for designs using the HardCopy II device family.
+stp_pre_synthesis    Use Signal Tap pre-synthesis information.
+
+---------------------------------------------------------------------------
+
+Info (23030): Evaluation of Tcl script keep_probe.tcl was successful
+Info: Quartus Prime Compiler Database Interface was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 570 megabytes
+    Info: Processing ended: Thu Nov 12 21:58:09 2026
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:00

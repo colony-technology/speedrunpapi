@@ -1,0 +1,12 @@
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CGXFC9E7F35C8
+set_global_assignment -name TOP_LEVEL_ENTITY registered_top
+set_global_assignment -name VERILOG_FILE registered_top.v
+set_global_assignment -name VERILOG_FILE div64_plain.v
+set_global_assignment -name SDC_FILE colony.sdc
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 1
+set_instance_assignment -name VIRTUAL_PIN ON -to "a[*]"
+set_instance_assignment -name VIRTUAL_PIN ON -to "b[*]"
+set_instance_assignment -name VIRTUAL_PIN ON -to "q[*]"
+set_instance_assignment -name VIRTUAL_PIN ON -to "r[*]"
+set_instance_assignment -name VIRTUAL_PIN ON -to clk

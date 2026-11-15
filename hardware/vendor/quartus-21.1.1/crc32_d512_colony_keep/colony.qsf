@@ -1,0 +1,13 @@
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CGXFC9E7F35C8
+set_global_assignment -name TOP_LEVEL_ENTITY registered_top
+set_global_assignment -name VERILOG_FILE registered_top.v
+set_global_assignment -name VERILOG_FILE crc32_d512_colony_keep.v
+set_global_assignment -name SDC_FILE colony.sdc
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 1
+set_instance_assignment -name VIRTUAL_PIN ON -to "s[*]"
+set_instance_assignment -name VIRTUAL_PIN ON -to "d[*]"
+set_instance_assignment -name VIRTUAL_PIN ON -to "o[*]"
+set_instance_assignment -name VIRTUAL_PIN ON -to clk
+
+set_global_assignment -name LAST_QUARTUS_VERSION "21.1.1 Lite Edition"

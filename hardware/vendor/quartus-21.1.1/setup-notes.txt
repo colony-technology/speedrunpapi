@@ -1,0 +1,16 @@
+Quartus Prime Lite 21.1.1 Build 850 Linux x86_64 setup and recovery
+2026-11-12
+Input archive assembled from quartus-part-aa.bin through quartus-part-ae.bin.
+SHA256 a9436d57280552bcdbeb41851b9eff59e416b297701c714bd63cae32149f4ca0
+Unpacked to /opt/intelFPGA/ ; Quartus binary path /opt/intelFPGA/quartus/bin.
+Quartus version check: Quartus Prime Shell Version 21.1.1 Build 850 06/23/2022 SJ Lite Edition, exit 0.
+First quartus_map failed with exact:
+  Internal Error: Sub-system: ATCL, File: /quartus/ccl/atcl/atcl_root.cpp, Line: 986
+  Error found while sourcing: /opt/intelFPGA/quartus/common/tcl/internal/init/._ddr_timing_model.pkg_info
+  invalid command name <binary AppleDouble data>
+Root cause: AppleDouble metadata files named ._* (from Mac tar archive), interpreted as Tcl package entries.
+Recovery: find /opt/intelFPGA -type f -name '._*' -delete (32837 metadata companion files removed). Source Verilog files unchanged.
+Subsequent quartus_map returned success.
+Linux base-layers.tar was not required; no base layers were extracted into the Linux host.
+Virtual pins: early broad wildcard '*' applied to internal kept nodes, producing irrelevant warnings. Updated QSF to restrict virtual pins to explicit top-level input/output bus wildcard names and clk. Successful mapping now reports two warnings (default timing and device notes) rather than thousands.
+All compute on one hosted Linux x86-64 machine.
