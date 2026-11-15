@@ -1,0 +1,4122 @@
+[
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 3,
+"entry": "LFSR_COEFFS[0] = 6",
+"poly": "b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+7,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 3,
+"entry": "LFSR_COEFFS[0] = 6",
+"poly": "b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+7,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 4,
+"entry": "LFSR_COEFFS[1] = c",
+"poly": "13",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+15,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 4,
+"entry": "LFSR_COEFFS[1] = c",
+"poly": "13",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+15,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 5,
+"entry": "LFSR_COEFFS[2] = 14",
+"poly": "25",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+31,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 5,
+"entry": "LFSR_COEFFS[2] = 14",
+"poly": "25",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+31,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 6,
+"entry": "LFSR_COEFFS[3] = 30",
+"poly": "43",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+63,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 6,
+"entry": "LFSR_COEFFS[3] = 30",
+"poly": "43",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+63,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 7,
+"entry": "LFSR_COEFFS[4] = 60",
+"poly": "83",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+127,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 7,
+"entry": "LFSR_COEFFS[4] = 60",
+"poly": "83",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+127,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 8,
+"entry": "LFSR_COEFFS[5] = b8",
+"poly": "11d",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+255,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 8,
+"entry": "LFSR_COEFFS[5] = b8",
+"poly": "11d",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+255,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 9,
+"entry": "LFSR_COEFFS[6] = 110",
+"poly": "211",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+511,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 9,
+"entry": "LFSR_COEFFS[6] = 110",
+"poly": "211",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+511,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 10,
+"entry": "LFSR_COEFFS[7] = 240",
+"poly": "409",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+1023,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 10,
+"entry": "LFSR_COEFFS[7] = 240",
+"poly": "409",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+1023,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 11,
+"entry": "LFSR_COEFFS[8] = 500",
+"poly": "805",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+2047,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 11,
+"entry": "LFSR_COEFFS[8] = 500",
+"poly": "805",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+2047,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 12,
+"entry": "LFSR_COEFFS[9] = 829",
+"poly": "1941",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+4095,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 12,
+"entry": "LFSR_COEFFS[9] = 829",
+"poly": "1941",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+4095,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 13,
+"entry": "LFSR_COEFFS[10] = 100d",
+"poly": "3601",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+8191,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 13,
+"entry": "LFSR_COEFFS[10] = 100d",
+"poly": "3601",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+8191,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 14,
+"entry": "LFSR_COEFFS[11] = 2015",
+"poly": "6a01",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+16383,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 14,
+"entry": "LFSR_COEFFS[11] = 2015",
+"poly": "6a01",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+16383,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 15,
+"entry": "LFSR_COEFFS[12] = 6000",
+"poly": "8003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+32767,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 15,
+"entry": "LFSR_COEFFS[12] = 6000",
+"poly": "8003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+32767,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 16,
+"entry": "LFSR_COEFFS[13] = d008",
+"poly": "1100b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+65535,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 16,
+"entry": "LFSR_COEFFS[13] = d008",
+"poly": "1100b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+65535,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 17,
+"entry": "LFSR_COEFFS[14] = 12000",
+"poly": "20009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+131071,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 17,
+"entry": "LFSR_COEFFS[14] = 12000",
+"poly": "20009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+131071,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 18,
+"entry": "LFSR_COEFFS[15] = 20400",
+"poly": "40081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+262143,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 18,
+"entry": "LFSR_COEFFS[15] = 20400",
+"poly": "40081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+262143,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 19,
+"entry": "LFSR_COEFFS[16] = 40023",
+"poly": "e2001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+524287,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 19,
+"entry": "LFSR_COEFFS[16] = 40023",
+"poly": "e2001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+524287,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 20,
+"entry": "LFSR_COEFFS[17] = 90000",
+"poly": "100009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+1048575,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 20,
+"entry": "LFSR_COEFFS[17] = 90000",
+"poly": "100009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": {
+"cycles": [
+[
+1048575,
+1
+],
+[
+1,
+1
+]
+],
+"maximal": true,
+"agrees": true
+}
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 21,
+"entry": "LFSR_COEFFS[18] = 140000",
+"poly": "200005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 21,
+"entry": "LFSR_COEFFS[18] = 140000",
+"poly": "200005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 22,
+"entry": "LFSR_COEFFS[19] = 300000",
+"poly": "400003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 22,
+"entry": "LFSR_COEFFS[19] = 300000",
+"poly": "400003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 23,
+"entry": "LFSR_COEFFS[20] = 420000",
+"poly": "800021",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 23,
+"entry": "LFSR_COEFFS[20] = 420000",
+"poly": "800021",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 24,
+"entry": "LFSR_COEFFS[21] = e10000",
+"poly": "1000087",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 24,
+"entry": "LFSR_COEFFS[21] = e10000",
+"poly": "1000087",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 25,
+"entry": "LFSR_COEFFS[22] = 1200000",
+"poly": "2000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 25,
+"entry": "LFSR_COEFFS[22] = 1200000",
+"poly": "2000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 26,
+"entry": "LFSR_COEFFS[23] = 2000023",
+"poly": "7100001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 26,
+"entry": "LFSR_COEFFS[23] = 2000023",
+"poly": "7100001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 27,
+"entry": "LFSR_COEFFS[24] = 4000013",
+"poly": "e400001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 27,
+"entry": "LFSR_COEFFS[24] = 4000013",
+"poly": "e400001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 28,
+"entry": "LFSR_COEFFS[25] = 9000000",
+"poly": "10000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 28,
+"entry": "LFSR_COEFFS[25] = 9000000",
+"poly": "10000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 29,
+"entry": "LFSR_COEFFS[26] = 14000000",
+"poly": "20000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 29,
+"entry": "LFSR_COEFFS[26] = 14000000",
+"poly": "20000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 30,
+"entry": "LFSR_COEFFS[27] = 20000029",
+"poly": "65000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 30,
+"entry": "LFSR_COEFFS[27] = 20000029",
+"poly": "65000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 31,
+"entry": "LFSR_COEFFS[28] = 48000000",
+"poly": "80000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 31,
+"entry": "LFSR_COEFFS[28] = 48000000",
+"poly": "80000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 32,
+"entry": "LFSR_COEFFS[29] = 80200003",
+"poly": "1c0000401",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 32,
+"entry": "LFSR_COEFFS[29] = 80200003",
+"poly": "1c0000401",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 33,
+"entry": "LFSR_COEFFS[30] = 100080000",
+"poly": "200002001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 33,
+"entry": "LFSR_COEFFS[30] = 100080000",
+"poly": "200002001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 34,
+"entry": "LFSR_COEFFS[31] = 204000003",
+"poly": "700000081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 34,
+"entry": "LFSR_COEFFS[31] = 204000003",
+"poly": "700000081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 35,
+"entry": "LFSR_COEFFS[32] = 500000000",
+"poly": "800000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 35,
+"entry": "LFSR_COEFFS[32] = 500000000",
+"poly": "800000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 36,
+"entry": "LFSR_COEFFS[33] = 801000000",
+"poly": "1000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 36,
+"entry": "LFSR_COEFFS[33] = 801000000",
+"poly": "1000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 37,
+"entry": "LFSR_COEFFS[34] = 100000001f",
+"poly": "3f00000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 37,
+"entry": "LFSR_COEFFS[34] = 100000001f",
+"poly": "3f00000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 38,
+"entry": "LFSR_COEFFS[35] = 2000000031",
+"poly": "6300000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 38,
+"entry": "LFSR_COEFFS[35] = 2000000031",
+"poly": "6300000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 39,
+"entry": "LFSR_COEFFS[36] = 4400000000",
+"poly": "8000000011",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 39,
+"entry": "LFSR_COEFFS[36] = 4400000000",
+"poly": "8000000011",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 40,
+"entry": "LFSR_COEFFS[37] = a000140000",
+"poly": "10000280005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 40,
+"entry": "LFSR_COEFFS[37] = a000140000",
+"poly": "10000280005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 41,
+"entry": "LFSR_COEFFS[38] = 12000000000",
+"poly": "20000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 41,
+"entry": "LFSR_COEFFS[38] = 12000000000",
+"poly": "20000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 42,
+"entry": "LFSR_COEFFS[39] = 300000c0000",
+"poly": "40000c00003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 42,
+"entry": "LFSR_COEFFS[39] = 300000c0000",
+"poly": "40000c00003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 43,
+"entry": "LFSR_COEFFS[40] = 63000000000",
+"poly": "80000000063",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 43,
+"entry": "LFSR_COEFFS[40] = 63000000000",
+"poly": "80000000063",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 44,
+"entry": "LFSR_COEFFS[41] = c0000030000",
+"poly": "10000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 44,
+"entry": "LFSR_COEFFS[41] = c0000030000",
+"poly": "10000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 45,
+"entry": "LFSR_COEFFS[42] = 1b0000000000",
+"poly": "20000000001b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 45,
+"entry": "LFSR_COEFFS[42] = 1b0000000000",
+"poly": "20000000001b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 46,
+"entry": "LFSR_COEFFS[43] = 300003000000",
+"poly": "400000300003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 46,
+"entry": "LFSR_COEFFS[43] = 300003000000",
+"poly": "400000300003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 47,
+"entry": "LFSR_COEFFS[44] = 420000000000",
+"poly": "800000000021",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 47,
+"entry": "LFSR_COEFFS[44] = 420000000000",
+"poly": "800000000021",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 48,
+"entry": "LFSR_COEFFS[45] = c00000180000",
+"poly": "1000018000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 48,
+"entry": "LFSR_COEFFS[45] = c00000180000",
+"poly": "1000018000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 49,
+"entry": "LFSR_COEFFS[46] = 1008000000000",
+"poly": "2000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 49,
+"entry": "LFSR_COEFFS[46] = 1008000000000",
+"poly": "2000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 50,
+"entry": "LFSR_COEFFS[47] = 3000000c00000",
+"poly": "400000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 50,
+"entry": "LFSR_COEFFS[47] = 3000000c00000",
+"poly": "400000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 51,
+"entry": "LFSR_COEFFS[48] = 6000c00000000",
+"poly": "8000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 51,
+"entry": "LFSR_COEFFS[48] = 6000c00000000",
+"poly": "8000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 52,
+"entry": "LFSR_COEFFS[49] = 9000000000000",
+"poly": "10000000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 52,
+"entry": "LFSR_COEFFS[49] = 9000000000000",
+"poly": "10000000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 53,
+"entry": "LFSR_COEFFS[50] = 18003000000000",
+"poly": "20000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 53,
+"entry": "LFSR_COEFFS[50] = 18003000000000",
+"poly": "20000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 54,
+"entry": "LFSR_COEFFS[51] = 30000000030000",
+"poly": "40003000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 54,
+"entry": "LFSR_COEFFS[51] = 30000000030000",
+"poly": "40003000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 55,
+"entry": "LFSR_COEFFS[52] = 40000040000000",
+"poly": "80000001000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 55,
+"entry": "LFSR_COEFFS[52] = 40000040000000",
+"poly": "80000001000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 56,
+"entry": "LFSR_COEFFS[53] = c0000600000000",
+"poly": "100000000600003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 56,
+"entry": "LFSR_COEFFS[53] = c0000600000000",
+"poly": "100000000600003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 57,
+"entry": "LFSR_COEFFS[54] = 102000000000000",
+"poly": "200000000000081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 57,
+"entry": "LFSR_COEFFS[54] = 102000000000000",
+"poly": "200000000000081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 58,
+"entry": "LFSR_COEFFS[55] = 200004000000000",
+"poly": "400000000080001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 58,
+"entry": "LFSR_COEFFS[55] = 200004000000000",
+"poly": "400000000080001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 59,
+"entry": "LFSR_COEFFS[56] = 600003000000000",
+"poly": "800000000600003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 59,
+"entry": "LFSR_COEFFS[56] = 600003000000000",
+"poly": "800000000600003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 60,
+"entry": "LFSR_COEFFS[57] = c00000000000000",
+"poly": "1000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 60,
+"entry": "LFSR_COEFFS[57] = c00000000000000",
+"poly": "1000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 61,
+"entry": "LFSR_COEFFS[58] = 1800300000000000",
+"poly": "2000000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 61,
+"entry": "LFSR_COEFFS[58] = 1800300000000000",
+"poly": "2000000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 62,
+"entry": "LFSR_COEFFS[59] = 3000000000000030",
+"poly": "4300000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 62,
+"entry": "LFSR_COEFFS[59] = 3000000000000030",
+"poly": "4300000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 63,
+"entry": "LFSR_COEFFS[60] = 6000000000000000",
+"poly": "8000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 63,
+"entry": "LFSR_COEFFS[60] = 6000000000000000",
+"poly": "8000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 64,
+"entry": "LFSR_COEFFS[61] = d800000000000000",
+"poly": "1000000000000001b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 64,
+"entry": "LFSR_COEFFS[61] = d800000000000000",
+"poly": "1000000000000001b",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 65,
+"entry": "LFSR_COEFFS[62] = 10000400000000000",
+"poly": "20000000000040001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 65,
+"entry": "LFSR_COEFFS[62] = 10000400000000000",
+"poly": "20000000000040001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 66,
+"entry": "LFSR_COEFFS[63] = 30180000000000000",
+"poly": "40000000000000603",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 66,
+"entry": "LFSR_COEFFS[63] = 30180000000000000",
+"poly": "40000000000000603",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 67,
+"entry": "LFSR_COEFFS[64] = 60300000000000000",
+"poly": "80000000000000603",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 67,
+"entry": "LFSR_COEFFS[64] = 60300000000000000",
+"poly": "80000000000000603",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 68,
+"entry": "LFSR_COEFFS[65] = 80400000000000000",
+"poly": "100000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 68,
+"entry": "LFSR_COEFFS[65] = 80400000000000000",
+"poly": "100000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 69,
+"entry": "LFSR_COEFFS[66] = 140000028000000000",
+"poly": "200000000028000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 69,
+"entry": "LFSR_COEFFS[66] = 140000028000000000",
+"poly": "200000000028000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 70,
+"entry": "LFSR_COEFFS[67] = 300060000000000000",
+"poly": "400000000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 70,
+"entry": "LFSR_COEFFS[67] = 300060000000000000",
+"poly": "400000000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 71,
+"entry": "LFSR_COEFFS[68] = 410000000000000000",
+"poly": "800000000000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 71,
+"entry": "LFSR_COEFFS[68] = 410000000000000000",
+"poly": "800000000000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 72,
+"entry": "LFSR_COEFFS[69] = 820000000001040000",
+"poly": "1000020800000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 72,
+"entry": "LFSR_COEFFS[69] = 820000000001040000",
+"poly": "1000020800000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 73,
+"entry": "LFSR_COEFFS[70] = 1000000800000000000",
+"poly": "2000000000002000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 73,
+"entry": "LFSR_COEFFS[70] = 1000000800000000000",
+"poly": "2000000000002000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 74,
+"entry": "LFSR_COEFFS[71] = 3000600000000000000",
+"poly": "4000000000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 74,
+"entry": "LFSR_COEFFS[71] = 3000600000000000000",
+"poly": "4000000000000018003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 75,
+"entry": "LFSR_COEFFS[72] = 6018000000000000000",
+"poly": "8000000000000000c03",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 75,
+"entry": "LFSR_COEFFS[72] = 6018000000000000000",
+"poly": "8000000000000000c03",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 76,
+"entry": "LFSR_COEFFS[73] = c000000018000000000",
+"poly": "10000000001800000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 76,
+"entry": "LFSR_COEFFS[73] = c000000018000000000",
+"poly": "10000000001800000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 77,
+"entry": "LFSR_COEFFS[74] = 18000000600000000000",
+"poly": "200000000000c0000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 77,
+"entry": "LFSR_COEFFS[74] = 18000000600000000000",
+"poly": "200000000000c0000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 78,
+"entry": "LFSR_COEFFS[75] = 30000600000000000000",
+"poly": "40000000000000180003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 78,
+"entry": "LFSR_COEFFS[75] = 30000600000000000000",
+"poly": "40000000000000180003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 79,
+"entry": "LFSR_COEFFS[76] = 40200000000000000000",
+"poly": "80000000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 79,
+"entry": "LFSR_COEFFS[76] = 40200000000000000000",
+"poly": "80000000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 80,
+"entry": "LFSR_COEFFS[77] = c0000000060000000000",
+"poly": "100000000006000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 80,
+"entry": "LFSR_COEFFS[77] = c0000000060000000000",
+"poly": "100000000006000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 81,
+"entry": "LFSR_COEFFS[78] = 110000000000000000000",
+"poly": "200000000000000000011",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 81,
+"entry": "LFSR_COEFFS[78] = 110000000000000000000",
+"poly": "200000000000000000011",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 82,
+"entry": "LFSR_COEFFS[79] = 240000000480000000000",
+"poly": "400000000004800000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 82,
+"entry": "LFSR_COEFFS[79] = 240000000480000000000",
+"poly": "400000000004800000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 83,
+"entry": "LFSR_COEFFS[80] = 600000000003000000000",
+"poly": "800000000600000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 83,
+"entry": "LFSR_COEFFS[80] = 600000000003000000000",
+"poly": "800000000600000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 84,
+"entry": "LFSR_COEFFS[81] = 800400000000000000000",
+"poly": "1000000000000000002001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 84,
+"entry": "LFSR_COEFFS[81] = 800400000000000000000",
+"poly": "1000000000000000002001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 85,
+"entry": "LFSR_COEFFS[82] = 1800000300000000000000",
+"poly": "2000000000000018000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 85,
+"entry": "LFSR_COEFFS[82] = 1800000300000000000000",
+"poly": "2000000000000018000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 86,
+"entry": "LFSR_COEFFS[83] = 3003000000000000000000",
+"poly": "4000000000000000003003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 86,
+"entry": "LFSR_COEFFS[83] = 3003000000000000000000",
+"poly": "4000000000000000003003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 87,
+"entry": "LFSR_COEFFS[84] = 4002000000000000000000",
+"poly": "8000000000000000002001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 87,
+"entry": "LFSR_COEFFS[84] = 4002000000000000000000",
+"poly": "8000000000000000002001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 88,
+"entry": "LFSR_COEFFS[85] = c000000000000000018000",
+"poly": "10001800000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 88,
+"entry": "LFSR_COEFFS[85] = c000000000000000018000",
+"poly": "10001800000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 89,
+"entry": "LFSR_COEFFS[86] = 10000000004000000000000",
+"poly": "20000000000004000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 89,
+"entry": "LFSR_COEFFS[86] = 10000000004000000000000",
+"poly": "20000000000004000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 90,
+"entry": "LFSR_COEFFS[87] = 30000c00000000000000000",
+"poly": "400000000000000000c0003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 90,
+"entry": "LFSR_COEFFS[87] = 30000c00000000000000000",
+"poly": "400000000000000000c0003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 91,
+"entry": "LFSR_COEFFS[88] = 600000000000000000000c0",
+"poly": "81800000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 91,
+"entry": "LFSR_COEFFS[88] = 600000000000000000000c0",
+"poly": "81800000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 92,
+"entry": "LFSR_COEFFS[89] = c00c0000000000000000000",
+"poly": "100000000000000000003003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 92,
+"entry": "LFSR_COEFFS[89] = c00c0000000000000000000",
+"poly": "100000000000000000003003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 93,
+"entry": "LFSR_COEFFS[90] = 140000000000000000000000",
+"poly": "200000000000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 93,
+"entry": "LFSR_COEFFS[90] = 140000000000000000000000",
+"poly": "200000000000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 94,
+"entry": "LFSR_COEFFS[91] = 200001000000000000000000",
+"poly": "400000000000000000200001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 94,
+"entry": "LFSR_COEFFS[91] = 200001000000000000000000",
+"poly": "400000000000000000200001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 95,
+"entry": "LFSR_COEFFS[92] = 400800000000000000000000",
+"poly": "800000000000000000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 95,
+"entry": "LFSR_COEFFS[92] = 400800000000000000000000",
+"poly": "800000000000000000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 96,
+"entry": "LFSR_COEFFS[93] = a00000000001400000000000",
+"poly": "1000000000002800000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 96,
+"entry": "LFSR_COEFFS[93] = a00000000001400000000000",
+"poly": "1000000000002800000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 97,
+"entry": "LFSR_COEFFS[94] = 1040000000000000000000000",
+"poly": "2000000000000000000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 97,
+"entry": "LFSR_COEFFS[94] = 1040000000000000000000000",
+"poly": "2000000000000000000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 98,
+"entry": "LFSR_COEFFS[95] = 2004000000000000000000000",
+"poly": "4000000000000000000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 98,
+"entry": "LFSR_COEFFS[95] = 2004000000000000000000000",
+"poly": "4000000000000000000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 99,
+"entry": "LFSR_COEFFS[96] = 5000000000028000000000000",
+"poly": "8000000000000a00000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 99,
+"entry": "LFSR_COEFFS[96] = 5000000000028000000000000",
+"poly": "8000000000000a00000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 100,
+"entry": "LFSR_COEFFS[97] = 8000000004000000000000000",
+"poly": "10000000000000002000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 100,
+"entry": "LFSR_COEFFS[97] = 8000000004000000000000000",
+"poly": "10000000000000002000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 101,
+"entry": "LFSR_COEFFS[98] = 18600000000000000000000000",
+"poly": "200000000000000000000000c3",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 101,
+"entry": "LFSR_COEFFS[98] = 18600000000000000000000000",
+"poly": "200000000000000000000000c3",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 102,
+"entry": "LFSR_COEFFS[99] = 30000000000000000003000000",
+"poly": "40000030000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 102,
+"entry": "LFSR_COEFFS[99] = 30000000000000000003000000",
+"poly": "40000030000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 103,
+"entry": "LFSR_COEFFS[100] = 40200000000000000000000000",
+"poly": "80000000000000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 103,
+"entry": "LFSR_COEFFS[100] = 40200000000000000000000000",
+"poly": "80000000000000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 104,
+"entry": "LFSR_COEFFS[101] = c0300000000000000000000000",
+"poly": "100000000000000000000000c03",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 104,
+"entry": "LFSR_COEFFS[101] = c0300000000000000000000000",
+"poly": "100000000000000000000000c03",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 105,
+"entry": "LFSR_COEFFS[102] = 100010000000000000000000000",
+"poly": "200000000000000000000010001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 105,
+"entry": "LFSR_COEFFS[102] = 100010000000000000000000000",
+"poly": "200000000000000000000010001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 106,
+"entry": "LFSR_COEFFS[103] = 200040000000000000000000000",
+"poly": "400000000000000000000008001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 106,
+"entry": "LFSR_COEFFS[103] = 200040000000000000000000000",
+"poly": "400000000000000000000008001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 107,
+"entry": "LFSR_COEFFS[104] = 5000000000000000a0000000000",
+"poly": "800000000028000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 107,
+"entry": "LFSR_COEFFS[104] = 5000000000000000a0000000000",
+"poly": "800000000028000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 108,
+"entry": "LFSR_COEFFS[105] = 800000010000000000000000000",
+"poly": "1000000000000000000080000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 108,
+"entry": "LFSR_COEFFS[105] = 800000010000000000000000000",
+"poly": "1000000000000000000080000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 109,
+"entry": "LFSR_COEFFS[106] = 1860000000000000000000000000",
+"poly": "20000000000000000000000000c3",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 109,
+"entry": "LFSR_COEFFS[106] = 1860000000000000000000000000",
+"poly": "20000000000000000000000000c3",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 110,
+"entry": "LFSR_COEFFS[107] = 3003000000000000000000000000",
+"poly": "4000000000000000000000003003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 110,
+"entry": "LFSR_COEFFS[107] = 3003000000000000000000000000",
+"poly": "4000000000000000000000003003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 111,
+"entry": "LFSR_COEFFS[108] = 4010000000000000000000000000",
+"poly": "8000000000000000000000000401",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 111,
+"entry": "LFSR_COEFFS[108] = 4010000000000000000000000000",
+"poly": "8000000000000000000000000401",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 112,
+"entry": "LFSR_COEFFS[109] = a000000000140000000000000000",
+"poly": "10000000000000000280000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 112,
+"entry": "LFSR_COEFFS[109] = a000000000140000000000000000",
+"poly": "10000000000000000280000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 113,
+"entry": "LFSR_COEFFS[110] = 10080000000000000000000000000",
+"poly": "20000000000000000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 113,
+"entry": "LFSR_COEFFS[110] = 10080000000000000000000000000",
+"poly": "20000000000000000000000000201",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 114,
+"entry": "LFSR_COEFFS[111] = 30000000000000000000180000000",
+"poly": "40000000600000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 114,
+"entry": "LFSR_COEFFS[111] = 30000000000000000000180000000",
+"poly": "40000000600000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 115,
+"entry": "LFSR_COEFFS[112] = 60018000000000000000000000000",
+"poly": "8000000000000000000000000c003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 115,
+"entry": "LFSR_COEFFS[112] = 60018000000000000000000000000",
+"poly": "8000000000000000000000000c003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 116,
+"entry": "LFSR_COEFFS[113] = c0000000000000000300000000000",
+"poly": "100000000000c00000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 116,
+"entry": "LFSR_COEFFS[113] = c0000000000000000300000000000",
+"poly": "100000000000c00000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 117,
+"entry": "LFSR_COEFFS[114] = 140005000000000000000000000000",
+"poly": "200000000000000000000000140005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 117,
+"entry": "LFSR_COEFFS[114] = 140005000000000000000000000000",
+"poly": "200000000000000000000000140005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 118,
+"entry": "LFSR_COEFFS[115] = 200000001000000000000000000000",
+"poly": "400000000000000000000200000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 118,
+"entry": "LFSR_COEFFS[115] = 200000001000000000000000000000",
+"poly": "400000000000000000000200000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 119,
+"entry": "LFSR_COEFFS[116] = 404000000000000000000000000000",
+"poly": "800000000000000000000000000101",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 119,
+"entry": "LFSR_COEFFS[116] = 404000000000000000000000000000",
+"poly": "800000000000000000000000000101",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 120,
+"entry": "LFSR_COEFFS[117] = 810000000000000000000000000102",
+"poly": "1408000000000000000000000000081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 120,
+"entry": "LFSR_COEFFS[117] = 810000000000000000000000000102",
+"poly": "1408000000000000000000000000081",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 121,
+"entry": "LFSR_COEFFS[118] = 1000040000000000000000000000000",
+"poly": "2000000000000000000000000040001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 121,
+"entry": "LFSR_COEFFS[118] = 1000040000000000000000000000000",
+"poly": "2000000000000000000000000040001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 122,
+"entry": "LFSR_COEFFS[119] = 3000000000000006000000000000000",
+"poly": "4000000000000001800000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 122,
+"entry": "LFSR_COEFFS[119] = 3000000000000006000000000000000",
+"poly": "4000000000000001800000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 123,
+"entry": "LFSR_COEFFS[120] = 5000000000000000000000000000000",
+"poly": "8000000000000000000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 123,
+"entry": "LFSR_COEFFS[120] = 5000000000000000000000000000000",
+"poly": "8000000000000000000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 124,
+"entry": "LFSR_COEFFS[121] = 8000000004000000000000000000000",
+"poly": "10000000000000000000002000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 124,
+"entry": "LFSR_COEFFS[121] = 8000000004000000000000000000000",
+"poly": "10000000000000000000002000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 125,
+"entry": "LFSR_COEFFS[122] = 18000000000000000000000000030000",
+"poly": "20001800000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 125,
+"entry": "LFSR_COEFFS[122] = 18000000000000000000000000030000",
+"poly": "20001800000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 126,
+"entry": "LFSR_COEFFS[123] = 30000000030000000000000000000000",
+"poly": "40000000000000000000003000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 126,
+"entry": "LFSR_COEFFS[123] = 30000000030000000000000000000000",
+"poly": "40000000000000000000003000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 127,
+"entry": "LFSR_COEFFS[124] = 60000000000000000000000000000000",
+"poly": "80000000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 127,
+"entry": "LFSR_COEFFS[124] = 60000000000000000000000000000000",
+"poly": "80000000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 128,
+"entry": "LFSR_COEFFS[125] = a0000014000000000000000000000000",
+"poly": "100000000000000000000000028000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 128,
+"entry": "LFSR_COEFFS[125] = a0000014000000000000000000000000",
+"poly": "100000000000000000000000028000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 129,
+"entry": "LFSR_COEFFS[126] = 108000000000000000000000000000000",
+"poly": "200000000000000000000000000000021",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 129,
+"entry": "LFSR_COEFFS[126] = 108000000000000000000000000000000",
+"poly": "200000000000000000000000000000021",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 130,
+"entry": "LFSR_COEFFS[127] = 240000000000000000000000000000000",
+"poly": "400000000000000000000000000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 130,
+"entry": "LFSR_COEFFS[127] = 240000000000000000000000000000000",
+"poly": "400000000000000000000000000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 131,
+"entry": "LFSR_COEFFS[128] = 600000000000c00000000000000000000",
+"poly": "800000000000000000001800000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 131,
+"entry": "LFSR_COEFFS[128] = 600000000000c00000000000000000000",
+"poly": "800000000000000000001800000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 132,
+"entry": "LFSR_COEFFS[129] = 800000040000000000000000000000000",
+"poly": "1000000000000000000000000020000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 132,
+"entry": "LFSR_COEFFS[129] = 800000040000000000000000000000000",
+"poly": "1000000000000000000000000020000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 133,
+"entry": "LFSR_COEFFS[130] = 1800000000000300000000000000000000",
+"poly": "2000000000000000000018000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 133,
+"entry": "LFSR_COEFFS[130] = 1800000000000300000000000000000000",
+"poly": "2000000000000000000018000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 134,
+"entry": "LFSR_COEFFS[131] = 2000000000000010000000000000000000",
+"poly": "4000000000000000000200000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 134,
+"entry": "LFSR_COEFFS[131] = 2000000000000010000000000000000000",
+"poly": "4000000000000000000200000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 135,
+"entry": "LFSR_COEFFS[132] = 4008000000000000000000000000000000",
+"poly": "8000000000000000000000000000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 135,
+"entry": "LFSR_COEFFS[132] = 4008000000000000000000000000000000",
+"poly": "8000000000000000000000000000000801",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 136,
+"entry": "LFSR_COEFFS[133] = c000000000000000000000000000000600",
+"poly": "10060000000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 136,
+"entry": "LFSR_COEFFS[133] = c000000000000000000000000000000600",
+"poly": "10060000000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 137,
+"entry": "LFSR_COEFFS[134] = 10000080000000000000000000000000000",
+"poly": "20000000000000000000000000000200001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 137,
+"entry": "LFSR_COEFFS[134] = 10000080000000000000000000000000000",
+"poly": "20000000000000000000000000000200001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 138,
+"entry": "LFSR_COEFFS[135] = 30600000000000000000000000000000000",
+"poly": "40000000000000000000000000000000183",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 138,
+"entry": "LFSR_COEFFS[135] = 30600000000000000000000000000000000",
+"poly": "40000000000000000000000000000000183",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 139,
+"entry": "LFSR_COEFFS[136] = 4a400000000000000000000000000000000",
+"poly": "80000000000000000000000000000000129",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 139,
+"entry": "LFSR_COEFFS[136] = 4a400000000000000000000000000000000",
+"poly": "80000000000000000000000000000000129",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 140,
+"entry": "LFSR_COEFFS[137] = 80000004000000000000000000000000000",
+"poly": "100000000000000000000000000020000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 140,
+"entry": "LFSR_COEFFS[137] = 80000004000000000000000000000000000",
+"poly": "100000000000000000000000000020000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 141,
+"entry": "LFSR_COEFFS[138] = 180000003000000000000000000000000000",
+"poly": "200000000000000000000000000180000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 141,
+"entry": "LFSR_COEFFS[138] = 180000003000000000000000000000000000",
+"poly": "200000000000000000000000000180000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 142,
+"entry": "LFSR_COEFFS[139] = 200001000000000000000000000000000000",
+"poly": "400000000000000000000000000000200001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 142,
+"entry": "LFSR_COEFFS[139] = 200001000000000000000000000000000000",
+"poly": "400000000000000000000000000000200001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 143,
+"entry": "LFSR_COEFFS[140] = 600006000000000000000000000000000000",
+"poly": "800000000000000000000000000000300003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 143,
+"entry": "LFSR_COEFFS[140] = 600006000000000000000000000000000000",
+"poly": "800000000000000000000000000000300003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 144,
+"entry": "LFSR_COEFFS[141] = c00000000000000006000000000000000000",
+"poly": "1000000000000000000600000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 144,
+"entry": "LFSR_COEFFS[141] = c00000000000000006000000000000000000",
+"poly": "1000000000000000000600000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 145,
+"entry": "LFSR_COEFFS[142] = 1000000000000100000000000000000000000",
+"poly": "2000000000000000000000010000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 145,
+"entry": "LFSR_COEFFS[142] = 1000000000000100000000000000000000000",
+"poly": "2000000000000000000000010000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 146,
+"entry": "LFSR_COEFFS[143] = 3000000000000006000000000000000000000",
+"poly": "4000000000000000000001800000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 146,
+"entry": "LFSR_COEFFS[143] = 3000000000000006000000000000000000000",
+"poly": "4000000000000000000001800000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 147,
+"entry": "LFSR_COEFFS[144] = 6000000003000000000000000000000000000",
+"poly": "8000000000000000000000000006000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 147,
+"entry": "LFSR_COEFFS[144] = 6000000003000000000000000000000000000",
+"poly": "8000000000000000000000000006000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 148,
+"entry": "LFSR_COEFFS[145] = 8000001000000000000000000000000000000",
+"poly": "10000000000000000000000000000008000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 148,
+"entry": "LFSR_COEFFS[145] = 8000001000000000000000000000000000000",
+"poly": "10000000000000000000000000000008000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 149,
+"entry": "LFSR_COEFFS[146] = 1800000000000000000000000000c000000000",
+"poly": "20000000006000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 149,
+"entry": "LFSR_COEFFS[146] = 1800000000000000000000000000c000000000",
+"poly": "20000000006000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 150,
+"entry": "LFSR_COEFFS[147] = 20000000000001000000000000000000000000",
+"poly": "40000000000000000000000020000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 150,
+"entry": "LFSR_COEFFS[147] = 20000000000001000000000000000000000000",
+"poly": "40000000000000000000000020000000000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 151,
+"entry": "LFSR_COEFFS[148] = 48000000000000000000000000000000000000",
+"poly": "80000000000000000000000000000000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 151,
+"entry": "LFSR_COEFFS[148] = 48000000000000000000000000000000000000",
+"poly": "80000000000000000000000000000000000009",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 152,
+"entry": "LFSR_COEFFS[149] = c0000000000000006000000000000000000000",
+"poly": "100000000000000000000060000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 152,
+"entry": "LFSR_COEFFS[149] = c0000000000000006000000000000000000000",
+"poly": "100000000000000000000060000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 153,
+"entry": "LFSR_COEFFS[150] = 180000000000000000000000000000000000000",
+"poly": "200000000000000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 153,
+"entry": "LFSR_COEFFS[150] = 180000000000000000000000000000000000000",
+"poly": "200000000000000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 154,
+"entry": "LFSR_COEFFS[151] = 280000000000000000000000000000005000000",
+"poly": "400000280000000000000000000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 154,
+"entry": "LFSR_COEFFS[151] = 280000000000000000000000000000005000000",
+"poly": "400000280000000000000000000000000000005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 155,
+"entry": "LFSR_COEFFS[152] = 60000000c000000000000000000000000000000",
+"poly": "800000000000000000000000000000180000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 155,
+"entry": "LFSR_COEFFS[152] = 60000000c000000000000000000000000000000",
+"poly": "800000000000000000000000000000180000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 156,
+"entry": "LFSR_COEFFS[153] = c00000000000000000000000000018000000000",
+"poly": "1000000000180000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 156,
+"entry": "LFSR_COEFFS[153] = c00000000000000000000000000018000000000",
+"poly": "1000000000180000000000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 157,
+"entry": "LFSR_COEFFS[154] = 1800000600000000000000000000000000000000",
+"poly": "200000000000000000000000000000000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 157,
+"entry": "LFSR_COEFFS[154] = 1800000600000000000000000000000000000000",
+"poly": "200000000000000000000000000000000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 158,
+"entry": "LFSR_COEFFS[155] = 3000000c00000000000000000000000000000000",
+"poly": "400000000000000000000000000000000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 158,
+"entry": "LFSR_COEFFS[155] = 3000000c00000000000000000000000000000000",
+"poly": "400000000000000000000000000000000c000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 159,
+"entry": "LFSR_COEFFS[156] = 4000000080000000000000000000000000000000",
+"poly": "8000000000000000000000000000000080000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 159,
+"entry": "LFSR_COEFFS[156] = 4000000080000000000000000000000000000000",
+"poly": "8000000000000000000000000000000080000001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 160,
+"entry": "LFSR_COEFFS[157] = c000300000000000000000000000000000000000",
+"poly": "100000000000000000000000000000000000c0003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 160,
+"entry": "LFSR_COEFFS[157] = c000300000000000000000000000000000000000",
+"poly": "100000000000000000000000000000000000c0003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 161,
+"entry": "LFSR_COEFFS[158] = 10000400000000000000000000000000000000000",
+"poly": "20000000000000000000000000000000000040001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 161,
+"entry": "LFSR_COEFFS[158] = 10000400000000000000000000000000000000000",
+"poly": "20000000000000000000000000000000000040001",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 162,
+"entry": "LFSR_COEFFS[159] = 30000000000000000000006000000000000000000",
+"poly": "40000000000000000018000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 162,
+"entry": "LFSR_COEFFS[159] = 30000000000000000000006000000000000000000",
+"poly": "40000000000000000018000000000000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 163,
+"entry": "LFSR_COEFFS[160] = 600000000000000c0000000000000000000000000",
+"poly": "80000000000000000000000001800000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 163,
+"entry": "LFSR_COEFFS[160] = 600000000000000c0000000000000000000000000",
+"poly": "80000000000000000000000001800000000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 164,
+"entry": "LFSR_COEFFS[161] = c0060000000000000000000000000000000000000",
+"poly": "100000000000000000000000000000000000006003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 164,
+"entry": "LFSR_COEFFS[161] = c0060000000000000000000000000000000000000",
+"poly": "100000000000000000000000000000000000006003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 165,
+"entry": "LFSR_COEFFS[162] = 180000006000000000000000000000000000000000",
+"poly": "2000000000000000000000000000000000c0000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 165,
+"entry": "LFSR_COEFFS[162] = 180000006000000000000000000000000000000000",
+"poly": "2000000000000000000000000000000000c0000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 166,
+"entry": "LFSR_COEFFS[163] = 3000000000c0000000000000000000000000000000",
+"poly": "40000000000000000000000000000000c000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 166,
+"entry": "LFSR_COEFFS[163] = 3000000000c0000000000000000000000000000000",
+"poly": "40000000000000000000000000000000c000000003",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 167,
+"entry": "LFSR_COEFFS[164] = 410000000000000000000000000000000000000000",
+"poly": "800000000000000000000000000000000000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 167,
+"entry": "LFSR_COEFFS[164] = 410000000000000000000000000000000000000000",
+"poly": "800000000000000000000000000000000000000041",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "gal_right",
+"width": 168,
+"entry": "LFSR_COEFFS[165] = a00140000000000000000000000000000000000000",
+"poly": "1000000000000000000000000000000000000028005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+},
+{
+"lib": "opentitan",
+"rule": "fib_xnor_left",
+"width": 168,
+"entry": "LFSR_COEFFS[165] = a00140000000000000000000000000000000000000",
+"poly": "1000000000000000000000000000000000000028005",
+"closed_form_matches": true,
+"verdict": "primitive",
+"detail": "Arndt",
+"brute": null
+}
+]

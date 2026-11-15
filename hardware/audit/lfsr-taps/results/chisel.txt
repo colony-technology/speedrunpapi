@@ -1,0 +1,1 @@
+chisel: 2236 entries; primitive 2236; brute force agreed on 58 of 58 entries up to width 20; closed form matched 1118 of 1118; 328 s
