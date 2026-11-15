@@ -212,7 +212,7 @@ Recorded run: 15 November 2026, Apple M1, macOS 27.2, Python 3.11.18, NumPy 2.4.
 
 ```sh
 T=$(mktemp -d)
-git clone --branch fork-angle REPOSITORY "$T/speedrunpapi"
+git clone REPOSITORY "$T/speedrunpapi"
 cd "$T/speedrunpapi/proofs/fork-angle" && shasum -a 256 -c MANIFEST.sha256
 PYTHON=python3 bash replay.sh "$T/data"
 ```
