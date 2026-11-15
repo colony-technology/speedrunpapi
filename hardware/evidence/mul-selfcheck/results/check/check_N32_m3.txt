@@ -1,0 +1,4 @@
+PROVED: p = a * b for every a, b below 2^32.
+  multiplier tables 1778 (773 cells, 64 p buffers), columns 0..64; detector tables 72, 3828 rows checked; alarm leaves 2 (1 mismatch, 1 above the top); p wires from 63 adder cells in one ripple over columns 1..63, 1 single AND cells, 0 tree cells
+PROVED claim A: N = 32, m = 3. For every a, b below 2^32 and every one lookup table of the multiplier with a wrong output (any wrong function), p != a x b implies alarm = 1. Also with the final adder on a carry chain, for a wrong propagate LUT.
+NOT PROVED claim B: N = 32, m = 3. 772 of 773 cells admit a nonzero multiple of 3; first: cell 0 (column 16), d from -3 to 3 includes [-3, 3].

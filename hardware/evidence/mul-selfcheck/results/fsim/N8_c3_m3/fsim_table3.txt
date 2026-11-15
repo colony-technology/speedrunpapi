@@ -1,0 +1,7 @@
+sc8_c3_m3, N = 8, m = 3, faults table3: 423 faults over 1124 pairs (100 corner, 1024 random, seed 2026). Fault-free: 0 wrong product bits, 0 alarms. Faults that make some product wrong: 420. Wrong (fault, pair) cases: 322286; with alarm: 322274; escapes: 12. Alarms with a right product: 2304. Compile 0.7 s, run 0.3 s.
+ESCAPE w65 stuck1: a = 223, b = 135, a x b = 30105
+ESCAPE w65 inverted: a = 223, b = 135, a x b = 30105
+ESCAPE w66 stuck1: a = 143, b = 175, a x b = 25025
+ESCAPE w66 inverted: a = 143, b = 175, a x b = 25025
+ESCAPE w107 stuck1: a = 143, b = 175, a x b = 25025
+ESCAPE w107 inverted: a = 143, b = 175, a x b = 25025
