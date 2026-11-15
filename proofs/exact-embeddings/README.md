@@ -122,3 +122,14 @@ What ran:
 - The six GitHub runners of run 43666680107 and the Apple M1 gave the same exact hash. Between them they cover three operating systems, on x86-64 and on ARM64.
 - On the M1 the hash was the same over 1 and 4 threads and batches of 1 and 32.
 - The float baselines on the same machines gave six hashes each.
+
+## Your model
+
+One model of yours, up to 500 million parameters, made exact this way: 1,800 USD, fixed.
+
+You send the model's name and revision, the inputs you care about and the machines it must agree on. You receive the code, the hashes, and the comparison against float32 as in the tables above.
+Full refund if two of your machines print different hashes.
+
+Pay: https://buy.stripe.com/4gM8wO3Ho0c7dUubo76c007 · Questions: lmtlssss@colony.technology
+
+Larger work, by contract: the same address.
