@@ -1,0 +1,3 @@
+w=3 p=5 inputs 147456: model facts false on 0, model predictions of HardFloat wrong on 0
+w=4 p=7 inputs 1179648: model facts false on 0, model predictions of HardFloat wrong on 0
+w=5 p=5 inputs 589824: model facts false on 0, model predictions of HardFloat wrong on 0

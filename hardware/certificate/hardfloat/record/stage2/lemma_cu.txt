@@ -1,0 +1,8 @@
+== 12:51:51 bvfsm.py equiv lemma_cu_c_lhs.bv lemma_cu_c_rhs.bv
+  live states: A 126 of 126 reachable, B 126 of 126 reachable
+equiv lemma_cu_c_lhs.bv lemma_cu_c_rhs.bv
+  outputs compared: v
+  product states reached: 126
+EQUAL on every word length N >= 2
+exit 0
+== 12:51:51 end

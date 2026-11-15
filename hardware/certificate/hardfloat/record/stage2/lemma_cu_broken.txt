@@ -1,0 +1,13 @@
+== 12:51:51 bvfsm.py equiv lemma_cu_c_lhs.bv lemma_cu_c_rhs_broken.bv
+  live states: A 126 of 126 reachable, B 126 of 126 reachable
+equiv lemma_cu_c_lhs.bv lemma_cu_c_rhs_broken.bv
+  outputs compared: v
+  product states reached: 97
+COUNTEREXAMPLE, word length N = 3 (least significant bit first)
+  scalars: aw=1 na=0 ne=0 odd=0 tz=0
+  x          101
+  markU      010
+  assumptions hold (direct evaluation): True, True
+  v          A 0   B 1   <- differs
+exit 1
+== 12:51:51 end

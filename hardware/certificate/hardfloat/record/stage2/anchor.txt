@@ -1,0 +1,7 @@
+p=3 distinct (mask, sig, mode, sign) 2496, distinct masks 5, differences 0
+p=4 distinct (mask, sig, mode, sign) 6144, distinct masks 6, differences 0
+p=5 distinct (mask, sig, mode, sign) 14592, distinct masks 7, differences 0
+p=6 distinct (mask, sig, mode, sign) 33792, distinct masks 8, differences 0
+p=7 distinct (mask, sig, mode, sign) 76800, distinct masks 9, differences 0
+p=8 distinct (mask, sig, mode, sign) 172032, distinct masks 10, differences 0
+p=9 distinct (mask, sig, mode, sign) 380928, distinct masks 11, differences 0

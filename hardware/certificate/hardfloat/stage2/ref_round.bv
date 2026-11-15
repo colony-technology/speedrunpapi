@@ -1,0 +1,44 @@
+# The definition of rounding at a marked position, written from the arithmetic, not from HardFloat.
+# x is the significand, read least significant bit first; R is the rounding position, given as the
+# mask 2^R - 1 (ones below R), R >= 2. ulp = 2^R. rem = x mod 2^R. t = x - rem.
+# The result y is t, or t + ulp, chosen by the rule (IEEE 754-2019 4.3; HardFloat doc 6.2 for odd:
+# round toward zero, then if inexact set the least significant bit of the result).
+# HardFloat's mode encoding and the sign select the rule (doc 6.2): near_even 000 -> ties to even,
+# near_maxMag 100 -> ties away, minMag 001 -> toward zero, min 010 -> away if negative else toward zero,
+# max 011 -> away if positive else toward zero, odd 110.
+# Outputs, named as HardFloat names them:
+#   roundedSig = y / 4 (R >= 2, so y is a multiple of 4), roundPosBit = bit R-1 of x,
+#   anyRoundExtra = [x mod 2^(R-1) != 0], anyRound = [rem != 0] (inexact),
+#   carry_hi, carry_lo = the two top bits of y (positions N-1, N-2).
+length N >= 6
+input sig, mask : N-1
+input m2, m1, m0, sign : bit
+assume ones_below(mask)
+assume bit(mask,0) & bit(mask,1)
+assume ~(m2 & ~m1 & m0) & ~(m2 & m1 & m0)
+
+let ne  = ~m2 & ~m1 & ~m0
+let na  = m2 & ~m1 & ~m0
+let up_dir = (~m2 & m1 & ~m0 & sign) | (~m2 & m1 & m0 & ~sign)
+let odd = m2 & m1 & ~m0
+
+let x = sig
+let maskw : N = mask                   # zero-extended to N bits, so that 2^R fits when R = N-1
+let ulp = maskw + 1
+let half = ulp >> 1
+let rem = x & mask
+let t = x - rem
+let gt = lt(half, rem)
+let tie = eq(rem, half)
+let nz = ~eq(rem, 0)
+let q_odd = ~eq(t & ulp, 0)
+let up = (ne & (gt | (tie & q_odd))) | (na & (gt | tie)) | (up_dir & nz)
+let y_near = t + (up ? ulp : 0)
+let y_odd = t | (nz ? ulp : 0)
+let y = odd ? y_odd : y_near
+
+output roundedSig = y >> 2
+output roundPosBit = ~eq(x & half, 0)
+output anyRoundExtra = ~eq(x & (half - 1), 0)
+output anyRound = nz
+# carry_hi, carry_lo (roundedSig[p+1], roundedSig[p], the bits added to sExp) are letters N-3, N-4 of roundedSig: compared there.

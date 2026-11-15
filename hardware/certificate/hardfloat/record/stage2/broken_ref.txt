@@ -1,0 +1,31 @@
+== 12:48:09 bvfsm.py equiv hf_datapath_broken.bv ref_round.bv
+  live A hf_datapath_broken.bv: 56272 stored, 20000 expanded, peak 108 MB
+  live A hf_datapath_broken.bv: 81136 stored, 40000 expanded, peak 152 MB
+  live A hf_datapath_broken.bv: 106224 stored, 60000 expanded, peak 168 MB
+  live A hf_datapath_broken.bv: 131216 stored, 80000 expanded, peak 195 MB
+  live A hf_datapath_broken.bv: 152112 stored, 100000 expanded, peak 221 MB
+  live A hf_datapath_broken.bv: 152112 stored, 120000 expanded, peak 221 MB
+  live B ref_round.bv: 62176 stored, 20000 expanded, peak 236 MB
+  live B ref_round.bv: 95776 stored, 40000 expanded, peak 259 MB
+  live B ref_round.bv: 123200 stored, 60000 expanded, peak 259 MB
+  live B ref_round.bv: 149728 stored, 80000 expanded, peak 259 MB
+  live B ref_round.bv: 176040 stored, 100000 expanded, peak 259 MB
+  live B ref_round.bv: 202120 stored, 120000 expanded, peak 259 MB
+  live B ref_round.bv: 204960 stored, 140000 expanded, peak 259 MB
+  live B ref_round.bv: 204960 stored, 160000 expanded, peak 259 MB
+  live states: A 3216 of 152112 reachable, B 4348 of 204960 reachable
+  product: 26880 stored, 20000 expanded, peak 266 MB
+equiv hf_datapath_broken.bv ref_round.bv
+  outputs compared: roundedSig, roundPosBit, anyRoundExtra, anyRound
+  product states reached: 27156
+COUNTEREXAMPLE, word length N = 6 (least significant bit first)
+  scalars: m0=0 m1=0 m2=0 sign=0
+  sig        000110
+  mask       111110
+  assumptions hold (direct evaluation): True, True
+  roundedSig A 000000   B 000100   <- differs
+  roundPosBit A 1   B 1
+  anyRoundExtra A 1   B 1
+  anyRound   A 1   B 1
+exit 1
+== 12:51:51 end
