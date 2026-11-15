@@ -537,8 +537,13 @@ class Exact:
                 self.f64[name] = w
         return w
 
+    def prepare(self, x, site):
+        """A product input as every product that reads it needs it, made once: clamped at its site."""
+        return self.clamp(x, site)
+
     def linear(self, x, name, site):
-        xc = self.clamp(x, site).astype(np.float64)
+        """x as prepare() made it for this site."""
+        xc = x.astype(np.float64)
         w = self.matrix(name)
         n = SPLIT.get(site, w.shape[0])
         y = sum((xc[:, s:s + n] @ w[s:s + n]).astype(np.int64) for s in range(0, w.shape[0], n))  # exact: bounds.py
@@ -609,7 +614,7 @@ class Exact:
         for i in range(LAYERS):
             p = "model.layers.%d." % i
             x = self.clamp(x, "residual", i)
-            h = self.rms(x, p + "input_layernorm.weight").reshape(B * L, HIDDEN)
+            h = self.prepare(self.rms(x, p + "input_layernorm.weight").reshape(B * L, HIDDEN), "attention input")
             q = self.linear(h, p + "self_attn.q_proj.weight", "attention input").reshape(B, L, HEADS, HEAD)
             k = self.linear(h, p + "self_attn.k_proj.weight", "attention input").reshape(B, L, KV, HEAD)
             v = self.linear(h, p + "self_attn.v_proj.weight", "attention input").reshape(B, L, KV, HEAD)
@@ -620,12 +625,13 @@ class Exact:
                 kv = tuple(np.concatenate([c, e], 2) for c, e in zip(cache[i], kv))
             new.append(kv)
             ctx = self.attention(q, *kv, kvalid).transpose(0, 2, 1, 3).reshape(B * L, HIDDEN)
+            ctx = self.prepare(ctx, "o input")
             x = x + self.linear(ctx, p + "self_attn.o_proj.weight", "o input").reshape(B, L, HIDDEN)
             x = self.clamp(x, "residual", i)
-            h = self.rms(x, p + "post_attention_layernorm.weight").reshape(B * L, HIDDEN)
+            h = self.prepare(self.rms(x, p + "post_attention_layernorm.weight").reshape(B * L, HIDDEN), "mlp input")
             g = self.clamp(self.linear(h, p + "mlp.gate_proj.weight", "mlp input"), "gate")
             u = self.clamp(self.linear(h, p + "mlp.up_proj.weight", "mlp input"), "up")
-            a = rshift_round(self.silu(g) * u, A)
+            a = self.prepare(rshift_round(self.silu(g) * u, A), "down input")
             x = x + self.linear(a, p + "mlp.down_proj.weight", "down input").reshape(B, L, HIDDEN)
         x = self.clamp(x, "residual", LAYERS)
         h = self.rms(x, "model.norm.weight").reshape(B * L, HIDDEN)
@@ -670,17 +676,21 @@ def bitlen(a):
     return np.frexp(a.astype(np.float64))[1].astype(np.int64)
 
 
-def block16(x, axes=-1):
+def block16(x):
     """x int64 -> (x16, sh, n): x16 = round(x 2^-sh) with |x16| <= 2^15 - 1, sh >= 0 the least shift that fits, one
-    shift per vector along `axes`; n counts the vectors whose rounding needed one more shift."""
-    top = np.abs(x).max(axis=axes, keepdims=True)
+    shift per vector along the last axis; n counts the vectors whose rounding needed one more shift. Only those n
+    vectors are rounded a second time."""
+    top = np.abs(x).max(axis=-1, keepdims=True)
     sh = np.maximum(0, bitlen(top) - (B16 - 1))
     xb = shift_round(x, sh)
-    over = (np.abs(xb) > LIM16).any(axis=axes, keepdims=True)
-    sh = sh + over
-    xb = np.where(over, shift_round(x, sh), xb)
+    over = (np.abs(xb) > LIM16).any(axis=-1, keepdims=True)
+    n = int(over.sum())
+    if n:
+        sel = over[..., 0]
+        sh = sh + over
+        xb[sel] = shift_round(x[sel], sh[sel])
     assert (np.abs(xb) <= LIM16).all()
-    return xb, sh, int(over.sum())
+    return xb, sh, n
 
 
 def int16_weights():
@@ -905,18 +915,24 @@ class Exact16(Exact):
         self.extra = 0                                   # vectors whose rounding needed one more shift
         self.p_held = 0                                  # p values held at 2^15 - 1
 
-    def product(self, x, name, dtype=np.int64):
-        """x int64 [N, in] at 2^-16, the matrix `name`; y at 2^-16:
-        y = round(2^-g (2^sh x16 . w16 + sum of the peeled x w16))."""
-        w, g = self.W16[name], self.W16[name + ".g"]
-        if PEEL16:
-            idx = peel_index(x, PEEL16)
-            xp = np.take_along_axis(x, idx, -1)
-            x = x.copy()
-            np.put_along_axis(x, idx, 0, -1)
+    def prepare(self, x, site):
+        """A product input as every product that reads it needs it, made once: clamped at its site, its PEEL16
+        largest |x| taken out whole (ties to the lower index), the rest block-shifted to 16 bits per vector."""
+        x = self.clamp(x, site)
+        idx = peel_index(x, PEEL16)
+        xp = np.take_along_axis(x, idx, -1)
+        x = x.copy()
+        np.put_along_axis(x, idx, 0, -1)
         xb, sh, n = block16(x)
         self.extra += n
-        y = np.empty((x.shape[0], w.shape[1]), dtype=dtype)
+        return idx, xp, xb, sh
+
+    def product(self, prep, name, dtype=np.int64):
+        """prep: an input as prepare() made it, from x int64 [N, in] at 2^-16; the matrix `name`; y at 2^-16:
+        y = round(2^-g (2^sh x16 . w16 + sum of the peeled x w16))."""
+        idx, xp, xb, sh = prep
+        w, g = self.W16[name], self.W16[name + ".g"]
+        y = np.empty((xb.shape[0], w.shape[1]), dtype=dtype)
         for c in range(0, w.shape[1], 8192):                                  # output columns in blocks of 8,192
             wc = w[:, c:c + 8192]                                             # int16, memory-mapped
             T = np.left_shift(mm16(xb, wc, self.route, self.mmi), sh)
@@ -928,11 +944,11 @@ class Exact16(Exact):
         return y
 
     def linear(self, x, name, site):
-        return self.product(self.clamp(x, site), name)
+        """x as prepare() made it for this site."""
+        return self.product(x, name)
 
     def logits(self, h):
-        y = self.product(self.clamp(h, "logits input"), "model.embed_tokens.weight", np.int32)
-        return y
+        return self.product(self.prepare(h, "logits input"), "model.embed_tokens.weight", np.int32)
 
     def cache_entry(self, k, v):
         """What the cache keeps for each new position, made once: k clamped and block-shifted per head vector (k16
