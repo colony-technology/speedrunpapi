@@ -1,0 +1,40 @@
+689 forks with the three thicknesses
+
+turns at 3 to 5 mm, 396 forks (both turns between 0.5 and 89.5 degrees)
+   a      across   along
+   1.0     0.643   1.209
+   1.5     0.811   1.075
+   2.0     0.988   0.979
+   2.5     1.171   0.885
+   3.0     1.386   0.802
+   across is 1 at a = 2.04 (bootstrap 2.5 to 97.5: 1.88 to 2.21; no crossing in 0 of 1000)
+   along  is 1 at a = 1.91 (bootstrap 2.5 to 97.5: 1.70 to 2.30; no crossing in 0 of 1000)
+   with another fork's thicknesses: across is 1 at a = 0.51, 2.5 to 97.5: 0.51 to 0.51 (no crossing in 298 of 300); along is 1 at a = 1.58, 2.5 to 97.5: 1.51 to 1.66 (no crossing in 0 of 300)
+   log(sin turn thin / sin turn thick) on log(D thick / D thin): slope through the origin 2.09, rank correlation +0.593; the thicker daughter turns less in 0.886
+   the parent's thickness reckoned from the two daughters at a = 2.04: median of reckoned over stored 0.985, quartiles 0.860 1.155; rank correlation +0.355
+
+stored arcs' first chords, 680 forks (both turns between 0.5 and 89.5 degrees)
+   a      across   along
+   1.0     0.702   1.156
+   1.5     0.880   1.034
+   2.0     1.053   0.943
+   2.5     1.269   0.863
+   3.0     1.479   0.782
+   across is 1 at a = 1.86 (bootstrap 2.5 to 97.5: 1.76 to 2.01; no crossing in 0 of 1000)
+   along  is 1 at a = 1.69 (bootstrap 2.5 to 97.5: 1.54 to 1.93; no crossing in 0 of 1000)
+   with another fork's thicknesses: across is 1 at a = never (no crossing in 300 of 300); along is 1 at a = 1.36, 2.5 to 97.5: 1.30 to 1.42 (no crossing in 0 of 300)
+   log(sin turn thin / sin turn thick) on log(D thick / D thin): slope through the origin 1.82, rank correlation +0.519; the thicker daughter turns less in 0.860
+   the parent's thickness reckoned from the two daughters at a = 1.86: median of reckoned over stored 0.983, quartiles 0.842 1.156; rank correlation +0.299
+
+record's Gamma1, Gamma2, 661 forks (both turns between 0.5 and 89.5 degrees)
+   a      across   along
+   1.0     0.822   1.054
+   1.5     0.979   0.949
+   2.0     1.190   0.870
+   2.5     1.415   0.799
+   3.0     1.633   0.733
+   across is 1 at a = 1.55 (bootstrap 2.5 to 97.5: 1.40 to 1.66; no crossing in 0 of 1000)
+   along  is 1 at a = 1.26 (bootstrap 2.5 to 97.5: 1.14 to 1.43; no crossing in 0 of 1000)
+   with another fork's thicknesses: across is 1 at a = never (no crossing in 300 of 300); along is 1 at a = 0.92, 2.5 to 97.5: 0.87 to 0.98 (no crossing in 0 of 300)
+   log(sin turn thin / sin turn thick) on log(D thick / D thin): slope through the origin 1.62, rank correlation +0.547; the thicker daughter turns less in 0.844
+   the parent's thickness reckoned from the two daughters at a = 1.55: median of reckoned over stored 0.963, quartiles 0.814 1.132; rank correlation +0.214

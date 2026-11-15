@@ -1,0 +1,4 @@
+grouping: SegP, SegD1, SegD2 name consecutive triples in 0 discharges with two or more forks, not in 0; fields absent in 423
+rotation, planes from first chords,      n 577: median 77.2, quartiles 61.2 85.2; share above 60: 0.759; below 30: 0.113; bins of 15 from 0: 30 35 26 48 118 320
+rotation, planes from lines 2 to 6 mm,   n 574: median 77.2, quartiles 61.2 85.2; share above 60: 0.760; below 30: 0.111; bins of 15 from 0: 29 35 26 48 118 318
+rotation, planes from end-to-end lines,  n 577: median 77.2, quartiles 61.2 85.2; share above 60: 0.759; below 30: 0.113; bins of 15 from 0: 30 35 26 48 118 320

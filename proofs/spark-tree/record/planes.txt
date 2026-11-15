@@ -1,0 +1,17 @@
+discharges by number of stored forks: {0: 1484, 1: 736, 2: 264, 3: 101, 4: 39, 5: 13, 6: 6}
+pairs of a first fork and a fork hanging on one of its daughters: 577 (the second fork's parent path starts within 4 mm of that daughter's start)
+
+length of the connecting leg: median 18.6 mm (quartiles 14.3, 25.3); the sibling is 8.1 mm away at the second fork (median)
+rotation of the second fork's plane against the first, about the leg: median 77.2, quartiles 61.2 85.2 (n 577)
+   counts in 15-degree bins from 0: 30 35 26 48 118 320
+   share above 60 degrees 0.759; share below 30 degrees 0.113
+raw angle between the two planes' normals: median 77.2, quartiles 61.8 85.1
+control, each second fork with another tree's first fork (2,000 pairings): rotation median 43.1 (2.5 to 97.5: 39.4 to 46.7); share above 60: 0.317 (0.279 to 0.354); below 30: 0.354 (0.314 to 0.392); raw median 49.2 (46.0 to 52.6)
+   pairings with a rotation median at least as far from the control's as the measured one: 0.0000
+
+lean of the second fork's daughters, across the leg, against the direction to the sibling:
+   both away from the sibling 0.120; both toward 0.224; one each 0.657; mean lean of the pair +0.021 (0 if the sibling does not matter)
+   the daughter nearer the sibling is the thicker one in 0.557 of 576 second forks (0.5 if the sibling does not matter)
+   connecting leg  0 to  8 mm:  20 pairs, rotation median 33.4, mean lean +0.049
+   connecting leg  8 to 16 mm: 181 pairs, rotation median 78.5, mean lean +0.046
+   connecting leg 16 to 80 mm: 376 pairs, rotation median 76.8, mean lean +0.008

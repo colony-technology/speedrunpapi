@@ -1,0 +1,9 @@
+2719 discharges with segments, 1991 forks (a dot that ends one segment and starts two)
+opening by the chords of the first strobe period: median 59.7, quartiles 48.5 70.9 (n 1991)
+pairs of a fork and the next fork on one of its daughters: 752; connecting leg 19.2 mm (median), 3 strobe periods (median)
+rotation of the second fork's plane against the first: median 75.3, quartiles 56.0 83.7; above 60: 0.717; below 30: 0.129; bins of 15 from 0: 51 46 37 79 153 386
+control, second forks with other trees' first forks (2,000 pairings): median 42.3 (2.5 to 97.5: 39.2 to 45.5); above 60: 0.309 (0.277 to 0.342); pairings as far as the measured median: 0.0000
+   connecting leg of 1 to 1 strobe periods: 141 pairs, rotation median 75.1, above 60: 0.674
+   connecting leg of 2 to 2 strobe periods: 190 pairs, rotation median 76.2, above 60: 0.742
+   connecting leg of 3 to 4 strobe periods: 281 pairs, rotation median 75.5, above 60: 0.722
+   connecting leg of 5 to 98 strobe periods: 140 pairs, rotation median 73.4, above 60: 0.714

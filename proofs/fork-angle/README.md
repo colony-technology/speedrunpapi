@@ -166,6 +166,7 @@ At the fork the record gives two readings that differ. Its own stored fork angle
 - The reader and its controls.
 - The thin-channel closed form (below) as a statement about its model: 61.8 to 79.9 degrees for uniform charges. It holds the arcs' tangents at the fork (75.6) and not the authors' stored angle (87.1); its own first solved-charge attempt pointed near 90 for long thin forks and was set aside as unreliable. The charges solved on a real surface are not yet computed; until then the reckoning decides nothing between the two readings.
 - The forward reckoning of the three legs (below) gave an opening of 71.4 from the three thicknesses: 4 degrees under the arcs' tangents at the fork and 16 under the authors' stored angle. Its claim to the opening is withdrawn with the carried-back one; its turns stand as measured.
+- The junction balance, what the fork conserves, and the turn between successive fork planes, on the same record and its raw detections: `proofs/spark-tree/`.
 
 ## A first reckoning in three dimensions, for thin channels
 

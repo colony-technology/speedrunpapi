@@ -1,0 +1,9 @@
+99259 sources, 245 forks with both directions at 15 to 60 m; opening median 56.1
+how the fork planes lie: |vertical part of the plane's normal| median 0.570, quartiles 0.317 0.767 (0.5 for planes turned at random; 1 = a level plane, 0 = an upright one); share above 0.8: 0.216; height of the forks 7987 to 12480 m (5th to 95th percentile)
+pairs of a fork and the next fork on a daughter's main trail: 169; trail between them 88 m (median), straight 65 m
+rotation of the second fork's plane against the first: median 38.3, quartiles 18.9 66.0; above 60: 0.302; below 30: 0.414; bins of 15 from 0: 30 40 22 26 20 31
+control, second forks with other pairs' first forks (2,000 pairings): median 44.8 (2.5 to 97.5: 38.2 to 51.6); above 60: 0.337 (0.266 to 0.408); pairings as far as measured: 0.0580
+   trail of    0 to   60 m:  72 pairs, rotation median 44.2, above 60: 0.306
+   trail of   60 to  150 m:  40 pairs, rotation median 34.7, above 60: 0.325
+   trail of  150 to  400 m:  44 pairs, rotation median 22.9, above 60: 0.250
+   trail of  400 to 2000 m:  13 pairs, rotation median 49.5, above 60: 0.385

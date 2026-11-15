@@ -1,0 +1,5 @@
+1631 forks with raw dots on all three legs and a stored fork within 6 mm
+parent's last step 6.51 mm per strobe period (median)
+first step after the fork dot: speed over the parent's, thicker daughter 1.056, thinner 1.066 (medians); current-like sum 1.391 (bootstrap 1.360 to 1.429; quartiles 1.003 1.913); speed against thickness between sisters k = -0.14; thicker is faster in 0.536
+second step: speed over the parent's, thicker daughter 1.113, thinner 0.919 (medians); current-like sum 1.352 (bootstrap 1.316 to 1.409; quartiles 0.988 1.822); speed against thickness between sisters k = 0.51; thicker is faster in 0.826
+for these forks the cross-sections alone: (D1^2 + D2^2) / D0^2 median 1.304
