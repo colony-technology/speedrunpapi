@@ -170,5 +170,5 @@ bash replay.sh      # python3, cc, Yosys with yosys-abc, Icarus Verilog; exit 0 
 | --- | --- | --- |
 | 1 | `src/check_claims.py 1000 300 60`, `src/oldest.py`, `src/search4.c 2000 4`, `src/search5.c 600 4`, `src/analyse.py`, `src/cheap4.py 40 4` | equal to `record/`, line for line |
 | 2 | `src/prove_sim.sh` on every netlist in `netlists/`; ABC `cec` for the 15-bit adder and multiplier | 0 mismatches; equivalent; both controls fail |
-| 3 | `src/gen_cost.py`, `src/map.sh`, `src/cost_table.py` with the local Yosys | printed beside `record/cost_table.md`; counts can differ with another Yosys |
+| 3 | `src/gen_cost.py`, `src/map.sh`, `src/cost_table.py` with the local Yosys | equal to `record/cost_table.md` with Yosys 0.70+385, mapped from the recorded relative paths (ABC's result follows the source path); counts can differ with another Yosys |
 | Lean, apart from `replay.sh` | `cd lean; lake exe cache get; lake build; lake env lean P7DialsCheck.lean` | builds; the axioms in the Lean table |

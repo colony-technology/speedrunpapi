@@ -4,7 +4,8 @@
 #   1. the statements, the oldest form, the searches and the cheap sets: equal to record/, line for line
 #   2. the shipped netlists (netlists/, mapped by Yosys 0.70+385): exhaustive simulation against the definitions,
 #      0 mismatches; the 15-bit binary adder and multiplier by ABC cec; both negative controls must fail
-#   3. the cost tables again with the local Yosys: printed beside record/cost_table.md (counts depend on the version)
+#   3. the cost tables again with the local Yosys: compared with record/cost_table.md (equal with Yosys 0.70+385;
+#      counts can differ with another version)
 set -u
 cd "$(dirname "$0")" || exit 2
 HERE=$(pwd); B=$HERE/build; rm -rf "$B"; mkdir -p "$B"
@@ -49,13 +50,15 @@ grep -q 'NOT EQUIVALENT' "$C/bad.cec.txt"; check $? "control, cec against (a * b
 echo "== 3. cost with the local Yosys"
 : > "$B/cost.txt"
 for S in "5 8 13" "7 9 32" "15 17 128" "7 8 9" "15 16 17"; do
-  D=$B/cost/s${S// /_}
+  R=cost/s${S// /_}; D=$B/$R
   python3 -I src/gen_cost.py "$D" $S >> "$B/cost.txt"
-  bash src/map.sh "$D" >> "$B/cost.txt"
+  # read as cost/<set>/<top>.v from build/, as when recorded: Yosys names cells after the source path, and ABC's
+  # mapping follows their order, so another path can give another count from the same Yosys
+  (cd "$B" && bash "$HERE/src/map.sh" "$R") >> "$B/cost.txt"
 done
 python3 -I src/cost_table.py "$B/cost.txt" > "$B/cost_table.md"
 if diff -q "$B/cost_table.md" record/cost_table.md > /dev/null; then echo "same  cost tables as record/cost_table.md"
-else echo "note  cost tables differ from record/cost_table.md (Yosys version): diff build/cost_table.md record/cost_table.md"; fi
+else echo "note  cost tables differ from record/cost_table.md (another Yosys or ABC): diff build/cost_table.md record/cost_table.md"; fi
 
 echo "== $ok ok, $bad failed"
 [ "$bad" = 0 ]
