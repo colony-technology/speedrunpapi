@@ -86,6 +86,8 @@ With the three patches, every stream above and five mixed streams of 3,200,000 r
 
 The maintainer wrote the fixes on branch [`fpu-fixes`](https://github.com/openhwfoundation/cva5/tree/fpu-fixes), three commits on `2acf79f`: `33885ac` (#34), `924f368` (#36) and `372dcdf` (#35). Run on 15 November 2026 through the same harness, campaigns and seeds as the reports: 403,402,400 vectors, no wrong value, no wrong flag, no missing answer. Every unit takes the same number of cycles as with the three patches above.
 
+The maintainer merged the fixes to `master` on 15 November 2026 as [`125fb2b`](https://github.com/openhwfoundation/cva5/commit/125fb2b) (pull request [#37](https://github.com/openhwfoundation/cva5/pull/37)) and closed #34, #35 and #36. The tree of `125fb2b` is the tree of `372dcdf` (`d35edadf`), the commit checked above.
+
 | issue | vector set | `2acf79f` | `372dcdf` |
 | --- | --- | --- | --- |
 | #34 | requests issued back to back, 1,000,000 per operation and precision | never answered: 67,439 `fdiv.s`, 37,932 `fdiv.d`, 54,971 `fsqrt.s`, 39,437 `fsqrt.d` | 0 |
