@@ -35,7 +35,7 @@ roundedSig, roundPosBit, anyRoundExtra are rho, bit r-1 and sticky for every wid
     i_r inexact at r; for r <= m: the top bit of y is m + c_r (c_r: carried to 2^(m+1)), y = x if not i_r;
     for r > m: y is 0 or 2^r (z_r), always inexact; r >= m+2: y = 2^r exactly for aw and odd;
     r = m+1: tz gives 0, aw and odd give 2^r; tz and odd never carry; equal positions, equal facts;
-    i is monotone in r. Lemma L1 (stage 2 tool, lemma_cu.bv, every width): if RHF = Ru + 1 then
+    i is monotone in r. Lemma L1 (stage 2 tool, lemma_cu_c.bv, every width): if RHF = Ru + 1 then
     c_Ru <=> roundPosBit & roundCarry & unboundedRange_roundIncr.
 Reference (IEEE 754-2019 as in stage 1's ref.py), in the same coordinates:
     y* = rho(x, R*); overflow <=> R* <= m & m + c_R* >= O   (y* > Omega, see stage3.md)

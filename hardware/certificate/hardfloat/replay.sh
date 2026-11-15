@@ -3,7 +3,7 @@
 # Needs: zsh, Python 3 (3.15.2 used), z3 on PATH or $Z3 (Z3 5.3.3 used), and in one directory $EDA_BIN
 # (default: where `verilator` is) Verilator (5.055 used), Icarus Verilog iverilog/vvp (14.0 devel used) and
 # Yosys (0.70+385 used), as the oss-cad-suite ships them. Optional: HEAVY=command prefix for heavy steps.
-# About 30 minutes on an Apple M1 mini. Prints each check; exit status 0 only if every check gives its
+# Prints each check; exit status 0 only if every check gives its
 # recorded result.
 set -u
 ZIP=${1:?usage: replay.sh path/to/HardFloat-1.zip}
@@ -42,8 +42,6 @@ step "stage 2: descriptions against the definition, emitter against the semantic
 python3 -I $C/stage2/check_ref.py $C/stage2/ref_round.bv; want '[ $? = 0 ]' "ref_round.bv"
 python3 -I $C/stage2/check_ref.py $C/stage2/hf_datapath.bv; want '[ $? = 0 ]' "hf_datapath.bv"
 python3 -I $C/stage2/check_lemma.py; want '[ $? = 0 ]' "lemma L1 sides, N = 2..11"
-python3 -I $C/stage2/check_mark.py; want '[ $? = 0 ]' "round_mark.bv"
-python3 -I $C/stage2/check_design1c.py $C/stage2/design1c.bv; want '[ $? = 0 ]' "design1c.bv"
 python3 -I $C/stage2/bvfsm.py selftest $C/stage2/hf_datapath.bv 12 60; want '[ $? = 0 ]' "automaton = direct evaluation (hf)"
 python3 -I $C/stage2/bvfsm.py selftest $C/stage2/ref_round.bv 12 60; want '[ $? = 0 ]' "automaton = direct evaluation (ref)"
 for N in 6 7; do python3 -I $C/stage2/emitcheck.py $C/stage2/hf_datapath.bv $N; want '[ $? = 0 ]' "emitter, N=$N, every input"; done
@@ -63,16 +61,20 @@ ${=HEAVY} $C/stage2/formal/all.sh; tail -12 $C/stage2/formal/formal.txt
 want '[ $(grep -c " hf_datapath.bv EQUIVALENT" $C/stage2/formal/formal.txt) = 111 ]' "111 widths equivalent"
 want '[ $(grep -c "broken.*DIFFERENT" $C/stage2/formal/formal.txt) = 10 ]' "broken copies: 10 of 10 different"
 
-step "stage 2: simulation anchor of the description, and phase-state counts"
-${=HEAVY} $C/stage2/run_states.sh
-cat $C/stage2/anchor/anchor.txt; grep '^states\|vs ' $C/stage2/logs/states.txt
+step "stage 2: simulation anchor of the description against HardFloat's internal signals"
+${=HEAVY} $C/stage2/anchor/anchor.sh
+cat $C/stage2/anchor/anchor.txt
 want '[ $(grep -c "differences 0" $C/stage2/anchor/anchor.txt) = 7 ]' "anchor: 7 widths, 0 differences"
-want 'grep -q "design1c.bv mark=one fixed aw=0 na=0 ne=1 odd=0 tz=0: deterministic states 41, minimal classes 14: before the phase change 7, after 7" $C/stage2/logs/states.txt' "design I, nearest even: 7 + 7"
 
 step "stage 3: exponent stage for every format (z3)"
 python3 -I $C/stage3/expstage.py $C/stage3/smt | tee $C/stage3/expstage.replay.txt
 want '[ $(grep -c "^hardfloat .*proved$" $C/stage3/expstage.replay.txt) = 9 ]' "9 claims proved"
 want '[ $(grep -c "^mut_.*COUNTERMODEL$" $C/stage3/expstage.replay.txt) = 9 ]' "planted faults give 9 counter-models"
+
+step "stage 3: the whole module against the formulas, 135 formats (Yosys SAT)"
+${=HEAVY} $C/stage3/whole/all.sh; tail -6 $C/stage3/whole/whole.txt
+want '[ $(grep -c "hardfloat EQUIVALENT" $C/stage3/whole/whole.txt) = 135 ]' "135 formats equivalent"
+want '[ $(grep -c "_ DIFFERENT" $C/stage3/whole/whole.txt) = 2 ]' "planted faults: 2 of 2 different"
 
 step "stage 3: the model against HardFloat's outputs"
 for wp in "3 5" "4 7" "5 5"; do python3 -I $C/stage3/factcheck.py ${=wp} $C/stage1/cross/w${wp% *}_p${wp#* }/verilator.dump; want '[ $? = 0 ]' "factcheck $wp"; done

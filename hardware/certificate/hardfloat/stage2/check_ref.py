@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""ref_round.bv (direct evaluation) against the arithmetic definition (round_states.rounded of the measured
-anchor): every sig of N-1 bits, every mask 2^R - 1 with 2 <= R <= N-1, the six modes, both signs, N = 6..11.
+"""ref_round.bv (direct evaluation) against the arithmetic definition (rounded() of common/rounding.py): every sig of N-1 bits, every mask 2^R - 1 with 2 <= R <= N-1, the six modes, both signs, N = 6..11.
 Compared: roundedSig = y >> 2, roundPosBit = bit R-1 of x, anyRoundExtra = [x mod 2^(R-1) != 0],
 anyRound = [x mod 2^R != 0]."""
 import importlib.util
@@ -12,7 +11,7 @@ sys.path.insert(0, HERE)
 import bvfsm  # noqa: E402
 
 spec = importlib.util.spec_from_file_location(
-    "round_states", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "common", "round_states.py"))
+    "rounding", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "common", "rounding.py"))
 rs = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rs)
 RULE = {0: lambda s: "nearest-even", 4: lambda s: "nearest-away", 1: lambda s: "toward-zero",

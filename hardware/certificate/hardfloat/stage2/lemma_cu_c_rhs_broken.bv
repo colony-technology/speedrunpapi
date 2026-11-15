@@ -1,5 +1,5 @@
 # BROKEN COPY of the lemma right-hand side: roundPosBit dropped.
-# Lemma L1, causal form (replaces lemma_cu.bv, whose guessed comparisons exhausted memory).
+# Lemma L1, written causally: each rounding is decided at its letter, so no comparison is guessed.
 # x has its top bit set (m = N-1). The mark is at U >= 1, the rounding position with unbounded exponent;
 # R = U + 1 <= N is HardFloat's bounded rounding position in the one case where HardFloat consults U.
 # Claim: [rho(x, U) carries out of the top]  =  bit R-1 of x  &  bit m+1 of rho(x, R)  &  unbIncr,

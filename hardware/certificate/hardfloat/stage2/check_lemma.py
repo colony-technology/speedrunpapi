@@ -12,7 +12,7 @@ sys.path.insert(0, HERE)
 import bvfsm  # noqa: E402
 
 spec = importlib.util.spec_from_file_location(
-    "round_states", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "common", "round_states.py"))
+    "rounding", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "common", "rounding.py"))
 rs = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(rs)
 NAME = {"ne": "nearest-even", "na": "nearest-away", "tz": "toward-zero", "aw": "away", "odd": "to-odd"}

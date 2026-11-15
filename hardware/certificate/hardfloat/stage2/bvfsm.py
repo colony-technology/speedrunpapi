@@ -29,7 +29,6 @@ usage:
     bvfsm.py equiv A.bv B.bv            decide equality for every N >= max(Lmin); print a shortest counterexample
     bvfsm.py selftest A.bv NMAX COUNT   compare the automaton with direct integer evaluation on random words
     bvfsm.py eval A.bv N name=value ... direct integer evaluation at one length
-    bvfsm.py states A.bv PHASEVEC [MARKBIT]  phase-state counts of a machine for A's outputs (see count_states)
 """
 import itertools
 import random
@@ -912,10 +911,6 @@ def main(argv):
         for nm, v in o.items():
             print("  %s = %s" % (nm, bin(v)))
         return 0
-    if len(argv) >= 3 and argv[0] == "states":
-        sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
-        import states
-        return states.main(argv[1:])
     print(__doc__)
     return 2
 

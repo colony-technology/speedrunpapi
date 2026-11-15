@@ -2,7 +2,7 @@
 
 A search calls Guard.tick(expanded, stored) as it goes. It stops with Stop when the number of stored
 states passes BVFSM_MAX_STATES (default 3,000,000) or the process's peak resident memory passes
-BVFSM_MAX_MB (default 2000 MB; the Mac's own guard stops any job over 2.8 GB). A stop means the result
+BVFSM_MAX_MB (default 2000 MB). A stop means the result
 is undecided: the search did not finish. Progress lines go to stderr.
 """
 import os
