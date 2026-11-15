@@ -160,6 +160,7 @@ Rebuilt on a clean runner: GitHub Actions run 43701616486, 15 November 2026, 09:
 | one congruence for any k, its unit-fraction form, coprimality automatic | Mordell 1973, p. 457, eqs. (1) to (4) |
 | unit triples are exactly z(x + y) = xy ± 1, and every one of them | Mordell 1973, p. 457; the + case is the arccot relation of Wallace 1839 and Dodgson 1884 |
 | the four- and five-dial factor forms | the method is Mordell's, pp. 459 to 462, used there for y = ±1; the y = 0 forms on this page not found stated |
+| four dials with the equality, Σ ε_i / m_i = ±1/M | Mordell's research problem, Canad. Math. Bull. 17 (1974): 1/x + 1/y + 1/z + 1/w + 1/(xyzw) = 0; infinitely many solutions, Zhang 1985 (Acta Math. Sinica 1, 221–224); solutions of each sign pattern, including (+, +, −, −), Cao 1987 (J. Math. Wuhan 7, 239–244; review read); families, Choudhry 2009. The sets in the searches below are solutions of it |
 | (2^(n−1), 2^n − 1, 2^n + 1), constants (−1, +1, +1) | Hiasat and Sweidan 2003, J. Systems Architecture 49, 53–58; abstract and snippets read, full text not |
 | (2^k − 1, 2^k + 1, 2^(2k−1)), constants (+1, −1, −1) | the member k = n − 1 of the family {2^n + 1, 2^(n+k), 2^n − 1} of Chaves and Sousa 2004 (metadata), whose inverses Mohan 2016 eq. (5.10) gives (snippet); that they are ±1 at this member not found stated |
 
