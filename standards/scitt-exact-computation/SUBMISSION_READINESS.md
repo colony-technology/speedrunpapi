@@ -2,13 +2,14 @@
 
 ## Artifact
 
-- Draft name: `draft-lmtlssss-scitt-exact-computation-00`.
-- Source: [RFCXML v3](draft-lmtlssss-scitt-exact-computation-00.xml).
-- Rendered review copy: [plain text](draft-lmtlssss-scitt-exact-computation-00.txt).
+- Draft name: `draft-lmtlssss-exact-state-contraction-00` ([Datatracker](https://datatracker.ietf.org/doc/draft-lmtlssss-exact-state-contraction/)).
+- Source: [RFCXML v3](https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.xml).
+- Rendered copy: [plain text](https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.txt) · [HTML](https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.html).
+- The earlier package `draft-lmtlssss-scitt-exact-computation-00` in this directory was not submitted; its profile is contained in the submitted draft.
 - Technical profile: [SCITT Exact Computation Claim Profile](SCITT_EXACT_COMPUTATION_PROFILE.md).
 - Interoperability evidence: [four finite-domain predicates with Node and Python verification](interop/).
-- Revision: `-00`; informational, individual contribution, Security area.
-- Authorship: the pseudonymous name printed in RFCXML. The author confirms the Datatracker submission identity during upload.
+- Revision: `-00`; Informational, individual submission; no area or working group.
+- Authorship: lmtlssss, colony.technology, lmtlssss@colony.technology, as printed in the draft and confirmed through Datatracker.
 
 ## Reproducible readiness gate
 
@@ -18,6 +19,9 @@ The signed test statements use a published **test-only** Ed25519 key. Production
 
 ## Submission
 
-The [IETF submission portal](https://datatracker.ietf.org/submit/) lists the reopening after **14 November 2026 23:59 Pacific Standard Time**, which is **15 November 2026 02:59 Eastern Standard Time**. Submit this RFCXML source when the portal accepts uploads, and complete the author confirmation and Datatracker processing. Record the Datatracker document URL and submission receipt here after acceptance.
+Submitted through the [IETF submission portal](https://datatracker.ietf.org/submit/) and posted 15 November 2026.
 
-Status on 10 November: **source package prepared for the submission window; Datatracker publication pending**.
+- Datatracker record: https://datatracker.ietf.org/doc/draft-lmtlssss-exact-state-contraction/
+- Posted files: https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.txt, https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.xml, https://www.ietf.org/archive/id/draft-lmtlssss-exact-state-contraction-00.html
+
+Status: **posted as an individual Internet-Draft; no IETF adoption status.**
