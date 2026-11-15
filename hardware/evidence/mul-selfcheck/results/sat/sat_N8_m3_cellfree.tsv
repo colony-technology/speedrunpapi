@@ -1,0 +1,61 @@
+SATISFIABLE	0.10	cell0:w1+w2	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=0 w1=0 w2=0
+SATISFIABLE	0.10	cell1:w3+w4	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=0 b[7]=0 w3=0 w4=0
+SATISFIABLE	0.10	cell2:w5+w6	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=0 b[7]=1 w5=0 w6=0
+SATISFIABLE	0.10	cell3:w7+w8	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w7=0 w8=0
+SATISFIABLE	0.10	cell4:w9+w10	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 a[4]=0 a[5]=0 a[6]=0 a[7]=0 b[0]=1 b[1]=0 b[2]=1 b[3]=0 b[4]=1 b[5]=1 b[6]=0 b[7]=1 w9=1 w10=1
+SATISFIABLE	0.10	cell5:w11+w12	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w11=1 w12=1
+SATISFIABLE	0.10	cell6:w13+w14	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w13=1 w14=1
+SATISFIABLE	0.11	cell7:w15+w16	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=1 w15=1 w16=1
+SATISFIABLE	0.13	cell8:w17+w18	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=1 b[7]=1 w17=0 w18=0
+SATISFIABLE	0.10	cell9:w19+w20	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=1 w19=1 w20=1
+SATISFIABLE	0.10	cell10:w21+w22	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w21=1 w22=1
+SATISFIABLE	0.10	cell11:w23+w24	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w23=1 w24=1
+SATISFIABLE	0.10	cell12:w25+w26	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=0 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=1 b[6]=0 b[7]=1 w25=1 w26=1
+SATISFIABLE	0.10	cell13:w27+w28	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w27=1 w28=1
+SATISFIABLE	0.11	cell14:w29+w30	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=0 a[5]=0 a[6]=0 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w29=1 w30=1
+SATISFIABLE	0.11	cell15:w31+w32	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=0 b[7]=0 w31=0 w32=0
+SATISFIABLE	0.10	cell16:w33+w34	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=0 w33=0 w34=0
+SATISFIABLE	0.10	cell17:w35+w36	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=0 b[7]=0 w35=0 w36=0
+SATISFIABLE	0.10	cell18:w37+w38+w39	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=1 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w37=1 w38=0 w39=0
+SATISFIABLE	0.10	cell19:w40+w41+w42	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w40=1 w41=0 w42=1
+SATISFIABLE	0.10	cell20:w43+w44+w45	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w43=1 w44=1 w45=1
+SATISFIABLE	0.10	cell21:w46+w47+w48	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w46=0 w47=1 w48=1
+SATISFIABLE	0.10	cell22:w49+w50+w51	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w49=1 w50=1 w51=1
+SATISFIABLE	0.10	cell23:w52+w53	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=0 a[5]=1 a[6]=0 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w52=1 w53=1
+SATISFIABLE	0.10	cell24:w54+w55	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=1 b[7]=0 w54=1 w55=1
+SATISFIABLE	0.10	cell25:w56+w57	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=0 w56=0 w57=0
+SATISFIABLE	0.10	cell26:w58+w59	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=0 a[4]=0 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=0 b[7]=0 w58=1 w59=1
+SATISFIABLE	0.11	cell27:w60+w61	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=0 b[6]=0 b[7]=1 w60=1 w61=1
+SATISFIABLE	0.12	cell28:w62+w63	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=0 a[7]=0 b[0]=1 b[1]=0 b[2]=1 b[3]=0 b[4]=1 b[5]=0 b[6]=1 b[7]=0 w62=1 w63=1
+SATISFIABLE	0.09	cell29:w64+w65	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=1 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w64=1 w65=1
+SATISFIABLE	0.10	cell30:w66+w67	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w66=1 w67=1
+SATISFIABLE	0.10	cell31:w68+w69	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=1 w68=1 w69=1
+SATISFIABLE	0.10	cell32:w70+w71	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w70=1 w71=1
+SATISFIABLE	0.11	cell33:w72+w73	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w72=1 w73=1
+SATISFIABLE	0.10	cell34:w74+w75	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=0 a[5]=1 a[6]=0 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w74=1 w75=1
+SATISFIABLE	0.10	cell35:w76+w77+w78	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=1 b[7]=0 w76=1 w77=1 w78=1
+SATISFIABLE	0.10	cell36:w79+w80	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=1 b[5]=0 b[6]=0 b[7]=0 w79=1 w80=1
+SATISFIABLE	0.10	cell37:w81+w82	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w81=1 w82=1
+SATISFIABLE	0.10	cell38:w83+w84	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w83=1 w84=1
+SATISFIABLE	0.11	cell39:w85+w86	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=0 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w85=1 w86=1
+SATISFIABLE	0.10	cell40:w87+w88	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=0 a[5]=1 a[6]=0 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w87=1 w88=1
+SATISFIABLE	0.10	cell41:w89+w90	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=1 b[7]=0 w89=1 w90=1
+SATISFIABLE	0.10	cell42:w91+w92	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=1 b[5]=0 b[6]=0 b[7]=1 w91=1 w92=1
+SATISFIABLE	0.10	cell43:w93+w94	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=0 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=0 b[6]=0 b[7]=0 w93=1 w94=1
+UNSATISFIABLE	5.45	cell44:w95	free
+SATISFIABLE	0.12	cell45:w96+w97	free	cex a[0]=0 a[1]=1 a[2]=0 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=0 b[1]=1 b[2]=0 b[3]=0 b[4]=1 b[5]=0 b[6]=1 b[7]=1 w96=1 w97=1
+SATISFIABLE	0.10	cell46:w98+w99	free	cex a[0]=0 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w98=1 w99=1
+SATISFIABLE	0.10	cell47:w100+w101	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w100=0 w101=0
+SATISFIABLE	0.10	cell48:w102+w103	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=0 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=0 b[7]=0 w102=1 w103=1
+SATISFIABLE	0.10	cell49:w104+w105	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=0 b[7]=0 w104=0 w105=0
+SATISFIABLE	0.10	cell50:w106+w107	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=1 w106=1 w107=1
+SATISFIABLE	0.10	cell51:w108+w109	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w108=1 w109=1
+SATISFIABLE	0.10	cell52:w110+w111	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w110=1 w111=1
+SATISFIABLE	0.10	cell53:w112+w113	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=0 b[5]=0 b[6]=0 b[7]=0 w112=1 w113=1
+SATISFIABLE	0.10	cell54:w114+w115	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=0 b[5]=1 b[6]=0 b[7]=0 w114=1 w115=1
+SATISFIABLE	0.10	cell55:w116+w117	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=0 a[5]=1 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=1 b[7]=1 w116=1 w117=1
+SATISFIABLE	0.10	cell56:w118+w119	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=0 b[5]=0 b[6]=1 b[7]=0 w118=1 w119=1
+SATISFIABLE	0.10	cell57:w120+w121	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=0 b[4]=1 b[5]=0 b[6]=0 b[7]=1 w120=1 w121=1
+SATISFIABLE	0.10	cell58:w122+w123	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=0 a[7]=0 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=0 b[6]=0 b[7]=1 w122=1 w123=1
+UNSATISFIABLE	6.25	cell59:w124+w125	free
+SUMMARY sc8_m3 N = 8 m = 3 mode cellfree: 60 queries, SATISFIABLE 58, UNSATISFIABLE 2; slowest 6.25 s, this run 17.6 s, limit 300 s per query

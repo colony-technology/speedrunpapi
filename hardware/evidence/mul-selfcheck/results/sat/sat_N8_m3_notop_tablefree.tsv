@@ -1,0 +1,142 @@
+UNSATISFIABLE	7.71	w1	free
+UNSATISFIABLE	9.11	w2	free
+UNSATISFIABLE	7.36	w3	free
+UNSATISFIABLE	7.99	w4	free
+UNSATISFIABLE	8.42	w5	free
+UNSATISFIABLE	8.76	w6	free
+UNSATISFIABLE	7.92	w7	free
+UNSATISFIABLE	9.27	w8	free
+UNSATISFIABLE	7.58	w9	free
+UNSATISFIABLE	9.88	w10	free
+UNSATISFIABLE	8.91	w11	free
+UNSATISFIABLE	10.55	w12	free
+UNSATISFIABLE	9.44	w13	free
+UNSATISFIABLE	9.79	w14	free
+UNSATISFIABLE	14.03	w15	free
+UNSATISFIABLE	8.78	w16	free
+UNSATISFIABLE	8.93	w17	free
+UNSATISFIABLE	9.38	w18	free
+UNSATISFIABLE	8.73	w19	free
+UNSATISFIABLE	8.44	w20	free
+UNSATISFIABLE	7.94	w21	free
+UNSATISFIABLE	8.29	w22	free
+UNSATISFIABLE	8.52	w23	free
+UNSATISFIABLE	7.59	w24	free
+UNSATISFIABLE	8.68	w25	free
+UNSATISFIABLE	7.35	w26	free
+UNSATISFIABLE	7.06	w28	free
+UNSATISFIABLE	6.88	w29	free
+UNSATISFIABLE	6.83	w30	free
+UNSATISFIABLE	7.03	w31	free
+UNSATISFIABLE	8.73	w32	free
+UNSATISFIABLE	7.84	w33	free
+UNSATISFIABLE	8.56	w34	free
+UNSATISFIABLE	7.43	w35	free
+UNSATISFIABLE	6.77	w36	free
+UNSATISFIABLE	7.85	w37	free
+UNSATISFIABLE	6.92	w38	free
+UNSATISFIABLE	7.72	w39	free
+UNSATISFIABLE	6.87	w40	free
+UNSATISFIABLE	7.37	w41	free
+UNSATISFIABLE	6.96	w42	free
+UNSATISFIABLE	7.43	w43	free
+UNSATISFIABLE	7.17	w44	free
+UNSATISFIABLE	7.43	w45	free
+UNSATISFIABLE	7.65	w46	free
+UNSATISFIABLE	6.55	w48	free
+UNSATISFIABLE	7.60	w49	free
+UNSATISFIABLE	7.62	w50	free
+UNSATISFIABLE	6.29	w52	free
+UNSATISFIABLE	6.84	w53	free
+UNSATISFIABLE	7.13	w54	free
+UNSATISFIABLE	7.00	w55	free
+UNSATISFIABLE	7.69	w56	free
+UNSATISFIABLE	7.10	w57	free
+UNSATISFIABLE	7.93	w58	free
+UNSATISFIABLE	8.45	w59	free
+UNSATISFIABLE	8.04	w60	free
+UNSATISFIABLE	7.93	w61	free
+UNSATISFIABLE	8.69	w62	free
+UNSATISFIABLE	7.68	w63	free
+UNSATISFIABLE	7.64	w64	free
+UNSATISFIABLE	7.10	w65	free
+UNSATISFIABLE	7.41	w66	free
+UNSATISFIABLE	7.04	w67	free
+SATISFIABLE	1.41	w27	free	cex a[0]=0 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w27=1
+SATISFIABLE	0.72	w47	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=0 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w47=1
+SATISFIABLE	0.18	w51	free	cex a[0]=0 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=0 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w51=1
+UNSATISFIABLE	7.44	w68	free
+UNSATISFIABLE	6.68	w69	free
+UNSATISFIABLE	7.15	w70	free
+SATISFIABLE	0.87	w71	free	cex a[0]=0 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w71=1
+SATISFIABLE	0.54	w72	free	cex a[0]=0 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w72=1
+UNSATISFIABLE	6.25	w73	free
+UNSATISFIABLE	6.40	w74	free
+SATISFIABLE	0.15	w75	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w75=1
+SATISFIABLE	0.20	w76	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=0 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w76=1
+UNSATISFIABLE	6.01	w77	free
+SATISFIABLE	0.11	w78	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=0 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=0 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w78=1
+UNSATISFIABLE	5.74	w79	free
+UNSATISFIABLE	6.27	w80	free
+UNSATISFIABLE	6.52	w81	free
+UNSATISFIABLE	6.43	w82	free
+UNSATISFIABLE	6.12	w83	free
+SATISFIABLE	0.53	w84	free	cex a[0]=1 a[1]=0 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w84=1
+SATISFIABLE	0.22	w85	free	cex a[0]=0 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w85=1
+UNSATISFIABLE	6.14	w86	free
+UNSATISFIABLE	6.79	w87	free
+SATISFIABLE	0.14	w88	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=0 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w88=1
+SATISFIABLE	0.12	w89	free	cex a[0]=1 a[1]=0 a[2]=0 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w89=1
+UNSATISFIABLE	5.78	w90	free
+UNSATISFIABLE	6.17	w91	free
+SATISFIABLE	0.13	w92	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=0 b[1]=1 b[2]=1 b[3]=0 b[4]=0 b[5]=0 b[6]=1 b[7]=1 w92=1
+SATISFIABLE	0.13	w93	free	cex a[0]=1 a[1]=1 a[2]=0 a[3]=1 a[4]=0 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=0 b[3]=0 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w93=1
+UNSATISFIABLE	6.81	w94	free
+UNSATISFIABLE	6.03	w95	free
+UNSATISFIABLE	6.64	w96	free
+UNSATISFIABLE	7.26	w97	free
+UNSATISFIABLE	5.87	w98	free
+UNSATISFIABLE	7.34	w99	free
+UNSATISFIABLE	6.22	w100	free
+UNSATISFIABLE	7.86	w101	free
+UNSATISFIABLE	6.26	w102	free
+UNSATISFIABLE	7.68	w103	free
+UNSATISFIABLE	5.99	w104	free
+UNSATISFIABLE	6.17	w105	free
+UNSATISFIABLE	5.80	w106	free
+UNSATISFIABLE	7.17	w107	free
+UNSATISFIABLE	6.41	w108	free
+UNSATISFIABLE	7.29	w109	free
+UNSATISFIABLE	6.59	w110	free
+UNSATISFIABLE	6.52	w111	free
+UNSATISFIABLE	5.81	w112	free
+SATISFIABLE	1.27	w113	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w113=1
+UNSATISFIABLE	5.74	w114	free
+UNSATISFIABLE	5.81	w115	free
+UNSATISFIABLE	5.59	w116	free
+SATISFIABLE	0.14	w117	free	cex a[0]=1 a[1]=1 a[2]=1 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=0 b[2]=1 b[3]=1 b[4]=1 b[5]=1 b[6]=1 b[7]=1 w117=1
+UNSATISFIABLE	5.61	w118	free
+UNSATISFIABLE	6.03	w119	free
+UNSATISFIABLE	6.11	w120	free
+SATISFIABLE	0.11	w121	free	cex a[0]=1 a[1]=0 a[2]=0 a[3]=1 a[4]=1 a[5]=1 a[6]=1 a[7]=1 b[0]=1 b[1]=1 b[2]=1 b[3]=1 b[4]=1 b[5]=0 b[6]=1 b[7]=1 w121=1
+UNSATISFIABLE	6.01	w122	free
+UNSATISFIABLE	6.41	w123	free
+UNSATISFIABLE	5.75	w124	free
+UNSATISFIABLE	0.05	w125	free
+UNSATISFIABLE	5.83	p[0]	free
+UNSATISFIABLE	6.30	p[1]	free
+UNSATISFIABLE	5.77	p[2]	free
+UNSATISFIABLE	6.19	p[3]	free
+UNSATISFIABLE	6.52	p[4]	free
+UNSATISFIABLE	6.50	p[5]	free
+UNSATISFIABLE	6.32	p[6]	free
+UNSATISFIABLE	6.67	p[7]	free
+UNSATISFIABLE	6.66	p[8]	free
+UNSATISFIABLE	6.19	p[9]	free
+UNSATISFIABLE	6.40	p[10]	free
+UNSATISFIABLE	6.33	p[11]	free
+UNSATISFIABLE	6.10	p[12]	free
+UNSATISFIABLE	7.09	p[13]	free
+UNSATISFIABLE	11.26	p[14]	free
+UNSATISFIABLE	6.49	p[15]	free
+SUMMARY sc8_m3_notop N = 8 m = 3 mode tablefree: 141 queries, SATISFIABLE 17, UNSATISFIABLE 124; slowest 14.03 s, this run 388.4 s, limit 300 s per query

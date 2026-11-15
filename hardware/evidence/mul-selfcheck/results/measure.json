@@ -1,0 +1,68 @@
+{
+ "16": {
+  "mul_own_tables": 449,
+  "mul_yosys": [
+   536,
+   13
+  ],
+  "cmp_2n": [
+   20,
+   3
+  ],
+  "baseline_extra": 469,
+  "det_m3": [
+   36,
+   4
+  ],
+  "share_m3_of_own": 8.02,
+  "det_m15": [
+   106,
+   6
+  ],
+  "share_m15_of_own": 23.61
+ },
+ "32": {
+  "mul_own_tables": 1714,
+  "mul_yosys": [
+   2567,
+   26
+  ],
+  "cmp_2n": [
+   37,
+   4
+  ],
+  "baseline_extra": 1751,
+  "det_m3": [
+   67,
+   5
+  ],
+  "share_m3_of_own": 3.91,
+  "det_m15": [
+   195,
+   7
+  ],
+  "share_m15_of_own": 11.38
+ },
+ "64": {
+  "mul_own_tables": 6299,
+  "mul_yosys": [
+   10988,
+   52
+  ],
+  "cmp_2n": [
+   85,
+   4
+  ],
+  "baseline_extra": 6384,
+  "det_m3": [
+   133,
+   6
+  ],
+  "share_m3_of_own": 2.11,
+  "det_m15": [
+   386,
+   8
+  ],
+  "share_m15_of_own": 6.13
+ }
+}

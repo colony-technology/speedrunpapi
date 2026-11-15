@@ -1,0 +1,25 @@
+{
+ "fault": "w4 inverted (column 6)",
+ "cell": 53,
+ "cell_column": 9,
+ "row": {
+  "w82": 1,
+  "w83": 1,
+  "w111": 1
+ },
+ "terms_value": 3,
+ "outputs_value_set_to": 2,
+ "pair": [
+  255,
+  191
+ ],
+ "ab": 48705,
+ "p_with_fault": 48129,
+ "residues": [
+  0,
+  0
+ ],
+ "top_wires": [
+  0
+ ]
+}
