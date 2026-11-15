@@ -240,7 +240,7 @@ fsqrt.d  0x400ffffff6000001                                   expected 0x3ffffff
 fclass.s 0x0000000000000000 (not NaN-boxed)                   expected 0x200                             core 0x220
 ```
 
-Fix: three patches in [`cva5/`](cva5), with a bit-true model of the square-root core. No missing answer and 0 wrong after them. The maintainer wrote the fixes on branch `fpu-fixes`; at `372dcdf` the same campaigns, 403,402,400 vectors, give no wrong value, no wrong flag and no missing answer (15 November 2026).
+Fix: three patches in [`cva5/`](cva5), with a bit-true model of the square-root core. No missing answer and 0 wrong after them. The maintainer wrote the fixes on branch `fpu-fixes`; at `372dcdf` the same campaigns, 403,402,400 vectors, give no wrong value, no wrong flag and no missing answer (15 November 2026). Merged to `master` the same day as `125fb2b` (#37), the same tree as `372dcdf`.
 
 **T-Head E906, C906, C910.** Values are right in every run. The underflow flag is not raised when a tiny inexact result rounds up to the smallest normal number.
 
