@@ -1,0 +1,17 @@
+[
+ {
+  "name": "colony_secded72_enc",
+  "lut6": 31,
+  "levels": 2
+ },
+ {
+  "name": "colony_secded72_syn",
+  "lut6": 35,
+  "levels": 3
+ },
+ {
+  "name": "colony_secded72_cor",
+  "lut6": 85,
+  "levels": 2
+ }
+]

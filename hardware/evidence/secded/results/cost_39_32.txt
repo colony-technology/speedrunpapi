@@ -1,0 +1,10 @@
+$ python3 -I tools/cost.py --code 39_32 --yosys $BIN/yosys --work $WORK/cost_39_32
+code (39, 32)
+block      design                          LUT-6  levels  other cells
+encoder    ours                               17       2  -
+encoder    OpenTitan RTL                      26       3  -
+syndrome   ours                               19       2  -
+corrector  ours                               43       2  -
+decoder    ours (syndrome + corrector)        62       4  -
+decoder    OpenTitan RTL                      77       5  -
+exit 0
