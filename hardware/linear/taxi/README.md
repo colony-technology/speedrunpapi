@@ -30,6 +30,17 @@ crc32_tx_d88 eth_crc (
 );
 ```
 
+## Measured on a board
+
+Alex Forencich built these modules into taxi's MACs on his HTG9200 design (Virtex UltraScale+ VU9P, 60 MACs) and reported the results, with leave to publish them, on 14 and 15 November 2026:
+
+| MAC datapath | LUTs saved |
+| --- | --- |
+| 64-bit (25G MAC), receive and transmit CRC swapped | about 83 per channel |
+| 32-bit | 4.7 per MAC (284 over the design) |
+
+In the 64-bit build the timing was about the same as with `taxi_lfsr`, the MAC testbenches passed with the modules swapped in, and the link ran PRBS-31 in hardware, fully saturated, on a network tester.
+
 ## Byte-enabled
 
 | Module | Bus | LUT-6 | Levels |
