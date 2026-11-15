@@ -1,0 +1,21 @@
+{
+  "model": {
+    "repo": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "license": "apache-2.0",
+    "files": {
+      "config.json": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "model.safetensors": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "onnx/model.onnx": "6fd5d72fe4589f189f8ebc006442dbb529bb7ce38f8082112682524616046452"
+    }
+  },
+  "sentences": {
+    "repo": "mteb/stsbenchmark-sts",
+    "revision": "96943a16ea6a35129e253c659081cb59daf81b30",
+    "file": "test.jsonl.gz",
+    "sha256": "524a75137d413dbfc40c3e84905f733714232647c3848521acb6bc375b834e1c",
+    "pairs": 1379,
+    "order": "for each line of the file in order: sentence1, then sentence2 (2,758 sentences)"
+  }
+}

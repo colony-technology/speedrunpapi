@@ -1,0 +1,459 @@
+{
+ "scales": {
+  "activation_fraction_bits": 16,
+  "weight_fraction_bits": 16,
+  "bias_fraction_bits": 32,
+  "clamp_real": 128.0,
+  "clamp_int": 8388608,
+  "layernorm_clamp_real": 512.0,
+  "output_fraction_bits": 15
+ },
+ "limit": "2^53 = 9007199254740992",
+ "weight_products": [
+  {
+   "matrix": "encoder.layer.0.attention.self.query.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 660029,
+   "clamp_times_row_sum": 5536724549632,
+   "log2": 42.332
+  },
+  {
+   "matrix": "encoder.layer.0.attention.self.key.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 3592802,
+   "clamp_times_row_sum": 30138607599616,
+   "log2": 44.777
+  },
+  {
+   "matrix": "encoder.layer.0.attention.self.value.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1125261,
+   "clamp_times_row_sum": 9439373426688,
+   "log2": 43.102
+  },
+  {
+   "matrix": "encoder.layer.0.attention.output.dense.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1177668,
+   "clamp_times_row_sum": 9878995206144,
+   "log2": 43.168
+  },
+  {
+   "matrix": "encoder.layer.0.intermediate.dense.weight",
+   "shape": [
+    1536,
+    384
+   ],
+   "max_row_sum_abs_int": 3425540,
+   "clamp_times_row_sum": 28735512248320,
+   "log2": 44.708
+  },
+  {
+   "matrix": "encoder.layer.0.output.dense.weight",
+   "shape": [
+    384,
+    1536
+   ],
+   "max_row_sum_abs_int": 6423677,
+   "clamp_times_row_sum": 53885708271616,
+   "log2": 45.615
+  },
+  {
+   "matrix": "encoder.layer.1.attention.self.query.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 400916,
+   "clamp_times_row_sum": 3363127164928,
+   "log2": 41.613
+  },
+  {
+   "matrix": "encoder.layer.1.attention.self.key.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 2326008,
+   "clamp_times_row_sum": 19511969316864,
+   "log2": 44.149
+  },
+  {
+   "matrix": "encoder.layer.1.attention.self.value.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1550418,
+   "clamp_times_row_sum": 13005848838144,
+   "log2": 43.564
+  },
+  {
+   "matrix": "encoder.layer.1.attention.output.dense.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1548927,
+   "clamp_times_row_sum": 12993341423616,
+   "log2": 43.563
+  },
+  {
+   "matrix": "encoder.layer.1.intermediate.dense.weight",
+   "shape": [
+    1536,
+    384
+   ],
+   "max_row_sum_abs_int": 3028180,
+   "clamp_times_row_sum": 25402214973440,
+   "log2": 44.53
+  },
+  {
+   "matrix": "encoder.layer.1.output.dense.weight",
+   "shape": [
+    384,
+    1536
+   ],
+   "max_row_sum_abs_int": 7558442,
+   "clamp_times_row_sum": 63404807028736,
+   "log2": 45.85
+  },
+  {
+   "matrix": "encoder.layer.2.attention.self.query.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 394520,
+   "clamp_times_row_sum": 3309473628160,
+   "log2": 41.59
+  },
+  {
+   "matrix": "encoder.layer.2.attention.self.key.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 2223269,
+   "clamp_times_row_sum": 18650132119552,
+   "log2": 44.084
+  },
+  {
+   "matrix": "encoder.layer.2.attention.self.value.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1657912,
+   "clamp_times_row_sum": 13907573866496,
+   "log2": 43.661
+  },
+  {
+   "matrix": "encoder.layer.2.attention.output.dense.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1631037,
+   "clamp_times_row_sum": 13682130026496,
+   "log2": 43.637
+  },
+  {
+   "matrix": "encoder.layer.2.intermediate.dense.weight",
+   "shape": [
+    1536,
+    384
+   ],
+   "max_row_sum_abs_int": 3049420,
+   "clamp_times_row_sum": 25580389007360,
+   "log2": 44.54
+  },
+  {
+   "matrix": "encoder.layer.2.output.dense.weight",
+   "shape": [
+    384,
+    1536
+   ],
+   "max_row_sum_abs_int": 10776943,
+   "clamp_times_row_sum": 90403550265344,
+   "log2": 46.361
+  },
+  {
+   "matrix": "encoder.layer.3.attention.self.query.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 367764,
+   "clamp_times_row_sum": 3085028032512,
+   "log2": 41.488
+  },
+  {
+   "matrix": "encoder.layer.3.attention.self.key.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 2099276,
+   "clamp_times_row_sum": 17610003447808,
+   "log2": 44.001
+  },
+  {
+   "matrix": "encoder.layer.3.attention.self.value.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1794747,
+   "clamp_times_row_sum": 15055429042176,
+   "log2": 43.775
+  },
+  {
+   "matrix": "encoder.layer.3.attention.output.dense.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1979965,
+   "clamp_times_row_sum": 16609150238720,
+   "log2": 43.917
+  },
+  {
+   "matrix": "encoder.layer.3.intermediate.dense.weight",
+   "shape": [
+    1536,
+    384
+   ],
+   "max_row_sum_abs_int": 2410534,
+   "clamp_times_row_sum": 20221024796672,
+   "log2": 44.201
+  },
+  {
+   "matrix": "encoder.layer.3.output.dense.weight",
+   "shape": [
+    384,
+    1536
+   ],
+   "max_row_sum_abs_int": 10049591,
+   "clamp_times_row_sum": 84302079459328,
+   "log2": 46.261
+  },
+  {
+   "matrix": "encoder.layer.4.attention.self.query.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 532931,
+   "clamp_times_row_sum": 4470549250048,
+   "log2": 42.024
+  },
+  {
+   "matrix": "encoder.layer.4.attention.self.key.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 3034470,
+   "clamp_times_row_sum": 25454979317760,
+   "log2": 44.533
+  },
+  {
+   "matrix": "encoder.layer.4.attention.self.value.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1848290,
+   "clamp_times_row_sum": 15504580280320,
+   "log2": 43.818
+  },
+  {
+   "matrix": "encoder.layer.4.attention.output.dense.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1778989,
+   "clamp_times_row_sum": 14923241357312,
+   "log2": 43.763
+  },
+  {
+   "matrix": "encoder.layer.4.intermediate.dense.weight",
+   "shape": [
+    1536,
+    384
+   ],
+   "max_row_sum_abs_int": 2491613,
+   "clamp_times_row_sum": 20901164744704,
+   "log2": 44.249
+  },
+  {
+   "matrix": "encoder.layer.4.output.dense.weight",
+   "shape": [
+    384,
+    1536
+   ],
+   "max_row_sum_abs_int": 10788911,
+   "clamp_times_row_sum": 90503945125888,
+   "log2": 46.363
+  },
+  {
+   "matrix": "encoder.layer.5.attention.self.query.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 333722,
+   "clamp_times_row_sum": 2799463038976,
+   "log2": 41.348
+  },
+  {
+   "matrix": "encoder.layer.5.attention.self.key.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1834490,
+   "clamp_times_row_sum": 15388817489920,
+   "log2": 43.807
+  },
+  {
+   "matrix": "encoder.layer.5.attention.self.value.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1550185,
+   "clamp_times_row_sum": 13003894292480,
+   "log2": 43.564
+  },
+  {
+   "matrix": "encoder.layer.5.attention.output.dense.weight",
+   "shape": [
+    384,
+    384
+   ],
+   "max_row_sum_abs_int": 1652983,
+   "clamp_times_row_sum": 13866226417664,
+   "log2": 43.657
+  },
+  {
+   "matrix": "encoder.layer.5.intermediate.dense.weight",
+   "shape": [
+    1536,
+    384
+   ],
+   "max_row_sum_abs_int": 2027385,
+   "clamp_times_row_sum": 17006938030080,
+   "log2": 43.951
+  },
+  {
+   "matrix": "encoder.layer.5.output.dense.weight",
+   "shape": [
+    384,
+    1536
+   ],
+   "max_row_sum_abs_int": 12594025,
+   "clamp_times_row_sum": 105646338867200,
+   "log2": 46.586
+  }
+ ],
+ "activation_products": [
+  {
+   "product": "scores q.k",
+   "terms": 32,
+   "bound": "32 * C * C",
+   "value": 2251799813685248,
+   "log2": 51.0
+  },
+  {
+   "product": "context p.v",
+   "bound": "2^16 * C (probabilities of a row sum to at most 2^16)",
+   "value": 549755813888,
+   "log2": 39.0
+  }
+ ],
+ "int64": [
+  {
+   "operation": "linear: product plus bias plus rounding constant",
+   "largest_magnitude": 105649890356992,
+   "log2": 46.586
+  },
+  {
+   "operation": "layernorm: sum of squares (isqrt input, below 2^62)",
+   "largest_magnitude": 1729382256910270464,
+   "log2": 60.585
+  },
+  {
+   "operation": "layernorm: d * 2^16",
+   "largest_magnitude": 4398046511104,
+   "log2": 42.0
+  },
+  {
+   "operation": "layernorm: y * gamma plus rounding constant",
+   "largest_magnitude": 446775554830532608,
+   "log2": 58.632
+  },
+  {
+   "operation": "scores: max minus score",
+   "largest_magnitude": 4503599627370496,
+   "log2": 52.0
+  },
+  {
+   "operation": "exp interpolation: E * 256",
+   "largest_magnitude": 4294967296,
+   "log2": 32.0
+  },
+  {
+   "operation": "softmax: e * 2^16",
+   "largest_magnitude": 1099511627776,
+   "log2": 40.0
+  },
+  {
+   "operation": "gelu interpolation: G * 256",
+   "largest_magnitude": 134217728,
+   "log2": 27.0
+  },
+  {
+   "operation": "pooling: sum over at most 256 tokens",
+   "largest_magnitude": 2147483648,
+   "log2": 31.0
+  },
+  {
+   "operation": "normalisation: sum of squares (isqrt input, below 2^62)",
+   "largest_magnitude": 27021597764222976,
+   "log2": 54.585
+  },
+  {
+   "operation": "normalisation: pooled * 2^15",
+   "largest_magnitude": 274877906944,
+   "log2": 38.0
+  }
+ ],
+ "jax_int64_path": {
+  "what": "jax_runner.py computes the same integers with every product an int64 einsum: no floating point",
+  "bound": "a product or a sum in that path is at most the bound of the same product above, which is below 2^53, so below 2^63; the element-wise operations are those listed under int64",
+  "largest_product_sum_log2": 51.0,
+  "isqrt": "digit by digit on n < 2^62; every intermediate value is at most n"
+ },
+ "brackets": {
+  "isqrt": "every returned s is asserted s^2 <= n < (s + 1)^2 (exact_embed.isqrt), on every call",
+  "floor division": "every returned q is asserted q d <= n < (q + 1) d (exact_embed.fdiv), on every call: LayerNorm mean, variance and normalised value; softmax probabilities; pooling mean; output",
+  "layernorm": "the square root of LayerNorm is s = isqrt(v + 1) with s^2 <= v + 1 < (s + 1)^2"
+ },
+ "largest_weight_product_bound_log2": 46.586,
+ "folded_query_values_checked": 887040
+}

@@ -1,0 +1,88 @@
+GitHub Actions run 43666680107, lmtlssss/speedrunpapi, branch exact-embeddings-ci, commit 05cf4f1, 2026-11-15T02:12:34Z to 02:16:12Z, all six jobs success.
+https://github.com/lmtlssss/speedrunpapi/actions/runs/43666680107
+
+windows-latest | Windows-2025Server-10.0.26100-SP0 AMD64 numpy 2.5.4
+windows-latest | exact    031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH
+windows-latest |          clamped values: 0
+windows-latest | float32  dcd75ea1b3fe301546ee5e795c12f895f43eef884b6406c0f718feee8e8f70c8
+windows-latest | onnx     d05672acca4175589ee0051fe5a495bd477524baa983794ae591e7962a50e30b
+windows-latest |   exact    0.8203
+windows-latest |   float32  0.8203
+windows-latest |   onnx     0.8203
+windows-latest | cosine between the float32 and the exact vector of each sentence: min 1.000000, mean 1.000000
+windows-11-arm | Windows-11-10.0.26200-SP0 ARM64 numpy 2.5.4
+windows-11-arm | exact    031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH
+windows-11-arm |          clamped values: 0
+windows-11-arm | float32  9d5e0207090c6b5d589f88437042c475191fe08a2b643586b8d7e6504c847f69
+windows-11-arm | onnx     7c5761c37bbf9c0e58ab7bf6432aa8854718bcb28ac876e32c8a8e0f488a9dec
+windows-11-arm |   exact    0.8203
+windows-11-arm |   float32  0.8203
+windows-11-arm |   onnx     0.8203
+windows-11-arm | cosine between the float32 and the exact vector of each sentence: min 1.000000, mean 1.000000
+macos-latest | macOS-26.7.2-arm64-arm-64bit arm64 numpy 2.5.4
+macos-latest | exact    031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH
+macos-latest |          clamped values: 0
+macos-latest | float32  ff2b8c464c8527a7b025287b55ed30756cc16da0863e448a05f098cdd015c96b
+macos-latest | onnx     dba00deab1299d60298bf8bff9c3e95214d2dd0bcf97a4b15a6da2c004724a5f
+macos-latest |   exact    0.8203
+macos-latest |   float32  0.8203
+macos-latest |   onnx     0.8203
+macos-latest | cosine between the float32 and the exact vector of each sentence: min 1.000000, mean 1.000000
+ubuntu-latest | Linux-7.0.0-1019-azure-x86_64-with-glibc2.43 x86_64 numpy 2.5.4
+ubuntu-latest | exact    031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH
+ubuntu-latest |          clamped values: 0
+ubuntu-latest | float32  b945f7290b46ad7b6b85721e64ad194a1e01ece29741e07d9082f3b47512402d
+ubuntu-latest | onnx     0303c976c3a3925bcec26870c3360e801a8627bc0d92113e55d9e2ee6be6e27a
+ubuntu-latest |   exact    0.8203
+ubuntu-latest |   float32  0.8203
+ubuntu-latest |   onnx     0.8203
+ubuntu-latest | cosine between the float32 and the exact vector of each sentence: min 1.000000, mean 1.000000
+ubuntu-24.04-arm | Linux-7.0.0-1017-azure-aarch64-with-glibc2.39 aarch64 numpy 2.5.4
+ubuntu-24.04-arm | exact    031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH
+ubuntu-24.04-arm |          clamped values: 0
+ubuntu-24.04-arm | float32  9d5e0207090c6b5d589f88437042c475191fe08a2b643586b8d7e6504c847f69
+ubuntu-24.04-arm | onnx     cd932aa30bef46bd4a8222f961d327f25fe6e02171aa20770078ab9622bbb6b8
+ubuntu-24.04-arm |   exact    0.8203
+ubuntu-24.04-arm |   float32  0.8203
+ubuntu-24.04-arm |   onnx     0.8203
+ubuntu-24.04-arm | cosine between the float32 and the exact vector of each sentence: min 1.000000, mean 1.000000
+macos-15-intel | macOS-15.7.9-x86_64-i386-64bit x86_64 numpy 2.5.4
+macos-15-intel | exact    031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH
+macos-15-intel |          clamped values: 0
+macos-15-intel | float32  debaf68a439215bc2c83e53bf824c59cfcf8763dab3a8d6cd71ac345e93f5e1e
+macos-15-intel | onnx     ae4ba47951a32cbc4ac43290a035fb76b94ef3a8fa84bd0a22e6f93089282fe2
+macos-15-intel |   exact    0.8203
+macos-15-intel |   float32  0.8203
+macos-15-intel |   onnx     0.8203
+macos-15-intel | cosine between the float32 and the exact vector of each sentence: min 1.000000, mean 1.000000
+
+Apple M1 (the bench, 14 November 2026): python exact_embed.py check, batch 32
+apple-m1 | macOS-27.2-arm64-arm-64bit arm64 numpy 2.4.6 (Accelerate) python 3.11.18 onnxruntime 1.32.0
+apple-m1 | exact    031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH
+apple-m1 |          clamped values: 0
+apple-m1 | float32  8217502277d6b51b737625f52e66f2cf03cd4ba2417d9a2f16a504a2765092c1
+apple-m1 | onnx     dba00deab1299d60298bf8bff9c3e95214d2dd0bcf97a4b15a6da2c004724a5f
+apple-m1 |   exact    0.8203
+apple-m1 |   float32  0.8203
+apple-m1 |   onnx     0.8203
+apple-m1 | cosine between the float32 and the exact vector of each sentence: min 1.000000, mean 1.000000
+
+Apple M1: python same_bits.py (1 and 4 threads, batches of 1 and 32)
+apple-m1 | exact    threads=1 batch=1  031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  (38 s)
+apple-m1 | exact    threads=1 batch=32 031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  (25 s)
+apple-m1 | exact    threads=4 batch=1  031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  (39 s)
+apple-m1 | exact    threads=4 batch=32 031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  (26 s)
+apple-m1 | float32  threads=1 batch=1  e360cbe2ef3f3c76f124f35d817194693ea65cac2daee2445c7a5b40819f3c1c  (15 s)
+apple-m1 | float32  threads=1 batch=32 8217502277d6b51b737625f52e66f2cf03cd4ba2417d9a2f16a504a2765092c1  (12 s)
+apple-m1 | float32  threads=4 batch=1  e360cbe2ef3f3c76f124f35d817194693ea65cac2daee2445c7a5b40819f3c1c  (13 s)
+apple-m1 | float32  threads=4 batch=32 8217502277d6b51b737625f52e66f2cf03cd4ba2417d9a2f16a504a2765092c1  (12 s)
+apple-m1 | onnx     threads=1 batch=1  c4db26329fd5f9191918af1cd6fd94c2f969de8a284d1d69e1a87e1facb39c0d  (16 s)
+apple-m1 | onnx     threads=1 batch=32 dba00deab1299d60298bf8bff9c3e95214d2dd0bcf97a4b15a6da2c004724a5f  (21 s)
+apple-m1 | onnx     threads=4 batch=1  c4db26329fd5f9191918af1cd6fd94c2f969de8a284d1d69e1a87e1facb39c0d  (11 s)
+apple-m1 | onnx     threads=4 batch=32 dba00deab1299d60298bf8bff9c3e95214d2dd0bcf97a4b15a6da2c004724a5f  (9 s)
+apple-m1 | exact    1 distinct hash over the four runs
+apple-m1 | float32  2 distinct hashes over the four runs
+apple-m1 | onnx     2 distinct hashes over the four runs
+
+Apple M1: python jax_runner.py --device cpu --batch 32
+apple-m1 | jax int64 on cpu (cpu), batch 32: 031d6912ba5a0824fd2b2562abb592fe5caf8053e0d5a2060cf051a9ab202934  MATCH  (738 s)
