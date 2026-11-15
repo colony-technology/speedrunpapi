@@ -1,4 +1,16 @@
-<!-- opening -->
+# Certificate: Berkeley HardFloat `roundRawFNToRecFN`
+
+| | |
+| --- | --- |
+| unit | the rounding module of HardFloat Release 1 (Verilog, by John R. Hauser), options 0: the configuration in which `mulRecFN`, `mulAddRecFN` and `divSqrtRecFN_small` round |
+| claim | for every valid finite nonzero raw input, every rounding mode and both tininess settings, the module returns the IEEE 754-2019 rounded value, in the recoded format, and the overflow, underflow and inexact flags |
+| formats | every format the documentation allows: exponent width w from 3 to 29, precision p from 3 to 2^(w−2) + 3 |
+| whole module, by machine | 135 formats: every documented format with w = 3 to 8, binary16 and binary32 among them, and binary64, x87 extended and binary128 |
+| the other formats | the rounding datapath is proved at every width and the exponent stage at every format; three steps that join them are by hand, each machine-checked at the 135 formats; above p = 113 the datapath description is compared with the source line by line |
+| exhaustive | the 17 documented formats with w up to 5: 3,297,497,088 inputs against exact rational arithmetic, 0 differences |
+| counterexamples | none in the documented domain |
+| not covered | other options (`addRecFN` rounds with one), the conversions, the 8086-SSE and ARM-VFPv2 specializations, w of 30 and above |
+| replay | `replay.sh`, about 25 minutes on an Apple M1 |
 
 ## The unit
 
