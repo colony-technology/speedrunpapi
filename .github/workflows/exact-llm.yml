@@ -36,7 +36,7 @@ jobs:
         shell: bash
         working-directory: proofs/exact-llm
         run: python routes_test.py
-      - name: The hashes over the 64 prompts (135M: exact and exact-16; larger: exact-16), float32, onnxruntime; fails if a pair differs
+      - name: The hashes over the 64 prompts, exact and exact-16 on the 135M and exact-16 on the larger models, float32, onnxruntime; fails if a pair differs
         shell: bash
         working-directory: proofs/exact-llm
         run: python -u exact_llm.py check --model ${{ matrix.model }}
