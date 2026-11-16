@@ -1025,6 +1025,8 @@ class T3Token:
     def __init__(self, lanes=64, threads=None):
         import ctypes
         import subprocess
+        if t3_missing():
+            raise SystemExit("t3-token: " + t3_missing())
         src = os.path.join(HERE, "t3_token.c")
         tag = hashlib.sha256(open(src, "rb").read() + " ".join(T3_CFLAGS).encode()).hexdigest()[:12]
         os.makedirs(T3_DIR, exist_ok=True)

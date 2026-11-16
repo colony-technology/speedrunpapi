@@ -170,7 +170,8 @@ MATCH, 0 clamped, 20,174 p held at 2^15 − 1 (the count of batch 1 above), 0 br
 Limits of t3-token:
 - SmolLM2-135M only: the kernel's sizes are constants of `t3_token.c`, and `T3Token` asserts the model;
 - up to 512 positions per sequence, the length of the rotary tables (`t3k_open` refuses more);
-- at most 16,383 inputs to a product, the 14-bit index of a stream word.
+- at most 16,383 inputs to a product, the 14-bit index of a stream word;
+- where a C compiler is installed, not on Windows, as t3.
 
 The guards behind these limits are comparisons outside the counted machine, like the address arithmetic: the lane, position and token of each step, the norm's shift (at most 16), and every read of the blob. A failed guard counts as a failure, so `check` prints DIFFERENT.
 
