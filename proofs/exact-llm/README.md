@@ -177,7 +177,7 @@ The guards behind these limits are comparisons outside the counted machine, like
 
 Rerun of this code on the M1, with the kernel, the blob and the streams built afresh (`record/t3-token-rerun.txt`):
 - `check --routes t3-token`: exact MATCH; t3-token MATCH, 0 clamped, 0 brackets or guards failed; the kernel's counters equal to the first run's;
-- `t3_nomul.py`: `t3_token.c`'s kernel has 3,964 instructions and `t3.c`'s 519, none a multiply or divide.
+- `t3_nomul.py`: `t3_token.c`'s kernel has 3,964 instructions and `t3.c`'s 525, none a multiply or divide.
 
 On the runners, the workflow runs `check --model SmolLM2-135M --routes t3-token --no-float --no-onnx` on ubuntu-latest (x86-64, gcc), 120 minutes, then `t3_nomul.py` on both kernels that check built.
 
