@@ -1,0 +1,123 @@
+Sun Nov 15 20:14:32 PST 2026
+== tcount
+{
+ "tokens": "first 64 of the evaluation text",
+ "positions equal to exact16-f64": "64 of 64",
+ "greedy equal": "64 of 64",
+ "last token (position 63), per site": {
+  "weights": {
+   "add": 459184492,
+   "horner": 6549504,
+   "shift": 0,
+   "shift by data": 0,
+   "logic": 0,
+   "look": 0,
+   "read": 0
+  },
+  "peeled": {
+   "add": 2416899,
+   "horner": 6549504,
+   "shift": 409344,
+   "shift by data": 0,
+   "logic": 1228032,
+   "look": 6958848,
+   "read": 0
+  },
+  "attention": {
+   "add": 9448351,
+   "horner": 1658880,
+   "shift": 34560,
+   "shift by data": 0,
+   "logic": 103680,
+   "look": 587520,
+   "read": 0
+  },
+  "element-wise": {
+   "add": 1809733,
+   "horner": 5417856,
+   "shift": 289152,
+   "shift by data": 0,
+   "logic": 867456,
+   "look": 5707008,
+   "read": 0
+  },
+  "divisions": {
+   "add": 2818377,
+   "horner": 0,
+   "shift": 558395,
+   "shift by data": 0,
+   "logic": 0,
+   "look": 1292392,
+   "read": 0
+  },
+  "square roots": {
+   "add": 3785,
+   "horner": 0,
+   "shift": 3129,
+   "shift by data": 0,
+   "logic": 0,
+   "look": 2013,
+   "read": 0
+  },
+  "other": {
+   "add": 2171585,
+   "horner": 0,
+   "shift": 758295,
+   "shift by data": 535296,
+   "logic": 69120,
+   "look": 1691313,
+   "read": 149760
+  },
+  "checks": {
+   "add": 52599,
+   "horner": 0,
+   "shift": 0,
+   "shift by data": 0,
+   "logic": 0,
+   "look": 52538,
+   "read": 0
+  }
+ },
+ "last token, all sites but the checks": {
+  "add": 477853222,
+  "horner": 20175744,
+  "shift": 2052875,
+  "shift by data": 535296,
+  "logic": 2268288,
+  "look": 16239094,
+  "read": 149760
+ },
+ "last token: operations": 519274279,
+ "seconds per token, last 8": [
+  0.714,
+  0.674,
+  1.012,
+  0.938,
+  0.837,
+  1.102,
+  0.985,
+  0.923
+ ],
+ "clamped, held, failed (whole run)": [
+  0,
+  332,
+  0
+ ]
+}
+       61.65 real        42.73 user        20.53 sys
+exit 0
+           397148160  maximum resident set size
+== tcheck
+versions: Python 3.11.18, NumPy 2.4.6, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 0 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route t3-token, 247 s, clamped 0
+         t3-token kernel t3k-c912c042d662.dylib; per site add, horner, shift, shift by data, logic, look, read: weights 1,597,502,847,668, 22,785,724,416, 0, 0, 0, 0, 0; peeled 8,339,145,749, 22,785,724,416, 1,424,107,776, 0, 4,272,323,328, 24,209,832,192, 0; attention 17,799,357,848, 4,679,994,240, 86,132,700, 0, 258,398,100, 1,464,255,900, 0; element-wise 5,812,811,631, 18,166,690,224, 937,756,728, 0, 2,813,270,184, 19,104,446,952, 0; divisions 9,156,868,312, 0, 1,834,423,617, 0, 0, 4,176,411,086, 0; square roots 13,202,338, 0, 10,870,656, 0, 0, 7,003,227, 0; other 7,245,381,953, 0, 2,467,607,915, 1,828,200,796, 206,366,940, 5,713,658,375, 452,811,960; checks 148,890,381, 0, 0, 0, 0, 148,678,162, 0; clamped 0, p held 20174, brackets failed 0
+         peaks (real) / clamps: 
+check    every pair MATCH, 353 s
+      353.62 real       443.68 user        38.02 sys
+exit 0
+           790282240  maximum resident set size
+Sun Nov 15 20:21:28 PST 2026

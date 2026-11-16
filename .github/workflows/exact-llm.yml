@@ -12,7 +12,7 @@ jobs:
   hashes:
     name: hashes (${{ matrix.model }}, ${{ matrix.os }}${{ matrix.routes && format(', {0}', matrix.routes) || '' }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: ${{ (matrix.model == 'SmolLM2-135M' && matrix.routes != 't3') && 90 || 120 }}
+    timeout-minutes: ${{ (matrix.model == 'SmolLM2-135M' && !startsWith(matrix.routes, 't3')) && 90 || 120 }}
     strategy:
       fail-fast: false
       matrix:
@@ -43,6 +43,8 @@ jobs:
           - {model: SmolLM2-135M, os: ubuntu-latest, routes: t3, args: "--routes t3 --no-float --no-onnx"}
           - {model: SmolLM2-135M, os: ubuntu-24.04-arm, routes: t3, args: "--routes t3 --no-float --no-onnx"}
           - {model: SmolLM2-135M, os: macos-latest, routes: t3, args: "--routes t3 --no-float --no-onnx"}
+        # the whole token in t3_token.c on the 135M, one job: Linux x86-64 with gcc; then t3_nomul.py on both kernels
+          - {model: SmolLM2-135M, os: ubuntu-latest, routes: t3-token, args: "--routes t3-token --no-float --no-onnx"}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -65,8 +67,14 @@ jobs:
         shell: bash
         working-directory: proofs/exact-llm
         run: python -u exact_llm.py check --model ${{ matrix.model }} ${{ matrix.args }}
-      - name: The t3 kernel that check built, disassembled; fails on any multiply, multiply-add or divide instruction or library call
-        if: matrix.routes == 't3'
+      - name: The t3 kernels that check built, disassembled; fails on any multiply, multiply-add or divide instruction or library call
+        if: startsWith(matrix.routes, 't3')
         shell: bash
         working-directory: proofs/exact-llm
-        run: python t3_nomul.py
+        run: |
+          python t3_nomul.py
+          if [ "${{ matrix.routes }}" = t3-token ]; then
+            set -- .cache/t3/t3k-*.so
+            test -f "$1"
+            for k in "$@"; do python t3_nomul.py "$k"; done
+          fi

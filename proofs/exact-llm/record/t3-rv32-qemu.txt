@@ -1,0 +1,28 @@
+Sun Nov 15 20:42:32 PST 2026
+== build
+histogram, all functions (8358 instructions): lw 1201, sw 1088, add 908, addi 668, li 523, mv 506, slli 418, sltu 357, or 290, srli 279, seqz 252, j 226, and 222, beqz 166, sub 156, auipc 137, bnez 110, jalr 86, srai 73, bne 69, lui 68, neg 58, bltz 54, snez 48, sb 42, xor 38, andi 36, lbu 32, beq 29, slt 26, sltiu 23, bgez 22, sll 21, srl 20, bgeu 19, ret 19, not 14, bltu 9, sgtz 7, lhu 6, sh 6, 
+multiply, multiply-add or divide instructions: 0
+NO MULTIPLIER
+exit 0
+== host
+prompt 12: 5 tokens [49, 555, 314, 16311, 30]
+pos 00 sha256 439c0173829535f4a07c27cd458b6abbafc8c3e35595837f61231e76c3f06cd7 next 0000001e
+pos 01 sha256 52170c7118efd0f801a8b020e16be45774ddf362363972784e0b1bc89e565ec6 next 00000269
+pos 02 sha256 5140737c084869f2b050c9aa02bc03eba2cc9582451de20d9a10242390113314 next 000000fd
+pos 03 sha256 2634781800afd102282bf8c978c082ab09981415e1fd54d8aee331e2c43ea376 next 000002e2
+pos 04 sha256 6bf20ca1905c61b62b1a00d2ea52f509066046c2971f7a01780b5ce38c800428 next 000000c6
+        4.75 real         3.13 user         1.68 sys
+exit 0
+== guest
+QEMU emulator version 11.1.3
+start 1794804158
+0 s  t3 rv32i: open
+1 s  t3 rv32i: model open, tokens 05
+6 s  pos 00 sha256 439c0173829535f4a07c27cd458b6abbafc8c3e35595837f61231e76c3f06cd7 instret 00000001fb597381 next 0000001e
+10 s  pos 01 sha256 52170c7118efd0f801a8b020e16be45774ddf362363972784e0b1bc89e565ec6 instret 00000001fc35ca04 next 00000269
+14 s  pos 02 sha256 5140737c084869f2b050c9aa02bc03eba2cc9582451de20d9a10242390113314 instret 00000001fc81b657 next 000000fd
+18 s  pos 03 sha256 2634781800afd102282bf8c978c082ab09981415e1fd54d8aee331e2c43ea376 instret 00000001fccce60a next 000002e2
+22 s  pos 04 sha256 6bf20ca1905c61b62b1a00d2ea52f509066046c2971f7a01780b5ce38c800428 instret 00000001fceeff64 next 000000c6
+22 s  t3 rv32i: done
+exit 0
+Sun Nov 15 20:43:00 PST 2026

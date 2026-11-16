@@ -142,11 +142,60 @@ A fourth route, `exact16-t3`, run where a C compiler is installed, not on Window
 MATCH on both, 0 clamped (`record/t3-m1.txt`). The M1 was shared with other jobs during this run, so its seconds are not a measure of either route. Rerun of this code on the M1, with the kernel built and every weight stream compiled afresh from the weights (`record/t3-m1-rerun.txt`):
 - `routes_test.py`: 42 cases on four routes, 0 different;
 - `check --routes t3`: exact MATCH, and the t3 route MATCH with 0 clamped;
-- `t3_nomul.py` on that kernel: no multiply or divide in 517 instructions. Per token at the last position (context 64, `t3_count.py`, the kernel's counters): 459,184,492 digit adds and subtracts in the weight products, as the digit census predicts, and 6,549,504 Horner adds; 1,408,559 and 6,442,304 in the peeled terms; 11,875,560 and 1,658,880 in the attention (scores 5,007,459, p·vh 900,330, p·vl 5,967,771, Horner 552,960 each); 1,271,526 and 4,451,136 element-wise; 492,841,961 adds and subtracts in all. `t3_nomul.py`: the kernel's disassembly holds no multiply, multiply-add or divide instruction and calls no library multiply or divide (Apple clang, arm64: 0 of 517 instructions, 502 in the five functions of `t3.c` and 15 in its call stubs). It does report the `mul` in `t3.c` built without its `KEEP` barriers, and the calls `__mulsi3` (a multiply built for rv32i) and `___divti3` (a 128-bit divide on arm64 macOS). `t3_rv32.c`: the stream machine, freestanding, compiled for rv32i (no M extension) by LLVM: 45 instructions, none a multiply, no library multiply; compiled only, not run.
+- `t3_nomul.py` on that kernel: no multiply or divide in 517 instructions; on `t3.c` as it is here, with its thread fallback, none in 525 (`record/t3-token-rerun.txt`). Per token at the last position (context 64, `t3_count.py`, the kernel's counters): 459,184,492 digit adds and subtracts in the weight products, as the digit census predicts, and 6,549,504 Horner adds; 1,408,559 and 6,442,304 in the peeled terms; 11,875,560 and 1,658,880 in the attention (scores 5,007,459, p·vh 900,330, p·vl 5,967,771, Horner 552,960 each); 1,271,526 and 4,451,136 element-wise; 492,841,961 adds and subtracts in all. `t3_nomul.py`: the kernel's disassembly holds no multiply, multiply-add or divide instruction and calls no library multiply or divide (Apple clang, arm64: 0 of 525 instructions, 510 in the five functions of `t3.c` and 15 in its call stubs). It does report the `mul` in `t3.c` built without its `KEEP` barriers, and the calls `__mulsi3` (a multiply built for rv32i) and `___divti3` (a 128-bit divide on arm64 macOS). `t3_rv32.c`: the stream machine, freestanding, compiled for rv32i (no M extension) by LLVM: 45 instructions, none a multiply, no library multiply; compiled only, not run.
 
 On the runners, the workflow runs `check --model SmolLM2-135M --routes t3 --no-float --no-onnx`, then `t3_nomul.py` on the kernel that check built, on three runners: ubuntu-latest (x86-64, gcc), ubuntu-24.04-arm (arm64, gcc) and macos-latest (arm64, Apple clang), 120 minutes each. On every Linux and macOS runner, `routes_test.py` also builds `t3.c` and tests it against int64 products.
 
-Known limits of t3: `t3_run` does not check what `pthread_create` returns, so a thread that fails to start leaves its rows unset, which `check` prints as DIFFERENT; an input index is 14 bits, so a product has at most 16,383 inputs (for the context products p·vh and p·vl, 16,383 positions).
+When a thread of `t3_run` cannot start, the calling thread runs that thread's rows. The M1 runs above are of `t3.c` before this; the workflow's t3 jobs run it as it is here.
+
+Known limits of t3: an input index is 14 bits, so a product has at most 16,383 inputs (for the context products p·vh and p·vl, 16,383 positions).
+
+### t3-token: the whole token
+
+`exact16-t3-token` (`check --routes t3-token`, class `T3Token`) runs every step of exact-16 in `t3_token.c`, from the embedding row to the greedy choice. That covers the products, the divisions and square roots with their bracket checks, the roundings, clamps, block shifts, peel selection, softmax, the exp, SiLU, cos and sin table reads and the argmax. NumPy only moves data: token ids in, logits out. The model is one file (`t3_blob`, 1,311,091,624 bytes): a directory, the tables, the norms, the int32 embedding, and per matrix its 16-bit weights, row scales, row offsets and stream. Each sequence runs token by token in its own lane with its own key-value cache. The weight products run all lanes at once.
+
+| operation | in `t3_token.c` |
+| --- | --- |
+| division, `fdiv` (floor, as NumPy `//`) | restoring: the divisor doubled until the next double passes \|num\|, then per quotient digit q = q + q, t = r − d, sign test, keep t and q + 1 if t ≥ 0, d halved; a negative num: −q, minus 1 if r ≠ 0. Bracket: 0 ≤ r < den, one sign test |
+| square root, `isqrt` (floor) | digit by digit: the highest power of 4 at or below n, then per digit t = res + bit, sign test of r − t, res halved (+ bit); bit / 4. Bracket: n − s² ≤ 2s, one sign test |
+| shift by a computed amount (block shift, norm shift, score shift) | the shift instruction with a register amount, counted apart (`shift by data`) |
+| product of two variables, product by a table or norm weight | the smaller-bounded operand recoded into signed digits, Horner; one look per digit position read |
+
+| Apple M1, 64 prompts, one `check` process | logits | continuations |
+| --- | --- | --- |
+| `exact16-t3-token`, 64 lanes, 8 threads | `b0cc875f…0b4460` | `a800ebad…7613cc` |
+
+MATCH, 0 clamped, 20,174 p held at 2^15 − 1 (the count of batch 1 above), 0 brackets failed. On this route `check` prints DIFFERENT if any bracket or guard in the kernel fails, even when the hashes are equal. The M1 was shared with other jobs during this run, so its seconds are not a measure of the route. The kernel's counters for the last token of the first 64 text tokens (position 63, the census window; `t3_token_count.py`, every position equal to `exact16-f64`): 519,274,279 operations. That is 477,853,222 adds and 20,175,744 Horner adds, 2,052,875 constant shifts and 535,296 shifts by data, 2,268,288 logic operations, 16,239,094 looks and 149,760 table reads. The 52,477 divisions take 1,292,392 sign tests and the 61 square roots 2,013, plus 52,538 bracket tests. `record/t3-token-m1.txt`, `record/t3-token-count.json`.
+
+Limits of t3-token:
+- SmolLM2-135M only: the kernel's sizes are constants of `t3_token.c`, and `T3Token` asserts the model;
+- up to 512 positions per sequence, the length of the rotary tables (`t3k_open` refuses more);
+- at most 16,383 inputs to a product, the 14-bit index of a stream word;
+- where a C compiler is installed, not on Windows, as t3.
+
+The guards behind these limits are comparisons outside the counted machine, like the address arithmetic: the lane, position and token of each step, the norm's shift (at most 16), and every read of the blob. A failed guard counts as a failure, so `check` prints DIFFERENT.
+
+Rerun of this code on the M1, with the kernel, the blob and the streams built afresh (`record/t3-token-rerun.txt`):
+- `check --routes t3-token`: exact MATCH; t3-token MATCH, 0 clamped, 0 brackets or guards failed; the kernel's counters equal to the first run's;
+- `t3_nomul.py`: `t3_token.c`'s kernel has 3,964 instructions and `t3.c`'s 525, none a multiply or divide.
+
+On the runners, the workflow runs `check --model SmolLM2-135M --routes t3-token --no-float --no-onnx` on ubuntu-latest (x86-64, gcc), 120 minutes, then `t3_nomul.py` on both kernels that check built.
+
+### t3-token on rv32i, no multiplier
+
+`rv32/`: the same `t3_token.c`, one lane, bare metal on QEMU 11.1.3 `virt` with `-cpu rv32,m=false` (no M extension: a multiply would trap), 128 MB, `-icount shift=0` (`build.sh`, `run.sh`; `main_rv32.c`, `start.S`, `virt.ld`). The guest reads the blob by semihosting into one 33 MB stream buffer, counts each token's instructions with `rdinstret`, and prints the SHA-256 of each token's logits over the UART. `prompt_host.py` prints the host kernel's lines for the same prompt. The linked ELF (kernel, main, SHA-256) has 8,499 instructions, none from the M extension, and calls no library multiply or divide. Prompt 12 of the check set, 5 tokens:
+
+| position | SHA-256 of the logits, rv32i = host (arm64) | rv32i instructions for the token |
+| --- | --- | ---: |
+| 0 | `439c0173…c3f06cd7` | 8,511,295,149 |
+| 1 | `52170c71…9e565ec6` | 8,525,735,169 |
+| 2 | `5140737c…90113314` | 8,530,710,870 |
+| 3 | `26347818…c43ea376` | 8,535,638,280 |
+| 4 | `6bf20ca1…8c800428` | 8,537,873,008 |
+
+Each position matches the host and gives the same greedy next token. The kernel's count of failed brackets and guards is 0. `record/t3-token-rerun.txt` has this run. `record/t3-rv32-qemu.txt` has the first run, of the kernel before its guards: the same hashes, with 8,358 instructions in the ELF and about 615,600 more instructions per token. The compiler laid out the kernel differently; the counted operations are the same.
+
+What ran on the emulator and what did not: one prompt of 5 tokens, compared with the host kernel's logits position by position. Not the 64-prompt check and its pinned pair; not a RISC-V chip.
 
 ## Larger models
 
@@ -388,6 +437,9 @@ Commands:
 | `routes_test.py` | the three routes against int64 products; t3 too where a C compiler is installed, not on Windows, with every 16-bit value through the stream and 200,081 element-wise pairs |
 | `t3.c`, `t3_nomul.py`, `t3_count.py`, `t3_rv32.c` | the t3 kernel; its disassembly checked for multipliers; its counters per token; the stream machine for rv32i |
 | `record/t3-m1.txt`, `record/t3-m1-rerun.txt`, `record/t3-count.json` | every line of the t3 check on the M1, and of its rerun with the kernel and streams built afresh; the counters per token from `t3_count.py` |
+| `rv32/`: `build.sh`, `run.sh`, `main_rv32.c`, `start.S`, `virt.ld`, `prompt_host.py` | `t3_token.c` on rv32i under QEMU: build and scan, run, the guest program, its start, its memory map, the host's lines for the same prompt |
+| `t3_token.c`, `t3_token_count.py` | the whole token in the t3 machine (host library or freestanding rv32i); its 64 text tokens against f64 and its counters by site |
+| `record/t3-token-m1.txt`, `record/t3-token-count.json`, `record/t3-rv32-qemu.txt`, `record/t3-token-rerun.txt` | every line of the first t3-token check on the M1; its counters per token; the first QEMU run, before the guards; the rerun of this code: check, scans, the rv32i build, prompt 12 on the host and under QEMU |
 | `spare_row.py`, `spare_row_test.py`, `record/spare-m1.txt`, `record/spare-campaign.json` | exact-16 with every product and look checked, the fault campaign; its test on synthetic operands; every line of the M1 runs; every fault of the campaign |
 | `count_ops.py`, `report_census.py`; `count_spare.py`, `report_spare.py`, `record/census-spare.json`, `record/census-spare.md` | the census of every NumPy operation per token, sorted into steps and looks: of exact and exact-16; of exact-16 with and without the spare-row checks, and its tables |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
