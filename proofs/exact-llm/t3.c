@@ -51,12 +51,15 @@ static inline uint64_t recode(int64_t v, uint64_t *pl, uint64_t *mi) {
 int64_t t3_compile_masks(int64_t n_in, int64_t M, const int32_t *W, int64_t ld, uint16_t *Pm, uint16_t *Mm,
                          int64_t *rowoff, uint64_t *cnt) {
     const int32_t *wr = W;
+    uint64_t vals = 0, ops = 0;
     for (int64_t i = 0; i < n_in; i++) {
         uint16_t *pp = Pm + i, *mm = Mm + i;
         for (int64_t j = 0; j < M; j++) {
             uint64_t p, q;
-            cnt[3] += recode(wr[j], &p, &q);
-            cnt[2] += 1;
+            ops += recode(wr[j], &p, &q);
+            vals += 1;
+            KEEP(ops);                                          /* an add per value; without the barriers gcc */
+            KEEP(vals);                                         /* folds these counts into one n_in * M */
             *pp = (uint16_t)p;
             *mm = (uint16_t)q;
             pp += n_in;
@@ -64,6 +67,8 @@ int64_t t3_compile_masks(int64_t n_in, int64_t M, const int32_t *W, int64_t ld, 
         }
         wr += ld;
     }
+    cnt[2] += vals;
+    cnt[3] += ops;
     int64_t off = 0;
     const uint16_t *pp = Pm, *mm = Mm;
     for (int64_t j = 0; j < M; j++) {

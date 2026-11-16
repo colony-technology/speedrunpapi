@@ -3,8 +3,8 @@ multiply-add or divide instruction, scalar or vector, integer or floating point.
 
 usage: python t3_nomul.py [OBJECT]     (default: the kernel exact_llm.py builds and loads, t3-<hash>.dylib or .so)
 
-Reads `objdump -d` (LLVM's or GNU's). Prints each function's instruction histogram and the whole object's; exit 1
-if any function holds an instruction of the lists below. arm64 and x86-64 mnemonics; Apple's objdump writes a
+Reads `objdump -d` (LLVM's or GNU's). Prints each function's instruction count, each flagged instruction with the
+three on either side, and the whole object's histogram; exit 1 if any function holds an instruction of the lists below. arm64 and x86-64 mnemonics; Apple's objdump writes a
 vector arrangement into the mnemonic (mul.4s), GNU's into the operands, and both are read by the stem.
 """
 import collections
@@ -46,17 +46,19 @@ def disassemble(path):
     calls = sorted(set(LIBCALL.findall(out)))
     if calls:
         raise SystemExit("library multiply or divide referenced: %s\nMULTIPLIER FOUND" % ", ".join(calls))
-    funcs, name = collections.OrderedDict(), None
+    funcs, lines, name = collections.OrderedDict(), {}, None
     for line in out.splitlines():
         m = re.match(r"^[0-9a-fA-F]+ <(.+)>:$", line.strip())
         if m:
             name = m.group(1)
             funcs.setdefault(name, collections.Counter())
+            lines.setdefault(name, [])
             continue
         m = re.match(r"^\s*[0-9a-fA-F]+:\s+([a-z][a-z0-9.]*)", line)       # address, then the mnemonic
         if m and name is not None:
             funcs[name][m.group(1)] += 1
-    return funcs
+            lines[name].append((m.group(1), line.strip()))
+    return funcs, lines
 
 
 def main(argv):
@@ -66,7 +68,7 @@ def main(argv):
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import exact_llm as X
         path = X.t3_kernel().path
-    funcs = disassemble(path)
+    funcs, lines = disassemble(path)
     total, bad = collections.Counter(), []
     print("object %s" % path)
     for name, h in funcs.items():
@@ -77,6 +79,11 @@ def main(argv):
         bad += [(name, m, h[m]) for m in hits]
         print("%-22s %5d instructions; multiply or divide: %s" % (
             name, sum(h.values()), ", ".join("%s %d" % (m, h[m]) for m in hits) or "none"))
+        ins = lines[name]
+        for k, (mn, _) in enumerate(ins):                    # each flagged instruction, with three on either side
+            if flagged(mn):
+                for kk in range(max(0, k - 3), min(len(ins), k + 4)):
+                    print("    %s %s" % ("=>" if kk == k else "  ", ins[kk][1]))
     print("histogram, all functions (%d instructions): %s" % (
         sum(total.values()), ", ".join("%s %d" % kv for kv in sorted(total.items(), key=lambda kv: (-kv[1], kv[0])))))
     print("multiply, multiply-add or divide instructions: %d%s" % (
