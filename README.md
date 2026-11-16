@@ -222,6 +222,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 | `max`, depth | 6 levels, 1006 LUT-6 | 6 levels, 868 LUT-6 |
 | `dec`, size | 264 LUT-6 | 260 LUT-6 |
 | `dec`, depth | 2 levels, 264 LUT-6 | 2 levels, 260 LUT-6 |
+| `bar`, size | 512 LUT-6 | 487 LUT-6 |
+| `bar`, depth | 4 levels, 512 LUT-6 | 4 levels, 487 LUT-6 |
 | `sixteen`, size | 3282958 LUT-6 | 12691 LUT-6 |
 | `twenty`, size | 4166467 LUT-6 | 12719 LUT-6 |
 | `twentythree`, size | 470892 LUT-6 | 12744 LUT-6 |
@@ -242,6 +244,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 [`hardware/epfl-arbiter/`](hardware/epfl-arbiter/) holds the EPFL round-robin `arbiter` as 256 LUT-6 where the smallest published netlist has 259, with the equations it is built from. ABC proves it equal to the benchmark in under a second.
 
 [`hardware/epfl-depth/`](hardware/epfl-depth/) holds the depth entries for `adder`, `arbiter`, `max`, `square`, `sqrt` and `hyp`, with their checks. [`hardware/epfl-dec/`](hardware/epfl-dec/) holds `dec` at 260 LUT-6 and 2 levels where the best published has 264, proved equal to the benchmark by ABC. The `sin` depth entry is in [`hardware/epfl-sin/`](hardware/epfl-sin/).
+
+[`hardware/epfl-bar/`](hardware/epfl-bar/) holds `bar` at 487 LUT-6 and 4 levels where the best published has 512, proved equal to the benchmark by ABC.
 
 [`hardware/divider/udiv.v`](hardware/divider/) is a drop-in unsigned divider: 4,889 cells at 64 bits on Lattice ECP5, placed and routed, where the Verilog operators take 12,246.
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.
