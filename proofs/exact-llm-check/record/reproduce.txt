@@ -1,0 +1,14 @@
+ok    prover: batch 0, 48 forward calls, 384 claimed tokens
+ok    check, Freivalds logits: accept; 396 of 396 planted faults caught, 271 of 271 (kind, layer) places
+ok    check, direct logits: accept
+ok    wrong claimed token (row 0, token 0 := 199): reject: call 0, row 0 token 199 claimed, 198 computed
+ok    wrong claimed token (row 3, token 10 := 199): reject: call 10, row 3 token 199 claimed, 198 computed
+ok    wrong claimed token (row 7, token 47 := 505): reject: call 47, row 7 token 505 claimed, 504 computed
+ok    commitment: 132222 leaves, 13524 units; units failing on the honest trace: 0
+ok    commit and open, k = 16: 0 failing, 0 bad paths
+ok    commit and open, k = 64: 0 failing, 0 bad paths
+ok    commit and open, k = 256: 0 failing, 0 bad paths
+ok    prover with model.layers.3.mlp.up_proj.weight:100:200 + 1: 384 of 384 tokens as honest; reject: call 0, up
+ok      units failing: 438, all in layer [3]
+ok    prover with model.layers.20.self_attn.v_proj.weight:5:100 + 1: 384 of 384 tokens as honest; reject: call 0, v
+ALL AS EXPECTED

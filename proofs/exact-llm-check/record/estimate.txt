@@ -1,0 +1,26 @@
+{"model": "SmolLM2-135M", "T": 32, "logits": "hinted", "weights": 134479872, "run": 135585792, "check": 1673472, "elem": 760320, "prep": 537919488, "trace_bytes": 1844736, "ratio_run_to_check_plus_elem": 55.7}
+{"model": "SmolLM2-135M", "T": 32, "logits": "direct", "weights": 134479872, "run": 135585792, "check": 29786112, "elem": 760320, "prep": 537919488, "trace_bytes": 1451520, "ratio_run_to_check_plus_elem": 4.4}
+{"model": "SmolLM2-135M", "T": 64, "logits": "hinted", "weights": 134479872, "run": 136691712, "check": 1742592, "elem": 829440, "prep": 537919488, "trace_bytes": 1913856, "ratio_run_to_check_plus_elem": 53.1}
+{"model": "SmolLM2-135M", "T": 64, "logits": "direct", "weights": 134479872, "run": 136691712, "check": 29855232, "elem": 829440, "prep": 537919488, "trace_bytes": 1520640, "ratio_run_to_check_plus_elem": 4.5}
+{"model": "7B (estimate)", "T": 512, "logits": "hinted", "weights": 6607077376, "run": 6741295104, "check": 16430080, "elem": 9977856, "prep": 26428309504, "trace_bytes": 16377856, "ratio_run_to_check_plus_elem": 255.3}
+{"model": "7B (estimate)", "T": 512, "logits": "direct", "weights": 6607077376, "run": 6741295104, "check": 147357696, "elem": 9977856, "prep": 26428309504, "trace_bytes": 16121856, "ratio_run_to_check_plus_elem": 42.8}
+{"model": "7B (estimate)", "T": 2048, "logits": "hinted", "weights": 6607077376, "run": 7143948288, "check": 29012992, "elem": 22560768, "prep": 26428309504, "trace_bytes": 28960768, "ratio_run_to_check_plus_elem": 138.5}
+{"model": "7B (estimate)", "T": 2048, "logits": "direct", "weights": 6607077376, "run": 7143948288, "check": 159940608, "elem": 22560768, "prep": 26428309504, "trace_bytes": 28704768, "ratio_run_to_check_plus_elem": 39.1}
+{"model": "7B (estimate)", "T": 4096, "logits": "hinted", "weights": 6607077376, "run": 7680819200, "check": 45790208, "elem": 39337984, "prep": 26428309504, "trace_bytes": 45737984, "ratio_run_to_check_plus_elem": 90.2}
+{"model": "7B (estimate)", "T": 4096, "logits": "direct", "weights": 6607077376, "run": 7680819200, "check": 176717824, "elem": 39337984, "prep": 26428309504, "trace_bytes": 45481984, "ratio_run_to_check_plus_elem": 35.6}
+{"batch": 0, "mode": "check_freivalds", "tokens": 438, "check_macs_per_token": 1689300, "elem_per_token": 791392, "prep_macs": 537919488}
+{"batch": 0, "mode": "check_direct", "tokens": 438, "check_macs_per_token": 30957254, "elem_per_token": 791392, "prep_macs": 424673280}
+{"batch": 1, "mode": "check_freivalds", "tokens": 430, "check_macs_per_token": 1657523, "elem_per_token": 775001, "prep_macs": 537919488}
+{"batch": 1, "mode": "check_direct", "tokens": 430, "check_macs_per_token": 30423945, "elem_per_token": 775001, "prep_macs": 424673280}
+{"batch": 2, "mode": "check_freivalds", "tokens": 435, "check_macs_per_token": 1669671, "elem_per_token": 781432, "prep_macs": 537919488}
+{"batch": 2, "mode": "check_direct", "tokens": 435, "check_macs_per_token": 30622459, "elem_per_token": 781432, "prep_macs": 424673280}
+{"batch": 3, "mode": "check_freivalds", "tokens": 436, "check_macs_per_token": 1728336, "elem_per_token": 810485, "prep_macs": 537919488}
+{"batch": 3, "mode": "check_direct", "tokens": 436, "check_macs_per_token": 31646375, "elem_per_token": 810485, "prep_macs": 424673280}
+{"batch": 4, "mode": "check_freivalds", "tokens": 435, "check_macs_per_token": 1669671, "elem_per_token": 781432, "prep_macs": 537919488}
+{"batch": 4, "mode": "check_direct", "tokens": 435, "check_macs_per_token": 30622459, "elem_per_token": 781432, "prep_macs": 424673280}
+{"batch": 5, "mode": "check_freivalds", "tokens": 439, "check_macs_per_token": 1654457, "elem_per_token": 774312, "prep_macs": 537919488}
+{"batch": 5, "mode": "check_direct", "tokens": 439, "check_macs_per_token": 30343439, "elem_per_token": 774312, "prep_macs": 424673280}
+{"batch": 6, "mode": "check_freivalds", "tokens": 428, "check_macs_per_token": 1633638, "elem_per_token": 763114, "prep_macs": 537919488}
+{"batch": 6, "mode": "check_direct", "tokens": 428, "check_macs_per_token": 30009013, "elem_per_token": 763114, "prep_macs": 424673280}
+{"batch": 7, "mode": "check_freivalds", "tokens": 438, "check_macs_per_token": 1720444, "elem_per_token": 806784, "prep_macs": 537919488}
+{"batch": 7, "mode": "check_direct", "tokens": 438, "check_macs_per_token": 31501871, "elem_per_token": 806784, "prep_macs": 424673280}
