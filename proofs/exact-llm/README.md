@@ -125,7 +125,7 @@ The large difference at 16-bit inputs is one outlier per vector setting its shif
 
 ## t3: the products by adds and subtracts
 
-A fourth route, `exact16-t3`, run where a C compiler is installed (`check --routes t3`; not in check's default three). Every product of exact-16's forward pass is computed by `t3.c`, whose arithmetic is add, subtract, shift by a constant and bitwise logic: the matrix products in `mm16` (q, k, v, o, gate, up, down, logits, the scores q16·k16, the context p·vh and p·vl), the peeled terms, and the element-wise products (the norm's squares and weight, rotary, the exp and SiLU interpolations, SiLU(gate)·up) through `Exact.mul`. Divisions (52,477 per token) and square roots (61) stay as on the other routes: NumPy's `//` and float `sqrt`, each checked by an integer bracket that NumPy multiplies (q·d ≤ n < (q + 1)·d, s² ≤ n < (s + 1)²). Shifts by a computed amount (the block shift, the row scale) stay NumPy's too.
+A fourth route, `exact16-t3`, run where a C compiler is installed, not on Windows (`check --routes t3`; not in check's default three). Every product of exact-16's forward pass is computed by `t3.c`, whose arithmetic is add, subtract, shift by a constant and bitwise logic: the matrix products in `mm16` (q, k, v, o, gate, up, down, logits, the scores q16·k16, the context p·vh and p·vl), the peeled terms, and the element-wise products (the norm's squares and weight, rotary, the exp and SiLU interpolations, SiLU(gate)·up) through `Exact.mul`. Divisions (52,477 per token) and square roots (61) stay as on the other routes: NumPy's `//` and float `sqrt`, each checked by an integer bracket that NumPy multiplies (q·d ≤ n < (q + 1)·d, s² ≤ n < (s + 1)²). Shifts by a computed amount (the block shift, the row scale) stay NumPy's too.
 
 | signed digits, `t3.c` | for m ≥ 0: `h = m >> 1`, `s = m + h`, `c = h ^ s`; plus `s & c`, minus `h & c`; m = plus − minus, non-adjacent form; a negative value by its magnitude with plus and minus exchanged |
 | --- | --- |
@@ -385,7 +385,7 @@ Commands:
 | `expected-16-SmolLM2-360M.sha256`, `record/exact16-360m-m1.txt`, `record/ci-43754428621.txt` | the 360M's pair; every line of its M1 run; every line of the twelve jobs (135M and 360M on six runners) |
 | `expected-16-SmolLM2-1.7B.sha256`, `record/ci-43759765827.txt` | the 1.7B's pair; every line of its 14 jobs (one route each), with each job's end and wall time |
 | `record/peaks-16.json`, `record/peaks-16-SmolLM2-360M.json` | each site's peak, clamp, margin and clamped count, from `check --peaks` |
-| `routes_test.py` | the three routes against int64 products; t3 too where a C compiler is installed, with every 16-bit value through the stream and 200,081 element-wise pairs |
+| `routes_test.py` | the three routes against int64 products; t3 too where a C compiler is installed, not on Windows, with every 16-bit value through the stream and 200,081 element-wise pairs |
 | `t3.c`, `t3_nomul.py`, `t3_count.py`, `t3_rv32.c` | the t3 kernel; its disassembly checked for multipliers; its counters per token; the stream machine for rv32i |
 | `record/t3-m1.txt`, `record/t3-m1-rerun.txt`, `record/t3-count.json` | every line of the t3 check on the M1, and of its rerun with the kernel and streams built afresh; the counters per token from `t3_count.py` |
 | `spare_row.py`, `spare_row_test.py`, `record/spare-m1.txt`, `record/spare-campaign.json` | exact-16 with every product and look checked, the fault campaign; its test on synthetic operands; every line of the M1 runs; every fault of the campaign |

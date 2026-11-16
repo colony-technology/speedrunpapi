@@ -7,7 +7,6 @@
 # with the products negative. "digit extremes" mixes, position by position, the eight values whose digits sit at the
 # ends of both routes' digit ranges. A kernel that saturates or rounds anywhere fails one of these.
 import os
-import shutil
 import sys
 import numpy as np
 
@@ -18,10 +17,10 @@ rng = np.random.default_rng(7)
 L = X.LIM16
 mmi = X.MatMulInteger()
 print("i8 product engine:", mmi.name)
-# t3 (t3.c, by adds and subtracts) where a C compiler is installed
-T3 = shutil.which(os.environ.get("CC", "cc")) is not None
+# t3 (t3.c, by adds and subtracts) where a C compiler is installed, not on Windows
+T3 = X.t3_missing() is None
 ROUTES = X.ROUTES + (X.ROUTES_T3 if T3 else ())
-print("t3 kernel:", X.t3_kernel().path if T3 else "no C compiler: not tested")
+print("t3 kernel:", X.t3_kernel().path if T3 else X.t3_missing() + ": not tested")
 shapes = [((5, 576), (576, 300)), ((3, 1023), (1023, 7)), ((3, 1024), (1024, 7)), ((3, 1025), (1025, 7)),
           ((4, 1536), (1536, 64)), ((2, 3, 27, 64), (2, 3, 64, 40)), ((2, 3, 27, 600), (2, 3, 600, 64))]
 # digits (i8: of a + 2^15, high and low; f32: balanced high and low): 32767 (255, 255; 128, -1), -32767 (0, 1;

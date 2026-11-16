@@ -38,7 +38,7 @@ jobs:
           - {model: SmolLM2-1.7B, os: ubuntu-latest, routes: i8, args: "--routes i8 --no-float"}
           - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: i8, args: "--routes i8 --no-float"}
           - {model: SmolLM2-1.7B, os: macos-15-intel, routes: i8, args: "--routes i8 --no-float"}
-        # the t3 route (t3.c, built by the runner's C compiler; the Windows runners have none) on the 135M: Linux
+        # the t3 route (t3.c, built by the runner's C compiler; not on Windows) on the 135M: Linux
         # x86-64 and arm64 with gcc, macOS arm64 with Apple clang; then t3_nomul.py on the kernel check built
           - {model: SmolLM2-135M, os: ubuntu-latest, routes: t3, args: "--routes t3 --no-float --no-onnx"}
           - {model: SmolLM2-135M, os: ubuntu-24.04-arm, routes: t3, args: "--routes t3 --no-float --no-onnx"}

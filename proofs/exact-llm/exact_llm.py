@@ -25,6 +25,7 @@ import hashlib
 import json
 import math
 import os
+import shutil
 import struct
 import sys
 import time
@@ -668,7 +669,7 @@ PEEL16 = 2
 CHUNK32 = 1024                    # f32 route: inputs per chunk, 1,024 x 2^14 = 2^24
 N_I8 = 33025                      # i8 route: n 255^2 < 2^31 for n <= 33,025
 ROUTES = ("f64", "f32", "i8")     # check's default
-ROUTES_T3 = ("t3",)               # by adds and subtracts (t3.c), where a C compiler is installed: --routes t3
+ROUTES_T3 = ("t3",)               # by adds and subtracts (t3.c), where a C compiler is installed, not on Windows: --routes t3
 TOP16 = 15                        # t3: highest signed-digit position of a 16-bit value; 16 STEP words per output row
 
 
@@ -768,6 +769,16 @@ T3_DIR = os.environ.get("EXACT_LLM_T3", os.path.join(CACHE, "t3"))   # the compi
 T3_THREADS = min(64, int(os.environ.get("EXACT_LLM_T3_THREADS", "0")) or os.cpu_count() or 1)   # t3.c: at most 64
 
 
+def t3_missing():
+    """Why t3.c is not built here, or None. It is built with a C compiler (`cc` or $CC) as a POSIX shared library
+    with threads; not on Windows."""
+    if sys.platform == "win32":
+        return "not built on Windows"
+    if shutil.which(os.environ.get("CC", "cc")) is None:
+        return "no C compiler"
+    return None
+
+
 class T3:
     """The t3 route's kernel, t3.c, compiled once with the C compiler `cc` (or $CC) into T3_DIR and opened with
     ctypes. Matrix products (mm) and element-wise products (mul) by add, subtract, shift by a constant and bitwise
@@ -779,6 +790,8 @@ class T3:
     def __init__(self):
         import ctypes
         import subprocess
+        if t3_missing():
+            raise SystemExit("t3: " + t3_missing())
         src = os.path.join(HERE, "t3.c")
         tag = self.tag = hashlib.sha256(open(src, "rb").read()).hexdigest()[:12]
         os.makedirs(T3_DIR, exist_ok=True)
