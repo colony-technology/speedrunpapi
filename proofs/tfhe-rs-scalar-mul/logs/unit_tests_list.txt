@@ -1,0 +1,17 @@
+   Compiling tfhe v1.9.0 (/home/runner/work/<repository>/<repository>/tfhe-rs/tfhe)
+    Finished `release_lto_off` profile [optimized] target(s) in 5m 11s
+     Running unittests src/lib.rs (target/release_lto_off/deps/tfhe-6d0694fbedbb9f3a)
+integer::server_key::radix_parallel::scalar_mul::naf_tests::test_non_adjacent_form_is_exact_and_non_adjacent: test
+integer::server_key::radix_parallel::tests_signed::test_scalar_div_mod::test_integer_signed_unchecked_scalar_div_rem_param_message_2_carry_2_ks_pbs_tuniform_2m128: test
+integer::server_key::radix_parallel::tests_signed::test_scalar_mul::test_integer_signed_unchecked_scalar_mul_corner_cases_param_message_2_carry_2_ks_pbs_tuniform_2m128: test
+integer::server_key::radix_parallel::tests_signed::test_scalar_mul::test_integer_signed_unchecked_scalar_mul_param_message_2_carry_2_ks_pbs_tuniform_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_div_mod::test_integer_default_scalar_div_rem_param_message_2_carry_2_ks_pbs_tuniform_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_param_message_2_carry_2_ks_pbs_tuniform_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_test_param_message_1_carry_1_ks_pbs_gaussian_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_test_param_message_3_carry_3_ks_pbs_gaussian_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_u128_fix_non_reg_test_param_message_2_carry_2_ks_pbs_tuniform_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_mul::test_integer_unchecked_scalar_mul_corner_cases_param_message_2_carry_2_ks_pbs_tuniform_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_mul::test_integer_unchecked_scalar_mul_corner_cases_test_param_message_1_carry_1_ks_pbs_gaussian_2m128: test
+integer::server_key::radix_parallel::tests_unsigned::test_scalar_mul::test_integer_unchecked_scalar_mul_corner_cases_test_param_message_3_carry_3_ks_pbs_gaussian_2m128: test
+
+12 tests, 0 benchmarks

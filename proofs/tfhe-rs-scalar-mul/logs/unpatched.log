@@ -1,0 +1,951 @@
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded anstyle-query v1.1.5
+  Downloaded anstyle v1.0.14
+  Downloaded aligned-vec v0.6.4
+  Downloaded alloca v0.4.0
+  Downloaded anstream v1.0.0
+  Downloaded itoa v1.0.18
+  Downloaded cpufeatures v0.3.0
+  Downloaded page_size v0.6.0
+  Downloaded is_terminal_polyfill v1.70.2
+  Downloaded equator-macro v0.4.2
+  Downloaded cfg-if v1.0.4
+  Downloaded env_filter v2.0.0
+  Downloaded ciborium-io v0.2.2
+  Downloaded csv-core v0.1.13
+  Downloaded approx v0.5.1
+  Downloaded cast v0.3.0
+  Downloaded anstyle-parse v1.0.0
+  Downloaded rawpointer v0.2.1
+  Downloaded anes v0.1.6
+  Downloaded rand_chacha v0.3.1
+  Downloaded ppv-lite86 v0.2.21
+  Downloaded dyn-stack-macros v0.1.3
+  Downloaded doc-comment v0.3.4
+  Downloaded reborrow v0.5.5
+  Downloaded crossbeam-deque v0.8.6
+  Downloaded test-case-macros v3.4.0
+  Downloaded rand_core v0.10.1
+  Downloaded rand_core v0.6.4
+  Downloaded aes v0.9.3
+  Downloaded equator v0.4.2
+  Downloaded strsim v0.11.1
+  Downloaded lazy_static v1.5.0
+  Downloaded version_check v0.9.5
+  Downloaded strum v0.28.0
+  Downloaded utf8parse v0.2.2
+  Downloaded test-case-core v3.4.0
+  Downloaded inout v0.2.2
+  Downloaded pin-project-lite v0.2.17
+  Downloaded zmij v1.0.21
+  Downloaded tinytemplate v1.2.1
+  Downloaded unicode-ident v1.0.24
+  Downloaded tracing-core v0.1.36
+  Downloaded serde v1.0.229
+  Downloaded zerocopy-derive v0.8.48
+  Downloaded pulp v0.22.3
+  Downloaded libm v0.2.16
+  Downloaded serde_json v1.0.151
+  Downloaded clap_builder v4.6.7
+  Downloaded wide v1.7.1
+  Downloaded tracing-subscriber v0.3.23
+  Downloaded statrs v0.19.1
+  Downloaded sha3 v0.12.0
+  Downloaded blake3 v1.8.7
+  Downloaded zerocopy v0.8.48
+  Downloaded shake v0.1.0
+  Downloaded syn v3.0.6
+  Downloaded regex-syntax v0.8.11
+  Downloaded syn v2.0.118
+  Downloaded nalgebra v0.35.0
+  Downloaded regex v1.13.1
+  Downloaded itertools v0.15.0
+  Downloaded aho-corasick v1.1.4
+  Downloaded tracing v0.1.44
+  Downloaded itertools v0.13.0
+  Downloaded typenum v1.20.0
+  Downloaded safe_arch v1.2.0
+  Downloaded rayon v1.12.0
+  Downloaded plotters v0.3.7
+  Downloaded criterion v0.8.2
+  Downloaded combine v4.6.8
+  Downloaded regex-automata v0.4.16
+  Downloaded num-bigint v0.5.1
+  Downloaded num-bigint v0.4.6
+  Downloaded hybrid-array v0.4.14
+  Downloaded cc v1.2.60
+  Downloaded raw-cpuid v11.6.0
+  Downloaded rand v0.10.1
+  Downloaded jiff v0.2.23
+  Downloaded glam v0.31.1
+  Downloaded glam v0.30.10
+  Downloaded glam v0.33.12
+  Downloaded glam v0.32.1
+  Downloaded libc v0.2.189
+  Downloaded clap v4.6.7
+  Downloaded bytes v1.11.1
+  Downloaded serde_core v1.0.229
+  Downloaded csv v1.4.0
+  Downloaded memchr v2.8.0
+  Downloaded matrixmultiply v0.3.10
+  Downloaded getrandom v0.4.2
+  Downloaded crossbeam-epoch v0.9.20
+  Downloaded bytemuck v1.25.2
+  Downloaded bitflags v2.13.2
+  Downloaded strum_macros v0.28.0
+  Downloaded smallvec v1.15.1
+  Downloaded simba v0.10.2
+  Downloaded sharded-slab v0.1.7
+  Downloaded serde_derive v1.0.229
+  Downloaded ryu v1.0.23
+  Downloaded rayon-core v1.13.0
+  Downloaded rand_distr v0.4.3
+  Downloaded rand v0.8.6
+  Downloaded proc-macro2 v1.0.107
+  Downloaded half v2.7.1
+  Downloaded crossbeam-utils v0.8.21
+  Downloaded constant_time_eq v0.4.2
+  Downloaded ciborium v0.2.2
+  Downloaded chacha20 v0.10.2
+  Downloaded bincode v1.3.3
+  Downloaded arrayvec v0.7.6
+  Downloaded walkdir v2.5.0
+  Downloaded tracing-log v0.2.0
+  Downloaded thread_local v1.1.9
+  Downloaded thiserror-impl v2.0.21
+  Downloaded thiserror v2.0.21
+  Downloaded shlex v1.3.0
+  Downloaded quote v1.0.47
+  Downloaded once_cell v1.21.4
+  Downloaded num-traits v0.2.19
+  Downloaded num-rational v0.4.2
+  Downloaded num-integer v0.1.46
+  Downloaded num-complex v0.4.6
+  Downloaded nu-ansi-term v0.50.3
+  Downloaded log v0.4.34
+  Downloaded keccak v0.2.2
+  Downloaded getrandom v0.2.17
+  Downloaded env_logger v0.11.11
+  Downloaded dyn-stack v0.13.2
+  Downloaded criterion-plot v0.8.2
+  Downloaded clap_derive v4.6.7
+  Downloaded cipher v0.5.2
+  Downloaded paste v1.0.15
+  Downloaded oorandom v11.1.5
+  Downloaded fs2 v0.4.3
+  Downloaded find-msvc-tools v0.1.9
+  Downloaded either v1.15.0
+  Downloaded digest v0.11.3
+  Downloaded clap_lex v1.1.0
+  Downloaded clap-num v1.2.0
+  Downloaded plotters-svg v0.3.7
+  Downloaded matchers v0.2.0
+  Downloaded hex v0.4.3
+  Downloaded test-case v3.4.0
+  Downloaded same-file v1.0.6
+  Downloaded plotters-backend v0.3.7
+  Downloaded sponge-cursor v0.1.0
+  Downloaded pulp-wasm-simd-flag v0.1.1
+  Downloaded heck v0.5.0
+  Downloaded crypto-common v0.2.2
+  Downloaded ciborium-ll v0.2.2
+  Downloaded cpubits v0.1.1
+  Downloaded colorchoice v1.0.5
+  Downloaded autocfg v1.5.0
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling autocfg v1.5.0
+   Compiling cfg-if v1.0.4
+   Compiling libm v0.2.16
+   Compiling num-traits v0.2.19
+   Compiling syn v3.0.6
+   Compiling syn v2.0.118
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling serde_derive v1.0.229
+   Compiling bytemuck v1.25.2
+   Compiling memchr v2.8.0
+   Compiling typenum v1.20.0
+   Compiling libc v0.2.189
+   Compiling num-complex v0.4.6
+   Compiling zerocopy v0.8.48
+   Compiling hybrid-array v0.4.14
+   Compiling zerocopy-derive v0.8.48
+   Compiling crossbeam-utils v0.8.21
+   Compiling find-msvc-tools v0.1.9
+   Compiling shlex v1.3.0
+   Compiling cc v1.2.60
+   Compiling equator-macro v0.4.2
+   Compiling cpufeatures v0.3.0
+   Compiling crossbeam-epoch v0.9.20
+   Compiling equator v0.4.2
+   Compiling crypto-common v0.2.2
+   Compiling aho-corasick v1.1.4
+   Compiling regex-syntax v0.8.11
+   Compiling either v1.15.0
+   Compiling regex-automata v0.4.16
+   Compiling aligned-vec v0.6.4
+   Compiling getrandom v0.2.17
+   Compiling paste v1.0.15
+   Compiling utf8parse v0.2.2
+   Compiling version_check v0.9.5
+   Compiling rayon-core v1.13.0
+   Compiling heck v0.5.0
+   Compiling pulp v0.22.3
+   Compiling anstyle-parse v1.0.0
+   Compiling crossbeam-deque v0.8.6
+   Compiling bitflags v2.13.2
+   Compiling anstyle v1.0.14
+   Compiling anstyle-query v1.1.5
+   Compiling colorchoice v1.0.5
+   Compiling zmij v1.0.21
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling anstream v1.0.0
+   Compiling raw-cpuid v11.6.0
+   Compiling rand_core v0.6.4
+   Compiling inout v0.2.2
+   Compiling safe_arch v1.2.0
+   Compiling num-integer v0.1.46
+   Compiling tfhe-versionable-derive v0.8.2 (/home/runner/work/<repository>/<repository>/tfhe-rs/utils/tfhe-versionable-derive)
+   Compiling matrixmultiply v0.3.10
+   Compiling log v0.4.34
+   Compiling once_cell v1.21.4
+   Compiling serde_json v1.0.151
+   Compiling reborrow v0.5.5
+   Compiling itoa v1.0.18
+   Compiling rand_core v0.10.1
+   Compiling pulp-wasm-simd-flag v0.1.1
+   Compiling chacha20 v0.10.2
+   Compiling tracing-core v0.1.36
+   Compiling tfhe-versionable v0.8.2 (/home/runner/work/<repository>/<repository>/tfhe-rs/utils/tfhe-versionable)
+   Compiling wide v1.7.1
+   Compiling cipher v0.5.2
+   Compiling rayon v1.12.0
+   Compiling regex v1.13.1
+   Compiling half v2.7.1
+   Compiling ppv-lite86 v0.2.21
+   Compiling digest v0.11.3
+   Compiling alloca v0.4.0
+   Compiling blake3 v1.8.7
+   Compiling approx v0.5.1
+   Compiling keccak v0.2.2
+   Compiling ciborium-io v0.2.2
+   Compiling plotters-backend v0.3.7
+   Compiling dyn-stack-macros v0.1.3
+   Compiling strsim v0.11.1
+   Compiling sponge-cursor v0.1.0
+   Compiling rawpointer v0.2.1
+   Compiling cpubits v0.1.1
+   Compiling clap_lex v1.1.0
+   Compiling thiserror v2.0.21
+   Compiling clap_builder v4.6.7
+   Compiling test-case-core v3.4.0
+   Compiling aes v0.9.3
+   Compiling plotters-svg v0.3.7
+   Compiling dyn-stack v0.13.2
+   Compiling ciborium-ll v0.2.2
+   Compiling simba v0.10.2
+   Compiling rand_chacha v0.3.1
+   Compiling rand v0.10.1
+   Compiling num-rational v0.4.2
+   Compiling clap_derive v4.6.7
+   Compiling strum_macros v0.28.0
+   Compiling itertools v0.13.0
+   Compiling bincode v1.3.3
+   Compiling thiserror-impl v2.0.21
+   Compiling tfhe v1.9.0 (/home/runner/work/<repository>/<repository>/tfhe-rs/tfhe)
+   Compiling same-file v1.0.6
+   Compiling constant_time_eq v0.4.2
+   Compiling cast v0.3.0
+   Compiling lazy_static v1.5.0
+   Compiling arrayvec v0.7.6
+   Compiling pin-project-lite v0.2.17
+   Compiling doc-comment v0.3.4
+   Compiling tracing v0.1.44
+   Compiling criterion-plot v0.8.2
+   Compiling sharded-slab v0.1.7
+   Compiling walkdir v2.5.0
+   Compiling tfhe-safe-serialize v0.1.1 (/home/runner/work/<repository>/<repository>/tfhe-rs/utils/tfhe-safe-serialize)
+   Compiling strum v0.28.0
+   Compiling clap v4.6.7
+   Compiling nalgebra v0.35.0
+   Compiling tinytemplate v1.2.1
+   Compiling rand v0.8.6
+   Compiling ciborium v0.2.2
+   Compiling tfhe-fft v0.10.2 (/home/runner/work/<repository>/<repository>/tfhe-rs/tfhe-fft)
+   Compiling plotters v0.3.7
+   Compiling tfhe-csprng v0.10.0 (/home/runner/work/<repository>/<repository>/tfhe-rs/tfhe-csprng)
+   Compiling test-case-macros v3.4.0
+   Compiling shake v0.1.0
+   Compiling sha3 v0.12.0
+   Compiling env_filter v2.0.0
+   Compiling tfhe-ntt v0.7.1 (/home/runner/work/<repository>/<repository>/tfhe-rs/tfhe-ntt)
+   Compiling tracing-log v0.2.0
+   Compiling matchers v0.2.0
+   Compiling itertools v0.15.0
+   Compiling page_size v0.6.0
+   Compiling csv-core v0.1.13
+   Compiling thread_local v1.1.9
+   Compiling anes v0.1.6
+   Compiling jiff v0.2.23
+   Compiling nu-ansi-term v0.50.3
+   Compiling oorandom v11.1.5
+   Compiling smallvec v1.15.1
+   Compiling ryu v1.0.23
+   Compiling bytes v1.11.1
+   Compiling combine v4.6.8
+   Compiling csv v1.4.0
+   Compiling tracing-subscriber v0.3.23
+   Compiling criterion v0.8.2
+   Compiling env_logger v0.11.11
+   Compiling test-case v3.4.0
+   Compiling statrs v0.19.1
+   Compiling rand_distr v0.4.3
+   Compiling num-bigint v0.5.1
+   Compiling fs2 v0.4.3
+   Compiling clap-num v1.2.0
+   Compiling hex v0.4.3
+    Finished `release_lto_off` profile [optimized] target(s) in 5m 44s
+     Running `target/release_lto_off/examples/naf_scalar_mul_count`
+# label=unpatched samples=200 seed=20261115 threads=2 params=PARAM_MESSAGE_2_CARRY_2_KS_PBS
+# label width kind scalar pbs ms result
+unpatched 16 edge_zero 0 0 0.1 ok
+unpatched 16 edge_one 1 0 0.0 ok
+unpatched 16 edge_two 2 8 219.6 ok
+unpatched 16 edge_three 3 24 678.9 ok
+unpatched 16 edge_all_ones 65535 63 1858.0 ok
+unpatched 16 edge_pow2_odd_exponent 8192 2 58.0 ok
+unpatched 16 edge_pow2_even_exponent 16384 0 0.0 ok
+unpatched 16 edge_0b1011 11 24 683.6 ok
+unpatched 16 edge_alternating 43690 40 1163.3 ok
+unpatched 16 edge_top_run 49152 24 285.0 ok
+unpatched 16 random 47516 43 1265.9 ok
+unpatched 16 random 5096 36 1125.9 ok
+unpatched 16 random 40702 54 1575.2 ok
+unpatched 16 random 60794 47 1361.0 ok
+unpatched 16 random 29109 45 1327.3 ok
+unpatched 16 random 4558 42 1219.7 ok
+unpatched 16 random 11090 36 1040.9 ok
+unpatched 16 random 23419 56 1627.5 ok
+unpatched 16 random 42242 21 618.5 ok
+unpatched 16 random 50927 55 1606.1 ok
+unpatched 16 random 33630 42 1234.4 ok
+unpatched 16 random 62315 49 1417.6 ok
+unpatched 16 random 47373 38 1117.0 ok
+unpatched 16 random 50109 45 1301.7 ok
+unpatched 16 random 47924 30 879.0 ok
+unpatched 16 random 19975 42 1231.3 ok
+unpatched 16 random 5098 42 1217.1 ok
+unpatched 16 random 40504 34 982.5 ok
+unpatched 16 random 59617 34 993.0 ok
+unpatched 16 random 6408 21 605.8 ok
+unpatched 16 random 50496 21 609.6 ok
+unpatched 16 random 49903 49 1411.4 ok
+unpatched 16 random 40070 38 1112.1 ok
+unpatched 16 random 50219 42 1230.3 ok
+unpatched 16 random 29603 47 1372.9 ok
+unpatched 16 random 16971 44 1284.8 ok
+unpatched 16 random 42545 34 998.8 ok
+unpatched 16 random 31887 49 1426.2 ok
+unpatched 16 random 7269 38 1106.8 ok
+unpatched 16 random 40615 51 1473.7 ok
+unpatched 16 random 1511 46 1344.6 ok
+unpatched 16 random 11389 38 1113.1 ok
+unpatched 16 random 34993 34 993.0 ok
+unpatched 16 random 38162 32 937.9 ok
+unpatched 16 random 3378 34 991.4 ok
+unpatched 16 random 6988 40 1160.7 ok
+unpatched 16 random 32316 43 1233.5 ok
+unpatched 16 random 19309 47 1369.9 ok
+unpatched 16 random 44139 49 1437.8 ok
+unpatched 16 random 62745 39 1142.8 ok
+unpatched 16 random 35565 47 1383.1 ok
+unpatched 16 random 55733 43 1247.0 ok
+unpatched 16 random 495 48 1408.1 ok
+unpatched 16 random 3354 38 1114.3 ok
+unpatched 16 random 59792 28 840.3 ok
+unpatched 16 random 17762 34 989.3 ok
+unpatched 16 random 15826 39 1149.7 ok
+unpatched 16 random 55794 39 1119.7 ok
+unpatched 16 random 39236 28 827.3 ok
+unpatched 16 random 353 29 840.3 ok
+unpatched 16 random 44340 34 991.6 ok
+unpatched 16 random 38926 36 1045.8 ok
+unpatched 16 random 42018 29 843.8 ok
+unpatched 16 random 31721 45 1374.1 ok
+unpatched 16 random 38471 44 1296.8 ok
+unpatched 16 random 10790 38 1115.9 ok
+unpatched 16 random 9647 53 1555.7 ok
+unpatched 16 random 17382 42 1221.2 ok
+unpatched 16 random 3709 49 1427.7 ok
+unpatched 16 random 19400 32 932.2 ok
+unpatched 16 random 64238 48 1397.0 ok
+unpatched 16 random 56747 51 1483.5 ok
+unpatched 16 random 36675 44 1290.0 ok
+unpatched 16 random 22204 45 1314.7 ok
+unpatched 16 random 59072 28 825.4 ok
+unpatched 16 random 58234 43 1242.0 ok
+unpatched 16 random 13627 51 1494.4 ok
+unpatched 16 random 16142 43 1264.5 ok
+unpatched 16 random 24197 38 1106.1 ok
+unpatched 16 random 44522 47 1351.4 ok
+unpatched 16 random 4074 47 1379.7 ok
+unpatched 16 random 38923 40 1169.5 ok
+unpatched 16 random 13034 42 1256.0 ok
+unpatched 16 random 7287 40 1162.1 ok
+unpatched 16 random 26086 45 1323.3 ok
+unpatched 16 random 61192 26 753.1 ok
+unpatched 16 random 20488 12 339.5 ok
+unpatched 16 random 18491 48 1381.5 ok
+unpatched 16 random 64960 31 913.6 ok
+unpatched 16 random 4772 29 840.7 ok
+unpatched 16 random 28646 48 1403.3 ok
+unpatched 16 random 40339 47 1382.3 ok
+unpatched 16 random 29348 32 938.8 ok
+unpatched 16 random 24477 48 1391.2 ok
+unpatched 16 random 42344 34 990.9 ok
+unpatched 16 random 63764 32 936.9 ok
+unpatched 16 random 42455 51 1479.6 ok
+unpatched 16 random 21672 32 941.0 ok
+unpatched 16 random 31057 34 986.9 ok
+unpatched 16 random 48927 54 1560.6 ok
+unpatched 16 random 30709 50 1461.1 ok
+unpatched 16 random 9707 51 1512.2 ok
+unpatched 16 random 33151 55 1605.1 ok
+unpatched 16 random 45040 41 1185.0 ok
+unpatched 16 random 17739 44 1291.7 ok
+unpatched 16 random 20227 42 1219.7 ok
+unpatched 16 random 52752 22 649.9 ok
+unpatched 16 random 8577 25 730.1 ok
+unpatched 16 random 40001 28 815.6 ok
+unpatched 16 random 43365 40 1176.5 ok
+unpatched 16 random 13559 51 1624.8 ok
+unpatched 16 random 48118 50 1465.6 ok
+unpatched 16 random 48714 41 1211.5 ok
+unpatched 16 random 39846 43 1327.7 ok
+unpatched 16 random 8541 42 1221.0 ok
+unpatched 16 random 24999 46 1350.0 ok
+unpatched 16 random 39360 28 819.0 ok
+unpatched 16 random 46087 40 1175.6 ok
+unpatched 16 random 44768 30 867.4 ok
+unpatched 16 random 5725 42 1227.6 ok
+unpatched 16 random 15422 47 1375.8 ok
+unpatched 16 random 19785 38 1109.4 ok
+unpatched 16 random 9951 55 1594.1 ok
+unpatched 16 random 50932 39 1143.1 ok
+unpatched 16 random 42591 53 1527.5 ok
+unpatched 16 random 14515 46 1337.3 ok
+unpatched 16 random 41154 25 716.2 ok
+unpatched 16 random 646 33 952.6 ok
+unpatched 16 random 9283 37 1068.6 ok
+unpatched 16 random 40286 47 1367.5 ok
+unpatched 16 random 55546 43 1241.9 ok
+unpatched 16 random 53070 41 1186.9 ok
+unpatched 16 random 44294 38 1111.6 ok
+unpatched 16 random 24655 46 1335.3 ok
+unpatched 16 random 873 40 1165.7 ok
+unpatched 16 random 3612 38 1098.6 ok
+unpatched 16 random 49613 42 1225.9 ok
+unpatched 16 random 34499 44 1287.4 ok
+unpatched 16 random 52877 41 1213.9 ok
+unpatched 16 random 48351 54 1579.1 ok
+unpatched 16 random 10563 42 1228.1 ok
+unpatched 16 random 57986 26 763.9 ok
+unpatched 16 random 12516 32 938.5 ok
+unpatched 16 random 43054 38 1114.0 ok
+unpatched 16 random 14724 28 837.0 ok
+unpatched 16 random 52577 34 1004.3 ok
+unpatched 16 random 44569 38 1122.5 ok
+unpatched 16 random 25198 42 1224.8 ok
+unpatched 16 random 43175 46 1352.4 ok
+unpatched 16 random 10970 42 1220.6 ok
+unpatched 16 random 45526 34 1000.9 ok
+unpatched 16 random 39285 45 1322.4 ok
+unpatched 16 random 50686 51 1484.0 ok
+unpatched 16 random 8841 33 960.9 ok
+unpatched 16 random 38351 51 1501.4 ok
+unpatched 16 random 37246 47 1374.7 ok
+unpatched 16 random 50739 44 1289.3 ok
+unpatched 16 random 16469 25 738.6 ok
+unpatched 16 random 21458 36 1053.2 ok
+unpatched 16 random 3216 25 732.5 ok
+unpatched 16 random 24021 47 1354.3 ok
+unpatched 16 random 60832 30 878.9 ok
+unpatched 16 random 45836 36 1050.7 ok
+unpatched 16 random 56693 47 1364.0 ok
+unpatched 16 random 34792 36 1117.8 ok
+unpatched 16 random 33358 40 1166.4 ok
+unpatched 16 random 31725 50 1450.7 ok
+unpatched 16 random 60526 43 1240.7 ok
+unpatched 16 random 45103 48 1398.9 ok
+unpatched 16 random 34043 53 1535.6 ok
+unpatched 16 random 1082 33 957.5 ok
+unpatched 16 random 58064 28 819.7 ok
+unpatched 16 random 16527 46 1336.7 ok
+unpatched 16 random 19329 30 869.8 ok
+unpatched 16 random 31937 30 873.1 ok
+unpatched 16 random 27869 47 1359.5 ok
+unpatched 16 random 50890 40 1175.9 ok
+unpatched 16 random 25135 48 1399.9 ok
+unpatched 16 random 44214 45 1330.4 ok
+unpatched 16 random 12181 45 1316.2 ok
+unpatched 16 random 18711 44 1278.6 ok
+unpatched 16 random 22302 43 1251.5 ok
+unpatched 16 random 40828 48 1408.5 ok
+unpatched 16 random 20172 40 1152.6 ok
+unpatched 16 random 44544 17 491.2 ok
+unpatched 16 random 16628 29 841.5 ok
+unpatched 16 random 5427 44 1285.6 ok
+unpatched 16 random 18946 21 612.2 ok
+unpatched 16 random 20335 53 1525.4 ok
+unpatched 16 random 57583 49 1434.6 ok
+unpatched 16 random 30735 42 1223.0 ok
+unpatched 16 random 6417 29 851.2 ok
+unpatched 16 random 27154 32 945.5 ok
+unpatched 16 random 16340 39 1130.8 ok
+unpatched 16 random 63191 52 1527.2 ok
+unpatched 16 random 15893 38 1115.3 ok
+unpatched 16 random 42155 46 1348.7 ok
+unpatched 16 random 49275 48 1406.5 ok
+unpatched 16 random 35057 38 1116.0 ok
+unpatched 16 random 24635 48 1405.3 ok
+unpatched 16 random 42279 44 1290.3 ok
+unpatched 16 random 58584 34 993.9 ok
+unpatched 16 random 18957 38 1108.7 ok
+unpatched 16 random 63626 36 1052.2 ok
+unpatched 16 random 33384 29 846.3 ok
+unpatched 16 random 46358 38 1102.8 ok
+unpatched 16 random 11384 34 981.4 ok
+unpatched 16 random 61590 36 1045.6 ok
+unpatched 16 random 48045 45 1296.5 ok
+unpatched 16 random 38542 40 1161.1 ok
+unpatched 32 edge_zero 0 0 0.0 ok
+unpatched 32 edge_one 1 0 0.0 ok
+unpatched 32 edge_two 2 16 444.7 ok
+unpatched 32 edge_three 3 48 1382.6 ok
+unpatched 32 edge_all_ones 4294967295 212 6167.0 ok
+unpatched 32 edge_pow2_odd_exponent 536870912 2 59.0 ok
+unpatched 32 edge_pow2_even_exponent 1073741824 0 0.0 ok
+unpatched 32 edge_0b1011 11 48 1384.0 ok
+unpatched 32 edge_alternating 2863311530 127 3675.5 ok
+unpatched 32 edge_top_run 3221225472 48 519.5 ok
+unpatched 32 random 3308267570 95 2735.5 ok
+unpatched 32 random 4006868633 145 4183.8 ok
+unpatched 32 random 2066588925 146 4196.9 ok
+unpatched 32 random 1399110583 164 4715.8 ok
+unpatched 32 random 2531947272 101 2894.4 ok
+unpatched 32 random 1492551364 109 3132.9 ok
+unpatched 32 random 3187645109 156 4504.4 ok
+unpatched 32 random 3749389636 112 3249.9 ok
+unpatched 32 random 1386249393 118 3406.4 ok
+unpatched 32 random 24795628 137 3971.3 ok
+unpatched 32 random 1901032822 148 4261.8 ok
+unpatched 32 random 2599544806 155 4472.4 ok
+unpatched 32 random 1017126755 133 3848.0 ok
+unpatched 32 random 2104212851 163 4771.1 ok
+unpatched 32 random 2696719658 123 3584.3 ok
+unpatched 32 random 2693740360 112 3269.4 ok
+unpatched 32 random 465282711 154 4465.8 ok
+unpatched 32 random 2137067046 113 3287.3 ok
+unpatched 32 random 637436747 133 3873.2 ok
+unpatched 32 random 437067708 139 4023.4 ok
+unpatched 32 random 3115393911 148 4276.9 ok
+unpatched 32 random 2762536959 181 5244.4 ok
+unpatched 32 random 3457435669 98 2846.4 ok
+unpatched 32 random 517213232 94 2724.0 ok
+unpatched 32 random 3757705800 101 2938.7 ok
+unpatched 32 random 2539893018 119 3460.6 ok
+unpatched 32 random 1672987430 129 3739.7 ok
+unpatched 32 random 2389091474 108 3148.3 ok
+unpatched 32 random 4130582034 117 3402.5 ok
+unpatched 32 random 1226796159 162 4669.9 ok
+unpatched 32 random 1602527951 135 3997.6 ok
+unpatched 32 random 3281642134 125 3619.6 ok
+unpatched 32 random 4142746805 140 4054.8 ok
+unpatched 32 random 1283263490 84 2440.3 ok
+unpatched 32 random 3814481081 138 4009.4 ok
+unpatched 32 random 4016101578 121 3511.4 ok
+unpatched 32 random 2096399764 111 3243.0 ok
+unpatched 32 random 883377102 131 3805.5 ok
+unpatched 32 random 1060294069 144 4156.1 ok
+unpatched 32 random 3132908627 123 3565.1 ok
+unpatched 32 random 3150274384 122 3561.1 ok
+unpatched 32 random 2091606862 134 3911.4 ok
+unpatched 32 random 4081649762 92 2678.3 ok
+unpatched 32 random 3471340493 138 3996.4 ok
+unpatched 32 random 3708157977 91 2643.9 ok
+unpatched 32 random 1986517934 157 4532.4 ok
+unpatched 32 random 2206673625 131 3881.9 ok
+unpatched 32 random 2821690870 150 4352.4 ok
+unpatched 32 random 592918010 152 4400.1 ok
+unpatched 32 random 3621946301 142 4103.2 ok
+unpatched 32 random 2618694435 120 3462.3 ok
+unpatched 32 random 3256841494 125 3644.7 ok
+unpatched 32 random 536744383 161 4708.1 ok
+unpatched 32 random 2016901397 127 3676.9 ok
+unpatched 32 random 2999997159 133 3860.7 ok
+unpatched 32 random 4106353282 109 3141.6 ok
+unpatched 32 random 1144916635 128 3727.9 ok
+unpatched 32 random 926779779 123 3572.8 ok
+unpatched 32 random 330562072 123 3579.0 ok
+unpatched 32 random 3069572739 140 4041.2 ok
+unpatched 32 random 4152883111 165 4776.1 ok
+unpatched 32 random 1118235881 139 4097.1 ok
+unpatched 32 random 1707692051 108 3148.4 ok
+unpatched 32 random 2539141464 111 3241.3 ok
+unpatched 32 random 531932791 152 4400.1 ok
+unpatched 32 random 1797853330 94 2711.9 ok
+unpatched 32 random 3185758818 113 3271.3 ok
+unpatched 32 random 1802247895 150 4329.3 ok
+unpatched 32 random 630108423 120 3486.1 ok
+unpatched 32 random 708816254 165 4780.6 ok
+unpatched 32 random 3823720828 138 4008.4 ok
+unpatched 32 random 852221846 144 4180.6 ok
+unpatched 32 random 1069657278 146 4230.0 ok
+unpatched 32 random 4010806502 115 3321.1 ok
+unpatched 32 random 2051509171 148 4286.5 ok
+unpatched 32 random 4090593644 115 3345.6 ok
+unpatched 32 random 2488154502 118 3443.2 ok
+unpatched 32 random 1175264853 126 3696.6 ok
+unpatched 32 random 1829508962 110 3172.6 ok
+unpatched 32 random 3800821884 131 3780.0 ok
+unpatched 32 random 4156912977 122 3517.1 ok
+unpatched 32 random 762328161 104 2998.5 ok
+unpatched 32 random 3914633652 113 3289.9 ok
+unpatched 32 random 4204573909 134 3882.0 ok
+unpatched 32 random 848359030 137 3969.8 ok
+unpatched 32 random 1971748043 146 4223.3 ok
+unpatched 32 random 4045222154 108 3137.3 ok
+unpatched 32 random 3829541754 129 3743.3 ok
+unpatched 32 random 3145828336 119 3417.2 ok
+unpatched 32 random 1702723007 180 5170.0 ok
+unpatched 32 random 1492441780 125 3578.9 ok
+unpatched 32 random 4095592449 84 2431.0 ok
+unpatched 32 random 250335748 98 2837.1 ok
+unpatched 32 random 2439431821 125 3661.6 ok
+unpatched 32 random 2246799292 159 4640.7 ok
+unpatched 32 random 352067676 110 3187.2 ok
+unpatched 32 random 4167976163 131 3795.6 ok
+unpatched 32 random 2590891751 165 4775.6 ok
+unpatched 32 random 559695395 118 3388.9 ok
+unpatched 32 random 896529837 159 4583.8 ok
+unpatched 32 random 1375450594 144 4144.7 ok
+unpatched 32 random 3051849296 105 3007.2 ok
+unpatched 32 random 3805007694 142 4074.7 ok
+unpatched 32 random 1006177655 155 4479.3 ok
+unpatched 32 random 1213723259 158 4532.7 ok
+unpatched 32 random 1113133280 89 2578.5 ok
+unpatched 32 random 3475823948 132 3837.1 ok
+unpatched 32 random 3482231480 121 3478.6 ok
+unpatched 32 random 624803852 104 3011.1 ok
+unpatched 32 random 249811038 131 3765.1 ok
+unpatched 32 random 91793777 118 3442.1 ok
+unpatched 32 random 1914823836 118 3395.6 ok
+unpatched 32 random 1951781595 148 4287.4 ok
+unpatched 32 random 188663755 156 4514.4 ok
+unpatched 32 random 955599659 133 3861.8 ok
+unpatched 32 random 3028572988 125 3652.8 ok
+unpatched 32 random 3134221376 86 2500.1 ok
+unpatched 32 random 353183099 141 4108.1 ok
+unpatched 32 random 2984188927 175 5040.7 ok
+unpatched 32 random 3654898643 142 4109.7 ok
+unpatched 32 random 1825762336 90 2611.2 ok
+unpatched 32 random 3276815818 125 3606.0 ok
+unpatched 32 random 189329802 116 3353.7 ok
+unpatched 32 random 1315510884 110 3182.3 ok
+unpatched 32 random 1591136728 130 3778.5 ok
+unpatched 32 random 1728686231 127 3675.7 ok
+unpatched 32 random 3603474616 111 3277.8 ok
+unpatched 32 random 2375809770 148 4276.6 ok
+unpatched 32 random 2094872137 128 3705.2 ok
+unpatched 32 random 533379375 152 4369.0 ok
+unpatched 32 random 601434555 145 4179.2 ok
+unpatched 32 random 1076305615 139 3998.8 ok
+unpatched 32 random 3210377845 147 4201.1 ok
+unpatched 32 random 1864727827 140 4049.2 ok
+unpatched 32 random 1487608480 102 2956.7 ok
+unpatched 32 random 1108281154 100 2902.3 ok
+unpatched 32 random 1555663047 129 3748.8 ok
+unpatched 32 random 3006206633 125 3606.3 ok
+unpatched 32 random 2856453179 116 3346.7 ok
+unpatched 32 random 3400886437 119 3452.4 ok
+unpatched 32 random 159446967 151 4357.2 ok
+unpatched 32 random 2004689318 130 3741.7 ok
+unpatched 32 random 1567995931 136 4002.9 ok
+unpatched 32 random 593978395 127 3686.5 ok
+unpatched 32 random 1074283011 90 2610.6 ok
+unpatched 32 random 584295487 143 4148.4 ok
+unpatched 32 random 3192982195 127 3658.7 ok
+unpatched 32 random 2587880948 159 4569.9 ok
+unpatched 32 random 2465719903 167 4827.1 ok
+unpatched 32 random 46993202 116 3335.2 ok
+unpatched 32 random 1996268548 89 2575.3 ok
+unpatched 32 random 1400903000 98 2839.3 ok
+unpatched 32 random 1409092996 111 3199.5 ok
+unpatched 32 random 3655443351 140 4054.3 ok
+unpatched 32 random 1342459723 124 3583.4 ok
+unpatched 32 random 3347983881 115 3331.1 ok
+unpatched 32 random 2769144870 116 3361.0 ok
+unpatched 32 random 3137429288 113 3259.8 ok
+unpatched 32 random 1992560003 112 3221.3 ok
+unpatched 32 random 2619167980 129 3778.4 ok
+unpatched 32 random 3494790099 131 3778.6 ok
+unpatched 32 random 4234714424 119 3452.3 ok
+unpatched 32 random 2057051721 119 3431.8 ok
+unpatched 32 random 1091665474 110 3186.7 ok
+unpatched 32 random 3358697065 122 3518.5 ok
+unpatched 32 random 1034764682 113 3251.7 ok
+unpatched 32 random 2172046686 143 4115.7 ok
+unpatched 32 random 3676403165 144 4149.8 ok
+unpatched 32 random 3153196335 161 4626.3 ok
+unpatched 32 random 2607795916 147 4235.7 ok
+unpatched 32 random 3368372995 116 3319.3 ok
+unpatched 32 random 2721897935 160 4600.5 ok
+unpatched 32 random 1607458422 164 4729.8 ok
+unpatched 32 random 899969559 129 3719.3 ok
+unpatched 32 random 2652655277 135 3938.1 ok
+unpatched 32 random 1050948695 133 3796.0 ok
+unpatched 32 random 762679207 154 4411.3 ok
+unpatched 32 random 1150769896 123 3595.8 ok
+unpatched 32 random 559412592 127 3658.1 ok
+unpatched 32 random 3038937872 79 2285.7 ok
+unpatched 32 random 3009402236 153 4416.4 ok
+unpatched 32 random 291677695 157 4551.1 ok
+unpatched 32 random 3788821917 140 4061.0 ok
+unpatched 32 random 509910480 115 3315.2 ok
+unpatched 32 random 1281602337 112 3216.1 ok
+unpatched 32 random 3952352163 131 3776.4 ok
+unpatched 32 random 1754999528 119 3422.4 ok
+unpatched 32 random 1937639291 152 4397.2 ok
+unpatched 32 random 1682015098 120 3458.5 ok
+unpatched 32 random 3798934383 150 4311.5 ok
+unpatched 32 random 2397067280 73 2097.7 ok
+unpatched 32 random 278959468 116 3445.6 ok
+unpatched 32 random 884362441 121 3509.5 ok
+unpatched 32 random 2387255926 125 3622.7 ok
+unpatched 32 random 1835980512 126 3655.0 ok
+unpatched 32 random 461463834 106 3092.4 ok
+unpatched 32 random 222877340 122 3541.1 ok
+unpatched 32 random 1123269981 156 4465.0 ok
+unpatched 32 random 3545113001 117 3390.0 ok
+unpatched 32 random 803354949 121 3496.0 ok
+unpatched 64 edge_zero 0 0 0.0 ok
+unpatched 64 edge_one 1 0 0.0 ok
+unpatched 64 edge_two 2 32 899.4 ok
+unpatched 64 edge_three 3 96 2760.9 ok
+unpatched 64 edge_all_ones 18446744073709551615 767 21889.9 ok
+unpatched 64 edge_pow2_odd_exponent 2305843009213693952 2 56.6 ok
+unpatched 64 edge_pow2_even_exponent 4611686018427387904 0 0.0 ok
+unpatched 64 edge_0b1011 11 96 2782.7 ok
+unpatched 64 edge_alternating 12297829382473034410 428 12333.2 ok
+unpatched 64 edge_top_run 13835058055282163712 96 971.2 ok
+unpatched 64 random 7518424977593578334 504 14391.9 ok
+unpatched 64 random 14717480560367294213 452 12952.4 ok
+unpatched 64 random 2789539352079391114 431 12341.5 ok
+unpatched 64 random 13648836876183103686 367 10581.5 ok
+unpatched 64 random 11303398444828625435 471 13535.2 ok
+unpatched 64 random 258560064562158974 429 12313.6 ok
+unpatched 64 random 2703875757249152963 409 11785.1 ok
+unpatched 64 random 9750684667556843918 399 11395.3 ok
+unpatched 64 random 3430312100714253827 413 11872.8 ok
+unpatched 64 random 17967128340569217765 419 12008.8 ok
+unpatched 64 random 13595952434681850737 421 12122.4 ok
+unpatched 64 random 17519984374530470605 458 13139.3 ok
+unpatched 64 random 11299754638402996894 439 12627.8 ok
+unpatched 64 random 7613952602869215807 448 12968.8 ok
+unpatched 64 random 5556554190544750998 397 11436.9 ok
+unpatched 64 random 5425243571612771652 379 10908.4 ok
+unpatched 64 random 17465627199549207854 457 13185.9 ok
+unpatched 64 random 6038060811226310301 430 12427.4 ok
+unpatched 64 random 3115858632791720813 400 11631.2 ok
+unpatched 64 random 521790562336127748 373 10744.3 ok
+unpatched 64 random 16198491873004891687 372 10713.3 ok
+unpatched 64 random 14680700972638135856 435 12591.0 ok
+unpatched 64 random 4966551048479717742 507 14621.3 ok
+unpatched 64 random 2287693467025037884 386 11180.3 ok
+unpatched 64 random 10358801443200893186 298 8594.3 ok
+unpatched 64 random 12624639222588653356 487 14049.4 ok
+unpatched 64 random 12700178249232807410 437 12602.9 ok
+unpatched 64 random 12639397446944591718 412 11842.9 ok
+unpatched 64 random 15241853246958061564 496 14381.6 ok
+unpatched 64 random 11189672879824105509 408 11791.3 ok
+unpatched 64 random 1243760768422328009 401 11540.2 ok
+unpatched 64 random 8367201018884562538 482 13868.7 ok
+unpatched 64 random 12645848749044894361 419 12090.4 ok
+unpatched 64 random 5657418361583695787 511 14659.6 ok
+unpatched 64 random 10335859501996270606 377 10799.3 ok
+unpatched 64 random 16339020255281936032 485 13959.8 ok
+unpatched 64 random 15600537946177149260 397 11417.2 ok
+unpatched 64 random 3963046347584771923 456 13219.9 ok
+unpatched 64 random 18241722861305976951 470 13451.7 ok
+unpatched 64 random 10299824186862179025 418 11999.8 ok
+unpatched 64 random 5158590102760323192 524 15085.8 ok
+unpatched 64 random 5264415374621083275 385 11091.6 ok
+unpatched 64 random 4522158971941450916 380 11014.7 ok
+unpatched 64 random 13667873902871192449 386 11125.8 ok
+unpatched 64 random 14259111107566411995 387 11215.9 ok
+unpatched 64 random 5770219484533914072 440 12684.4 ok
+unpatched 64 random 6028451592952722693 422 12135.2 ok
+unpatched 64 random 4842137573849384976 392 11336.9 ok
+unpatched 64 random 14793049996165893262 420 12096.1 ok
+unpatched 64 random 17439087144989460100 350 10070.6 ok
+unpatched 64 random 4890152073860467967 539 15523.4 ok
+unpatched 64 random 10685980281763548859 446 12870.5 ok
+unpatched 64 random 17742958542385284298 450 13040.7 ok
+unpatched 64 random 3464830943514944383 527 15292.3 ok
+unpatched 64 random 8617979052913490809 476 13709.3 ok
+unpatched 64 random 14457762452384480372 442 12712.8 ok
+unpatched 64 random 2787562127481930292 396 11344.8 ok
+unpatched 64 random 12420882601132459616 372 10807.6 ok
+unpatched 64 random 9952870858226987256 457 13173.5 ok
+unpatched 64 random 4655409924392980451 460 13205.9 ok
+unpatched 64 random 16780440270902784371 423 12161.5 ok
+unpatched 64 random 2244111187142954918 424 12257.2 ok
+unpatched 64 random 10128515534561566728 335 9669.4 ok
+unpatched 64 random 10287287216658887564 436 12531.4 ok
+unpatched 64 random 14003806964450749480 377 10796.3 ok
+unpatched 64 random 17386939883318774365 402 11570.7 ok
+unpatched 64 random 14610071936169862504 412 11823.5 ok
+unpatched 64 random 16253299461951194625 358 10426.2 ok
+unpatched 64 random 17354064330042396357 449 12893.6 ok
+unpatched 64 random 16052755154955253261 448 12872.7 ok
+unpatched 64 random 10640284969067120002 328 9412.2 ok
+unpatched 64 random 5939520778285141098 461 13235.0 ok
+unpatched 64 random 10983183686405741169 404 11773.3 ok
+unpatched 64 random 5666488690742724326 455 13119.7 ok
+unpatched 64 random 7064179133885517336 374 10777.9 ok
+unpatched 64 random 5582333322582818266 522 15060.7 ok
+unpatched 64 random 14347460188094462185 457 13227.8 ok
+unpatched 64 random 11117950082326289728 382 11057.2 ok
+unpatched 64 random 14487713098049941980 422 12224.1 ok
+unpatched 64 random 6922235333379207380 392 11328.4 ok
+unpatched 64 random 2346032384149022877 388 11161.2 ok
+unpatched 64 random 11659807486923289870 386 11106.3 ok
+unpatched 64 random 8693076338329293442 383 11097.5 ok
+unpatched 64 random 8187872374095521959 382 10985.1 ok
+unpatched 64 random 18099032274498078950 485 13920.1 ok
+unpatched 64 random 13313348124295797168 420 12075.1 ok
+unpatched 64 random 18247978720627305909 512 14710.7 ok
+unpatched 64 random 2734330065026600624 369 10676.6 ok
+unpatched 64 random 9834343540586966591 563 16173.8 ok
+unpatched 64 random 5367463226787689227 465 13355.1 ok
+unpatched 64 random 7491161178702668378 456 13099.3 ok
+unpatched 64 random 17328217364482931757 408 11805.3 ok
+unpatched 64 random 6221079974522798730 376 10830.2 ok
+unpatched 64 random 13390818746014593098 481 13815.0 ok
+unpatched 64 random 15818760194722061432 472 13527.1 ok
+unpatched 64 random 11763431615326260151 470 13519.7 ok
+unpatched 64 random 12411383531541921323 412 11920.4 ok
+unpatched 64 random 10892512402106393380 388 11207.5 ok
+unpatched 64 random 8493400846510166625 428 12323.9 ok
+unpatched 64 random 3787932326952109760 342 9837.6 ok
+unpatched 64 random 13345116468936520801 373 10685.4 ok
+unpatched 64 random 340060894895426867 417 12150.0 ok
+unpatched 64 random 6388874437579227208 384 11136.3 ok
+unpatched 64 random 4123851864276364988 480 13836.2 ok
+unpatched 64 random 17694763962124469630 402 11568.8 ok
+unpatched 64 random 4983534095676103928 432 12376.7 ok
+unpatched 64 random 928244439658039170 369 10685.6 ok
+unpatched 64 random 16042607420234461791 488 14103.6 ok
+unpatched 64 random 12929351853590894721 328 9494.5 ok
+unpatched 64 random 1991252845775209308 420 12142.6 ok
+unpatched 64 random 11131039634298718496 355 10293.0 ok
+unpatched 64 random 9905535998392576507 436 12698.6 ok
+unpatched 64 random 8720652246311159430 410 11874.7 ok
+unpatched 64 random 4284818291300490812 470 13548.9 ok
+unpatched 64 random 6611000888241875055 443 12798.0 ok
+unpatched 64 random 15148187123510882688 318 9159.1 ok
+unpatched 64 random 16268140450731093419 483 14029.0 ok
+unpatched 64 random 560638728483240160 375 10848.8 ok
+unpatched 64 random 14970450260441054896 462 13283.9 ok
+unpatched 64 random 15074450264159903669 508 14654.9 ok
+unpatched 64 random 4744883152934261110 438 12631.3 ok
+unpatched 64 random 208209826178502932 396 11471.5 ok
+unpatched 64 random 2077648378043346894 444 12749.0 ok
+unpatched 64 random 12563675206242910538 404 11658.7 ok
+unpatched 64 random 12521535040739217773 435 12584.3 ok
+unpatched 64 random 6300744529276292041 537 15422.6 ok
+unpatched 64 random 9220352017801175217 354 10236.4 ok
+unpatched 64 random 3216740699110555651 334 9591.2 ok
+unpatched 64 random 288786186327020282 439 12635.2 ok
+unpatched 64 random 12960828707437845524 364 10482.9 ok
+unpatched 64 random 9557091343748639946 385 11076.6 ok
+unpatched 64 random 7678994773197443435 419 12179.3 ok
+unpatched 64 random 13319871367360014513 445 12880.5 ok
+unpatched 64 random 3421290570614369545 468 13406.1 ok
+unpatched 64 random 12601306338731699866 482 13858.5 ok
+unpatched 64 random 15454441845158769323 494 14226.0 ok
+unpatched 64 random 4115463312871047113 419 12033.5 ok
+unpatched 64 random 6854461624008808372 462 13230.5 ok
+unpatched 64 random 6799192694778402533 489 14053.4 ok
+unpatched 64 random 10940215947998353862 394 11341.2 ok
+unpatched 64 random 4479433429195744441 414 11932.3 ok
+unpatched 64 random 4368457013853377536 323 9268.3 ok
+unpatched 64 random 1228263683543699516 315 9057.3 ok
+unpatched 64 random 5286917954367362007 492 14083.0 ok
+unpatched 64 random 1288832945449588116 410 11716.9 ok
+unpatched 64 random 14579595463926926542 374 10632.0 ok
+unpatched 64 random 582056470613907247 445 12799.0 ok
+unpatched 64 random 11559744848806619332 381 10930.1 ok
+unpatched 64 random 11258016116319928219 468 13493.1 ok
+unpatched 64 random 4879467448363227860 416 11924.8 ok
+unpatched 64 random 12245034136233794741 470 13613.1 ok
+unpatched 64 random 16500947226478349154 415 11934.2 ok
+unpatched 64 random 209995412333679280 371 10634.6 ok
+unpatched 64 random 15911819318216735086 416 11947.9 ok
+unpatched 64 random 13049100374571235715 427 12238.1 ok
+unpatched 64 random 10134649175161354344 389 11170.3 ok
+unpatched 64 random 6347767389443790283 442 12765.2 ok
+unpatched 64 random 5193544396936564614 444 12725.5 ok
+unpatched 64 random 10351539294695214695 444 12755.0 ok
+unpatched 64 random 2556672533475060385 408 11737.3 ok
+unpatched 64 random 296855574548502456 464 13303.6 ok
+unpatched 64 random 9828726219958207349 428 12229.2 ok
+unpatched 64 random 6128163456418426228 449 12779.1 ok
+unpatched 64 random 17174870596303097212 501 14323.9 ok
+unpatched 64 random 5184383497015475834 430 12314.2 ok
+unpatched 64 random 13457041592801603490 409 11762.4 ok
+unpatched 64 random 1821216145833352880 448 12801.4 ok
+unpatched 64 random 4777482000137392150 301 8671.9 ok
+unpatched 64 random 12065810039247123256 421 12072.2 ok
+unpatched 64 random 4502790873194697259 388 11116.6 ok
+unpatched 64 random 7410535688335649283 390 11285.5 ok
+unpatched 64 random 3156869742212559796 386 11030.5 ok
+unpatched 64 random 4625369283324052569 397 11370.5 ok
+unpatched 64 random 1993227108033030605 492 14098.3 ok
+unpatched 64 random 6396986149455943459 428 12309.5 ok
+unpatched 64 random 11481398975284309093 456 13231.9 ok
+unpatched 64 random 6846254121526762718 463 13324.8 ok
+unpatched 64 random 9019269322698987490 414 11937.1 ok
+unpatched 64 random 14377261756763311243 443 12784.3 ok
+unpatched 64 random 12690719740492524307 406 11676.0 ok
+unpatched 64 random 3853168122417548888 411 11942.4 ok
+unpatched 64 random 5352686708625950428 425 12288.1 ok
+unpatched 64 random 12042652838153136304 426 12263.2 ok
+unpatched 64 random 17928735173041636157 458 13192.5 ok
+unpatched 64 random 1164829223615845366 463 13342.9 ok
+unpatched 64 random 7363547982669823624 356 10288.2 ok
+unpatched 64 random 9454189202488198071 464 13374.4 ok
+unpatched 64 random 17810277457410188471 412 11870.5 ok
+unpatched 64 random 7651236911168787528 368 10566.3 ok
+unpatched 64 random 5405112734258257797 440 12677.4 ok
+unpatched 64 random 9017728939104300331 393 11455.9 ok
+unpatched 64 random 13990071726594270687 489 14218.1 ok
+unpatched 64 random 2565177359884813298 457 13264.2 ok
+unpatched 64 random 98126713476619261 491 14417.5 ok
+unpatched 64 random 1276033636550037 400 11610.4 ok
+unpatched 64 random 1939139673109879054 395 11481.7 ok
+unpatched 64 random 7434338203206337838 445 12938.1 ok
+unpatched 64 random 431789833705681222 426 12349.2 ok
+unpatched 64 random 15488548637827073162 335 9706.1 ok
+unpatched 64 random 2403783820446181944 398 11505.9 ok
+
+# summary label=unpatched (random scalars only; edge cases are listed above)
+| label | width | samples | mean PBS | worst PBS | mean ms | total s | failures |
+|---|---|---|---|---|---|---|---|
+| unpatched | 16 | 200 | 40.1 | 56 | 1172.9 | 234.6 | 0 |
+| unpatched | 32 | 200 | 128.6 | 181 | 3722.0 | 744.4 | 0 |
+| unpatched | 64 | 200 | 424.2 | 563 | 12221.5 | 2444.3 | 0 |
+# job step wall seconds: 3831

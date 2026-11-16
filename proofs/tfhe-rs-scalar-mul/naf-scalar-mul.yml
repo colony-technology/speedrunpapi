@@ -1,0 +1,143 @@
+# Place at .github/workflows/naf-scalar-mul.yml in a repository that holds this folder.
+# Expects this folder (patch + example) at the path given by NAF_DIR in that repository.
+#
+# Runs on a GitHub-hosted runner only. No secrets, no caches, no credentials.
+name: tfhe-rs NAF scalar multiplication count
+
+on:
+  workflow_dispatch:
+    inputs:
+      samples:
+        description: "Random scalars per width"
+        required: false
+        default: "200"
+
+permissions:
+  contents: read
+
+env:
+  TFHE_RS_COMMIT: b07e249c925bad47b03ed2bc93a99c2b6feaaad7
+  NAF_DIR: proofs/tfhe-rs-scalar-mul
+  # Same profile for both trees; fat LTO (profile `release`) only lengthens the build
+  CARGO_PROFILE: release_lto_off
+  CARGO_TERM_COLOR: never
+  NAF_SEED: "20261115"
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Checkout this repository (patch and example)
+        uses: actions/checkout@v4
+        with:
+          path: naf-src
+          persist-credentials: false
+
+      - name: Checkout zama-ai/tfhe-rs at the pinned commit
+        uses: actions/checkout@v4
+        with:
+          repository: zama-ai/tfhe-rs
+          ref: ${{ env.TFHE_RS_COMMIT }}
+          path: tfhe-rs
+          fetch-depth: 1
+          lfs: false
+          persist-credentials: false
+
+      - name: Install the toolchain pinned by tfhe-rs (rust-toolchain.toml)
+        working-directory: tfhe-rs
+        run: |
+          set -euo pipefail
+          cat rust-toolchain.toml
+          channel=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$channel" --profile minimal
+          rustc --version
+          cargo --version
+          git log -1 --format='%H %cd %s'
+          nproc
+          lscpu | grep -E 'Model name|^CPU\(s\)|Flags' | cut -c1-200
+
+      - name: Add the counting example
+        run: |
+          set -euo pipefail
+          cp "naf-src/$NAF_DIR/naf_scalar_mul_count.rs" tfhe-rs/tfhe/examples/naf_scalar_mul_count.rs
+          mkdir -p logs
+
+      - name: Unpatched tree
+        working-directory: tfhe-rs
+        env:
+          NAF_LABEL: unpatched
+          NAF_SAMPLES: ${{ inputs.samples }}
+        run: |
+          set -euo pipefail
+          start=$(date +%s)
+          cargo run --profile "$CARGO_PROFILE" -p tfhe --example naf_scalar_mul_count \
+            --features=integer,pbs-stats 2>&1 | tee ../logs/unpatched.log
+          echo "# job step wall seconds: $(( $(date +%s) - start ))" | tee -a ../logs/unpatched.log
+
+      - name: Apply the NAF patch
+        working-directory: tfhe-rs
+        run: |
+          set -euo pipefail
+          git apply --verbose "../naf-src/$NAF_DIR/scalar_mul_naf.patch"
+          git diff --stat
+
+      - name: Patched tree
+        working-directory: tfhe-rs
+        env:
+          NAF_LABEL: patched
+          NAF_SAMPLES: ${{ inputs.samples }}
+        run: |
+          set -euo pipefail
+          start=$(date +%s)
+          cargo run --profile "$CARGO_PROFILE" -p tfhe --example naf_scalar_mul_count \
+            --features=integer,pbs-stats 2>&1 | tee ../logs/patched.log
+          echo "# job step wall seconds: $(( $(date +%s) - start ))" | tee -a ../logs/patched.log
+
+      - name: tfhe-rs scalar multiplication unit tests on the patched tree
+        working-directory: tfhe-rs
+        run: |
+          set -euo pipefail
+          P=integer::server_key::radix_parallel
+          FILTERS=(
+            "$P::scalar_mul::naf_tests::"
+            "$P::tests_unsigned::test_scalar_mul::test_integer_unchecked_scalar_mul_corner_cases_param_message_2_carry_2_ks_pbs_tuniform_2m128"
+            "$P::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_param_message_2_carry_2_ks_pbs_tuniform_2m128"
+            "$P::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_u128_fix_non_reg_test_param_message_2_carry_2_ks_pbs_tuniform_2m128"
+            "$P::tests_unsigned::test_scalar_mul::test_integer_unchecked_scalar_mul_corner_cases_test_param_message_1_carry_1_ks_pbs_gaussian_2m128"
+            "$P::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_test_param_message_1_carry_1_ks_pbs_gaussian_2m128"
+            "$P::tests_unsigned::test_scalar_mul::test_integer_unchecked_scalar_mul_corner_cases_test_param_message_3_carry_3_ks_pbs_gaussian_2m128"
+            "$P::tests_unsigned::test_scalar_mul::test_integer_default_scalar_mul_test_param_message_3_carry_3_ks_pbs_gaussian_2m128"
+            "$P::tests_signed::test_scalar_mul::test_integer_signed_unchecked_scalar_mul_param_message_2_carry_2_ks_pbs_tuniform_2m128"
+            "$P::tests_signed::test_scalar_mul::test_integer_signed_unchecked_scalar_mul_corner_cases_param_message_2_carry_2_ks_pbs_tuniform_2m128"
+            "$P::tests_unsigned::test_scalar_div_mod::test_integer_default_scalar_div_rem_param_message_2_carry_2_ks_pbs_tuniform_2m128"
+            "$P::tests_signed::test_scalar_div_mod::test_integer_signed_unchecked_scalar_div_rem_param_message_2_carry_2_ks_pbs_tuniform_2m128"
+          )
+          cargo test --profile "$CARGO_PROFILE" -p tfhe --features=integer,internal-keycache \
+            --lib -- --list "${FILTERS[@]}" > ../logs/unit_tests_list.txt 2>&1
+          echo "# selected tests" | tee ../logs/unit_tests.log
+          grep ': test$' ../logs/unit_tests_list.txt | tee -a ../logs/unit_tests.log || true
+          selected=$(grep -c ': test$' ../logs/unit_tests_list.txt || true)
+          echo "# $selected tests selected of ${#FILTERS[@]} filters" | tee -a ../logs/unit_tests.log
+          if [ "$selected" -lt "${#FILTERS[@]}" ]; then
+            echo "a filter matched no test; check the names" | tee -a ../logs/unit_tests.log
+            exit 1
+          fi
+          cargo test --profile "$CARGO_PROFILE" -p tfhe --features=integer,internal-keycache \
+            --lib -- "${FILTERS[@]}" 2>&1 | tee -a ../logs/unit_tests.log
+
+      - name: Summary
+        if: always()
+        run: |
+          for f in logs/unpatched.log logs/patched.log; do
+            [ -f "$f" ] && sed -n '/^# summary/,$p' "$f" >> "$GITHUB_STEP_SUMMARY"
+          done
+          true
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfhe-naf-logs
+          path: logs/
+          if-no-files-found: warn

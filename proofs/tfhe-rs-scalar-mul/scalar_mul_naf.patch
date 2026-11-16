@@ -1,0 +1,158 @@
+diff --git a/tfhe/src/integer/server_key/radix_parallel/scalar_mul.rs b/tfhe/src/integer/server_key/radix_parallel/scalar_mul.rs
+index 3631a7a..109aac8 100644
+--- a/tfhe/src/integer/server_key/radix_parallel/scalar_mul.rs
++++ b/tfhe/src/integer/server_key/radix_parallel/scalar_mul.rs
+@@ -45,11 +45,35 @@ impl ServerKey {
+             .iter_as::<u8>()
+             .collect::<Vec<_>>();
+ 
++        let num_ciphertext_bits = msg_bits * num_blocks;
++
++        // Each non-zero digit is one term of the sum, a negative digit also needs
++        // a clear constant term (see below), so the signed digits are only used
++        // when they result in fewer terms
++        let naf_digits = non_adjacent_form(&scalar_bits);
++        let count_terms = |digits: &[i8]| {
++            let non_zero = digits
++                .iter()
++                .take(num_ciphertext_bits)
++                .filter(|&&d| d != 0)
++                .count();
++            let has_negative = digits.iter().take(num_ciphertext_bits).any(|&d| d < 0);
++            non_zero + usize::from(has_negative)
++        };
++        let binary_digits = scalar_bits.iter().map(|&bit| bit as i8).collect::<Vec<_>>();
++        let naf_term_count = count_terms(naf_digits.as_slice());
++        let binary_term_count = count_terms(binary_digits.as_slice());
++        let digits = if naf_term_count < binary_term_count {
++            naf_digits
++        } else {
++            binary_digits
++        };
++
+         // We don't want to compute shifts if we are not going to use the
+         // resulting value
+         let mut has_at_least_one_set = vec![false; msg_bits];
+-        for (i, bit) in scalar_bits.iter().copied().enumerate() {
+-            if bit == 1 {
++        for (i, digit) in digits.iter().copied().enumerate() {
++            if digit != 0 {
+                 has_at_least_one_set[i % msg_bits] = true;
+             }
+         }
+@@ -68,14 +92,52 @@ impl ServerKey {
+             })
+             .collect::<Vec<_>>();
+ 
+-        let num_ciphertext_bits = msg_bits * num_blocks;
+-        let all_shifted_lhs = scalar_bits
++        // With B = message_modulus, a digit at position i = msg_bits * s + r
++        // contributes digit * (lhs << r) * B^s.
++        //
++        // For a negative digit, with y = lhs << r and n = num_blocks:
++        // bitnot(y) = B^n - 1 - y, so -y * B^s = blockshift(bitnot(y), s) + B^s (mod B^n).
++        // The bitnot is linear (no PBS) and keeps the carries empty,
++        // all the B^s are accumulated in one clear constant, added as a trivial term.
++        let message_modulus = self.key.message_modulus.0;
++        let mut constant_blocks = vec![0u64; num_blocks];
++        let mut all_shifted_lhs = Vec::new();
++        for (i, digit) in digits
+             .iter()
++            .copied()
+             .enumerate()
+             .take(num_ciphertext_bits) // shift beyond that are technically resulting in 0s
+-            .filter(|(_, &rhs_bit)| rhs_bit == 1)
+-            .map(|(i, _)| self.blockshift(&preshifted_lhs[i % msg_bits], i / msg_bits))
+-            .collect::<Vec<_>>();
++        {
++            if digit == 0 {
++                continue;
++            }
++            let block_shift = i / msg_bits;
++            if digit > 0 {
++                all_shifted_lhs.push(self.blockshift(&preshifted_lhs[i % msg_bits], block_shift));
++            } else {
++                let negated = self.bitnot(&preshifted_lhs[i % msg_bits]);
++                all_shifted_lhs.push(self.blockshift(&negated, block_shift));
++
++                // constant += B^block_shift (mod B^n)
++                let mut index = block_shift;
++                while index < num_blocks {
++                    constant_blocks[index] += 1;
++                    if constant_blocks[index] < message_modulus {
++                        break;
++                    }
++                    constant_blocks[index] = 0;
++                    index += 1;
++                }
++            }
++        }
++
++        if constant_blocks.iter().any(|&block| block != 0) {
++            let blocks = constant_blocks
++                .iter()
++                .map(|&block| self.key.create_trivial(block))
++                .collect::<Vec<_>>();
++            all_shifted_lhs.push(T::from_blocks(blocks));
++        }
+ 
+         if let Some(result) = self.unchecked_sum_ciphertexts_vec_parallelized(all_shifted_lhs) {
+             *lhs = result;
+@@ -140,3 +202,57 @@ impl ServerKey {
+         self.unchecked_scalar_mul_assign_parallelized(lhs, scalar);
+     }
+ }
++
++/// Returns the non-adjacent form (digits in {-1, 0, 1}, no two consecutive non-zero digits)
++/// of the unsigned value whose little endian bits are `bits`.
++///
++/// The output has `bits.len() + 1` digits and represents exactly the same value.
++fn non_adjacent_form(bits: &[u8]) -> Vec<i8> {
++    let mut digits = Vec::with_capacity(bits.len() + 1);
++    let mut carry = 0u8;
++    for i in 0..=bits.len() {
++        let current = bits.get(i).copied().unwrap_or(0) + carry;
++        let next = bits.get(i + 1).copied().unwrap_or(0);
++        match current {
++            0 => {
++                digits.push(0);
++                carry = 0;
++            }
++            1 if next == 1 => {
++                // ...11 = ...00 + 4 - 1
++                digits.push(-1);
++                carry = 1;
++            }
++            1 => {
++                digits.push(1);
++                carry = 0;
++            }
++            _ => {
++                // current == 2
++                digits.push(0);
++                carry = 1;
++            }
++        }
++    }
++    digits
++}
++
++#[cfg(test)]
++mod naf_tests {
++    use super::non_adjacent_form;
++
++    #[test]
++    fn test_non_adjacent_form_is_exact_and_non_adjacent() {
++        for value in 0u32..(1 << 12) {
++            let bits = (0..12).map(|i| ((value >> i) & 1) as u8).collect::<Vec<_>>();
++            let digits = non_adjacent_form(&bits);
++            let recomposed: i64 = digits
++                .iter()
++                .enumerate()
++                .map(|(i, &d)| i64::from(d) << i)
++                .sum();
++            assert_eq!(recomposed, i64::from(value));
++            assert!(digits.windows(2).all(|w| w[0] == 0 || w[1] == 0));
++        }
++    }
++}
