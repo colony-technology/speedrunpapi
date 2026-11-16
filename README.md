@@ -192,7 +192,7 @@ The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, 
 
 ## Exact language model
 
-[`proofs/exact-llm/`](proofs/exact-llm/) holds the language model `HuggingFaceTB/SmolLM2-135M` computed in integer arithmetic. The logits at the 471 prompt positions of 64 prompts give one SHA-256 on seven machines, where the float32 model gives six and onnxruntime three; the top token equals float32's at 471 of 471 prompt positions. exact-16, in the same folder, makes every operand of every matrix product an integer within ±(2^15 − 1); its three routes, one float64 product, float32 byte products and onnxruntime `MatMulInteger`, print one pair of hashes: 21 runs on seven machines.
+[`proofs/exact-llm/`](proofs/exact-llm/) holds the language model `HuggingFaceTB/SmolLM2-135M` computed in integer arithmetic. The logits at the 471 prompt positions of 64 prompts give one SHA-256 on seven machines, where the float32 model gives six and onnxruntime three; the top token equals float32's at 471 of 471 prompt positions. exact-16, in the same folder, makes every operand of every matrix product an integer within ±(2^15 − 1); its three routes, one float64 product, float32 byte products and onnxruntime `MatMulInteger`, print one pair of hashes: 21 runs on seven machines. The same code makes SmolLM2-360M (361,821,120 weights) exact with one pair of hashes on seven machines and three routes, and SmolLM2-1.7B (1,711,376,384 weights) with one pair on six machines, 13 runs; the top token equals float32's at 471 of 471 prompt positions wherever float32 finished.
 
 ## Hardware
 
