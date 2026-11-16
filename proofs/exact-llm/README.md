@@ -17,6 +17,7 @@
 pip install numpy onnxruntime
 python exact_llm.py check        # exit 1 if the exact pair differs from expected.sha256
 python exact_llm.py check --model SmolLM2-360M      # exact-16 on three routes against expected-16-SmolLM2-360M.sha256
+python exact_llm.py check --model SmolLM2-1.7B --routes f64 --no-float   # one route, no float32: a hash run of 9 to 57 min on the runners
 ```
 
 Rows 1 to 6: GitHub Actions run [43671156245](https://github.com/lmtlssss/speedrunpapi/actions/runs/43671156245) (`.github/workflows/exact-llm.yml`, Python 3.12, NumPy 2.5.4). Row 7: Apple M1, Python 3.11.18, NumPy 2.4.6 with Accelerate, onnxruntime 1.32.0. Full hashes and every printed line: `record/machines.txt`. Batch 8, 0 values clamped on every machine.
@@ -130,6 +131,7 @@ One code path: the sizes come from each model's pinned `config.json`, the clamps
 | --- | ---: | --- | --- | --- | --- | --- | --- | --- |
 | SmolLM2-135M | 134,515,008 | `b0cc875f…0b4460` / `a800ebad…7613cc` | 7 × 3 | 471 of 471 | 64 of 64 | 0.0592 | 121; 44.5 and 1,037; 130.1 | 926 MB |
 | SmolLM2-360M | 361,821,120 | `d97a67da…2eddfe` / `f84819ca…4b1aa4` | 7 × 3 | 471 of 471 | 64 of 64 | 0.0847 | 70; 20.6 and 190; 14.8 | 1,537 MB |
+| SmolLM2-1.7B | 1,711,376,384 | `eee059ce…321bb7` / `f4787fa5…182340` | 6 runners, 13 runs (table below) | 471 of 471 | 64 of 64 | 0.1477 | not run on the M1 | not measured |
 
 Machines: the six runners of GitHub Actions run [43754428621](https://github.com/lmtlssss/speedrunpapi/actions/runs/43754428621) (Python 3.12.10 and 3.12.16, NumPy 2.5.4, onnxruntime 1.23.2 and 1.32.0), where the 135M's exact pair also matched on every runner, and the Apple M1 (Python 3.11.18, NumPy 2.4.6). 0 values clamped in all 42 runs. The distance is the M1's; on the runners the 360M's largest logit difference is 0.0842 to 0.0847. Every printed line: `record/ci-43754428621.txt`, `record/exact16-360m-m1.txt`.
 
@@ -137,7 +139,32 @@ The bound at each size, per route: the widest product is the down projection, 1,
 
 At 360M on the M1 float32 decodes slower at batch 8 (14.8 tokens/s) than at batch 1 (17.3), and slower than exact-16. The cause is not the machine's memory: there was no swapping, but 11.0 of its 44.6 s went to the kernel in 1,654,651 page reclaims, against 1.65 s and 120,153 for exact-16. So the time goes to fresh allocations in this baseline's NumPy decode step; that is not looked into yet.
 
-SmolLM2-1.7B (24 layers, width 2,048, feed-forward 8,192, rotary base 130,000; its tables are in `tables/`) runs on the runners only, next.
+### SmolLM2-1.7B, on the runners
+
+24 layers, width 2,048, 32 heads, feed-forward 8,192, rotary base 130,000 (its cos and sin tables are in `tables/`). It runs on the runners only, one route per job: GitHub Actions run [43759765827](https://github.com/lmtlssss/speedrunpapi/actions/runs/43759765827), 14 jobs with a limit of 120 minutes each. 13 jobs printed the exact-16 pair, and all 13 printed the same one: logits `eee059ce…321bb7`, continuations `f4787fa5…182340`, now pinned in `expected-16-SmolLM2-1.7B.sha256`. The 13 printed the same peaks and clamps, and 0 values were clamped.
+
+| runner | f64 | f32 | i8 |
+| --- | --- | --- | --- |
+| ubuntu-latest, Linux x86-64 | 828 s; float32 ran past the limit | 3,933 s | 1,604 s |
+| ubuntu-24.04-arm, Linux AArch64 | 558 s; float32 2,520 s | 1,598 s | 1,092 s |
+| macos-latest, macOS arm64 | 1,226 s; float32 3,834 s | did not finish within the limit | 4,816 s |
+| macos-15-intel, macOS x86-64 | 3,388 s; float32 ran past the limit | 6,231 s | 3,656 s |
+| windows-latest, Windows x86-64 | 2,454 s; float32 ran past the limit | not run | not run |
+| windows-11-arm, Windows ARM64 | 1,472 s; float32 4,301 s | not run | not run |
+
+Seconds are the hash run of the exact-16 route. Before it, the 16-bit weights, int32 embedding and norms and weight statistics took 67 to 294 s, after the download. Python 3.12.10 and 3.12.16, NumPy 2.5.4 and 2.5.5, onnxruntime 1.23.2 and 1.32.0.
+- float32, against which the distance is measured, keeps bfloat16 bits and widens one matrix at each use (above 4 GB of float32 weights). On the M1 at 135M the widened run and the run with whole float32 weights give the same bits.
+- Where float32 finished, 471 of 471 prompt positions agree on top-1 and 64 of 64 continuations are equal. The largest logit difference is 0.1477 on ubuntu-24.04-arm and windows-11-arm and 0.1474 on macos-latest.
+- onnxruntime is skipped: onnx-community publishes no export of this model.
+
+The workflow runs each 1.7B job that finished here:
+- f64 on all six runners, float32 only beside it on ubuntu-24.04-arm (53 minutes);
+- f32 on ubuntu-latest and ubuntu-24.04-arm;
+- i8 on the four non-Windows runners.
+
+The f32 jobs on macos-latest and macos-15-intel are left out because they ran past 120 minutes: on macos-latest the exact-16 stage alone in run 43759765827, on macos-15-intel in run [43777602992](https://github.com/lmtlssss/speedrunpapi/actions/runs/43777602992) after 6,231 s in the first. Every printed line: `record/ci-43759765827.txt`.
+
+The bound at 1.7B: the widest product is the down projection, 8,192 inputs. On f64, 8,192 · (2^15 − 1)^2 < 2^43, under 2^53. On f32 every product at 1.7B is wider than 1,024 inputs, so every one is chunked: 2 chunks at width 2,048 and 8 for the down projection. On i8, 8,192 · 255^2 < 2^29, under 2^31, and n ≤ 33,025.
 
 ## Distance to float32
 
@@ -285,6 +312,7 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | `bounds.py`, `bounds.json` | the bound |
 | `bounds16.py`, `bounds-16.json`, `bounds-16-SmolLM2-360M.json` | the exact-16 bound per route, the clamps by rule, the peaks and margins, per model |
 | `expected-16-SmolLM2-360M.sha256`, `record/exact16-360m-m1.txt`, `record/ci-43754428621.txt` | the 360M's pair; every line of its M1 run; every line of the twelve jobs (135M and 360M on six runners) |
+| `expected-16-SmolLM2-1.7B.sha256`, `record/ci-43759765827.txt` | the 1.7B's pair; every line of its 14 jobs (one route each), with each job's end and wall time |
 | `record/peaks-16.json`, `record/peaks-16-SmolLM2-360M.json` | each site's peak, clamp, margin and clamped count, from `check --peaks` |
 | `routes_test.py` | the three routes against int64 products |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
