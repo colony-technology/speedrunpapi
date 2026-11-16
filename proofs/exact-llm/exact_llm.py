@@ -14,9 +14,10 @@ from its pinned config.json. SmolLM2-135M is the default and runs every engine; 
 float32 baseline and onnxruntime where an export is pinned.
 
 usage:
-  python exact_llm.py check [--model M] [--routes f64,f32,i8] [--no-float] [--no-onnx] [--peaks FILE]
+  python exact_llm.py check [--model M] [--routes f64,f32,i8,t3] [--no-float] [--no-onnx] [--peaks FILE]
                                                   digests, the hashes against expected*.sha256, baselines, distance
-  python exact_llm.py hash --engine exact|exact16-f64|exact16-f32|exact16-i8|float32|onnx [--batch N] [--threads N]
+  python exact_llm.py hash --engine exact|exact16-f64|exact16-f32|exact16-i8|exact16-t3|float32|onnx [--batch N]
+                           [--threads N]
                            [--model M]
 """
 import gzip
@@ -515,6 +516,10 @@ class Exact:
         self.f64 = {}
         self.eps = [int(round(EPS * 2 ** (2 * A - 2 * s))) for s in range(A + 1)]   # eps at 2^-(32 - 2s)
 
+    def mul(self, a, b, kind="element-wise"):
+        """The element-wise integer product a * b (int64): NumPy's here; the t3 route's by adds."""
+        return a * b
+
     def clamp(self, x, site, layer=None):
         c = self.C[site]
         a = np.abs(x)
@@ -554,14 +559,14 @@ class Exact:
         top = np.abs(x).max(-1, keepdims=True)
         sh = np.maximum(0, np.frexp(top.astype(np.float64))[1] - NORM_BITS).astype(np.int64)  # bit length - NORM_BITS
         xs = x >> sh
-        ss = (xs * xs).sum(-1, keepdims=True)                                 # at 2^-(32 - 2 sh), below 2^62
+        ss = self.mul(xs, xs).sum(-1, keepdims=True)                               # at 2^-(32 - 2 sh), below 2^62
         ms = fdiv(ss, HIDDEN)
         assert (sh <= A).all()
         eps = np.array(self.eps, dtype=np.int64)[sh]
         r = isqrt(ms + np.maximum(eps, 1))                                    # sqrt(mean x^2 + eps) at 2^-(16 - sh)
         y = fdiv(x << (A - sh), r)                                            # x / r at 2^-16
         assert (np.abs(y) <= RMS_Y << A).all()                                # |x_i| <= sqrt(HIDDEN) rms: bounds.py
-        return rshift_round(y * np.asarray(self.W[wname]), A)
+        return rshift_round(self.mul(y, np.asarray(self.W[wname])), A)
 
     def rope_tables(self, pos):
         """cos and sin of each position, read once per forward pass: [B, 1, L, 32] at 2^-20."""
@@ -570,19 +575,20 @@ class Exact:
     def rope(self, x, cs):
         c, s = cs
         x1, x2 = x[..., :HEAD // 2], x[..., HEAD // 2:]
-        return np.concatenate([rshift_round(x1 * c - x2 * s, ROPE), rshift_round(x2 * c + x1 * s, ROPE)], -1)
+        m = self.mul
+        return np.concatenate([rshift_round(m(x1, c) - m(x2, s), ROPE), rshift_round(m(x2, c) + m(x1, s), ROPE)], -1)
 
     def exp(self, t):
         k = np.minimum(t >> EXP_STEP, EXP_N)
         r = t & ((1 << EXP_STEP) - 1)
-        return (self.Et[k] * ((1 << EXP_STEP) - r) + self.Et[np.minimum(k + 1, EXP_N)] * r) >> EXP_STEP
+        return (self.mul(self.Et[k], (1 << EXP_STEP) - r) + self.mul(self.Et[np.minimum(k + 1, EXP_N)], r)) >> EXP_STEP
 
     def silu(self, x):
         top = SILU_N << SILU_STEP
         u = x + (SILU_LO << A)
         uc = np.clip(u, 0, top - 1)
         k, r = uc >> SILU_STEP, uc & ((1 << SILU_STEP) - 1)
-        g = (self.St[k] * ((1 << SILU_STEP) - r) + self.St[k + 1] * r) >> SILU_STEP
+        g = (self.mul(self.St[k], (1 << SILU_STEP) - r) + self.mul(self.St[k + 1], r)) >> SILU_STEP
         return np.where((u >= 0) & (u < top), g, np.where(u < 0, 0, x))
 
     def cache_entry(self, k, v):
@@ -631,7 +637,7 @@ class Exact:
             h = self.prepare(self.rms(x, p + "post_attention_layernorm.weight").reshape(B * L, HIDDEN), "mlp input")
             g = self.clamp(self.linear(h, p + "mlp.gate_proj.weight", "mlp input"), "gate")
             u = self.clamp(self.linear(h, p + "mlp.up_proj.weight", "mlp input"), "up")
-            a = self.prepare(rshift_round(self.silu(g) * u, A), "down input")
+            a = self.prepare(rshift_round(self.mul(self.silu(g), u), A), "down input")
             x = x + self.linear(a, p + "mlp.down_proj.weight", "down input").reshape(B, L, HIDDEN)
         x = self.clamp(x, "residual", LAYERS)
         h = self.rms(x, "model.norm.weight").reshape(B * L, HIDDEN)
@@ -661,7 +667,9 @@ LIM16 = (1 << (B16 - 1)) - 1      # 32,767
 PEEL16 = 2
 CHUNK32 = 1024                    # f32 route: inputs per chunk, 1,024 x 2^14 = 2^24
 N_I8 = 33025                      # i8 route: n 255^2 < 2^31 for n <= 33,025
-ROUTES = ("f64", "f32", "i8")
+ROUTES = ("f64", "f32", "i8")     # check's default
+ROUTES_T3 = ("t3",)               # by adds and subtracts (t3.c), where a C compiler is installed: --routes t3
+TOP16 = 15                        # t3: highest signed-digit position of a 16-bit value; 16 STEP words per output row
 
 
 def shift_round(v, k):
@@ -756,6 +764,166 @@ class MatMulInteger:
         return self.s.run(None, {"A": a, "B": b})[0].astype(np.int64)
 
 
+T3_DIR = os.environ.get("EXACT_LLM_T3", os.path.join(CACHE, "t3"))   # the compiled kernel and the weight streams
+T3_THREADS = int(os.environ.get("EXACT_LLM_T3_THREADS", "0")) or os.cpu_count() or 1
+
+
+class T3:
+    """The t3 route's kernel, t3.c, compiled once with the C compiler `cc` (or $CC) into T3_DIR and opened with
+    ctypes. Matrix products (mm) and element-wise products (mul) by add, subtract, shift by a constant and bitwise
+    logic. A registered weight matrix is compiled to its stream once and kept in T3_DIR (2 bytes per nonzero digit
+    plus 16 words per output row); any other right operand is recoded at each product. Counters per kind: digit
+    adds and subtracts, Horner adds, values recoded, recoding operations."""
+    KINDS = ("weights", "peeled", "attention", "element-wise", "weight streams, built once")
+
+    def __init__(self):
+        import ctypes
+        import subprocess
+        src = os.path.join(HERE, "t3.c")
+        tag = hashlib.sha256(open(src, "rb").read()).hexdigest()[:12]
+        os.makedirs(T3_DIR, exist_ok=True)
+        self.path = os.path.join(T3_DIR, "t3-%s.%s" % (tag, "dylib" if sys.platform == "darwin" else "so"))
+        if not os.path.exists(self.path):
+            cc = os.environ.get("CC", "cc")
+            subprocess.run([cc, "-O2", "-shared", "-fPIC", "-pthread", src, "-o", self.path + ".part"], check=True)
+            os.replace(self.path + ".part", self.path)
+        L = self.lib = ctypes.CDLL(self.path)
+        i64, p = ctypes.c_int64, ctypes.c_void_p
+        L.t3_compile_masks.argtypes = [i64, i64, p, i64, p, p, p, p]
+        L.t3_compile_masks.restype = i64
+        L.t3_compile_fill.argtypes = [i64, i64, p, p, p]
+        L.t3_run.argtypes = [p, p, i64, i64, i64, p, p, i64, p, p]
+        L.t3_mul.argtypes = [i64, p, p, p, ctypes.c_uint64, p]
+        self.cnt = {k: np.zeros(4, dtype=np.uint64) for k in self.KINDS}
+        self.mats = []                                   # registered weights: (first byte, last byte, name, row stride)
+        self.rowoffs = {}
+        self.buf = np.empty(0, np.uint16)
+        self.log = None                                 # a list: one entry per product, when tracing
+
+    @staticmethod
+    def ptr(a):
+        return a.ctypes.data
+
+    def register(self, W):
+        """The int16 weight matrices [in, out] (memory-mapped) whose streams are compiled once and kept."""
+        for name, w in W.items():
+            if w.dtype == np.int16 and w.ndim == 2:
+                self.mats.append((self.ptr(w), self.ptr(w) + w.nbytes, name, w.shape[1]))
+
+    def weight_key(self, b):
+        if b.dtype != np.int16 or b.ndim != 2 or b.strides[1] != 2:
+            return None
+        at = self.ptr(b)
+        for lo, hi, name, ld in self.mats:
+            if lo <= at < hi and b.strides[0] == 2 * ld and (at - lo) // 2 < ld:
+                return name, (at - lo) // 2, b.shape[1]
+        return None
+
+    def compile(self, b, kind):
+        """b [n_in, M] (|entries| <= 2^15 - 1) -> the stream (uint16) and the row offsets (int64 [M + 1])."""
+        w = np.ascontiguousarray(b, dtype=np.int32)
+        n_in, M = w.shape
+        assert n_in < (1 << 14)
+        pm, mm = np.empty((M, n_in), np.uint16), np.empty((M, n_in), np.uint16)
+        rowoff = np.empty(M + 1, np.int64)
+        total = self.lib.t3_compile_masks(n_in, M, self.ptr(w), M, self.ptr(pm), self.ptr(mm), self.ptr(rowoff),
+                                          self.ptr(self.cnt[kind]))
+        stream = np.empty(total, np.uint16)
+        self.lib.t3_compile_fill(n_in, M, self.ptr(pm), self.ptr(mm), self.ptr(stream))
+        return stream, rowoff
+
+    def weight_stream(self, key, b):
+        name, c0, M = key
+        base = os.path.join(T3_DIR, "streams", "%s.c%d.m%d" % (name, c0, M))
+        if key not in self.rowoffs:
+            if not (os.path.exists(base + ".words") and os.path.exists(base + ".rowoff.npy")):
+                os.makedirs(os.path.dirname(base), exist_ok=True)
+                stream, rowoff = self.compile(b, "weight streams, built once")
+                with open(base + ".words.part", "wb") as f:
+                    f.write(stream.astype("<u2").tobytes())
+                os.replace(base + ".words.part", base + ".words")
+                with open(base + ".rowoff.part", "wb") as f:
+                    np.save(f, rowoff)
+                os.replace(base + ".rowoff.part", base + ".rowoff.npy")
+            self.rowoffs[key] = np.load(base + ".rowoff.npy")
+        rowoff = self.rowoffs[key]
+        n = int(rowoff[-1])
+        if self.buf.size < n:                            # one buffer for every stream: read, not kept
+            self.buf = np.empty(n, np.uint16)
+        with open(base + ".words", "rb") as f:
+            assert f.readinto(memoryview(self.buf[:n]).cast("B")) == 2 * n
+        return self.buf, rowoff
+
+    def run(self, stream, rowoff, x, kind, threads):
+        """y [M, N] (int64) from the stream and x int32 [n_in, N]; the lanes padded with zeros to a multiple of 8."""
+        M, N = rowoff.shape[0] - 1, x.shape[1]
+        Np = -(-N // 8) * 8
+        if Np != N:
+            x = np.concatenate([x, np.zeros((x.shape[0], Np - N), np.int32)], 1)
+        y = np.empty((M, Np), np.int64)
+        if threads > 1:                                  # rows split at equal shares of the stream's words
+            part = np.searchsorted(rowoff, np.linspace(0, rowoff[-1], threads + 1)).astype(np.int64)
+            part[0], part[-1] = 0, M
+        else:
+            part = np.array([0, M], np.int64)
+        before = self.cnt[kind].copy()
+        self.lib.t3_run(self.ptr(stream), self.ptr(rowoff), x.shape[0], Np, N, self.ptr(x), self.ptr(y),
+                        part.size - 1, self.ptr(part), self.ptr(self.cnt[kind]))
+        if self.log is not None:
+            d = self.cnt[kind] - before
+            self.log.append((kind, x.shape[0], M, N, int(d[0]), int(d[1])))
+        return y[:, :N]
+
+    def mm2(self, a, b):
+        N, n_in = a.shape
+        M = b.shape[1]
+        if N == 0 or M == 0:
+            return np.zeros((N, M), np.int64)
+        x = np.ascontiguousarray(a.T, dtype=np.int32)
+        key = self.weight_key(b)
+        if key is not None:
+            stream, rowoff = self.weight_stream(key, b)
+            return self.run(stream, rowoff, x, "weights", T3_THREADS).T
+        stream, rowoff = self.compile(b, "attention")
+        return self.run(stream, rowoff, x, "attention", 1).T
+
+    def mm(self, a, b):
+        """a @ b exactly (int64) for integer arrays with |entries| <= 2^15 - 1, a [..., N, n], b [..., n, M]."""
+        a, b = np.asarray(a), np.asarray(b)
+        if a.ndim == 2 and b.ndim == 2:
+            return self.mm2(a, b)
+        lead = np.broadcast_shapes(a.shape[:-2], b.shape[:-2])
+        a = np.broadcast_to(a, lead + a.shape[-2:])
+        b = np.broadcast_to(b, lead + b.shape[-2:])
+        out = np.empty(lead + (a.shape[-2], b.shape[-1]), np.int64)
+        for i in np.ndindex(*lead):
+            out[i] = self.mm2(a[i], b[i])
+        return out
+
+    def mul(self, a, b, kind="element-wise"):
+        """a * b element-wise (int64, broadcast), the operand of smaller magnitude recoded into signed digits."""
+        a, b = np.broadcast_arrays(np.asarray(a, dtype=np.int64), np.asarray(b, dtype=np.int64))
+        out = np.empty(a.shape, np.int64)
+        if a.size == 0:
+            return out
+        ma, mb = int(np.abs(a).max()), int(np.abs(b).max())
+        if ma < mb:
+            a, b, mb = b, a, ma
+        assert mb < (1 << 62)
+        a, b = np.ascontiguousarray(a), np.ascontiguousarray(b)
+        self.lib.t3_mul(a.size, self.ptr(a), self.ptr(b), self.ptr(out), 1 << mb.bit_length(), self.ptr(self.cnt[kind]))
+        return out
+
+
+_T3 = []
+
+
+def t3_kernel():
+    if not _T3:
+        _T3.append(T3())
+    return _T3[0]
+
+
 def mm16(a, b, route, mmi=None):
     """a @ b exactly, as int64, for integer arrays with every |entry| <= 2^15 - 1 (a [..., N, n], b [..., n, M]).
     f64: one float64 product, |partial sums| <= n 2^30 < 2^53.
@@ -764,10 +932,14 @@ def mm16(a, b, route, mmi=None):
     i8:  unsigned: u = a + 2^15 in [1, 2^16 - 1], u = 256 u1 + u0 with u1, u0 in [0, 255] (uint8), the same for b;
          four int32 MatMulInteger products of uint8 by uint8, partial sums <= n 255^2 < 2^31; then, in int64,
          a b = u_a u_b - 2^15 (row sums of a) - 2^15 (column sums of b) - n 2^30.
-    Then a b (u_a u_b on the i8 route) = 2^16 G11 + 2^8 (G10 + G01) + G00, G_ij = a_i b_j, in int64."""
+    Then a b (u_a u_b on the i8 route) = 2^16 G11 + 2^8 (G10 + G01) + G00, G_ij = a_i b_j, in int64.
+    t3:  b in signed digits (non-adjacent form, positions 0 to 15), each column of b a stream of ADD i, SUB i and
+         STEP words; t3.c runs the stream on the columns of a with adds and subtracts only (class T3)."""
     n = a.shape[-1]
     if route == "f64":
         return (a.astype(np.float64) @ b.astype(np.float64)).astype(np.int64)
+    if route == "t3":
+        return t3_kernel().mm(a, b)
     # the digits in the operand's own type when it is int16 (the weights: no widening; every step below stays within
     # [-2^15, 2^15)), else in int64
     a = np.asarray(a, dtype=np.int64)
@@ -914,6 +1086,12 @@ class Exact16(Exact):
         self.mmi = MatMulInteger() if route == "i8" else None
         self.extra = 0                                   # vectors whose rounding needed one more shift
         self.p_held = 0                                  # p values held at 2^15 - 1
+        if route == "t3":
+            self.t3 = t3_kernel()
+            self.t3.register(self.W16)
+
+    def mul(self, a, b, kind="element-wise"):
+        return self.t3.mul(a, b, kind) if self.route == "t3" else a * b
 
     def prepare(self, x, site):
         """A product input as every product that reads it needs it, made once: clamped at its site, its PEEL16
@@ -937,7 +1115,7 @@ class Exact16(Exact):
             wc = w[:, c:c + 8192]                                             # int16, memory-mapped
             T = np.left_shift(mm16(xb, wc, self.route, self.mmi), sh)
             for j in range(PEEL16):
-                T += xp[:, j:j + 1] * wc[idx[:, j]]                           # int64 times int16: int64
+                T += self.mul(xp[:, j:j + 1], wc[idx[:, j]], "peeled")         # int64 times int16: int64
             blk = shift_round(T, g[None, c:c + 8192])
             assert dtype == np.int64 or np.abs(blk).max() < (1 << 31)
             y[:, c:c + 8192] = blk
@@ -1035,7 +1213,7 @@ def run_window(model, ids):
 def engine(name, threads=0):
     if name == "exact":
         return Exact()
-    if name in ("exact16-" + r for r in ROUTES):
+    if name in ("exact16-" + r for r in ROUTES + ROUTES_T3):
         return Exact16(name.split("-")[1])
     if name == "float32":
         return Float32()
@@ -1123,6 +1301,9 @@ def main(argv):
         if name.startswith("exact16"):
             print("route %s; vectors with one more shift %d; p held at 2^15 - 1: %d" % (
                 eng.mmi.name if eng.mmi else eng.route, eng.extra, eng.p_held))
+            if eng.route == "t3":
+                print("t3 counters (digit adds, Horner adds, values recoded, recoding operations):",
+                      {k: [int(v) for v in c] for k, c in eng.t3.cnt.items()})
         return 0
     if len(argv) > 1 and argv[1] == "text":
         name, save = arg("--engine", "exact"), arg("--save", None)
@@ -1171,6 +1352,10 @@ def main(argv):
             print("exact16  logits %s  continuations %s  %s  route %s, %.0f s, clamped %d" % (
                 h16l, h16c, "MATCH" if ok16 else "DIFFERENT", m16.mmi.name if m16.mmi else r, time.time() - t0,
                 sum(m16.clamped.values())))
+            if r == "t3":
+                print("         t3 kernel %s; digit adds, Horner adds, values recoded, recoding operations: %s" % (
+                    os.path.basename(m16.t3.path), "; ".join("%s %s" % (k, ", ".join("{:,}".format(int(v)) for v in c))
+                                                             for k, c in m16.t3.cnt.items())))
             if not kept16:
                 print("         peaks (real) / clamps: %s" % peaks_line(m16))
                 if arg("--peaks", None):
