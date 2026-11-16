@@ -953,9 +953,14 @@ def t3_blob():
     exp, SiLU, cos and sin tables (int64), the 61 norm weights (int64, 576 each: the 30 input norms, the 30
     post-attention norms, the final norm), the embedding (int32 [49,152][576], at 2^-16), and per matrix (each layer's
     q, k, v, o, gate, up, down, then the embedding's 6 blocks of 8,192 columns for the logits) its t3 stream (uint16),
-    row offsets (int64), 16-bit weights (int16 [in][out]) and row scales g (int64). Built once from the caches."""
+    row offsets (int64), 16-bit weights (int16 [in][out]) and row scales g (int64). Built once from the caches, and
+    named by the model, t3.c's hash (the streams) and the hash of t3_token.c and this function (the layout, written
+    here and read there), so a change on either side makes a new blob."""
+    import inspect
     assert MODEL == MODELS[0], "the token kernel is sized for %s" % MODELS[0]
-    path = os.path.join(T3_DIR, "t3k1-%s-%s.blob" % (MODEL, t3_kernel().tag))
+    layout = hashlib.sha256(open(os.path.join(HERE, "t3_token.c"), "rb").read() +
+                            inspect.getsource(t3_blob).encode()).hexdigest()[:12]
+    path = os.path.join(T3_DIR, "t3k1-%s-%s-%s.blob" % (MODEL, t3_kernel().tag, layout))
     if os.path.exists(path):
         return path
     k = t3_kernel()
