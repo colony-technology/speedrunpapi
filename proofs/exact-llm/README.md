@@ -159,11 +159,20 @@ Known limits of t3: `t3_run` does not check what `pthread_create` returns, so a 
 | shift by a computed amount (block shift, norm shift, score shift) | the shift instruction with a register amount, counted apart (`shift by data`) |
 | product of two variables, product by a table or norm weight | the smaller-bounded operand recoded into signed digits, Horner; one look per digit position read |
 
-| Apple M1, 64 prompts, one `check` process | logits | continuations | seconds |
-| --- | --- | --- | --- |
-| `exact16-t3-token`, 64 lanes, 8 threads | `b0cc875f…0b4460` | `a800ebad…7613cc` | 247 |
+| Apple M1, 64 prompts, one `check` process | logits | continuations |
+| --- | --- | --- |
+| `exact16-t3-token`, 64 lanes, 8 threads | `b0cc875f…0b4460` | `a800ebad…7613cc` |
 
-MATCH, 0 clamped, 20,174 p held at 2^15 − 1 (the count of batch 1 above), 0 brackets failed. The kernel's counters for the last token of the first 64 text tokens (position 63, the census window; `t3_token_count.py`, every position equal to `exact16-f64`): 519,274,279 operations. That is 477,853,222 adds and 20,175,744 Horner adds, 2,052,875 constant shifts and 535,296 shifts by data, 2,268,288 logic operations, 16,239,094 looks and 149,760 table reads. The 52,477 divisions take 1,292,392 sign tests and the 61 square roots 2,013, plus 52,538 bracket tests. `record/t3-token-m1.txt`, `record/t3-token-count.json`.
+MATCH, 0 clamped, 20,174 p held at 2^15 − 1 (the count of batch 1 above), 0 brackets failed. On this route `check` prints DIFFERENT if any bracket or guard in the kernel fails, even when the hashes are equal. The M1 was shared with other jobs during this run, so its seconds are not a measure of the route. The kernel's counters for the last token of the first 64 text tokens (position 63, the census window; `t3_token_count.py`, every position equal to `exact16-f64`): 519,274,279 operations. That is 477,853,222 adds and 20,175,744 Horner adds, 2,052,875 constant shifts and 535,296 shifts by data, 2,268,288 logic operations, 16,239,094 looks and 149,760 table reads. The 52,477 divisions take 1,292,392 sign tests and the 61 square roots 2,013, plus 52,538 bracket tests. `record/t3-token-m1.txt`, `record/t3-token-count.json`.
+
+Limits of t3-token:
+- SmolLM2-135M only: the kernel's sizes are constants of `t3_token.c`, and `T3Token` asserts the model;
+- up to 512 positions per sequence, the length of the rotary tables (`t3k_open` refuses more);
+- at most 16,383 inputs to a product, the 14-bit index of a stream word.
+
+The guards behind these limits are comparisons outside the counted machine, like the address arithmetic: the lane, position and token of each step, the norm's shift (at most 16), and every read of the blob. A failed guard counts as a failure, so `check` prints DIFFERENT.
+
+`rv32/`: the same `t3_token.c` built freestanding for rv32i (no M extension), one lane, with `main_rv32.c`, `start.S` and `virt.ld` for QEMU's `virt` machine (`build.sh`, `run.sh`, `prompt_host.py`). The guest reads the blob by semihosting, counts instructions per token with `rdinstret`, and prints the SHA-256 of each token's logits. The program is built and scanned: the linked program has no multiply or divide instruction and calls no library multiply or divide (`t3_nomul.py`). It has not been run yet.
 
 ## Larger models
 
@@ -405,6 +414,7 @@ Commands:
 | `routes_test.py` | the three routes against int64 products; t3 too where a C compiler is installed, not on Windows, with every 16-bit value through the stream and 200,081 element-wise pairs |
 | `t3.c`, `t3_nomul.py`, `t3_count.py`, `t3_rv32.c` | the t3 kernel; its disassembly checked for multipliers; its counters per token; the stream machine for rv32i |
 | `record/t3-m1.txt`, `record/t3-m1-rerun.txt`, `record/t3-count.json` | every line of the t3 check on the M1, and of its rerun with the kernel and streams built afresh; the counters per token from `t3_count.py` |
+| `rv32/`: `build.sh`, `run.sh`, `main_rv32.c`, `start.S`, `virt.ld`, `prompt_host.py` | `t3_token.c` on rv32i under QEMU: build and scan, run, the guest program, its start, its memory map, the host's lines for the same prompt (built and scanned; not run yet) |
 | `t3_token.c`, `t3_token_count.py` | the whole token in the t3 machine (host library or freestanding rv32i); its 64 text tokens against f64 and its counters by site |
 | `spare_row.py`, `spare_row_test.py`, `record/spare-m1.txt`, `record/spare-campaign.json` | exact-16 with every product and look checked, the fault campaign; its test on synthetic operands; every line of the M1 runs; every fault of the campaign |
 | `count_ops.py`, `report_census.py`; `count_spare.py`, `report_spare.py`, `record/census-spare.json`, `record/census-spare.md` | the census of every NumPy operation per token, sorted into steps and looks: of exact and exact-16; of exact-16 with and without the spare-row checks, and its tables |
