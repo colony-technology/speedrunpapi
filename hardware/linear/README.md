@@ -78,12 +78,12 @@ The emitted modules are simulated against a software CRC on random states, lengt
 
 ## Paid evaluation
 
-One block of yours, in your flow: 1,800 USD, fixed.
+One block of yours, in your flow: 7,000 USD, fixed.
 
 You send the polynomial or matrix, the bus width, the FPGA family and your reference RTL. You receive the network as Verilog, the proof files with the independent checker, and a comparison sheet measured in your flow.
 Full refund if the delivered block does not beat your reference on LUT count or logic depth.
 
-Pay: https://buy.stripe.com/7sY9AS1zg5wr9Ee63N6c005 · Questions: lmtlssss@colony.technology
+Pay: https://buy.stripe.com/4gM7sKem28IDcQq0Jt6c008 · Questions: lmtlssss@colony.technology
 
 Larger work, by contract: the same address.
 
