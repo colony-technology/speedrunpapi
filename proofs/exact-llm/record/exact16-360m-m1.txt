@@ -1,5 +1,6 @@
 # SmolLM2-360M on the Apple M1 (macOS 27.2, Python 3.11.18, NumPy 2.4.6 with Accelerate, onnxruntime 1.32.0).
-# One process per step, under one turn of the machine's job gate (Work/.build.nosync/llm/src/e19_360m.sh). Elapsed: /usr/bin/time real seconds.
+# One process per step, under one turn of the machine's job gate (e19_360m.sh). Elapsed: /usr/bin/time real seconds.
+# Shortened after the run: the gate script's path, to its file name, in the line above. Nothing else changed.
 # This run came before expected-16-SmolLM2-360M.sha256 existed: the pair was pinned from its lines, so check printed DIFFERENT (nothing to compare) and exited 1.
 == check
 versions: Python 3.11.18, NumPy 2.4.6, onnxruntime 1.32.0; darwin arm64

@@ -1,0 +1,119 @@
+Sun Nov 15 16:41:44 PST 2026
+== routes
+i8 product engine: i8-onnxruntime-1.32.0
+t3 kernel: $EXACT_LLM_T3/t3-f6d3700bf905.dylib
+cases 42 (7 shapes x 6 kinds, int64 and int16 right operands), routes 4, different 0
+digit extremes, value (i8 digits) (f32 digits): 32767 (255, 255) (128, -1); -32767 (0, 1) (-128, 1); 32640 (255, 128) (128, -128); -32640 (0, 128) (-127, -128); 32639 (255, 127) (127, 127); -32641 (0, 127) (-128, 127); 32512 (255, 0) (127, 0); -32513 (0, 255) (-127, -1)
+f32 digits: high -128..128, low -128..127 (int16 split the same: True); i8 digits of a + 2^15: high 0..255, low 0..255 (from int16 the same: True)
+peel_index of [5, -9, 9, 3, -9, 1] k=2: [1, 2] (expect [1, 2])
+t3 stream, every value -32767..32767: exact; digit adds 356806, census formula 356806, at most 8 per value
+t3 element-wise products, 200081 pairs and a broadcast: exact
+        2.35 real         2.12 user         0.28 sys
+exit 0
+           336134144  maximum resident set size
+== nomul
+object $EXACT_LLM_T3/t3-f6d3700bf905.dylib
+_t3_compile_masks         76 instructions; multiply or divide: none
+_t3_compile_fill         169 instructions; multiply or divide: none
+_t3_run                   89 instructions; multiply or divide: none
+_run_rows                109 instructions; multiply or divide: none
+_t3_mul                   53 instructions; multiply or divide: none
+__stubs                   15 instructions; multiply or divide: none
+histogram, all functions (511 instructions): add 68, mov 57, cmp 38, b.eq 33, b 28, ldr 28, stp 21, strh 21, tst 21, ldp 20, sub 19, b.lt 13, ldrh 12, orr 10, adrp 9, csel 9, ldurh 9, and 8, str 7, bl 6, lsr 6, movi.2d 6, add.2d 5, br 5, lsl 5, ret 5, subs 5, cbz 4, cinc 4, b.ge 3, b.ne 3, add.4s 2, b.hi 2, b.hs 2, cbnz 2, cneg 2, eor 2, saddw.2d 2, saddw2.2d 2, sub.4s 2, b.lo 1, blr 1, ldur 1, neg 1, stur 1
+multiply, multiply-add or divide instructions: 0
+NO MULTIPLIER
+        0.68 real         0.19 user         0.15 sys
+exit 0
+            32440320  maximum resident set size
+== count
+{
+ "model": "SmolLM2-135M",
+ "window": "last position, context 64, batch 1",
+ "next token": 376,
+ "per kind": {
+  "weights": {
+   "digit adds and subtracts": 459184492,
+   "Horner adds": 6549504,
+   "values recoded": 0,
+   "recoding operations": 0
+  },
+  "peeled": {
+   "digit adds and subtracts": 1408559,
+   "Horner adds": 6442304,
+   "values recoded": 409344,
+   "recoding operations": 2247228
+  },
+  "attention": {
+   "digit adds and subtracts": 11875560,
+   "Horner adds": 1658880,
+   "values recoded": 1105920,
+   "recoding operations": 5900826
+  },
+  "element-wise": {
+   "digit adds and subtracts": 1271526,
+   "Horner adds": 4451136,
+   "values recoded": 289152,
+   "recoding operations": 1515461
+  }
+ },
+ "attention split": {
+  "scores q16.k16": {
+   "digit adds and subtracts": 5007459,
+   "Horner adds": 552960
+  },
+  "context p.vh": {
+   "digit adds and subtracts": 900330,
+   "Horner adds": 552960
+  },
+  "context p.vl": {
+   "digit adds and subtracts": 5967771,
+   "Horner adds": 552960
+  }
+ },
+ "weight streams": {
+  "nonzero digits": 459184492,
+  "output rows": 204672,
+  "words": 462459244,
+  "bytes": 924918488
+ },
+ "weight streams, built once (this run)": {
+  "digit adds and subtracts": 0,
+  "Horner adds": 0,
+  "values recoded": 129429504,
+  "recoding operations": 711700313
+ },
+ "seconds": {
+  "load and prefill of 63": 30.0,
+  "the counted forward": 2.7
+ },
+ "totals": {
+  "weight products: digit adds": 459184492,
+  "weight products: Horner adds": 6549504,
+  "peeled terms: digit adds": 1408559,
+  "peeled terms: Horner adds": 6442304,
+  "variable by variable (attention): digit adds": 11875560,
+  "variable by variable (attention): Horner adds": 1658880,
+  "element-wise: digit adds": 1271526,
+  "element-wise: Horner adds": 4451136,
+  "adds and subtracts in all products": 492841961,
+  "values recoded at run time (a sign look each)": 1804416
+ }
+}
+       34.01 real        19.26 user         2.67 sys
+exit 0
+           247906304  maximum resident set size
+== check
+versions: Python 3.11.18, NumPy 2.4.6, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 0 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route f64, 437 s, clamped 0
+         peaks (real) / clamps: attention input 11.429 / 131072; down input 2630.720 / 4194304; gate 50.741 / 32768; k 22.910 / 1024; logits input 53.630 / 8388608; mlp input 28.742 / 8388608; o input 9.531 / 8388608; q 22.075 / 1024; residual 19509.485 / 33554432; up 72.026 / 32768; v 12.972 / 8192
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route t3, 1456 s, clamped 0
+         t3 kernel t3-f6d3700bf905.dylib; digit adds, Horner adds, values recoded, recoding operations: weights 1,653,064,171,200, 23,578,214,400, 0, 0; peeled 5,079,175,319, 23,547,135,488, 1,473,638,400, 7,993,295,032; attention 19,327,619,286, 4,893,696,000, 1,738,506,240, 9,276,986,651; element-wise 4,326,722,524, 15,590,066,688, 973,555,200, 5,113,624,092; weight streams, built once 0, 0, 0, 0
+check    every pair MATCH, 2250 s
+     2250.89 real       788.97 user       229.70 sys
+exit 0
+           793690112  maximum resident set size
+Sun Nov 15 17:19:52 PST 2026
