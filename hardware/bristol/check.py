@@ -5,6 +5,8 @@ usage: python3 check.py DIR [VECTORS] [SEED] [NAMES]   DIR holds the published f
                                                     LSSS_to_GC.txt from SCALE-MAMBA (Circuits/Bristol)
        python3 check.py bench DIR OUT               writes OUT/NAME.published.bench and OUT/NAME.here.bench
                                                     for an equivalence proof with ABC:  cec A.bench B.bench
+       --variant V (anywhere in the arguments)      checks NAME.V.txt in place of NAME.txt, for the functions that
+                                                    have one: V is lowdepth or fewand
 
 For each function it runs both circuits on the same operands and counts the operands on which the circuit here
 differs from the published one and from the rule. VECTORS operands per function, 100000 by default, and a tenth
@@ -22,6 +24,17 @@ sys.path.insert(0, HERE)
 import rules
 
 M64 = (1 << 64) - 1
+VARIANT = None
+if "--variant" in sys.argv:
+    _k = sys.argv.index("--variant")
+    VARIANT = sys.argv[_k + 1]
+    del sys.argv[_k:_k + 2]
+
+
+def here_file(name):
+    """The file of this folder for a function: NAME.txt, or NAME.VARIANT.txt with --variant (None if it has none)."""
+    path = os.path.join(HERE, name + ("." + VARIANT if VARIANT else "") + ".txt")
+    return path if os.path.exists(path) or not VARIANT else None
 BIAS = 1023
 
 
@@ -340,10 +353,10 @@ def operands(name, arity, rng, n):
 def check(folder, vectors, seed, only=None):
     failed = False
     for name, (widths, rule) in rules.FUNCTIONS.items():
-        if only and name not in only:
+        if (only and name not in only) or here_file(name) is None:
             continue
         arity = len(widths)
-        here = Circuit(os.path.join(HERE, name + ".txt"))
+        here = Circuit(here_file(name))
         pub = Circuit(os.path.join(folder, name + ".txt"))
         assert here.in_sizes == pub.in_sizes == list(widths) and here.out_sizes == pub.out_sizes
         rng = random.Random("%s %d" % (name, seed))
@@ -403,8 +416,10 @@ if __name__ == "__main__":
     if len(sys.argv) >= 4 and sys.argv[1] == "bench":
         os.makedirs(sys.argv[3], exist_ok=True)
         for fn in rules.FUNCTIONS:
+            if here_file(fn) is None:
+                continue
             to_bench(os.path.join(sys.argv[2], fn + ".txt"), os.path.join(sys.argv[3], fn + ".published.bench"))
-            to_bench(os.path.join(HERE, fn + ".txt"), os.path.join(sys.argv[3], fn + ".here.bench"))
+            to_bench(here_file(fn), os.path.join(sys.argv[3], fn + ".here.bench"))
         sys.exit(0)
     if len(sys.argv) < 2:
         sys.exit(__doc__)

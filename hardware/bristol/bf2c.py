@@ -1,6 +1,8 @@
 """Turns FP-add.txt, FP-mul.txt, FP-div.txt and FP-sqrt.txt of this folder into C functions for native.c.
 
-usage: python3 bf2c.py [OUTDIR]        writes c_add.h, c_mul.h, c_div.h, c_sqrt.h (into OUTDIR, default: here)
+usage: python3 bf2c.py [OUTDIR] [VARIANT]   writes c_add.h, c_mul.h, c_div.h, c_sqrt.h (into OUTDIR, default: here)
+                                            VARIANT lowdepth or fewand: FP-add.VARIANT.txt and FP-mul.VARIANT.txt
+                                            in place of FP-add.txt and FP-mul.txt
 
 Each function works on 64-bit words: a word carries one wire for 64 operand vectors at once.
 """
@@ -37,5 +39,9 @@ def convert(src, name, dst):
 if __name__ == "__main__":
     outdir = sys.argv[1] if len(sys.argv) > 1 else HERE
     os.makedirs(outdir, exist_ok=True)
+    variant = sys.argv[2] if len(sys.argv) > 2 else None
     for op in ("add", "mul", "div", "sqrt"):
-        convert(os.path.join(HERE, "FP-%s.txt" % op), "c_" + op, os.path.join(outdir, "c_%s.h" % op))
+        src = os.path.join(HERE, "FP-%s.%s.txt" % (op, variant)) if variant else ""
+        if not os.path.exists(src):
+            src = os.path.join(HERE, "FP-%s.txt" % op)
+        convert(src, "c_" + op, os.path.join(outdir, "c_%s.h" % op))
