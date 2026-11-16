@@ -765,22 +765,22 @@ class MatMulInteger:
 
 
 T3_DIR = os.environ.get("EXACT_LLM_T3", os.path.join(CACHE, "t3"))   # the compiled kernel and the weight streams
-T3_THREADS = int(os.environ.get("EXACT_LLM_T3_THREADS", "0")) or os.cpu_count() or 1
+T3_THREADS = min(64, int(os.environ.get("EXACT_LLM_T3_THREADS", "0")) or os.cpu_count() or 1)   # t3.c: at most 64
 
 
 class T3:
     """The t3 route's kernel, t3.c, compiled once with the C compiler `cc` (or $CC) into T3_DIR and opened with
     ctypes. Matrix products (mm) and element-wise products (mul) by add, subtract, shift by a constant and bitwise
-    logic. A registered weight matrix is compiled to its stream once and kept in T3_DIR (2 bytes per nonzero digit
-    plus 16 words per output row); any other right operand is recoded at each product. Counters per kind: digit
-    adds and subtracts, Horner adds, values recoded, recoding operations."""
+    logic. A registered weight matrix is compiled to its stream once and kept in T3_DIR/streams-<t3.c's hash>/<model>
+    (2 bytes per nonzero digit plus 16 words per output row); any other right operand is recoded at each product.
+    Counters per kind: digit adds and subtracts, Horner adds, values recoded, recoding operations."""
     KINDS = ("weights", "peeled", "attention", "element-wise", "weight streams, built once")
 
     def __init__(self):
         import ctypes
         import subprocess
         src = os.path.join(HERE, "t3.c")
-        tag = hashlib.sha256(open(src, "rb").read()).hexdigest()[:12]
+        tag = self.tag = hashlib.sha256(open(src, "rb").read()).hexdigest()[:12]
         os.makedirs(T3_DIR, exist_ok=True)
         self.path = os.path.join(T3_DIR, "t3-%s.%s" % (tag, "dylib" if sys.platform == "darwin" else "so"))
         if not os.path.exists(self.path):
@@ -795,7 +795,7 @@ class T3:
         L.t3_run.argtypes = [p, p, i64, i64, i64, p, p, i64, p, p]
         L.t3_mul.argtypes = [i64, p, p, p, ctypes.c_uint64, p]
         self.cnt = {k: np.zeros(4, dtype=np.uint64) for k in self.KINDS}
-        self.mats = []                                   # registered weights: (first byte, last byte, name, row stride)
+        self.model, self.mats = None, []                 # registered weights: (first byte, last byte, name, rows, cols)
         self.rowoffs = {}
         self.buf = np.empty(0, np.uint16)
         self.log = None                                 # a list: one entry per product, when tracing
@@ -805,18 +805,21 @@ class T3:
         return a.ctypes.data
 
     def register(self, W):
-        """The int16 weight matrices [in, out] (memory-mapped) whose streams are compiled once and kept."""
-        for name, w in W.items():
-            if w.dtype == np.int16 and w.ndim == 2:
-                self.mats.append((self.ptr(w), self.ptr(w) + w.nbytes, name, w.shape[1]))
+        """The current model's int16 weight matrices [in, out] (memory-mapped), whose streams are compiled once and
+        kept; they replace those registered before."""
+        self.model = MODEL
+        self.mats = [(self.ptr(w), self.ptr(w) + w.nbytes, name, w.shape[0], w.shape[1])
+                     for name, w in W.items() if w.dtype == np.int16 and w.ndim == 2]
 
     def weight_key(self, b):
+        """(model, matrix, first column, columns) when b is a block of whole columns of a registered matrix."""
         if b.dtype != np.int16 or b.ndim != 2 or b.strides[1] != 2:
             return None
         at = self.ptr(b)
-        for lo, hi, name, ld in self.mats:
-            if lo <= at < hi and b.strides[0] == 2 * ld and (at - lo) // 2 < ld:
-                return name, (at - lo) // 2, b.shape[1]
+        for lo, hi, name, rows, ld in self.mats:
+            c0 = (at - lo) // 2
+            if lo <= at < hi and b.strides[0] == 2 * ld and b.shape[0] == rows and c0 + b.shape[1] <= ld:
+                return self.model, name, c0, b.shape[1]
         return None
 
     def compile(self, b, kind):
@@ -833,8 +836,8 @@ class T3:
         return stream, rowoff
 
     def weight_stream(self, key, b):
-        name, c0, M = key
-        base = os.path.join(T3_DIR, "streams", "%s.c%d.m%d" % (name, c0, M))
+        model, name, c0, M = key                         # the stream format is t3.c's: one folder per t3.c and model
+        base = os.path.join(T3_DIR, "streams-" + self.tag, model, "%s.c%d.m%d" % (name, c0, M))
         if key not in self.rowoffs:
             if not (os.path.exists(base + ".words") and os.path.exists(base + ".rowoff.npy")):
                 os.makedirs(os.path.dirname(base), exist_ok=True)
