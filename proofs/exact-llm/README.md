@@ -178,6 +178,8 @@ Rerun of this code on the M1, with the kernel, the blob and the streams built af
 - `check --routes t3-token`: exact MATCH; t3-token MATCH, 0 clamped, 0 brackets or guards failed; the kernel's counters equal to the first run's;
 - `t3_nomul.py`: `t3_token.c`'s kernel has 3,964 instructions and `t3.c`'s 519, none a multiply or divide.
 
+On the runners, the workflow runs `check --model SmolLM2-135M --routes t3-token --no-float --no-onnx` on ubuntu-latest (x86-64, gcc), 120 minutes, then `t3_nomul.py` on both kernels that check built.
+
 ### t3-token on rv32i, no multiplier
 
 `rv32/`: the same `t3_token.c`, one lane, bare metal on QEMU 11.1.3 `virt` with `-cpu rv32,m=false` (no M extension: a multiply would trap), 128 MB, `-icount shift=0` (`build.sh`, `run.sh`; `main_rv32.c`, `start.S`, `virt.ld`). The guest reads the blob by semihosting into one 33 MB stream buffer, counts each token's instructions with `rdinstret`, and prints the SHA-256 of each token's logits over the UART. `prompt_host.py` prints the host kernel's lines for the same prompt. The linked ELF (kernel, main, SHA-256) has 8,499 instructions, none from the M extension, and calls no library multiply or divide. Prompt 12 of the check set, 5 tokens:
