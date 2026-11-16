@@ -72,7 +72,7 @@ The same 689 forks read in successive stretches of path (`forks3d_profile.py`):
 | forks with at least 3 points there | 113 | 282 | 420 | 398 | 398 | 683 | 689 | 689 | 689 | 689 |
 | opening, median | 71.6 | 70.4 | 68.7 | 67.2 | 65.4 | 62.1 | 58.4 | 54.3 | 50.2 | 46.2 |
 
-The forks start wide and close with distance, about 2 degrees per millimetre at the median.
+The forks start wide and close with distance, about 2 degrees per millimetre at the median. A fork is followed when both daughters are at least 16 mm and each has stored points at 3 to 5 mm and at 12 to 16 mm from the fork: 398 of the 689. Of those 398, 397 close and 1 opens, at -0.88 degrees per mm; the closing has median 1.96 and quartiles 1.54 and 2.61 (`src/forks3d_count.py`, `record/count.txt`).
 
 `forks3d_where.py`, `forks3d_balance.py`, `forks3d_ride.py`: forks with both daughters at least 16 mm and both stretches present, 398. The closing is the opening at 3 to 5 mm less the opening at 12 to 16 mm, per mm. z is the height of the parent's last point. The discharges start near z = -5 at the pin, and the stored paths end at z = 67.3 (99.5th percentile of all stored z, taken as the plate).
 
