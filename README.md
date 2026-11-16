@@ -219,6 +219,7 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 | `arbiter`, size | 259 LUT-6 | 256 LUT-6 |
 | `arbiter`, depth | 5 levels, 369 LUT-6 | 4 levels, 1477 LUT-6 |
 | `adder`, depth | 5 levels, 339 LUT-6 | 4 levels, 558 LUT-6 |
+| `max`, size | 511 LUT-6 | 510 LUT-6 |
 | `max`, depth | 6 levels, 1006 LUT-6 | 6 levels, 868 LUT-6 |
 | `dec`, size | 264 LUT-6 | 260 LUT-6 |
 | `dec`, depth | 2 levels, 264 LUT-6 | 2 levels, 260 LUT-6 |
@@ -246,6 +247,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 [`hardware/epfl-depth/`](hardware/epfl-depth/) holds the depth entries for `adder`, `arbiter`, `max`, `square`, `sqrt` and `hyp`, with their checks. [`hardware/epfl-dec/`](hardware/epfl-dec/) holds `dec` at 260 LUT-6 and 2 levels where the best published has 264, proved equal to the benchmark by ABC. The `sin` depth entry is in [`hardware/epfl-sin/`](hardware/epfl-sin/).
 
 [`hardware/epfl-bar/`](hardware/epfl-bar/) holds `bar` at 486 LUT-6 and 4 levels where the best published has 512, proved equal to the benchmark by ABC.
+
+[`hardware/epfl-max/`](hardware/epfl-max/) holds `max` for the size table at 510 LUT-6 where the best published has 511, proved equal to the benchmark by ABC.
 
 [`hardware/divider/udiv.v`](hardware/divider/) is a drop-in unsigned divider: 4,889 cells at 64 bits on Lattice ECP5, placed and routed, where the Verilog operators take 12,246.
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.
