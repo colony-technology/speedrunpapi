@@ -1,0 +1,3 @@
+forks with both daughters at least 16 mm: 689; followed through both stretches: 398
+close: 397; open: 1; neither: 0
+closing, degrees per mm: median 1.96, quartiles 1.54 and 2.61; the one that opens -0.88
