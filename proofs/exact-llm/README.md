@@ -125,21 +125,21 @@ The large difference at 16-bit inputs is one outlier per vector setting its shif
 
 ## t3: the products by adds and subtracts
 
-A fourth route, `exact16-t3`, run where a C compiler is installed (`check --routes t3`; not in check's default three). Every product of exact-16 is computed by `t3.c`, whose arithmetic is add, subtract, shift by a constant and bitwise logic: the matrix products in `mm16` (q, k, v, o, gate, up, down, logits, the scores q16·k16, the context p·vh and p·vl), the peeled terms, and the element-wise products (the norm's squares and weight, rotary, the exp and SiLU interpolations, SiLU(gate)·up) through `Exact.mul`. Divisions (52,477 per token) and square roots (61) stay NumPy's `//` and float `sqrt` with their integer bracket checks, as on the other routes: looks, not products.
+A fourth route, `exact16-t3`, run where a C compiler is installed (`check --routes t3`; not in check's default three). Every product of exact-16's forward pass is computed by `t3.c`, whose arithmetic is add, subtract, shift by a constant and bitwise logic: the matrix products in `mm16` (q, k, v, o, gate, up, down, logits, the scores q16·k16, the context p·vh and p·vl), the peeled terms, and the element-wise products (the norm's squares and weight, rotary, the exp and SiLU interpolations, SiLU(gate)·up) through `Exact.mul`. Divisions (52,477 per token) and square roots (61) stay as on the other routes: NumPy's `//` and float `sqrt`, each checked by an integer bracket that NumPy multiplies (q·d ≤ n < (q + 1)·d, s² ≤ n < (s + 1)²). Shifts by a computed amount (the block shift, the row scale) stay NumPy's too.
 
 | signed digits, `t3.c` | for m ≥ 0: `h = m >> 1`, `s = m + h`, `c = h ^ s`; plus `s & c`, minus `h & c`; m = plus − minus, non-adjacent form; a negative value by its magnitude with plus and minus exchanged |
 | --- | --- |
 | stream | a 16-bit word per instruction, `op << 14 \| i`; per output row, for digit position k = 15 down to 0: `ADD i` for each input with digit +1 at k, `SUB i` for each with −1, then `STEP` (`EMIT` at k = 0) |
 | machine | per lane: `s` (int32), `acc` (int64). `ADD i`: s = s + x[i]. `SUB i`: s = s − x[i]. `STEP`: acc = acc + acc; acc = acc + s; s = 0. `EMIT`: `STEP`, then y[row] = acc, acc = 0. 8 lanes at a time |
-| weights | each matrix compiled to its stream once (924,918,488 bytes for the 135M: 459,184,492 digits and 16 words for each of 204,672 output rows), kept in `$EXACT_LLM_T3` (default `.cache/t3`) |
+| weights | each matrix compiled to its stream once (924,918,488 bytes for the 135M: 459,184,492 digits and 16 words for each of 204,672 output rows), kept in `$EXACT_LLM_T3` (default `.cache/t3`), one folder per `t3.c` and model |
 | activations | the right operand recoded into digits at each product: k16 for the scores, vh and vl for the context, the smaller-magnitude operand element-wise and for the peeled terms |
 
-| Apple M1, 64 prompts, batch 8, one `check` process | logits | continuations | seconds |
-| --- | --- | --- | --- |
-| `exact16-f64` | `b0cc875f…0b4460` | `a800ebad…7613cc` | 437 |
-| `exact16-t3`, 8 threads | `b0cc875f…0b4460` | `a800ebad…7613cc` | 1,456 |
+| Apple M1, 64 prompts, batch 8, one `check` process | logits | continuations |
+| --- | --- | --- |
+| `exact16-f64` | `b0cc875f…0b4460` | `a800ebad…7613cc` |
+| `exact16-t3`, 8 threads | `b0cc875f…0b4460` | `a800ebad…7613cc` |
 
-MATCH on both, 0 clamped. The machine was shared with other jobs during this run (f64 took 80 s in the run of the table above). Per token at the last position (context 64, `t3_count.py`, the kernel's counters): 459,184,492 digit adds and subtracts in the weight products, as the digit census predicts, and 6,549,504 Horner adds; 1,408,559 and 6,442,304 in the peeled terms; 11,875,560 and 1,658,880 in the attention (scores 5,007,459, p·vh 900,330, p·vl 5,967,771, Horner 552,960 each); 1,271,526 and 4,451,136 element-wise; 492,841,961 adds and subtracts in all. `t3_nomul.py`: the kernel's disassembly holds no multiply, multiply-add or divide instruction (arm64: 0 of 511). `t3_rv32.c`: the stream machine, freestanding, compiled for rv32i (no M extension) by LLVM: 45 instructions, none a multiply, no library multiply.
+MATCH on both, 0 clamped. The M1 was shared with other jobs during this run, so its seconds are not a measure of either route. Per token at the last position (context 64, `t3_count.py`, the kernel's counters): 459,184,492 digit adds and subtracts in the weight products, as the digit census predicts, and 6,549,504 Horner adds; 1,408,559 and 6,442,304 in the peeled terms; 11,875,560 and 1,658,880 in the attention (scores 5,007,459, p·vh 900,330, p·vl 5,967,771, Horner 552,960 each); 1,271,526 and 4,451,136 element-wise; 492,841,961 adds and subtracts in all. `t3_nomul.py`: the kernel's disassembly holds no multiply, multiply-add or divide instruction and calls no library multiply or divide (Apple clang, arm64: 0 of 511 instructions, 496 in the five functions of `t3.c` and 15 in its call stubs). It does report the `mul` in `t3.c` built without its `KEEP` barriers, and the calls `__mulsi3` (a multiply built for rv32i) and `___divti3` (a 128-bit divide on arm64 macOS). `t3_rv32.c`: the stream machine, freestanding, compiled for rv32i (no M extension) by LLVM: 45 instructions, none a multiply, no library multiply; compiled only, not run.
 
 ## Larger models
 

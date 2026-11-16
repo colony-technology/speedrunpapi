@@ -16,14 +16,16 @@ import sys
 ARM64_MUL = set("""mul madd msub mneg smull umull smulh umulh smaddl smsubl umaddl umsubl smnegl umnegl
     mla mls smull2 umull2 smlal smlal2 smlsl smlsl2 umlal umlal2 umlsl umlsl2 sqdmulh sqrdmulh sqdmull sqdmull2
     sqdmlal sqdmlal2 sqdmlsl sqdmlsl2 sqrdmlah sqrdmlsh pmul pmull pmull2 sdot udot usdot sudot smmla ummla usmmla
-    fmul fmulx fmla fmls fnmul fmadd fmsub fnmadd fnmsub bfdot bfmmla bfmlalb bfmlalt fmmla""".split())
+    fmul fmulx fmla fmls fnmul fmadd fmsub fnmadd fnmsub bfdot bfmmla bfmlalb bfmlalt fmmla
+    fmlal fmlal2 fmlsl fmlsl2 fcmla fdot bfmlal""".split())
 ARM64_DIV = {"sdiv", "udiv", "fdiv", "fsqrt", "frecpe", "frecps", "frsqrte", "frsqrts"}
 X86_MUL = ("mul", "imul", "mulx", "pmul", "vpmul", "pmadd", "vpmadd", "vfmadd", "vfmsub", "vfnmadd", "vfnmsub",
-           "vpdp", "mulss", "mulsd", "mulps", "mulpd", "vmul")
+           "vpdp", "mulss", "mulsd", "mulps", "mulpd", "vmul", "pclmul", "vpclmul", "dpps", "dppd", "vdpp")
 X86_DIV = ("div", "idiv", "divss", "divsd", "divps", "divpd", "vdiv", "sqrt", "vsqrt")
 # RISC-V M extension (and its 64-bit word forms); on rv32i a C multiply becomes a call to a library routine instead
 RISCV_MUL = {"mulh", "mulhsu", "mulhu", "mulw", "divu", "rem", "remu", "divw", "divuw", "remw", "remuw"}
-LIBCALLS = ("__mul", "__div", "__udiv", "__mod", "__umod")
+# library multiply and divide routines (libgcc, compiler-rt, the ARM EABI); Mach-O writes one more leading underscore
+LIBCALL = re.compile(r"(?<![A-Za-z0-9_])_?(__(?:mul|div|udiv|mod|umod|aeabi_\w*(?:mul|div))\w*)")
 
 
 def stem(mnemonic):
@@ -41,7 +43,7 @@ def disassemble(path):
     tool = os.environ.get("OBJDUMP", "objdump")
     out = subprocess.run([tool, "-d", "-r", "--no-show-raw-insn", path], capture_output=True, text=True,
                          check=True).stdout
-    calls = sorted(set(re.findall(r"\b(__(?:mul|div|udiv|mod|umod)\w*)", out)))
+    calls = sorted(set(LIBCALL.findall(out)))
     if calls:
         raise SystemExit("library multiply or divide referenced: %s\nMULTIPLIER FOUND" % ", ".join(calls))
     funcs, name = collections.OrderedDict(), None
