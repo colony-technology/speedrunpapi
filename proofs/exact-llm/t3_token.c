@@ -405,7 +405,7 @@ static u16 *sbuf;                                          /* the stream of the 
 static i16 *wrow;                                          /* peel weight rows: 2 x 8,192 */
 static const i32 *xrowt[16384];
 static i64 *yrowt[16384];
-static i64 nslots, mp;                                     /* slots (sequences), positions per slot (padded) */
+static i64 nslots, mp, maxpos;                             /* slots (sequences), positions per slot (padded; asked) */
 static i32 *kc, *vh, *vl;                                  /* [slot][layer][kv][64][mp], [slot][layer][kv][mp][64] */
 static i64 *shk;                                           /* [slot][layer][kv][mp] */
 /* per-lane activations and scratch, for up to NLANE lanes */
@@ -465,6 +465,9 @@ int t3k_open_model(i64 slots, i64 positions, i64 threads) {
         return -1;
     if (dirv[0] != 0x5433424C4F423031LL || dirv[2] != HID || dirv[7] != NL || dirv[8] != VOC)
         return -2;
+    if (positions < 1 || positions > dirv[13] || slots < 1)    /* the rotary tables hold dirv[13] (512) positions */
+        return -7;
+    maxpos = positions;
     normbits = dirv[9];
     normK = dirv[10];
     for (int i = 0; i < 11; i++)
@@ -665,7 +668,8 @@ static void product(i64 N, const mat_t *m, i64 *y, i32 *y32, i64 ldy32) {
         yr += LP;
         KEEP(yr);
     }
-    t3_io_read((u64)m->off_words, sbuf, (u64)m->nwords << 1);
+    if (t3_io_read((u64)m->off_words, sbuf, (u64)m->nwords << 1))
+        t3k_fail += 1;                                   /* a short read of the blob: guard, not counted */
     site = S_WEIGHT;
     run_stream(sbuf, m->rowoff, M, xrowt, N, yrowt);
     i64 *yl = y;
@@ -673,7 +677,8 @@ static void product(i64 N, const mat_t *m, i64 *y, i32 *y32, i64 ldy32) {
     for (i64 l = 0; l < N; l++) {
         for (int j = 0; j < 2; j++) {                 /* the two weight rows of the peeled inputs */
             u64 off = (u64)m->off_w16 + (addr_mul((u64)ip_l[l + l + j], (u64)m->ld) << 1) + ((u64)m->c0 << 1);
-            t3_io_read(off, wrow + (j ? VBLK : 0), (u64)M << 1);
+            if (t3_io_read(off, wrow + (j ? VBLK : 0), (u64)M << 1))
+                t3k_fail += 1;
         }
         i64 sh = sh_l[l], xp1 = xp_l[l + l], xp2 = xp_l[l + l + 1];
         const i64 *tr = T + l;
@@ -709,6 +714,10 @@ static void rms(const i64 *x, const i64 *w, i64 *y) {
     i64 sh = sub(bitlen(top), normbits);
     if (neg(sh))
         sh = 0;
+    if (sh > 16) {                              /* guard, not a model operation: epsv holds sh 0..16 (exact_llm */
+        t3k_fail += 1;                          /* asserts sh <= A); the residual clamp keeps sh <= 16 */
+        sh = 16;
+    }
     i64 ss = 0;
     for (int i = 0; i < HID; i++) {
         site = S_OTHER;
@@ -908,10 +917,18 @@ static void cache_entry(i64 slot, i64 layer, i64 pos, i64 *k, i64 *v) {
 /* one step for n lanes: lane l is slot slots[l] at position pos[l] with input token tok[l]; logits [n][49152]
  * int32 and the greedy next token. Returns 0. */
 int t3k_step(i64 n, const i64 *slots, const i64 *tok, const i64 *pos, i32 *logits, i64 *next) {
+    if (n < 1 || n > nlane_max)
+        return -1;
+    for (i64 l = 0; l < n; l++)                                /* guards: a lane outside what t3k_open made */
+        if (slots[l] < 0 || slots[l] >= nslots || pos[l] < 0 || pos[l] >= maxpos || tok[l] < 0 || tok[l] >= VOC) {
+            t3k_fail += 1;
+            return -1;
+        }
     i64 *xl = X;
     for (i64 l = 0; l < n; l++) {                              /* the embedding row (data movement) */
         i32 row[HID];
-        t3_io_read((u64)dirv[70] + (addr_mul((u64)tok[l], HID) << 2), row, HID << 2);
+        if (t3_io_read((u64)dirv[70] + (addr_mul((u64)tok[l], HID) << 2), row, HID << 2))
+            t3k_fail += 1;
         for (int i = 0; i < HID; i++)
             xl[i] = row[i];
         xl += HID;

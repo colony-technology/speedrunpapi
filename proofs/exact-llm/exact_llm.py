@@ -1063,7 +1063,8 @@ class T3Token:
         s, t, q = (np.ascontiguousarray(v, dtype=np.int64) for v in (slots, toks, pos))
         lg = np.empty((n, VOCAB), np.int32)
         nxt = np.empty(n, np.int64)
-        self.lib.t3k_step(n, s.ctypes.data, t.ctypes.data, q.ctypes.data, lg.ctypes.data, nxt.ctypes.data)
+        if self.lib.t3k_step(n, s.ctypes.data, t.ctypes.data, q.ctypes.data, lg.ctypes.data, nxt.ctypes.data):
+            raise SystemExit("t3k_step refused a lane outside the slots, positions or vocabulary t3k_open made")
         return lg, nxt
 
     def run_prompts(self, tok, texts, batch, on_logits=None, gen=GEN):
@@ -1524,6 +1525,8 @@ def main(argv):
             t0 = time.time()
             h16l, h16c, cont, lg = prompt_run(m16, 8, keep=not kept16)
             ok16 = (h16l, h16c) == e16
+            if r == "t3-token":                                # a failed bracket or guard in the kernel: DIFFERENT
+                ok16 = ok16 and m16.counters()["failed"] == 0
             ok = ok and ok16
             print("exact16  logits %s  continuations %s  %s  route %s, %.0f s, clamped %d" % (
                 h16l, h16c, "MATCH" if ok16 else "DIFFERENT", m16.mmi.name if m16.mmi else r, time.time() - t0,
@@ -1535,7 +1538,7 @@ def main(argv):
             if r == "t3-token":
                 c = m16.counters()
                 print("         t3-token kernel %s; per site add, horner, shift, shift by data, logic, look, read: %s; "
-                      "clamped %d, p held %d, brackets failed %d" % (
+                      "clamped %d, p held %d, brackets and guards failed %d" % (
                           os.path.basename(m16.path), "; ".join("%s %s" % (s, ", ".join("{:,}".format(v) for v in
                                                                                       list(c[s].values())[:7]))
                                                                 for s in list(c)[:8]), c["clamped"], c["held"],

@@ -14,6 +14,7 @@ typedef uint8_t u8;
 extern int t3k_open_model(i64 slots, i64 positions, i64 threads);
 extern int t3k_step(i64 n, const i64 *slots, const i64 *tok, const i64 *pos, int32_t *logits, i64 *next);
 extern void t3k_arena(void *base, u64 size);
+extern u64 t3k_fail;                                   /* brackets and guards that failed in the kernel */
 extern long t3_semihost(long op, void *arg);
 extern char __bss_start[], __bss_end[], __arena_start[], __arena_end[];
 
@@ -184,7 +185,10 @@ int main(void) {
     for (i64 t = 0; t < ntok; t++) {
         i64 slot = 0, pos = t, next = 0;
         u64 c0 = instret();
-        t3k_step(1, &slot, &tok[t], &pos, logits, &next);
+        if (t3k_step(1, &slot, &tok[t], &pos, logits, &next)) {
+            puts_("t3 rv32i: step refused\n");
+            return 6;
+        }
         u64 c1 = instret();
         u32 h[8];
         sha256((const u8 *)logits, VOC << 2, h);
@@ -199,6 +203,8 @@ int main(void) {
         puthex((u64)next, 8);
         puts_("\n");
     }
-    puts_("t3 rv32i: done\n");
-    return 0;
+    puts_("t3 rv32i: done, brackets and guards failed ");
+    puthex(t3k_fail, 8);
+    puts_("\n");
+    return t3k_fail ? 5 : 0;
 }
