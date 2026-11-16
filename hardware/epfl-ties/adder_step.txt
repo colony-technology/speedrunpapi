@@ -1,0 +1,6 @@
+s_3       16 wires to choose from,  1820 sets of four: 0 give it; with s_2: computable
+s_4       17 wires to choose from,  2380 sets of four: 0 give it; with s_3: computable
+s_5       18 wires to choose from,  3060 sets of four: 0 give it; with s_4: computable
+s_6       19 wires to choose from,  3876 sets of four: 0 give it; with s_5: computable
+s_7       20 wires to choose from,  4845 sets of four: 0 give it; with s_6: computable
+carry out 20 wires to choose from,  4845 sets of four: 0 give it; with s_6: computable

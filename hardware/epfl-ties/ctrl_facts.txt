@@ -1,0 +1,6 @@
+ctrl: 7 inputs, 26 outputs, 128 truth-table rows
+constant outputs: sign = 1
+non-constant outputs: 25; smallest support 3 inputs
+outputs on all 7 inputs: alu_op[0], invA, invB
+outputs equal to an input or its complement: none
+pairs of outputs equal or complementary: none
