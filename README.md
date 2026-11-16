@@ -253,6 +253,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 
 [`hardware/epfl-router/`](hardware/epfl-router/) holds `router` for the depth table at 22 LUT-6 and 3 levels, the minimum, where the best published has 25, proved equal to the benchmark by ABC.
 
+[`hardware/epfl-ties/`](hardware/epfl-ties/) proves three published entries optimal, so they cannot be beaten: `ctrl` at 25 LUT-6 and 2 levels on both tables, and `adder` at 129 LUT-6 and 126 levels on the size table.
+
 [`hardware/divider/udiv.v`](hardware/divider/) is a drop-in unsigned divider: 4,889 cells at 64 bits on Lattice ECP5, placed and routed, where the Verilog operators take 12,246.
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.
 [`hardware/linear/`](hardware/linear/) builds XOR logic: CRC-32 over a 512-bit bus in 701 LUT-6 at 4 levels, where Yosys takes 2,344; with any number of valid bytes, 1,172.
