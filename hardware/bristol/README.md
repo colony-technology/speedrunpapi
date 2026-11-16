@@ -115,7 +115,66 @@ The same constructions were also built at smaller sizes and compared with exact 
 
 The checks run on each change to this folder, against the published files at pinned commits of [NigelSmart/nigelsmart.github.io](https://github.com/NigelSmart/nigelsmart.github.io) and [KULeuven-COSIC/SCALE-MAMBA](https://github.com/KULeuven-COSIC/SCALE-MAMBA) ([workflow](../../.github/workflows/bristol.yml), checksums in [`published.sha256`](published.sha256)).
 
+## AND depth
+
+In secret sharing each level of AND gates is a round of communication, so the AND depth matters as well as the count.
+Five of the circuits above have more AND depth than the published ones.
+Each of the five now comes in two more files: `.fewand.txt`, the fewest AND gates found under the published depth, and `.lowdepth.txt`, the lowest depth found.
+Both files are under the published count and the published depth.
+
+| Function | Published, AND gates / depth | Here, AND gates / depth | Fewest AND under the published depth | Lowest depth |
+| --- | --- | --- | --- | --- |
+| double multiply | 19,626 / 129 | 5,218 / 227 | [`FP-mul.fewand.txt`](FP-mul.fewand.txt) 5,847 / 121 | [`FP-mul.lowdepth.txt`](FP-mul.lowdepth.txt) 7,856 / 52 |
+| double add | 5,385 / 235 | 1,447 / 240 | [`FP-add.fewand.txt`](FP-add.fewand.txt) 1,455 / 232 | [`FP-add.lowdepth.txt`](FP-add.lowdepth.txt) 2,320 / 52 |
+| double floor | 651 / 71 | 433 / 90 | [`FP-floor.fewand.txt`](FP-floor.fewand.txt) 457 / 69 | [`FP-floor.lowdepth.txt`](FP-floor.lowdepth.txt) 590 / 26 |
+| double ceil | 650 / 71 | 433 / 90 | [`FP-ceil.fewand.txt`](FP-ceil.fewand.txt) 457 / 69 | [`FP-ceil.lowdepth.txt`](FP-ceil.lowdepth.txt) 590 / 26 |
+| 64-bit unsigned divide | 4,285 / 2,204 | 3,197 / 2,700 | [`udivide64.fewand.txt`](udivide64.fewand.txt) 3,682 / 2,199 | [`udivide64.lowdepth.txt`](udivide64.lowdepth.txt) 4,222 / 2,144 |
+
+The published figures are from the [Bristol Fashion](https://nigelsmart.github.io/MPC-Circuits/) page, counted by `check.py` from the published files.
+
+AND gates against depth for the multiplier, every point a built circuit:
+
+| AND gates | AND depth | AND gates per level, from the row above |
+| --- | --- | --- |
+| 5,218 | 227 | |
+| 5,325 | 168 | 1.8 |
+| 5,847 | 121 | 11.1 |
+| 6,086 | 80 | 5.8 |
+| 6,395 | 64 | 19.3 |
+| 7,124 | 57 | 104 |
+| 7,856 | 52 | 146 |
+
+As for the first sixteen, the files are the circuits; the program that built them is kept privately.
+
+What is proved for the ten new files:
+
+- `FP-floor`, `FP-ceil` and `FP-add`, both files of each, are equal to the published circuits and to the ones here on every input, with ABC.
+- `udivide64.lowdepth.txt` is equal to the published circuit on every input, with ABC. `udivide64.fewand.txt` rests on testing: 3,000,000 operands against the published circuit and the rules, and every operand pair at 6, 7 and 8 bits. ABC did not finish in 20 minutes, against the published circuit or against the one here.
+- `FP-mul` rests on testing: 3,000,000 operands against the published circuit and the rules, 10^9 against the processor, and every input of the small formats. It has no complete equivalence proof. ABC did not finish in 10 minutes for either file against the published circuit. It did not finish in 10 minutes for the lowest-depth file against the one here, nor in 20 minutes for the fewest-AND file.
+- All ten files: `check.py` at 3,000,000 operands, nothing differs. For add and multiply, 10^9 operands against the processor, nothing differs. Every input of the 3-2, 4-3 and 3-4 formats (and 5-10 for floor and ceil) against exact arithmetic, and the divider on every pair at 6, 7 and 8 bits, nothing differs.
+
+The same checks, on these files:
+
+```
+python3 check.py <folder with the published files> 3000000 1 FP-add,FP-mul,FP-floor,FP-ceil,udivide64 --variant lowdepth
+python3 check.py <folder with the published files> 3000000 1 FP-add,FP-mul,FP-floor,FP-ceil,udivide64 --variant fewand
+python3 check.py bench <folder with the published files> out --variant lowdepth
+abc -c "cec out/FP-add.published.bench out/FP-add.here.bench"
+python3 bf2c.py build lowdepth && cc -O1 -ffp-contract=off -I build -o build/native native.c -lm
+build/native mul 1000000000 1
+```
+
+`--variant` makes `check.py` load `NAME.lowdepth.txt` or `NAME.fewand.txt` in place of `NAME.txt`, and `bf2c.py build fewand` does the same for add and multiply.
+One line of `python3 check.py <folder with the published files> 100000 --variant lowdepth`:
+
+```
+FP-mul     published  19626 AND, depth  129   here  7856 AND, depth   52   100000 operands: 0 differ from the published circuit, 0 from the rule
+```
+
+The workflow runs on the sixteen files above; the ten new files are checked by these commands.
+
 ## Files
 
 The sixteen `.txt` files are Bristol Fashion in the basic format, with XOR, AND and INV gates only.
+The ten `.fewand.txt` and `.lowdepth.txt` files are in the same format.
 The first wires are the inputs and the last wires are the outputs, as in the published files.
