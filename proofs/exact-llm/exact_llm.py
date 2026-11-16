@@ -669,7 +669,8 @@ PEEL16 = 2
 CHUNK32 = 1024                    # f32 route: inputs per chunk, 1,024 x 2^14 = 2^24
 N_I8 = 33025                      # i8 route: n 255^2 < 2^31 for n <= 33,025
 ROUTES = ("f64", "f32", "i8")     # check's default
-ROUTES_T3 = ("t3",)               # by adds and subtracts (t3.c), where a C compiler is installed, not on Windows: --routes t3
+ROUTES_T3 = ("t3",)               # by adds and subtracts (t3.c), where a C compiler is installed, not on Windows:
+                                  # --routes t3; the whole token in t3_token.c: --routes t3-token (class T3Token)
 TOP16 = 15                        # t3: highest signed-digit position of a 16-bit value; 16 STEP words per output row
 
 
@@ -938,6 +939,161 @@ def t3_kernel():
     if not _T3:
         _T3.append(T3())
     return _T3[0]
+
+
+T3_SITES = ("residual", "attention input", "q", "k", "v", "o input", "mlp input", "gate", "up", "down input",
+            "logits input")                      # the clamp order of t3_token.c
+T3_MATS = ("self_attn.q_proj", "self_attn.k_proj", "self_attn.v_proj", "self_attn.o_proj", "mlp.gate_proj",
+           "mlp.up_proj", "mlp.down_proj")
+T3_CFLAGS = ["-O2", "-fno-unroll-loops"]         # no unrolling: an unrolled loop's remainder is a multiply by 1/3
+
+
+def t3_blob():
+    """The t3 token kernel's model, one file in T3_DIR: a directory of 4,096 int64 (t3_token.c reads it), then the
+    exp, SiLU, cos and sin tables (int64), the 61 norm weights (int64, 576 each: the 30 input norms, the 30
+    post-attention norms, the final norm), the embedding (int32 [49,152][576], at 2^-16), and per matrix (each layer's
+    q, k, v, o, gate, up, down, then the embedding's 6 blocks of 8,192 columns for the logits) its t3 stream (uint16),
+    row offsets (int64), 16-bit weights (int16 [in][out]) and row scales g (int64). Built once from the caches."""
+    assert MODEL == MODELS[0], "the token kernel is sized for %s" % MODELS[0]
+    path = os.path.join(T3_DIR, "t3k1-%s-%s.blob" % (MODEL, t3_kernel().tag))
+    if os.path.exists(path):
+        return path
+    k = t3_kernel()
+    W16 = int16_weights()
+    k.register(W16)
+    Ws = int_weights(small=True)
+    st = weight_stats16()
+    C = clamps16(st)
+    eps = [max(int(round(EPS * 2 ** (2 * A - 2 * s))), 1) for s in range(A + 1)]
+    d = np.zeros(4096, np.int64)
+    d[0], d[1] = 0x5433424C4F423031, 1
+    d[2:11] = [HIDDEN, HEADS, KV, HEAD, FF, LAYERS, VOCAB, NORM_BITS, 0]
+    d[11:14] = [EXP_N, SILU_N, ROPE_POS]
+    d[16:27] = [C[s] << A for s in T3_SITES]
+    d[32:49] = eps
+    norms = [Ws["model.layers.%d.input_layernorm.weight" % i] for i in range(LAYERS)] + \
+        [Ws["model.layers.%d.post_attention_layernorm.weight" % i] for i in range(LAYERS)] + [Ws["model.norm.weight"]]
+    d[10] = max(int(np.abs(np.asarray(n)).max()) for n in norms).bit_length()     # |norm weight| < 2^normK
+    cname, sname = rope_table_names()
+    with open(path + ".part", "wb") as f:
+        f.write(d.tobytes())
+
+        def put(arr):
+            at = f.tell()
+            f.write(np.ascontiguousarray(arr).tobytes())
+            return at
+        d[64], d[65] = put(load_table("exp.txt").astype("<i8")), EXP_N + 1
+        d[66], d[67] = put(load_table("silu.txt").astype("<i8")), SILU_N + 1
+        d[68] = put(load_table(cname).astype("<i8"))
+        d[69] = put(load_table(sname).astype("<i8"))
+        d[70] = put(np.asarray(Ws["model.embed_tokens.weight"], dtype="<i4"))
+        d[71] = put(np.concatenate([np.asarray(n, dtype="<i8") for n in norms]))
+        mats = [("model.layers.%d.%s.weight" % (i, m), 0) for i in range(LAYERS) for m in T3_MATS] + \
+            [("model.embed_tokens.weight", c) for c in range(0, VOCAB, 8192)]
+        w16_at = {}
+        for j, (name, c0) in enumerate(mats):
+            w, g = W16[name], W16[name + ".g"]
+            M = min(8192, w.shape[1] - c0)
+            stream, rowoff = k.weight_stream((MODEL, name, c0, M), w[:, c0:c0 + M])
+            if name not in w16_at:
+                w16_at[name] = put(np.asarray(w, dtype="<i2"))
+            row = d[128 + 16 * j: 128 + 16 * j + 16]
+            row[0], row[1] = w.shape[0], M
+            row[2], row[3] = put(np.asarray(stream[:int(rowoff[-1])], dtype="<u2")), int(rowoff[-1])
+            row[4] = put(rowoff.astype("<i8"))
+            row[5], row[6], row[7] = w16_at[name], w.shape[1], c0
+            row[8] = put(np.asarray(g[c0:c0 + M], dtype="<i8"))
+            row[9] = T3_SITES.index(SITE16[name.split(".")[-2]])
+        f.seek(0)
+        f.write(d.tobytes())
+    os.replace(path + ".part", path)
+    return path
+
+
+class T3Token:
+    """exact-16 with the whole token in t3_token.c: every operation of the forward pass and the greedy choice, with
+    add, subtract, shift, logic and the sign test; NumPy only moves data (the token ids in, the logits out). One
+    sequence per lane, token by token, each with its own key-value cache; the weight products run all lanes at once."""
+    route = "t3-token"
+    mmi = None
+
+    def __init__(self, lanes=64, threads=None):
+        import ctypes
+        import subprocess
+        src = os.path.join(HERE, "t3_token.c")
+        tag = hashlib.sha256(open(src, "rb").read() + " ".join(T3_CFLAGS).encode()).hexdigest()[:12]
+        os.makedirs(T3_DIR, exist_ok=True)
+        self.path = os.path.join(T3_DIR, "t3k-%s.%s" % (tag, "dylib" if sys.platform == "darwin" else "so"))
+        if not os.path.exists(self.path):
+            subprocess.run([os.environ.get("CC", "cc")] + T3_CFLAGS + ["-DT3_HOST", "-shared", "-fPIC", "-pthread",
+                                                                      src, "-o", self.path + ".part"], check=True)
+            os.replace(self.path + ".part", self.path)
+        L = self.lib = ctypes.CDLL(self.path)
+        i64, p = ctypes.c_int64, ctypes.c_void_p
+        L.t3k_open.argtypes = [ctypes.c_char_p, i64, i64, i64]
+        L.t3k_step.argtypes = [i64, p, p, p, p, p]
+        L.t3k_counters.argtypes = [p]
+        self.lanes, self.threads = lanes, threads or T3_THREADS
+        self.blob = t3_blob()
+        self.opened = None
+        self.clamps, self.peak, self.clamped = {}, {}, {}
+        self.extra = 0
+
+    def open(self, slots, positions):
+        if self.opened is not None:
+            assert slots <= self.opened[0] and positions <= self.opened[1]
+            return
+        r = self.lib.t3k_open(self.blob.encode(), slots, positions, self.threads)
+        if r:
+            raise SystemExit("t3k_open failed: %d" % r)
+        self.opened = (slots, positions)
+
+    def counters(self):
+        """{site: {class: count}} plus clamped, held, failed brackets."""
+        c = np.zeros(8 * 8 + 3, np.uint64)
+        self.lib.t3k_counters(c.ctypes.data)
+        sites = ("weights", "peeled", "attention", "element-wise", "divisions", "square roots", "other", "checks")
+        classes = ("add", "horner", "shift", "shift by data", "logic", "look", "read", "spare")
+        out = {s: {k: int(c[8 * i + j]) for j, k in enumerate(classes)} for i, s in enumerate(sites)}
+        out["clamped"], out["held"], out["failed"] = int(c[64]), int(c[65]), int(c[66])
+        return out
+
+    def step(self, slots, toks, pos):
+        n = len(slots)
+        s, t, q = (np.ascontiguousarray(v, dtype=np.int64) for v in (slots, toks, pos))
+        lg = np.empty((n, VOCAB), np.int32)
+        nxt = np.empty(n, np.int64)
+        self.lib.t3k_step(n, s.ctypes.data, t.ctypes.data, q.ctypes.data, lg.ctypes.data, nxt.ctypes.data)
+        return lg, nxt
+
+    def run_prompts(self, tok, texts, batch, on_logits=None, gen=GEN):
+        """Every prompt token by token, up to `lanes` prompts at once (the hashes do not depend on the batch)."""
+        enc = [tok.encode(t) for t in texts]
+        self.open(min(self.lanes, len(enc)), max(len(e) for e in enc) + gen)
+        out = []
+        for s0 in range(0, len(enc), self.lanes):
+            grp = list(range(s0, min(s0 + self.lanes, len(enc))))
+            kept = {b: [] for b in grp}
+            cont = {b: [] for b in grp}
+            t = 0
+            while True:
+                act = [b for b in grp if len(cont[b]) < gen]
+                if not act:
+                    break
+                toks = [enc[b][t] if t < len(enc[b]) else cont[b][-1] for b in act]
+                lg, nxt = self.step([b - s0 for b in act], toks, [t] * len(act))
+                for j, b in enumerate(act):
+                    if t < len(enc[b]):
+                        kept[b].append(lg[j].copy())
+                    if t >= len(enc[b]) - 1:
+                        cont[b].append(int(nxt[j]))
+                t += 1
+            for b in grp:
+                if on_logits is not None:
+                    on_logits(b, np.stack(kept[b]))
+                out.append(cont[b])
+        self.clamped = {"all": self.counters()["clamped"]}
+        return out
 
 
 def mm16(a, b, route, mmi=None):
@@ -1229,6 +1385,8 @@ def run_window(model, ids):
 def engine(name, threads=0):
     if name == "exact":
         return Exact()
+    if name == "exact16-t3-token":
+        return T3Token()
     if name in ("exact16-" + r for r in ROUTES + ROUTES_T3):
         return Exact16(name.split("-")[1])
     if name == "float32":
@@ -1253,7 +1411,9 @@ def prompt_run(eng, batch, keep=False):
         h.update(as_bytes(lg))
         if keep:
             kept.append(np.array(lg))
-    cont = run_prompts(eng, tokenizer(), prompts(), batch, on_logits)
+    runner = getattr(eng, "run_prompts", None)                # t3-token runs its own sequences, token by token
+    cont = runner(tokenizer(), prompts(), batch, on_logits) if runner else run_prompts(eng, tokenizer(), prompts(), batch,
+                                                                                    on_logits)
     hc = hashlib.sha256(np.array(cont, dtype="<i4").tobytes()).hexdigest()
     return h.hexdigest(), hc, cont, kept
 
@@ -1360,7 +1520,7 @@ def main(argv):
             print("exact16  no expected-16%s.sha256: the hashes below are not compared" % SUFFIX)
         kept16 = False
         for r in arg("--routes", ",".join(ROUTES)).split(","):
-            m16 = Exact16(r)
+            m16 = T3Token() if r == "t3-token" else Exact16(r)
             t0 = time.time()
             h16l, h16c, cont, lg = prompt_run(m16, 8, keep=not kept16)
             ok16 = (h16l, h16c) == e16
@@ -1372,6 +1532,14 @@ def main(argv):
                 print("         t3 kernel %s; digit adds, Horner adds, values recoded, recoding operations: %s" % (
                     os.path.basename(m16.t3.path), "; ".join("%s %s" % (k, ", ".join("{:,}".format(int(v)) for v in c))
                                                              for k, c in m16.t3.cnt.items())))
+            if r == "t3-token":
+                c = m16.counters()
+                print("         t3-token kernel %s; per site add, horner, shift, shift by data, logic, look, read: %s; "
+                      "clamped %d, p held %d, brackets failed %d" % (
+                          os.path.basename(m16.path), "; ".join("%s %s" % (s, ", ".join("{:,}".format(v) for v in
+                                                                                      list(c[s].values())[:7]))
+                                                                for s in list(c)[:8]), c["clamped"], c["held"],
+                          c["failed"]))
             if not kept16:
                 print("         peaks (real) / clamps: %s" % peaks_line(m16))
                 if arg("--peaks", None):
