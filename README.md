@@ -225,6 +225,7 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 | `dec`, depth | 2 levels, 264 LUT-6 | 2 levels, 260 LUT-6 |
 | `bar`, size | 512 LUT-6 | 486 LUT-6 |
 | `bar`, depth | 4 levels, 512 LUT-6 | 4 levels, 486 LUT-6 |
+| `router`, depth | 3 levels, 25 LUT-6 | 3 levels, 22 LUT-6 |
 | `sixteen`, size | 3282958 LUT-6 | 12691 LUT-6 |
 | `twenty`, size | 4166467 LUT-6 | 12719 LUT-6 |
 | `twentythree`, size | 470892 LUT-6 | 12744 LUT-6 |
@@ -249,6 +250,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 [`hardware/epfl-bar/`](hardware/epfl-bar/) holds `bar` at 486 LUT-6 and 4 levels where the best published has 512, proved equal to the benchmark by ABC.
 
 [`hardware/epfl-max/`](hardware/epfl-max/) holds `max` for the size table at 510 LUT-6 where the best published has 511, proved equal to the benchmark by ABC.
+
+[`hardware/epfl-router/`](hardware/epfl-router/) holds `router` for the depth table at 22 LUT-6 and 3 levels, the minimum, where the best published has 25, proved equal to the benchmark by ABC.
 
 [`hardware/divider/udiv.v`](hardware/divider/) is a drop-in unsigned divider: 4,889 cells at 64 bits on Lattice ECP5, placed and routed, where the Verilog operators take 12,246.
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.
