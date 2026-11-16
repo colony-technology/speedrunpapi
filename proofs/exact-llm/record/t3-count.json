@@ -1,0 +1,73 @@
+{
+ "model": "SmolLM2-135M",
+ "window": "last position, context 64, batch 1",
+ "next token": 376,
+ "per kind": {
+  "weights": {
+   "digit adds and subtracts": 459184492,
+   "Horner adds": 6549504,
+   "values recoded": 0,
+   "recoding operations": 0
+  },
+  "peeled": {
+   "digit adds and subtracts": 1408559,
+   "Horner adds": 6442304,
+   "values recoded": 409344,
+   "recoding operations": 2247228
+  },
+  "attention": {
+   "digit adds and subtracts": 11875560,
+   "Horner adds": 1658880,
+   "values recoded": 1105920,
+   "recoding operations": 5900826
+  },
+  "element-wise": {
+   "digit adds and subtracts": 1271526,
+   "Horner adds": 4451136,
+   "values recoded": 289152,
+   "recoding operations": 1515461
+  }
+ },
+ "attention split": {
+  "scores q16.k16": {
+   "digit adds and subtracts": 5007459,
+   "Horner adds": 552960
+  },
+  "context p.vh": {
+   "digit adds and subtracts": 900330,
+   "Horner adds": 552960
+  },
+  "context p.vl": {
+   "digit adds and subtracts": 5967771,
+   "Horner adds": 552960
+  }
+ },
+ "weight streams": {
+  "nonzero digits": 459184492,
+  "output rows": 204672,
+  "words": 462459244,
+  "bytes": 924918488
+ },
+ "weight streams, built once (this run)": {
+  "digit adds and subtracts": 0,
+  "Horner adds": 0,
+  "values recoded": 129429504,
+  "recoding operations": 711700313
+ },
+ "seconds": {
+  "load and prefill of 63": 30.0,
+  "the counted forward": 2.7
+ },
+ "totals": {
+  "weight products: digit adds": 459184492,
+  "weight products: Horner adds": 6549504,
+  "peeled terms: digit adds": 1408559,
+  "peeled terms: Horner adds": 6442304,
+  "variable by variable (attention): digit adds": 11875560,
+  "variable by variable (attention): Horner adds": 1658880,
+  "element-wise: digit adds": 1271526,
+  "element-wise: Horner adds": 4451136,
+  "adds and subtracts in all products": 492841961,
+  "values recoded at run time (a sign look each)": 1804416
+ }
+}
