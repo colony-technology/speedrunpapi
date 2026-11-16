@@ -172,21 +172,25 @@ Limits of t3-token:
 
 The guards behind these limits are comparisons outside the counted machine, like the address arithmetic: the lane, position and token of each step, the norm's shift (at most 16), and every read of the blob. A failed guard counts as a failure, so `check` prints DIFFERENT.
 
-`rv32/`: the same `t3_token.c` built freestanding for rv32i (no M extension), one lane, with `main_rv32.c`, `start.S` and `virt.ld` for QEMU's `virt` machine (`build.sh`, `run.sh`, `prompt_host.py`). The guest reads the blob by semihosting, counts instructions per token with `rdinstret`, and prints the SHA-256 of each token's logits. The program is built and scanned: the linked program has no multiply or divide instruction and calls no library multiply or divide (`t3_nomul.py`). It has not been run yet.
+Rerun of this code on the M1, with the kernel, the blob and the streams built afresh (`record/t3-token-rerun.txt`):
+- `check --routes t3-token`: exact MATCH; t3-token MATCH, 0 clamped, 0 brackets or guards failed; the kernel's counters equal to the first run's;
+- `t3_nomul.py`: `t3_token.c`'s kernel has 3,964 instructions and `t3.c`'s 519, none a multiply or divide.
 
 ### t3-token on rv32i, no multiplier
 
-`rv32/`: the same `t3_token.c`, one lane, bare metal on QEMU 11.1.3 `virt` with `-cpu rv32,m=false` (no M extension: a multiply would trap), 128 MB, `-icount shift=0`. The guest reads the blob by semihosting into one 33 MB stream buffer and prints over the UART. The linked ELF (kernel, main, SHA-256) has 8,358 instructions, none from the M extension, and no library multiply or divide. Prompt 12 of the check set, 5 tokens:
+`rv32/`: the same `t3_token.c`, one lane, bare metal on QEMU 11.1.3 `virt` with `-cpu rv32,m=false` (no M extension: a multiply would trap), 128 MB, `-icount shift=0` (`build.sh`, `run.sh`; `main_rv32.c`, `start.S`, `virt.ld`). The guest reads the blob by semihosting into one 33 MB stream buffer, counts each token's instructions with `rdinstret`, and prints the SHA-256 of each token's logits over the UART. `prompt_host.py` prints the host kernel's lines for the same prompt. The linked ELF (kernel, main, SHA-256) has 8,499 instructions, none from the M extension, and calls no library multiply or divide. Prompt 12 of the check set, 5 tokens:
 
 | position | SHA-256 of the logits, rv32i = host (arm64) | rv32i instructions for the token |
 | --- | --- | ---: |
-| 0 | `439c0173…c3f06cd7` | 8,511,910,785 |
-| 1 | `52170c71…9e565ec6` | 8,526,350,852 |
-| 2 | `5140737c…90113314` | 8,531,326,551 |
-| 3 | `26347818…c43ea376` | 8,536,253,962 |
-| 4 | `6bf20ca1…8c800428` | 8,538,488,676 |
+| 0 | `439c0173…c3f06cd7` | 8,511,295,149 |
+| 1 | `52170c71…9e565ec6` | 8,525,735,169 |
+| 2 | `5140737c…90113314` | 8,530,710,870 |
+| 3 | `26347818…c43ea376` | 8,535,638,280 |
+| 4 | `6bf20ca1…8c800428` | 8,537,873,008 |
 
-Each position matches the host and gives the same greedy next token. 22 s of wall time for the 5 tokens on the M1. `record/t3-rv32-qemu.txt`.
+Each position matches the host and gives the same greedy next token. The kernel's count of failed brackets and guards is 0. `record/t3-token-rerun.txt` has this run. `record/t3-rv32-qemu.txt` has the first run, of the kernel before its guards: the same hashes, with 8,358 instructions in the ELF and about 615,600 more instructions per token. The compiler laid out the kernel differently; the counted operations are the same.
+
+What ran on the emulator and what did not: one prompt of 5 tokens, compared with the host kernel's logits position by position. Not the 64-prompt check and its pinned pair; not a RISC-V chip.
 
 ## Larger models
 
@@ -428,8 +432,9 @@ Commands:
 | `routes_test.py` | the three routes against int64 products; t3 too where a C compiler is installed, not on Windows, with every 16-bit value through the stream and 200,081 element-wise pairs |
 | `t3.c`, `t3_nomul.py`, `t3_count.py`, `t3_rv32.c` | the t3 kernel; its disassembly checked for multipliers; its counters per token; the stream machine for rv32i |
 | `record/t3-m1.txt`, `record/t3-m1-rerun.txt`, `record/t3-count.json` | every line of the t3 check on the M1, and of its rerun with the kernel and streams built afresh; the counters per token from `t3_count.py` |
-| `rv32/`: `build.sh`, `run.sh`, `main_rv32.c`, `start.S`, `virt.ld`, `prompt_host.py` | `t3_token.c` on rv32i under QEMU: build and scan, run, the guest program, its start, its memory map, the host's lines for the same prompt (built and scanned; not run yet) |
+| `rv32/`: `build.sh`, `run.sh`, `main_rv32.c`, `start.S`, `virt.ld`, `prompt_host.py` | `t3_token.c` on rv32i under QEMU: build and scan, run, the guest program, its start, its memory map, the host's lines for the same prompt |
 | `t3_token.c`, `t3_token_count.py` | the whole token in the t3 machine (host library or freestanding rv32i); its 64 text tokens against f64 and its counters by site |
+| `record/t3-token-m1.txt`, `record/t3-token-count.json`, `record/t3-rv32-qemu.txt`, `record/t3-token-rerun.txt` | every line of the first t3-token check on the M1; its counters per token; the first QEMU run, before the guards; the rerun of this code: check, scans, the rv32i build, prompt 12 on the host and under QEMU |
 | `spare_row.py`, `spare_row_test.py`, `record/spare-m1.txt`, `record/spare-campaign.json` | exact-16 with every product and look checked, the fault campaign; its test on synthetic operands; every line of the M1 runs; every fault of the campaign |
 | `count_ops.py`, `report_census.py`; `count_spare.py`, `report_spare.py`, `record/census-spare.json`, `record/census-spare.md` | the census of every NumPy operation per token, sorted into steps and looks: of exact and exact-16; of exact-16 with and without the spare-row checks, and its tables |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |

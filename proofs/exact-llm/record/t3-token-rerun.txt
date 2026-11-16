@@ -1,0 +1,137 @@
+Shortened after the run: the paths of the two kernels and the rv32i program, to their file names, in three lines below. Nothing else changed.
+branch trit-rungs-fix 7ad57f350c19787abd329fcfde579342f67b60f9 (proofs/exact-llm: t3-token on rv32i without the M extension under QEMU virt, prompt 12: the host's logits at all 5 positions, instructions per token)
+== check, load { 12.66 12.43 11.47 }, 20:56:12
+versions: Python 3.11.18, NumPy 2.4.6, onnxruntime 1.32.0; darwin arm64
+model SmolLM2-135M @ 93efa2f: 30 layers, width 576, 9/3 heads, feed-forward 1536, rotary base 100000, 134515008 weights
+exact    logits 30ed613b6036d08046fbdbf273a0fb7b8cc04fb284ca49e0296980eed9cee773  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH
+         clamped values: 0
+exact16  16-bit weights, int32 embedding and norms, weight statistics: ready in 0 s
+exact16  logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460  continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc  MATCH  route t3-token, 296 s, clamped 0
+         t3-token kernel t3k-8486cd8888bc.dylib; per site add, horner, shift, shift by data, logic, look, read: weights 1,597,502,847,668, 22,785,724,416, 0, 0, 0, 0, 0; peeled 8,339,145,749, 22,785,724,416, 1,424,107,776, 0, 4,272,323,328, 24,209,832,192, 0; attention 17,799,357,848, 4,679,994,240, 86,132,700, 0, 258,398,100, 1,464,255,900, 0; element-wise 5,812,811,631, 18,166,690,224, 937,756,728, 0, 2,813,270,184, 19,104,446,952, 0; divisions 9,156,868,312, 0, 1,834,423,617, 0, 0, 4,176,411,086, 0; square roots 13,202,338, 0, 10,870,656, 0, 0, 7,003,227, 0; other 7,245,381,953, 0, 2,467,607,915, 1,828,200,796, 206,366,940, 5,713,658,375, 452,811,960; checks 148,890,381, 0, 0, 0, 0, 148,678,162, 0; clamped 0, p held 20174, brackets and guards failed 0
+         peaks (real) / clamps: 
+check    every pair MATCH, 445 s
+      445.69 real       479.30 user        47.82 sys
+exit 0
+           802406400  maximum resident set size
+== nomul-t3-fec42b27b94a, load { 12.66 12.43 11.47 }, 20:56:12
+object t3-fec42b27b94a.dylib
+_t3_compile_masks         76 instructions; multiply or divide: none
+_t3_compile_fill         169 instructions; multiply or divide: none
+_t3_run                   97 instructions; multiply or divide: none
+_run_rows                109 instructions; multiply or divide: none
+_t3_mul                   53 instructions; multiply or divide: none
+__stubs                   15 instructions; multiply or divide: none
+histogram, all functions (519 instructions): add 71, mov 57, cmp 37, b.eq 32, ldr 29, b 28, stp 21, strh 21, tst 21, ldp 20, sub 19, b.lt 13, ldrh 12, orr 10, adrp 9, csel 9, ldurh 9, and 8, str 8, bl 6, lsr 6, movi.2d 6, add.2d 5, br 5, cbz 5, lsl 5, ret 5, subs 5, cinc 4, b.ge 3, b.ne 3, cbnz 3, add.4s 2, b.hi 2, b.hs 2, cneg 2, eor 2, saddw.2d 2, saddw2.2d 2, strb 2, sub.4s 2, b.lo 1, blr 1, ldrb 1, ldur 1, neg 1, stur 1
+multiply, multiply-add or divide instructions: 0
+NO MULTIPLIER
+        0.13 real         0.03 user         0.06 sys
+exit 0
+            14761984  maximum resident set size
+== nomul-t3k-8486cd8888bc, load { 12.66 12.43 11.47 }, 20:56:12
+object t3k-8486cd8888bc.dylib
+_t3_io_read               26 instructions; multiply or divide: none
+_t3k_open_model          724 instructions; multiply or divide: none
+_rd_i64                   26 instructions; multiply or divide: none
+_t3k_step               1524 instructions; multiply or divide: none
+_rms                     272 instructions; multiply or divide: none
+_prepare                 164 instructions; multiply or divide: none
+_product                 287 instructions; multiply or divide: none
+_rope                    168 instructions; multiply or divide: none
+_t3k_open                 24 instructions; multiply or divide: none
+_t3k_counters             31 instructions; multiply or divide: none
+_fdiv                     75 instructions; multiply or divide: none
+_block16                  98 instructions; multiply or divide: none
+_run_stream              202 instructions; multiply or divide: none
+_job_run                 121 instructions; multiply or divide: none
+_cache_at                 91 instructions; multiply or divide: none
+_compile_row             110 instructions; multiply or divide: none
+__stubs                   21 instructions; multiply or divide: none
+histogram, all functions (3964 instructions): add 660, mov 590, ldr 493, str 406, adrp 242, cmp 237, b 109, ldp 102, lsl 96, bl 93, stp 89, and 67, sub 62, lsr 61, b.ne 57, csel 53, b.eq 46, b.hi 38, csinc 35, tst 32, cbz 31, sbfx 29, b.mi 28, asr 24, subs 18, cmn 16, ret 16, b.lt 15, ccmp 15, neg 15, eor 14, add.2d 13, cneg 13, b.gt 12, ldur 12, movi.2d 12, cinc 8, b.ls 7, br 7, b.ge 6, b.hs 6, strh 6, tbnz 6, b.lo 5, movk 5, add.4s 4, bic 4, saddw.2d 4, saddw2.2d 4, sub.4s 4, b.pl 3, cset 3, ldrh 3, tbz 3, adds 2, b.le 2, cbnz 2, ldrsh 2, ldrsw 2, ldurh 2, mvn 2, orr 2, stur 2, bfi 1, blr 1, ldrb 1, sshll.2d 1, sshll2.2d 1, strb 1, ubfx 1
+multiply, multiply-add or divide instructions: 0
+NO MULTIPLIER
+        0.07 real         0.04 user         0.02 sys
+exit 0
+            15761408  maximum resident set size
+== build, load { 12.66 12.43 11.47 }, 20:56:13
+object t3_rv32.elf
+_start                    11 instructions; multiply or divide: none
+.Ltmp0                     3 instructions; multiply or divide: none
+.Ltmp1                     2 instructions; multiply or divide: none
+t3_semihost                4 instructions; multiply or divide: none
+t3k_arena                  6 instructions; multiply or divide: none
+t3k_open_model            18 instructions; multiply or divide: none
+.Lpcrel_hi1               74 instructions; multiply or divide: none
+.Lpcrel_hi2              294 instructions; multiply or divide: none
+.Lpcrel_hi3              932 instructions; multiply or divide: none
+alloc                     32 instructions; multiply or divide: none
+t3k_step                  28 instructions; multiply or divide: none
+.Lpcrel_hi5               74 instructions; multiply or divide: none
+.Lpcrel_hi6              124 instructions; multiply or divide: none
+.Lpcrel_hi7              662 instructions; multiply or divide: none
+.Lpcrel_hi8              129 instructions; multiply or divide: none
+.Lpcrel_hi9               81 instructions; multiply or divide: none
+.Lpcrel_hi11              79 instructions; multiply or divide: none
+.Lpcrel_hi10             569 instructions; multiply or divide: none
+.Lpcrel_hi14              77 instructions; multiply or divide: none
+.Lpcrel_hi13              65 instructions; multiply or divide: none
+.Lpcrel_hi12              50 instructions; multiply or divide: none
+.Lpcrel_hi17              89 instructions; multiply or divide: none
+.Lpcrel_hi16              56 instructions; multiply or divide: none
+.Lpcrel_hi15             146 instructions; multiply or divide: none
+.Lpcrel_hi18            1451 instructions; multiply or divide: none
+.Lpcrel_hi19             162 instructions; multiply or divide: none
+rms                       19 instructions; multiply or divide: none
+.Lpcrel_hi20             699 instructions; multiply or divide: none
+prepare                   20 instructions; multiply or divide: none
+.Lpcrel_hi21             331 instructions; multiply or divide: none
+product                   19 instructions; multiply or divide: none
+.Lpcrel_hi22              25 instructions; multiply or divide: none
+.Lpcrel_hi23              28 instructions; multiply or divide: none
+.Lpcrel_hi24             657 instructions; multiply or divide: none
+rope                      14 instructions; multiply or divide: none
+.Lpcrel_hi25             447 instructions; multiply or divide: none
+fdiv                      12 instructions; multiply or divide: none
+.Lpcrel_hi26             184 instructions; multiply or divide: none
+block16                   17 instructions; multiply or divide: none
+.Lpcrel_hi27             294 instructions; multiply or divide: none
+cache_at                  48 instructions; multiply or divide: none
+.Lpcrel_hi28             133 instructions; multiply or divide: none
+compile_row               19 instructions; multiply or divide: none
+.Lpcrel_hi29             150 instructions; multiply or divide: none
+memset                     8 instructions; multiply or divide: none
+memcpy                    10 instructions; multiply or divide: none
+t3_io_read                14 instructions; multiply or divide: none
+.Lpcrel_hi0               46 instructions; multiply or divide: none
+main                      14 instructions; multiply or divide: none
+.Lpcrel_hi4               11 instructions; multiply or divide: none
+sha_block                 62 instructions; multiply or divide: none
+histogram, all functions (8499 instructions): lw 1217, sw 1097, add 918, addi 682, li 531, mv 502, slli 423, sltu 365, or 293, srli 281, seqz 259, j 238, and 223, beqz 178, sub 156, auipc 137, bnez 112, jalr 84, bne 76, srai 73, lui 70, neg 59, bltz 57, snez 47, sb 46, andi 42, xor 38, lbu 36, beq 28, slt 28, sltiu 25, bgeu 22, bgez 22, sll 22, srl 22, ret 19, not 15, bltu 10, sgtz 7, lhu 6, sh 6, xori 6, rdinstreth 4, sra 4, lh 3, blez 2, blt 2, rdinstret 2, bge 1, ebreak 1, nop 1, zext.b 1
+multiply, multiply-add or divide instructions: 0
+NO MULTIPLIER
+        1.19 real         0.54 user         0.23 sys
+exit 0
+            80314368  maximum resident set size
+== host, load { 12.28 12.36 11.45 }, 20:56:17
+prompt 12: 5 tokens [49, 555, 314, 16311, 30]
+pos 00 sha256 439c0173829535f4a07c27cd458b6abbafc8c3e35595837f61231e76c3f06cd7 next 0000001e
+pos 01 sha256 52170c7118efd0f801a8b020e16be45774ddf362363972784e0b1bc89e565ec6 next 00000269
+pos 02 sha256 5140737c084869f2b050c9aa02bc03eba2cc9582451de20d9a10242390113314 next 000000fd
+pos 03 sha256 2634781800afd102282bf8c978c082ab09981415e1fd54d8aee331e2c43ea376 next 000002e2
+pos 04 sha256 6bf20ca1905c61b62b1a00d2ea52f509066046c2971f7a01780b5ce38c800428 next 000000c6
+        3.30 real         3.30 user         1.32 sys
+exit 0
+            92323840  maximum resident set size
+== guest, load { 10.50 11.95 11.32 }, 20:56:40
+t3 rv32i: open
+t3 rv32i: model open, tokens 05
+pos 00 sha256 439c0173829535f4a07c27cd458b6abbafc8c3e35595837f61231e76c3f06cd7 instret 00000001fb500ead next 0000001e
+pos 01 sha256 52170c7118efd0f801a8b020e16be45774ddf362363972784e0b1bc89e565ec6 instret 00000001fc2c6501 next 00000269
+pos 02 sha256 5140737c084869f2b050c9aa02bc03eba2cc9582451de20d9a10242390113314 instret 00000001fc785156 next 000000fd
+pos 03 sha256 2634781800afd102282bf8c978c082ab09981415e1fd54d8aee331e2c43ea376 instret 00000001fcc38108 next 000002e2
+pos 04 sha256 6bf20ca1905c61b62b1a00d2ea52f509066046c2971f7a01780b5ce38c800428 instret 00000001fce59a70 next 000000c6
+t3 rv32i: done, brackets and guards failed 00000000
+       23.45 real        18.93 user         1.59 sys
+exit 0
+            83394560  maximum resident set size
+== host against guest (position, sha256, next)
+equal at all 5 positions
