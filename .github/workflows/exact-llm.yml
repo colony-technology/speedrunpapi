@@ -12,12 +12,15 @@ jobs:
   hashes:
     name: hashes (${{ matrix.model }}, ${{ matrix.os }}${{ matrix.routes && format(', {0}', matrix.routes) || '' }})
     runs-on: ${{ matrix.os }}
-    timeout-minutes: ${{ matrix.model == 'SmolLM2-135M' && 90 || 120 }}
+    timeout-minutes: ${{ (matrix.model == 'SmolLM2-135M' && matrix.routes != 't3') && 90 || 120 }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel, windows-latest, windows-11-arm]
         model: [SmolLM2-135M, SmolLM2-360M]
+        # check's default routes. An include entry with a route of its own would overwrite this value, so it becomes
+        # a job of its own instead of being merged into the default job of the same model and runner
+        routes: ['']
         # SmolLM2-1.7B, one route per job, each inside 120 minutes in run 43759765827: f64 on the six runners, float32
         # beside it on ubuntu-24.04-arm alone (53 min; 86 to over 120 elsewhere); f32 and i8 on the non-Windows
         # runners, except f32 on macos-latest and macos-15-intel (each ran past 120 minutes: macos-latest in run 43759765827,
@@ -35,6 +38,11 @@ jobs:
           - {model: SmolLM2-1.7B, os: ubuntu-latest, routes: i8, args: "--routes i8 --no-float"}
           - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: i8, args: "--routes i8 --no-float"}
           - {model: SmolLM2-1.7B, os: macos-15-intel, routes: i8, args: "--routes i8 --no-float"}
+        # the t3 route (t3.c, built by the runner's C compiler; the Windows runners have none) on the 135M: Linux
+        # x86-64 and arm64 with gcc, macOS arm64 with Apple clang; then t3_nomul.py on the kernel check built
+          - {model: SmolLM2-135M, os: ubuntu-latest, routes: t3, args: "--routes t3 --no-float --no-onnx"}
+          - {model: SmolLM2-135M, os: ubuntu-24.04-arm, routes: t3, args: "--routes t3 --no-float --no-onnx"}
+          - {model: SmolLM2-135M, os: macos-latest, routes: t3, args: "--routes t3 --no-float --no-onnx"}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -57,3 +65,8 @@ jobs:
         shell: bash
         working-directory: proofs/exact-llm
         run: python -u exact_llm.py check --model ${{ matrix.model }} ${{ matrix.args }}
+      - name: The t3 kernel that check built, disassembled; fails on any multiply, multiply-add or divide instruction or library call
+        if: matrix.routes == 't3'
+        shell: bash
+        working-directory: proofs/exact-llm
+        run: python t3_nomul.py
