@@ -160,9 +160,9 @@ Seconds are the hash run of the exact-16 route. Before it, the 16-bit weights, i
 The workflow runs each 1.7B job that finished here:
 - f64 on all six runners, float32 only beside it on ubuntu-24.04-arm (53 minutes);
 - f32 on ubuntu-latest and ubuntu-24.04-arm;
-- i8 on the four non-Windows runners.
+- i8 on ubuntu-latest, ubuntu-24.04-arm and macos-15-intel.
 
-The f32 jobs on macos-latest and macos-15-intel are left out because they ran past 120 minutes: on macos-latest the exact-16 stage alone in run 43759765827, on macos-15-intel in run [43777602992](https://github.com/lmtlssss/speedrunpapi/actions/runs/43777602992) after 6,231 s in the first. Every printed line: `record/ci-43759765827.txt`.
+The f32 jobs on macos-latest and macos-15-intel are left out because they ran past 120 minutes: on macos-latest the exact-16 stage alone in run 43759765827, on macos-15-intel in run [43777602992](https://github.com/lmtlssss/speedrunpapi/actions/runs/43777602992) after 6,231 s in the first. The i8 job on macos-latest is left out too: it took 4,816 s in run 43759765827 and ran past 120 minutes twice in run [43806351228](https://github.com/lmtlssss/speedrunpapi/actions/runs/43806351228). Every printed line: `record/ci-43759765827.txt`.
 
 The bound at 1.7B: the widest product is the down projection, 8,192 inputs. On f64, 8,192 · (2^15 − 1)^2 < 2^43, under 2^53. On f32 every product at 1.7B is wider than 1,024 inputs, so every one is chunked: 2 chunks at width 2,048 and 8 for the down projection. On i8, 8,192 · 255^2 < 2^29, under 2^31, and n ≤ 33,025.
 

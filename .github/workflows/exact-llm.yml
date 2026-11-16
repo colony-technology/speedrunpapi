@@ -21,7 +21,8 @@ jobs:
         # SmolLM2-1.7B, one route per job, each inside 120 minutes in run 43759765827: f64 on the six runners, float32
         # beside it on ubuntu-24.04-arm alone (53 min; 86 to over 120 elsewhere); f32 and i8 on the non-Windows
         # runners, except f32 on macos-latest and macos-15-intel (each ran past 120 minutes: macos-latest in run 43759765827,
-        # macos-15-intel in run 43777602992)
+        # macos-15-intel in run 43777602992) and i8 on macos-latest (4,816 s in run 43759765827, past 120 minutes twice
+        # in run 43806351228)
         include:
           - {model: SmolLM2-1.7B, os: ubuntu-latest, routes: f64, args: "--routes f64 --no-float"}
           - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: f64, args: "--routes f64"}
@@ -33,7 +34,6 @@ jobs:
           - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: f32, args: "--routes f32 --no-float"}
           - {model: SmolLM2-1.7B, os: ubuntu-latest, routes: i8, args: "--routes i8 --no-float"}
           - {model: SmolLM2-1.7B, os: ubuntu-24.04-arm, routes: i8, args: "--routes i8 --no-float"}
-          - {model: SmolLM2-1.7B, os: macos-latest, routes: i8, args: "--routes i8 --no-float"}
           - {model: SmolLM2-1.7B, os: macos-15-intel, routes: i8, args: "--routes i8 --no-float"}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
