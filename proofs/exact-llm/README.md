@@ -148,6 +148,23 @@ On the runners, the workflow runs `check --model SmolLM2-135M --routes t3 --no-f
 
 Known limits of t3: `t3_run` does not check what `pthread_create` returns, so a thread that fails to start leaves its rows unset, which `check` prints as DIFFERENT; an input index is 14 bits, so a product has at most 16,383 inputs (for the context products p·vh and p·vl, 16,383 positions).
 
+### t3-token: the whole token
+
+`exact16-t3-token` (`check --routes t3-token`, class `T3Token`) runs every step of exact-16 in `t3_token.c`, from the embedding row to the greedy choice. That covers the products, the divisions and square roots with their bracket checks, the roundings, clamps, block shifts, peel selection, softmax, the exp, SiLU, cos and sin table reads and the argmax. NumPy only moves data: token ids in, logits out. The model is one file (`t3_blob`, 1,311,091,624 bytes): a directory, the tables, the norms, the int32 embedding, and per matrix its 16-bit weights, row scales, row offsets and stream. Each sequence runs token by token in its own lane with its own key-value cache. The weight products run all lanes at once.
+
+| operation | in `t3_token.c` |
+| --- | --- |
+| division, `fdiv` (floor, as NumPy `//`) | restoring: the divisor doubled until the next double passes \|num\|, then per quotient digit q = q + q, t = r − d, sign test, keep t and q + 1 if t ≥ 0, d halved; a negative num: −q, minus 1 if r ≠ 0. Bracket: 0 ≤ r < den, one sign test |
+| square root, `isqrt` (floor) | digit by digit: the highest power of 4 at or below n, then per digit t = res + bit, sign test of r − t, res halved (+ bit); bit / 4. Bracket: n − s² ≤ 2s, one sign test |
+| shift by a computed amount (block shift, norm shift, score shift) | the shift instruction with a register amount, counted apart (`shift by data`) |
+| product of two variables, product by a table or norm weight | the smaller-bounded operand recoded into signed digits, Horner; one look per digit position read |
+
+| Apple M1, 64 prompts, one `check` process | logits | continuations | seconds |
+| --- | --- | --- | --- |
+| `exact16-t3-token`, 64 lanes, 8 threads | `b0cc875f…0b4460` | `a800ebad…7613cc` | 247 |
+
+MATCH, 0 clamped, 20,174 p held at 2^15 − 1 (the count of batch 1 above), 0 brackets failed. The kernel's counters for the last token of the first 64 text tokens (position 63, the census window; `t3_token_count.py`, every position equal to `exact16-f64`): 519,274,279 operations. That is 477,853,222 adds and 20,175,744 Horner adds, 2,052,875 constant shifts and 535,296 shifts by data, 2,268,288 logic operations, 16,239,094 looks and 149,760 table reads. The 52,477 divisions take 1,292,392 sign tests and the 61 square roots 2,013, plus 52,538 bracket tests. `record/t3-token-m1.txt`, `record/t3-token-count.json`.
+
 ## Larger models
 
 One code path: the sizes come from each model's pinned `config.json`, the clamps by rule from its own weights (above), the bound per route from the width. `python exact_llm.py check --model SmolLM2-360M` runs exact-16 on its three routes, float32 and onnxruntime.
@@ -388,6 +405,7 @@ Commands:
 | `routes_test.py` | the three routes against int64 products; t3 too where a C compiler is installed, not on Windows, with every 16-bit value through the stream and 200,081 element-wise pairs |
 | `t3.c`, `t3_nomul.py`, `t3_count.py`, `t3_rv32.c` | the t3 kernel; its disassembly checked for multipliers; its counters per token; the stream machine for rv32i |
 | `record/t3-m1.txt`, `record/t3-m1-rerun.txt`, `record/t3-count.json` | every line of the t3 check on the M1, and of its rerun with the kernel and streams built afresh; the counters per token from `t3_count.py` |
+| `t3_token.c`, `t3_token_count.py` | the whole token in the t3 machine (host library or freestanding rv32i); its 64 text tokens against f64 and its counters by site |
 | `spare_row.py`, `spare_row_test.py`, `record/spare-m1.txt`, `record/spare-campaign.json` | exact-16 with every product and look checked, the fault campaign; its test on synthetic operands; every line of the M1 runs; every fault of the campaign |
 | `count_ops.py`, `report_census.py`; `count_spare.py`, `report_spare.py`, `record/census-spare.json`, `record/census-spare.md` | the census of every NumPy operation per token, sorted into steps and looks: of exact and exact-16; of exact-16 with and without the spare-row checks, and its tables |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
