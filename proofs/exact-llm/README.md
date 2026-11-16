@@ -288,6 +288,12 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | route f32 | the same pair, MATCH | the same pair, MATCH; no check fired |
 | route i8 | the same pair, MATCH | the same pair, MATCH; no check fired |
 
+**What the checks cost**, per token on SmolLM2-135M, at the last position of a 64-token context:
+- steps (the multiply-adds of the products): 138,414,912 → 139,220,620, that is +805,708 (+0.58%);
+- looks (each value read for its magnitude: roundings, clamps, comparisons, bit lengths, divisions, square roots, table reads): 2,108,400 → 4,366,005, that is +2,257,605 (+107.08%).
+
+The census is `count_spare.py`, then `report_spare.py` (`record/census-spare.json`, `record/census-spare.md`). It counts every NumPy operation of the forward pass with and without the checks, on zero weights of the pinned shapes: no count depends on a value. `report_census.py` gives the rules that sort each operation into steps, looks and the rest.
+
 Checks made in each checked run: spare rows 115,584; input sums 104,064; rounding brackets 256,534; division brackets 58,368; square root brackets 23,424; bit length brackets 92,928; clamps made twice 127,488; peel selections made twice 46,464; table reads made twice 23,808; softmax maxima made twice 11,520; held p made twice 11,520; v splits put together 11,520.
 
 Fault campaign: one fault per run, 100 runs of each kind, each run against its clean run. Route f64, prompt 0 (7 tokens) and 4 generated tokens. The fault is armed at an element drawn at random among the run's fault points of its kind (looks 7,987,600; product inputs 1,707,230; weights 537,919,488; product sums 2,412,840), at a bit drawn within the largest bit length seen at that site in the clean run (16 for a weight). Seed 1.
@@ -304,6 +310,7 @@ Not caught and changed a logit: 0 of 400. The column "changed a logit" is the ru
 Commands:
 - `python spare_row.py hash --route f64` (or `f32`, `i8`; add `--plain` for every check off);
 - `python spare_row.py campaign --n 100 --seed 1 --route f64`;
+- `python count_spare.py . census-spare.json`, then `python report_spare.py census-spare.json`: the census and its tables. It reads the pinned config.json only, and takes 10 s on the M1;
 - `python spare_row_test.py`: synthetic operands, no model weights. It checks `locate()`, the checked product and attention against Exact16's, and faults of each kind caught and repaired.
 
 ## Prior work
@@ -327,6 +334,7 @@ Commands:
 | `record/peaks-16.json`, `record/peaks-16-SmolLM2-360M.json` | each site's peak, clamp, margin and clamped count, from `check --peaks` |
 | `routes_test.py` | the three routes against int64 products |
 | `spare_row.py`, `spare_row_test.py`, `record/spare-m1.txt`, `record/spare-campaign.json` | exact-16 with every product and look checked, the fault campaign; its test on synthetic operands; every line of the M1 runs; every fault of the campaign |
+| `count_ops.py`, `report_census.py`; `count_spare.py`, `report_spare.py`, `record/census-spare.json`, `record/census-spare.md` | the census of every NumPy operation per token, sorted into steps and looks: of exact and exact-16; of exact-16 with and without the spare-row checks, and its tables |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
 | `expected-16.sha256`, `record/exact16-m1.txt`, `record/exact16-machines.txt` | the two exact-16 hashes; every exact-16 line of the M1; every line of the six runners, run 43736296963 |
 | `make_tables.py`, `tables/` | the tables: exp, SiLU, and cos and sin for the rotary bases 100,000 and 130,000 |
