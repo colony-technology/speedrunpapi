@@ -174,6 +174,20 @@ The guards behind these limits are comparisons outside the counted machine, like
 
 `rv32/`: the same `t3_token.c` built freestanding for rv32i (no M extension), one lane, with `main_rv32.c`, `start.S` and `virt.ld` for QEMU's `virt` machine (`build.sh`, `run.sh`, `prompt_host.py`). The guest reads the blob by semihosting, counts instructions per token with `rdinstret`, and prints the SHA-256 of each token's logits. The program is built and scanned: the linked program has no multiply or divide instruction and calls no library multiply or divide (`t3_nomul.py`). It has not been run yet.
 
+### t3-token on rv32i, no multiplier
+
+`rv32/`: the same `t3_token.c`, one lane, bare metal on QEMU 11.1.3 `virt` with `-cpu rv32,m=false` (no M extension: a multiply would trap), 128 MB, `-icount shift=0`. The guest reads the blob by semihosting into one 33 MB stream buffer and prints over the UART. The linked ELF (kernel, main, SHA-256) has 8,358 instructions, none from the M extension, and no library multiply or divide. Prompt 12 of the check set, 5 tokens:
+
+| position | SHA-256 of the logits, rv32i = host (arm64) | rv32i instructions for the token |
+| --- | --- | ---: |
+| 0 | `439c0173…c3f06cd7` | 8,511,910,785 |
+| 1 | `52170c71…9e565ec6` | 8,526,350,852 |
+| 2 | `5140737c…90113314` | 8,531,326,551 |
+| 3 | `26347818…c43ea376` | 8,536,253,962 |
+| 4 | `6bf20ca1…8c800428` | 8,538,488,676 |
+
+Each position matches the host and gives the same greedy next token. 22 s of wall time for the 5 tokens on the M1. `record/t3-rv32-qemu.txt`.
+
 ## Larger models
 
 One code path: the sizes come from each model's pinned `config.json`, the clamps by rule from its own weights (above), the bound per route from the width. `python exact_llm.py check --model SmolLM2-360M` runs exact-16 on its three routes, float32 and onnxruntime.

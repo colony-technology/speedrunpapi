@@ -6,5 +6,5 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 RUN=$1
 QEMU=${QEMU:-qemu-system-riscv32}
 cd "$RUN"
-exec $QEMU -machine virt -cpu rv32,m=false,a=false,f=false,d=false,c=false -smp 1 -m 128M -nographic -bios none \
+exec $QEMU -machine virt -cpu rv32,m=false -smp 1 -m 128M -nographic -bios none \
   -icount shift=0 -semihosting-config enable=on,target=native -kernel "${ELF:-$HERE/out/t3_rv32.elf}"
