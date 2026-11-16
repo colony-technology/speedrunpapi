@@ -264,8 +264,47 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | products below 2^53, int64 below 2^63 | holds | `bounds.py` |
 | exact-16: every product within its route's bound, int64 below 2^63 | holds | `bounds16.py` |
 | exact-16 routes against int64 products: 7 shapes (2-D and the batched attention shapes, widths 1,023 to 1,536 across the f32 chunk edge) × 6 operand kinds (random; all +max, which puts every i8 digit at 255 and every f32 chunk at exactly 2^24; all −max; +max by −max; p-like; digit extremes, the eight values whose digits sit at the ends of both routes' ranges, mixed position by position), int64 and int16 right operands | 0 different on all three routes; the int16 digit splits equal the int64 ones for all 65,535 values; peel ties to the lower index | `routes_test.py` |
+| the spare row on synthetic operands: `locate()` on 2,000 single errors; a product of 96 inputs and 300 outputs and the attention of the 135M's heads, checked against Exact16's; 300 single faults each in a product's sums, weights and inputs and in the attention's sums, inputs and looks | 2,000 placed; checked equals Exact16's, no check fired; every fault caught, and with repair every output equals Exact16's | `spare_row_test.py` |
 | float32 against onnxruntime | top-1 equal at all 471 prompt and 8,176 text positions; largest logit difference 0.0006 | `distance.py DIR float32 onnx` |
 | notebook, its cells run as one script in a fresh directory with an empty cache, Apple M1 | downloads checked; exact MATCH (63 s); top-1 471 of 471; continuations 64 of 64 | `exact_llm.ipynb`, `make_notebook.py --check` |
+
+## The spare row: every product checked, a single wrong output found and computed again
+
+`spare_row.py` runs exact-16 with every product and every look checked as it is made, and corrects a single wrong value where the check can place it. The checks compute nothing new: with all of them on, the 64 prompts give exact-16's pair on each of the three routes.
+
+| check | how |
+| --- | --- |
+| products over the weights: q, k, v, o, gate, up, down, logits | T = x W in exact integers obeys, for each row of x, Σ_j T_j = x · c1 and Σ_j j·T_j = x · c2, with c1_i = Σ_j W_ij and c2_i = Σ_j j·W_ij (j = 1 … n), the two spare rows, made once from the stored weights. They are compared in int64 with wrap-around, that is modulo 2^64, with no tolerance |
+| products over the cache: the scores q · k, the context p · vh and p · vl | the same two sums. For each key and each v they are kept beside the cache as it is entered (64 adds each per new position) |
+| placing and repair | a single wrong output j gives e1 = e and e2 = j·e. With e = 2^k·u, u odd: j = (e2 / 2^k)·u^−1 modulo 2^(64 − k), unique while n < 2^(64 − k). That output is computed again from the stored weights and rounded |
+| product inputs | the spare rows cannot see an input read wrongly, because the product and its spare rows read the same wrong value. So the sum of each input vector is formed where the vector is made (`prepare`: `h` for q, k and v; `h` for gate and up). The product that reads it forms the same sum as one more row of ones; a wrong read is read again. The sum covers every word the product reads: the 16-bit values, the peeled values and their places, the shift |
+| looks | rounding, bit length, division and square root by their brackets (y·2^k − 2^(k−1) ≤ v < y·2^k + 2^(k−1); 2^(b−1) ≤ a < 2^b; q·d ≤ n < (q + 1)·d; s² ≤ n < (s + 1)²); the split of v by putting it back together (v = 2^15·vh + vl); the clamps, the held p, the table reads (exp, SiLU, cos and sin), the peel selection and the softmax maximum made twice and compared |
+
+**Caught and not placed.** An error whose lowest set bit k is so high that n·2^k reaches 2^64, for a product of n outputs, cannot be placed. The check fires and the row is left as it is. For a single flipped bit that means bit 49 or above of an int64 sum of the logits (49,152 outputs), bit 55 in q's 576, bit 58 in the context's 64. In the campaign's clean run no product sum is wider than 43 bits (`record/spare-campaign.json`, `widths`). So only a flip in the high bits that no sum uses can land there, and none in the campaign below did.
+
+| SmolLM2-135M, Apple M1, 64 prompts, batch 8 | every check off (`--plain`) | every check on |
+| --- | --- | --- |
+| route f64 | `b0cc875f…0b4460` / `a800ebad…7613cc` MATCH | the same pair, MATCH; no check fired |
+| route f32 | the same pair, MATCH | the same pair, MATCH; no check fired |
+| route i8 | the same pair, MATCH | the same pair, MATCH; no check fired |
+
+Checks made in each checked run: spare rows 115,584; input sums 104,064; rounding brackets 256,534; division brackets 58,368; square root brackets 23,424; bit length brackets 92,928; clamps made twice 127,488; peel selections made twice 46,464; table reads made twice 23,808; softmax maxima made twice 11,520; held p made twice 11,520; v splits put together 11,520.
+
+Fault campaign: one fault per run, 100 runs of each kind, each run against its clean run. Route f64, prompt 0 (7 tokens) and 4 generated tokens. The fault is armed at an element drawn at random among the run's fault points of its kind (looks 7,987,600; product inputs 1,707,230; weights 537,919,488; product sums 2,412,840), at a bit drawn within the largest bit length seen at that site in the clean run (16 for a weight). Seed 1.
+
+| fault | injected | changed a logit | changed a token | caught | caught by | repaired, hash equal to the clean run's |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| one bit of one product sum | 100 | 52 | 0 | 100 | spare rows 100 | 100 |
+| one bit of one weight as it is read | 100 | 64 | 0 | 100 | spare rows 100 | 100 |
+| one bit of one product input as it is read | 100 | 91 | 4 | 100 | input sums 100 | 100 |
+| one bit of the result of one look | 100 | 92 | 16 | 100 | clamp made twice 34; rounding bracket 48; division bracket 7; table read made twice 6; v split put together 5; held p made twice 1 | 100 |
+
+Not caught and changed a logit: 0 of 400. The column "changed a logit" is the run without repair. Every line: `record/spare-m1.txt`; every fault, with its site, bit and values: `record/spare-campaign.json`.
+
+Commands:
+- `python spare_row.py hash --route f64` (or `f32`, `i8`; add `--plain` for every check off);
+- `python spare_row.py campaign --n 100 --seed 1 --route f64`;
+- `python spare_row_test.py`: synthetic operands, no model weights. It checks `locate()`, the checked product and attention against Exact16's, and faults of each kind caught and repaired.
 
 ## Prior work
 
@@ -287,6 +326,7 @@ The matrix product is float64 sums of products of integer entries, in any order,
 | `expected-16-SmolLM2-360M.sha256`, `record/exact16-360m-m1.txt`, `record/ci-43754428621.txt` | the 360M's pair; every line of its M1 run; every line of the twelve jobs (135M and 360M on six runners) |
 | `record/peaks-16.json`, `record/peaks-16-SmolLM2-360M.json` | each site's peak, clamp, margin and clamped count, from `check --peaks` |
 | `routes_test.py` | the three routes against int64 products |
+| `spare_row.py`, `spare_row_test.py`, `record/spare-m1.txt`, `record/spare-campaign.json` | exact-16 with every product and look checked, the fault campaign; its test on synthetic operands; every line of the M1 runs; every fault of the campaign |
 | `measure16.py`, `record/exact16-table.txt` | the width table, one row per run |
 | `expected-16.sha256`, `record/exact16-m1.txt`, `record/exact16-machines.txt` | the two exact-16 hashes; every exact-16 line of the M1; every line of the six runners, run 43736296963 |
 | `make_tables.py`, `tables/` | the tables: exp, SiLU, and cos and sin for the rotary bases 100,000 and 130,000 |

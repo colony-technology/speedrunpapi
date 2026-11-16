@@ -1,0 +1,8052 @@
+{
+"seen": {
+"look": 7987600,
+"input": 1707230,
+"weight": 537919488,
+"sum": 2412840
+},
+"widths": {
+"look rotary table": 21,
+"look clamp": 31,
+"look bit length": 5,
+"look division": 44,
+"look square root": 22,
+"look rounding": 31,
+"look peel selection": 11,
+"input model.layers.0.self_attn.q_proj.weight": 17,
+"sum model.layers.0.self_attn.q_proj.weight": 33,
+"input model.layers.0.self_attn.k_proj.weight": 17,
+"sum model.layers.0.self_attn.k_proj.weight": 33,
+"input model.layers.0.self_attn.v_proj.weight": 17,
+"sum model.layers.0.self_attn.v_proj.weight": 32,
+"look v split": 5,
+"input scores q": 21,
+"sum scores q.k": 32,
+"look softmax maximum": 39,
+"look exp table": 25,
+"look held p": 15,
+"input context p": 15,
+"sum context p.vh": 19,
+"sum context p.vl": 30,
+"input model.layers.0.self_attn.o_proj.weight": 16,
+"sum model.layers.0.self_attn.o_proj.weight": 31,
+"input model.layers.0.mlp.gate_proj.weight": 17,
+"sum model.layers.0.mlp.gate_proj.weight": 34,
+"input model.layers.0.mlp.up_proj.weight": 17,
+"sum model.layers.0.mlp.up_proj.weight": 34,
+"look silu table": 22,
+"input model.layers.0.mlp.down_proj.weight": 19,
+"sum model.layers.0.mlp.down_proj.weight": 35,
+"input model.layers.1.self_attn.q_proj.weight": 19,
+"sum model.layers.1.self_attn.q_proj.weight": 34,
+"input model.layers.1.self_attn.k_proj.weight": 19,
+"sum model.layers.1.self_attn.k_proj.weight": 34,
+"input model.layers.1.self_attn.v_proj.weight": 19,
+"sum model.layers.1.self_attn.v_proj.weight": 33,
+"input model.layers.1.self_attn.o_proj.weight": 17,
+"sum model.layers.1.self_attn.o_proj.weight": 35,
+"input model.layers.1.mlp.gate_proj.weight": 17,
+"sum model.layers.1.mlp.gate_proj.weight": 33,
+"input model.layers.1.mlp.up_proj.weight": 17,
+"sum model.layers.1.mlp.up_proj.weight": 33,
+"input model.layers.1.mlp.down_proj.weight": 20,
+"sum model.layers.1.mlp.down_proj.weight": 36,
+"input model.layers.2.self_attn.q_proj.weight": 19,
+"sum model.layers.2.self_attn.q_proj.weight": 34,
+"input model.layers.2.self_attn.k_proj.weight": 19,
+"sum model.layers.2.self_attn.k_proj.weight": 34,
+"input model.layers.2.self_attn.v_proj.weight": 19,
+"sum model.layers.2.self_attn.v_proj.weight": 33,
+"input model.layers.2.self_attn.o_proj.weight": 17,
+"sum model.layers.2.self_attn.o_proj.weight": 34,
+"input model.layers.2.mlp.gate_proj.weight": 17,
+"sum model.layers.2.mlp.gate_proj.weight": 34,
+"input model.layers.2.mlp.up_proj.weight": 17,
+"sum model.layers.2.mlp.up_proj.weight": 34,
+"input model.layers.2.mlp.down_proj.weight": 23,
+"sum model.layers.2.mlp.down_proj.weight": 38,
+"input model.layers.3.self_attn.q_proj.weight": 19,
+"sum model.layers.3.self_attn.q_proj.weight": 34,
+"input model.layers.3.self_attn.k_proj.weight": 19,
+"sum model.layers.3.self_attn.k_proj.weight": 34,
+"input model.layers.3.self_attn.v_proj.weight": 19,
+"sum model.layers.3.self_attn.v_proj.weight": 34,
+"input model.layers.3.self_attn.o_proj.weight": 17,
+"sum model.layers.3.self_attn.o_proj.weight": 34,
+"input model.layers.3.mlp.gate_proj.weight": 17,
+"sum model.layers.3.mlp.gate_proj.weight": 33,
+"input model.layers.3.mlp.up_proj.weight": 17,
+"sum model.layers.3.mlp.up_proj.weight": 33,
+"input model.layers.3.mlp.down_proj.weight": 18,
+"sum model.layers.3.mlp.down_proj.weight": 33,
+"input model.layers.4.self_attn.q_proj.weight": 18,
+"sum model.layers.4.self_attn.q_proj.weight": 34,
+"input model.layers.4.self_attn.k_proj.weight": 18,
+"sum model.layers.4.self_attn.k_proj.weight": 34,
+"input model.layers.4.self_attn.v_proj.weight": 18,
+"sum model.layers.4.self_attn.v_proj.weight": 34,
+"input model.layers.4.self_attn.o_proj.weight": 17,
+"sum model.layers.4.self_attn.o_proj.weight": 34,
+"input model.layers.4.mlp.gate_proj.weight": 17,
+"sum model.layers.4.mlp.gate_proj.weight": 33,
+"input model.layers.4.mlp.up_proj.weight": 17,
+"sum model.layers.4.mlp.up_proj.weight": 33,
+"input model.layers.4.mlp.down_proj.weight": 18,
+"sum model.layers.4.mlp.down_proj.weight": 34,
+"input model.layers.5.self_attn.q_proj.weight": 19,
+"sum model.layers.5.self_attn.q_proj.weight": 34,
+"input model.layers.5.self_attn.k_proj.weight": 19,
+"sum model.layers.5.self_attn.k_proj.weight": 34,
+"input model.layers.5.self_attn.v_proj.weight": 19,
+"sum model.layers.5.self_attn.v_proj.weight": 34,
+"input model.layers.5.self_attn.o_proj.weight": 17,
+"sum model.layers.5.self_attn.o_proj.weight": 33,
+"input model.layers.5.mlp.gate_proj.weight": 17,
+"sum model.layers.5.mlp.gate_proj.weight": 33,
+"input model.layers.5.mlp.up_proj.weight": 17,
+"sum model.layers.5.mlp.up_proj.weight": 33,
+"input model.layers.5.mlp.down_proj.weight": 19,
+"sum model.layers.5.mlp.down_proj.weight": 34,
+"input model.layers.6.self_attn.q_proj.weight": 19,
+"sum model.layers.6.self_attn.q_proj.weight": 34,
+"input model.layers.6.self_attn.k_proj.weight": 19,
+"sum model.layers.6.self_attn.k_proj.weight": 34,
+"input model.layers.6.self_attn.v_proj.weight": 19,
+"sum model.layers.6.self_attn.v_proj.weight": 34,
+"input model.layers.6.self_attn.o_proj.weight": 18,
+"sum model.layers.6.self_attn.o_proj.weight": 34,
+"input model.layers.6.mlp.gate_proj.weight": 17,
+"sum model.layers.6.mlp.gate_proj.weight": 33,
+"input model.layers.6.mlp.up_proj.weight": 17,
+"sum model.layers.6.mlp.up_proj.weight": 33,
+"input model.layers.6.mlp.down_proj.weight": 19,
+"sum model.layers.6.mlp.down_proj.weight": 34,
+"input model.layers.7.self_attn.q_proj.weight": 19,
+"sum model.layers.7.self_attn.q_proj.weight": 34,
+"input model.layers.7.self_attn.k_proj.weight": 19,
+"sum model.layers.7.self_attn.k_proj.weight": 34,
+"input model.layers.7.self_attn.v_proj.weight": 19,
+"sum model.layers.7.self_attn.v_proj.weight": 34,
+"input model.layers.7.self_attn.o_proj.weight": 18,
+"sum model.layers.7.self_attn.o_proj.weight": 33,
+"input model.layers.7.mlp.gate_proj.weight": 17,
+"sum model.layers.7.mlp.gate_proj.weight": 33,
+"input model.layers.7.mlp.up_proj.weight": 17,
+"sum model.layers.7.mlp.up_proj.weight": 33,
+"input model.layers.7.mlp.down_proj.weight": 19,
+"sum model.layers.7.mlp.down_proj.weight": 34,
+"input model.layers.8.self_attn.q_proj.weight": 19,
+"sum model.layers.8.self_attn.q_proj.weight": 35,
+"input model.layers.8.self_attn.k_proj.weight": 19,
+"sum model.layers.8.self_attn.k_proj.weight": 34,
+"input model.layers.8.self_attn.v_proj.weight": 19,
+"sum model.layers.8.self_attn.v_proj.weight": 34,
+"input model.layers.8.self_attn.o_proj.weight": 17,
+"sum model.layers.8.self_attn.o_proj.weight": 33,
+"input model.layers.8.mlp.gate_proj.weight": 17,
+"sum model.layers.8.mlp.gate_proj.weight": 34,
+"input model.layers.8.mlp.up_proj.weight": 17,
+"sum model.layers.8.mlp.up_proj.weight": 34,
+"input model.layers.8.mlp.down_proj.weight": 20,
+"sum model.layers.8.mlp.down_proj.weight": 36,
+"input model.layers.9.self_attn.q_proj.weight": 19,
+"sum model.layers.9.self_attn.q_proj.weight": 35,
+"input model.layers.9.self_attn.k_proj.weight": 19,
+"sum model.layers.9.self_attn.k_proj.weight": 34,
+"input model.layers.9.self_attn.v_proj.weight": 19,
+"sum model.layers.9.self_attn.v_proj.weight": 34,
+"input model.layers.9.self_attn.o_proj.weight": 17,
+"sum model.layers.9.self_attn.o_proj.weight": 33,
+"input model.layers.9.mlp.gate_proj.weight": 18,
+"sum model.layers.9.mlp.gate_proj.weight": 34,
+"input model.layers.9.mlp.up_proj.weight": 18,
+"sum model.layers.9.mlp.up_proj.weight": 34,
+"input model.layers.9.mlp.down_proj.weight": 23,
+"sum model.layers.9.mlp.down_proj.weight": 37,
+"input model.layers.10.self_attn.q_proj.weight": 19,
+"sum model.layers.10.self_attn.q_proj.weight": 35,
+"input model.layers.10.self_attn.k_proj.weight": 19,
+"sum model.layers.10.self_attn.k_proj.weight": 34,
+"input model.layers.10.self_attn.v_proj.weight": 19,
+"sum model.layers.10.self_attn.v_proj.weight": 33,
+"input model.layers.10.self_attn.o_proj.weight": 18,
+"sum model.layers.10.self_attn.o_proj.weight": 35,
+"input model.layers.10.mlp.gate_proj.weight": 18,
+"sum model.layers.10.mlp.gate_proj.weight": 34,
+"input model.layers.10.mlp.up_proj.weight": 18,
+"sum model.layers.10.mlp.up_proj.weight": 35,
+"input model.layers.10.mlp.down_proj.weight": 21,
+"sum model.layers.10.mlp.down_proj.weight": 36,
+"input model.layers.11.self_attn.q_proj.weight": 19,
+"sum model.layers.11.self_attn.q_proj.weight": 34,
+"input model.layers.11.self_attn.k_proj.weight": 19,
+"sum model.layers.11.self_attn.k_proj.weight": 34,
+"input model.layers.11.self_attn.v_proj.weight": 19,
+"sum model.layers.11.self_attn.v_proj.weight": 35,
+"input model.layers.11.self_attn.o_proj.weight": 19,
+"sum model.layers.11.self_attn.o_proj.weight": 35,
+"input model.layers.11.mlp.gate_proj.weight": 17,
+"sum model.layers.11.mlp.gate_proj.weight": 35,
+"input model.layers.11.mlp.up_proj.weight": 17,
+"sum model.layers.11.mlp.up_proj.weight": 35,
+"input model.layers.11.mlp.down_proj.weight": 28,
+"sum model.layers.11.mlp.down_proj.weight": 43,
+"input model.layers.12.self_attn.q_proj.weight": 20,
+"sum model.layers.12.self_attn.q_proj.weight": 35,
+"input model.layers.12.self_attn.k_proj.weight": 20,
+"sum model.layers.12.self_attn.k_proj.weight": 35,
+"input model.layers.12.self_attn.v_proj.weight": 20,
+"sum model.layers.12.self_attn.v_proj.weight": 33,
+"input model.layers.12.self_attn.o_proj.weight": 18,
+"sum model.layers.12.self_attn.o_proj.weight": 34,
+"input model.layers.12.mlp.gate_proj.weight": 17,
+"sum model.layers.12.mlp.gate_proj.weight": 34,
+"input model.layers.12.mlp.up_proj.weight": 17,
+"sum model.layers.12.mlp.up_proj.weight": 33,
+"input model.layers.12.mlp.down_proj.weight": 19,
+"sum model.layers.12.mlp.down_proj.weight": 34,
+"input model.layers.13.self_attn.q_proj.weight": 20,
+"sum model.layers.13.self_attn.q_proj.weight": 35,
+"input model.layers.13.self_attn.k_proj.weight": 20,
+"sum model.layers.13.self_attn.k_proj.weight": 34,
+"input model.layers.13.self_attn.v_proj.weight": 20,
+"sum model.layers.13.self_attn.v_proj.weight": 34,
+"input model.layers.13.self_attn.o_proj.weight": 17,
+"sum model.layers.13.self_attn.o_proj.weight": 34,
+"input model.layers.13.mlp.gate_proj.weight": 18,
+"sum model.layers.13.mlp.gate_proj.weight": 33,
+"input model.layers.13.mlp.up_proj.weight": 18,
+"sum model.layers.13.mlp.up_proj.weight": 33,
+"input model.layers.13.mlp.down_proj.weight": 18,
+"sum model.layers.13.mlp.down_proj.weight": 35,
+"input model.layers.14.self_attn.q_proj.weight": 19,
+"sum model.layers.14.self_attn.q_proj.weight": 35,
+"input model.layers.14.self_attn.k_proj.weight": 19,
+"sum model.layers.14.self_attn.k_proj.weight": 34,
+"input model.layers.14.self_attn.v_proj.weight": 19,
+"sum model.layers.14.self_attn.v_proj.weight": 34,
+"input model.layers.14.self_attn.o_proj.weight": 17,
+"sum model.layers.14.self_attn.o_proj.weight": 34,
+"input model.layers.14.mlp.gate_proj.weight": 18,
+"sum model.layers.14.mlp.gate_proj.weight": 33,
+"input model.layers.14.mlp.up_proj.weight": 18,
+"sum model.layers.14.mlp.up_proj.weight": 33,
+"input model.layers.14.mlp.down_proj.weight": 19,
+"sum model.layers.14.mlp.down_proj.weight": 35,
+"input model.layers.15.self_attn.q_proj.weight": 19,
+"sum model.layers.15.self_attn.q_proj.weight": 35,
+"input model.layers.15.self_attn.k_proj.weight": 19,
+"sum model.layers.15.self_attn.k_proj.weight": 34,
+"input model.layers.15.self_attn.v_proj.weight": 19,
+"sum model.layers.15.self_attn.v_proj.weight": 34,
+"input model.layers.15.self_attn.o_proj.weight": 18,
+"sum model.layers.15.self_attn.o_proj.weight": 35,
+"input model.layers.15.mlp.gate_proj.weight": 18,
+"sum model.layers.15.mlp.gate_proj.weight": 34,
+"input model.layers.15.mlp.up_proj.weight": 18,
+"sum model.layers.15.mlp.up_proj.weight": 34,
+"input model.layers.15.mlp.down_proj.weight": 18,
+"sum model.layers.15.mlp.down_proj.weight": 34,
+"input model.layers.16.self_attn.q_proj.weight": 19,
+"sum model.layers.16.self_attn.q_proj.weight": 35,
+"input model.layers.16.self_attn.k_proj.weight": 19,
+"sum model.layers.16.self_attn.k_proj.weight": 35,
+"input model.layers.16.self_attn.v_proj.weight": 19,
+"sum model.layers.16.self_attn.v_proj.weight": 33,
+"input model.layers.16.self_attn.o_proj.weight": 18,
+"sum model.layers.16.self_attn.o_proj.weight": 34,
+"input model.layers.16.mlp.gate_proj.weight": 17,
+"sum model.layers.16.mlp.gate_proj.weight": 33,
+"input model.layers.16.mlp.up_proj.weight": 17,
+"sum model.layers.16.mlp.up_proj.weight": 33,
+"input model.layers.16.mlp.down_proj.weight": 18,
+"sum model.layers.16.mlp.down_proj.weight": 34,
+"input model.layers.17.self_attn.q_proj.weight": 20,
+"sum model.layers.17.self_attn.q_proj.weight": 35,
+"input model.layers.17.self_attn.k_proj.weight": 20,
+"sum model.layers.17.self_attn.k_proj.weight": 35,
+"input model.layers.17.self_attn.v_proj.weight": 20,
+"sum model.layers.17.self_attn.v_proj.weight": 34,
+"input model.layers.17.self_attn.o_proj.weight": 17,
+"sum model.layers.17.self_attn.o_proj.weight": 34,
+"input model.layers.17.mlp.gate_proj.weight": 17,
+"sum model.layers.17.mlp.gate_proj.weight": 34,
+"input model.layers.17.mlp.up_proj.weight": 17,
+"sum model.layers.17.mlp.up_proj.weight": 33,
+"input model.layers.17.mlp.down_proj.weight": 19,
+"sum model.layers.17.mlp.down_proj.weight": 34,
+"input model.layers.18.self_attn.q_proj.weight": 20,
+"sum model.layers.18.self_attn.q_proj.weight": 35,
+"input model.layers.18.self_attn.k_proj.weight": 20,
+"sum model.layers.18.self_attn.k_proj.weight": 35,
+"input model.layers.18.self_attn.v_proj.weight": 20,
+"sum model.layers.18.self_attn.v_proj.weight": 34,
+"input model.layers.18.self_attn.o_proj.weight": 17,
+"sum model.layers.18.self_attn.o_proj.weight": 33,
+"input model.layers.18.mlp.gate_proj.weight": 18,
+"sum model.layers.18.mlp.gate_proj.weight": 34,
+"input model.layers.18.mlp.up_proj.weight": 18,
+"sum model.layers.18.mlp.up_proj.weight": 34,
+"input model.layers.18.mlp.down_proj.weight": 19,
+"sum model.layers.18.mlp.down_proj.weight": 34,
+"input model.layers.19.self_attn.q_proj.weight": 20,
+"sum model.layers.19.self_attn.q_proj.weight": 35,
+"input model.layers.19.self_attn.k_proj.weight": 20,
+"sum model.layers.19.self_attn.k_proj.weight": 35,
+"input model.layers.19.self_attn.v_proj.weight": 20,
+"sum model.layers.19.self_attn.v_proj.weight": 33,
+"input model.layers.19.self_attn.o_proj.weight": 18,
+"sum model.layers.19.self_attn.o_proj.weight": 34,
+"input model.layers.19.mlp.gate_proj.weight": 18,
+"sum model.layers.19.mlp.gate_proj.weight": 34,
+"input model.layers.19.mlp.up_proj.weight": 18,
+"sum model.layers.19.mlp.up_proj.weight": 34,
+"input model.layers.19.mlp.down_proj.weight": 19,
+"sum model.layers.19.mlp.down_proj.weight": 34,
+"input model.layers.20.self_attn.q_proj.weight": 19,
+"sum model.layers.20.self_attn.q_proj.weight": 35,
+"input model.layers.20.self_attn.k_proj.weight": 19,
+"sum model.layers.20.self_attn.k_proj.weight": 35,
+"input model.layers.20.self_attn.v_proj.weight": 19,
+"sum model.layers.20.self_attn.v_proj.weight": 34,
+"input model.layers.20.self_attn.o_proj.weight": 17,
+"sum model.layers.20.self_attn.o_proj.weight": 33,
+"input model.layers.20.mlp.gate_proj.weight": 18,
+"sum model.layers.20.mlp.gate_proj.weight": 34,
+"input model.layers.20.mlp.up_proj.weight": 18,
+"sum model.layers.20.mlp.up_proj.weight": 34,
+"input model.layers.20.mlp.down_proj.weight": 19,
+"sum model.layers.20.mlp.down_proj.weight": 35,
+"input model.layers.21.self_attn.q_proj.weight": 19,
+"sum model.layers.21.self_attn.q_proj.weight": 35,
+"input model.layers.21.self_attn.k_proj.weight": 19,
+"sum model.layers.21.self_attn.k_proj.weight": 35,
+"input model.layers.21.self_attn.v_proj.weight": 19,
+"sum model.layers.21.self_attn.v_proj.weight": 34,
+"input model.layers.21.self_attn.o_proj.weight": 18,
+"sum model.layers.21.self_attn.o_proj.weight": 34,
+"input model.layers.21.mlp.gate_proj.weight": 17,
+"sum model.layers.21.mlp.gate_proj.weight": 34,
+"input model.layers.21.mlp.up_proj.weight": 17,
+"sum model.layers.21.mlp.up_proj.weight": 34,
+"input model.layers.21.mlp.down_proj.weight": 19,
+"sum model.layers.21.mlp.down_proj.weight": 35,
+"input model.layers.22.self_attn.q_proj.weight": 19,
+"sum model.layers.22.self_attn.q_proj.weight": 35,
+"input model.layers.22.self_attn.k_proj.weight": 19,
+"sum model.layers.22.self_attn.k_proj.weight": 35,
+"input model.layers.22.self_attn.v_proj.weight": 19,
+"sum model.layers.22.self_attn.v_proj.weight": 33,
+"input model.layers.22.self_attn.o_proj.weight": 17,
+"sum model.layers.22.self_attn.o_proj.weight": 34,
+"input model.layers.22.mlp.gate_proj.weight": 18,
+"sum model.layers.22.mlp.gate_proj.weight": 34,
+"input model.layers.22.mlp.up_proj.weight": 18,
+"sum model.layers.22.mlp.up_proj.weight": 34,
+"input model.layers.22.mlp.down_proj.weight": 21,
+"sum model.layers.22.mlp.down_proj.weight": 35,
+"input model.layers.23.self_attn.q_proj.weight": 19,
+"sum model.layers.23.self_attn.q_proj.weight": 35,
+"input model.layers.23.self_attn.k_proj.weight": 19,
+"sum model.layers.23.self_attn.k_proj.weight": 35,
+"input model.layers.23.self_attn.v_proj.weight": 19,
+"sum model.layers.23.self_attn.v_proj.weight": 34,
+"input model.layers.23.self_attn.o_proj.weight": 19,
+"sum model.layers.23.self_attn.o_proj.weight": 35,
+"input model.layers.23.mlp.gate_proj.weight": 17,
+"sum model.layers.23.mlp.gate_proj.weight": 34,
+"input model.layers.23.mlp.up_proj.weight": 17,
+"sum model.layers.23.mlp.up_proj.weight": 34,
+"input model.layers.23.mlp.down_proj.weight": 20,
+"sum model.layers.23.mlp.down_proj.weight": 35,
+"input model.layers.24.self_attn.q_proj.weight": 19,
+"sum model.layers.24.self_attn.q_proj.weight": 35,
+"input model.layers.24.self_attn.k_proj.weight": 19,
+"sum model.layers.24.self_attn.k_proj.weight": 35,
+"input model.layers.24.self_attn.v_proj.weight": 19,
+"sum model.layers.24.self_attn.v_proj.weight": 34,
+"input model.layers.24.self_attn.o_proj.weight": 18,
+"sum model.layers.24.self_attn.o_proj.weight": 37,
+"input model.layers.24.mlp.gate_proj.weight": 17,
+"sum model.layers.24.mlp.gate_proj.weight": 34,
+"input model.layers.24.mlp.up_proj.weight": 17,
+"sum model.layers.24.mlp.up_proj.weight": 34,
+"input model.layers.24.mlp.down_proj.weight": 20,
+"sum model.layers.24.mlp.down_proj.weight": 36,
+"input model.layers.25.self_attn.q_proj.weight": 19,
+"sum model.layers.25.self_attn.q_proj.weight": 35,
+"input model.layers.25.self_attn.k_proj.weight": 19,
+"sum model.layers.25.self_attn.k_proj.weight": 34,
+"input model.layers.25.self_attn.v_proj.weight": 19,
+"sum model.layers.25.self_attn.v_proj.weight": 34,
+"input model.layers.25.self_attn.o_proj.weight": 19,
+"sum model.layers.25.self_attn.o_proj.weight": 35,
+"input model.layers.25.mlp.gate_proj.weight": 17,
+"sum model.layers.25.mlp.gate_proj.weight": 34,
+"input model.layers.25.mlp.up_proj.weight": 17,
+"sum model.layers.25.mlp.up_proj.weight": 34,
+"input model.layers.25.mlp.down_proj.weight": 20,
+"sum model.layers.25.mlp.down_proj.weight": 35,
+"input model.layers.26.self_attn.q_proj.weight": 19,
+"sum model.layers.26.self_attn.q_proj.weight": 35,
+"input model.layers.26.self_attn.k_proj.weight": 19,
+"sum model.layers.26.self_attn.k_proj.weight": 35,
+"input model.layers.26.self_attn.v_proj.weight": 19,
+"sum model.layers.26.self_attn.v_proj.weight": 34,
+"input model.layers.26.self_attn.o_proj.weight": 18,
+"sum model.layers.26.self_attn.o_proj.weight": 35,
+"input model.layers.26.mlp.gate_proj.weight": 18,
+"sum model.layers.26.mlp.gate_proj.weight": 34,
+"input model.layers.26.mlp.up_proj.weight": 18,
+"sum model.layers.26.mlp.up_proj.weight": 35,
+"input model.layers.26.mlp.down_proj.weight": 21,
+"sum model.layers.26.mlp.down_proj.weight": 36,
+"input model.layers.27.self_attn.q_proj.weight": 19,
+"sum model.layers.27.self_attn.q_proj.weight": 35,
+"input model.layers.27.self_attn.k_proj.weight": 19,
+"sum model.layers.27.self_attn.k_proj.weight": 35,
+"input model.layers.27.self_attn.v_proj.weight": 19,
+"sum model.layers.27.self_attn.v_proj.weight": 34,
+"input model.layers.27.self_attn.o_proj.weight": 19,
+"sum model.layers.27.self_attn.o_proj.weight": 37,
+"input model.layers.27.mlp.gate_proj.weight": 18,
+"sum model.layers.27.mlp.gate_proj.weight": 34,
+"input model.layers.27.mlp.up_proj.weight": 18,
+"sum model.layers.27.mlp.up_proj.weight": 34,
+"input model.layers.27.mlp.down_proj.weight": 22,
+"sum model.layers.27.mlp.down_proj.weight": 37,
+"input model.layers.28.self_attn.q_proj.weight": 19,
+"sum model.layers.28.self_attn.q_proj.weight": 35,
+"input model.layers.28.self_attn.k_proj.weight": 19,
+"sum model.layers.28.self_attn.k_proj.weight": 35,
+"input model.layers.28.self_attn.v_proj.weight": 19,
+"sum model.layers.28.self_attn.v_proj.weight": 33,
+"input model.layers.28.self_attn.o_proj.weight": 18,
+"sum model.layers.28.self_attn.o_proj.weight": 36,
+"input model.layers.28.mlp.gate_proj.weight": 20,
+"sum model.layers.28.mlp.gate_proj.weight": 35,
+"input model.layers.28.mlp.up_proj.weight": 20,
+"sum model.layers.28.mlp.up_proj.weight": 35,
+"input model.layers.28.mlp.down_proj.weight": 28,
+"sum model.layers.28.mlp.down_proj.weight": 42,
+"input model.layers.29.self_attn.q_proj.weight": 19,
+"sum model.layers.29.self_attn.q_proj.weight": 35,
+"input model.layers.29.self_attn.k_proj.weight": 19,
+"sum model.layers.29.self_attn.k_proj.weight": 35,
+"input model.layers.29.self_attn.v_proj.weight": 19,
+"sum model.layers.29.self_attn.v_proj.weight": 34,
+"input model.layers.29.self_attn.o_proj.weight": 19,
+"sum model.layers.29.self_attn.o_proj.weight": 36,
+"input model.layers.29.mlp.gate_proj.weight": 21,
+"sum model.layers.29.mlp.gate_proj.weight": 36,
+"input model.layers.29.mlp.up_proj.weight": 21,
+"sum model.layers.29.mlp.up_proj.weight": 36,
+"input model.layers.29.mlp.down_proj.weight": 25,
+"sum model.layers.29.mlp.down_proj.weight": 40,
+"input model.embed_tokens.weight": 22,
+"sum model.embed_tokens.weight": 37
+},
+"rows": [
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.25.mlp.gate_proj.weight",
+"bit": 32,
+"width": 34,
+"old": 1037354576,
+"new": 5332321872
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.27.mlp.gate_proj.weight",
+"bit": 4,
+"width": 34,
+"old": 1531951016,
+"new": 1531951032
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.8.mlp.up_proj.weight",
+"bit": 10,
+"width": 34,
+"old": -825909272,
+"new": -825910296
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.18.self_attn.o_proj.weight",
+"bit": 13,
+"width": 33,
+"old": 1762114334,
+"new": 1762106142
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.14.mlp.up_proj.weight",
+"bit": 13,
+"width": 33,
+"old": -822355242,
+"new": -822347050
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.10.mlp.gate_proj.weight",
+"bit": 18,
+"width": 34,
+"old": -1505711862,
+"new": -1505449718
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.4.mlp.gate_proj.weight",
+"bit": 24,
+"width": 33,
+"old": -2090960051,
+"new": -2107737267
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.1.mlp.gate_proj.weight",
+"bit": 17,
+"width": 33,
+"old": -1573501333,
+"new": -1573632405
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.6.mlp.up_proj.weight",
+"bit": 26,
+"width": 33,
+"old": 57268692,
+"new": 124377556
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.17.mlp.up_proj.weight",
+"bit": 10,
+"width": 33,
+"old": -64900704,
+"new": -64899680
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.6.mlp.up_proj.weight",
+"bit": 4,
+"width": 33,
+"old": 106986361,
+"new": 106986345
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.24.self_attn.o_proj.weight",
+"bit": 14,
+"width": 37,
+"old": -1974884980,
+"new": -1974868596
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.1.mlp.gate_proj.weight",
+"bit": 8,
+"width": 33,
+"old": -36563526,
+"new": -36563782
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.10.mlp.down_proj.weight",
+"bit": 27,
+"width": 36,
+"old": 401085964,
+"new": 535303692
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.3.self_attn.o_proj.weight",
+"bit": 16,
+"width": 34,
+"old": -368768443,
+"new": -368833979
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.15.self_attn.k_proj.weight",
+"bit": 33,
+"width": 34,
+"old": 1549203148,
+"new": 10139137740
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.18.mlp.gate_proj.weight",
+"bit": 24,
+"width": 34,
+"old": 148684620,
+"new": 165461836
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vh",
+"bit": 10,
+"width": 19,
+"old": 12605,
+"new": 13629
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.9.mlp.gate_proj.weight",
+"bit": 5,
+"width": 34,
+"old": -1105498304,
+"new": -1105498272
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.14.mlp.down_proj.weight",
+"bit": 33,
+"width": 35,
+"old": -120615474,
+"new": -8710550066
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.22.mlp.up_proj.weight",
+"bit": 3,
+"width": 34,
+"old": 6784777,
+"new": 6784769
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.27.mlp.up_proj.weight",
+"bit": 21,
+"width": 34,
+"old": 196783586,
+"new": 194686434
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.24.mlp.gate_proj.weight",
+"bit": 20,
+"width": 34,
+"old": 2018334150,
+"new": 2019382726
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.29.self_attn.q_proj.weight",
+"bit": 32,
+"width": 35,
+"old": -1596138564,
+"new": -5891105860
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.23.self_attn.q_proj.weight",
+"bit": 18,
+"width": 35,
+"old": 1248287576,
+"new": 1248025432
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.2.self_attn.v_proj.weight",
+"bit": 15,
+"width": 33,
+"old": 324457894,
+"new": 324425126
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.19.mlp.up_proj.weight",
+"bit": 21,
+"width": 34,
+"old": 1453797398,
+"new": 1451700246
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.3.self_attn.o_proj.weight",
+"bit": 28,
+"width": 34,
+"old": -135263166,
+"new": -403698622
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.11.mlp.gate_proj.weight",
+"bit": 9,
+"width": 35,
+"old": -2477172134,
+"new": -2477172646
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 31,
+"width": 37,
+"old": 1127217120,
+"new": 3274700768
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 18,
+"width": 37,
+"old": 40168195456,
+"new": 40167933312
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.27.mlp.gate_proj.weight",
+"bit": 25,
+"width": 34,
+"old": 70267348,
+"new": 103821780
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.2.mlp.down_proj.weight",
+"bit": 31,
+"width": 38,
+"old": 1924785550,
+"new": 4072269198
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.7.mlp.down_proj.weight",
+"bit": 23,
+"width": 34,
+"old": 13495122,
+"new": 5106514
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.22.mlp.gate_proj.weight",
+"bit": 6,
+"width": 34,
+"old": 1695966912,
+"new": 1695966848
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 29,
+"width": 37,
+"old": 34364653280,
+"new": 34901524192
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 2,
+"width": 30,
+"old": 764166695,
+"new": 764166691
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 25,
+"width": 30,
+"old": 283619981,
+"new": 317174413
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 32,
+"width": 37,
+"old": 13172450400,
+"new": 8877483104
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vh",
+"bit": 8,
+"width": 19,
+"old": 2555,
+"new": 2299
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 0,
+"width": 37,
+"old": 20400696672,
+"new": 20400696673
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.14.mlp.up_proj.weight",
+"bit": 21,
+"width": 33,
+"old": 35790760,
+"new": 33693608
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.13.mlp.gate_proj.weight",
+"bit": 27,
+"width": 33,
+"old": -106868771,
+"new": -241086499
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.7.mlp.up_proj.weight",
+"bit": 9,
+"width": 33,
+"old": 98142120,
+"new": 98141608
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 19,
+"width": 30,
+"old": 220675076,
+"new": 221199364
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.11.mlp.gate_proj.weight",
+"bit": 28,
+"width": 35,
+"old": -1836308351,
+"new": -2104743807
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.28.mlp.down_proj.weight",
+"bit": 6,
+"width": 42,
+"old": 8068013448,
+"new": 8068013512
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.24.self_attn.q_proj.weight",
+"bit": 16,
+"width": 35,
+"old": -748757600,
+"new": -748692064
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.18.mlp.gate_proj.weight",
+"bit": 14,
+"width": 34,
+"old": -385250098,
+"new": -385233714
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 21,
+"width": 37,
+"old": 27493995584,
+"new": 27496092736
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 24,
+"width": 37,
+"old": 33101402688,
+"new": 33118179904
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 27,
+"width": 30,
+"old": 108247853,
+"new": 242465581
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.19.self_attn.q_proj.weight",
+"bit": 30,
+"width": 35,
+"old": -458828912,
+"new": -1532570736
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vh",
+"bit": 12,
+"width": 19,
+"old": -28895,
+"new": -24799
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.14.mlp.gate_proj.weight",
+"bit": 25,
+"width": 33,
+"old": 92902080,
+"new": 126456512
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vh",
+"bit": 4,
+"width": 19,
+"old": -34033,
+"new": -34017
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.27.self_attn.k_proj.weight",
+"bit": 2,
+"width": 35,
+"old": 1629244384,
+"new": 1629244388
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.11.mlp.down_proj.weight",
+"bit": 35,
+"width": 43,
+"old": 380513658,
+"new": 34740252026
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.24.mlp.up_proj.weight",
+"bit": 12,
+"width": 34,
+"old": 723001528,
+"new": 723005624
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.8.mlp.up_proj.weight",
+"bit": 10,
+"width": 34,
+"old": -3068167668,
+"new": -3068166644
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.1.mlp.up_proj.weight",
+"bit": 5,
+"width": 33,
+"old": 607223589,
+"new": 607223557
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 14,
+"width": 37,
+"old": 4078462208,
+"new": 4078445824
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.26.mlp.down_proj.weight",
+"bit": 9,
+"width": 36,
+"old": -4655962888,
+"new": -4655962376
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 12,
+"width": 30,
+"old": 929743980,
+"new": 929748076
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 23,
+"width": 37,
+"old": 32576710400,
+"new": 32568321792
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.5.mlp.up_proj.weight",
+"bit": 12,
+"width": 33,
+"old": -485727511,
+"new": -485723415
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 19,
+"width": 30,
+"old": 985585176,
+"new": 985060888
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.9.mlp.up_proj.weight",
+"bit": 14,
+"width": 34,
+"old": -767256228,
+"new": -767239844
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 23,
+"width": 37,
+"old": 31724271136,
+"new": 31715882528
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.25.mlp.gate_proj.weight",
+"bit": 27,
+"width": 34,
+"old": -782622946,
+"new": -648405218
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.14.mlp.gate_proj.weight",
+"bit": 17,
+"width": 33,
+"old": 457918286,
+"new": 457787214
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.18.self_attn.o_proj.weight",
+"bit": 6,
+"width": 33,
+"old": -1344000140,
+"new": -1344000204
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.22.self_attn.q_proj.weight",
+"bit": 8,
+"width": 35,
+"old": -354878511,
+"new": -354878767
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 9,
+"width": 37,
+"old": 10842017536,
+"new": 10842017024
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.16.mlp.up_proj.weight",
+"bit": 8,
+"width": 33,
+"old": 344293757,
+"new": 344293501
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.3.mlp.down_proj.weight",
+"bit": 25,
+"width": 33,
+"old": 383996155,
+"new": 350441723
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 3,
+"width": 30,
+"old": 888898096,
+"new": 888898104
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 13,
+"width": 37,
+"old": 2421065536,
+"new": 2421073728
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.3.mlp.up_proj.weight",
+"bit": 21,
+"width": 33,
+"old": -337261781,
+"new": -339358933
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.22.mlp.up_proj.weight",
+"bit": 15,
+"width": 34,
+"old": 199776952,
+"new": 199809720
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.11.mlp.up_proj.weight",
+"bit": 29,
+"width": 35,
+"old": -710449132,
+"new": -173578220
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 26,
+"width": 37,
+"old": 27536122624,
+"new": 27603231488
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 16,
+"width": 37,
+"old": 50350547040,
+"new": 50350612576
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.19.mlp.gate_proj.weight",
+"bit": 12,
+"width": 34,
+"old": 1571628828,
+"new": 1571632924
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.7.mlp.up_proj.weight",
+"bit": 6,
+"width": 33,
+"old": 291146865,
+"new": 291146801
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.5.mlp.down_proj.weight",
+"bit": 9,
+"width": 34,
+"old": -231014511,
+"new": -231015023
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.9.mlp.gate_proj.weight",
+"bit": 10,
+"width": 34,
+"old": -56609160,
+"new": -56610184
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.16.mlp.down_proj.weight",
+"bit": 19,
+"width": 34,
+"old": -97300232,
+"new": -96775944
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.7.self_attn.o_proj.weight",
+"bit": 25,
+"width": 33,
+"old": -488340464,
+"new": -521894896
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.27.self_attn.q_proj.weight",
+"bit": 27,
+"width": 35,
+"old": 2246293872,
+"new": 2380511600
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.0.self_attn.o_proj.weight",
+"bit": 18,
+"width": 31,
+"old": 184242099,
+"new": 184504243
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.22.mlp.gate_proj.weight",
+"bit": 31,
+"width": 34,
+"old": 1902223208,
+"new": 4049706856
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 18,
+"width": 37,
+"old": 42345291496,
+"new": 42345553640
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 2,
+"width": 37,
+"old": 2664476448,
+"new": 2664476452
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.4.mlp.up_proj.weight",
+"bit": 7,
+"width": 33,
+"old": 2185924875,
+"new": 2185925003
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 3,
+"width": 30,
+"old": 717073028,
+"new": 717073036
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 23,
+"width": 30,
+"old": 334604314,
+"new": 326215706
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "context p.vl",
+"bit": 8,
+"width": 30,
+"old": 1014007582,
+"new": 1014007326
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.embed_tokens.weight",
+"bit": 19,
+"width": 37,
+"old": 30161293568,
+"new": 30161817856
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "sum",
+"hit": {
+"kind": "sum",
+"site": "model.layers.26.self_attn.q_proj.weight",
+"bit": 5,
+"width": 35,
+"old": -2441577972,
+"new": -2441577940
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.13.mlp.gate_proj.weight",
+"bit": 6,
+"width": 16,
+"old": -3680,
+"new": -3616
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 4,
+"width": 16,
+"old": -5536,
+"new": -5520
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.20.mlp.down_proj.weight",
+"bit": 1,
+"width": 16,
+"old": 1064,
+"new": 1066
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.14.mlp.up_proj.weight",
+"bit": 11,
+"width": 16,
+"old": 22144,
+"new": 24192
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 6,
+"width": 16,
+"old": -5216,
+"new": -5152
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.28.mlp.up_proj.weight",
+"bit": 3,
+"width": 16,
+"old": 194,
+"new": 202
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.14.self_attn.o_proj.weight",
+"bit": 6,
+"width": 16,
+"old": -4,
+"new": -68
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 10,
+"width": 16,
+"old": 6368,
+"new": 7392
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 11,
+"width": 16,
+"old": -3200,
+"new": -1152
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.15.mlp.gate_proj.weight",
+"bit": 4,
+"width": 16,
+"old": -3040,
+"new": -3024
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.3.mlp.gate_proj.weight",
+"bit": 6,
+"width": 16,
+"old": -2176,
+"new": -2112
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.29.mlp.down_proj.weight",
+"bit": 3,
+"width": 16,
+"old": -438,
+"new": -446
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.29.self_attn.q_proj.weight",
+"bit": 15,
+"width": 16,
+"old": 1224,
+"new": -31544
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.26.self_attn.q_proj.weight",
+"bit": 5,
+"width": 16,
+"old": -3568,
+"new": -3536
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.1.mlp.gate_proj.weight",
+"bit": 10,
+"width": 16,
+"old": -508,
+"new": -1532
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.21.mlp.down_proj.weight",
+"bit": 6,
+"width": 16,
+"old": 732,
+"new": 668
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.19.mlp.down_proj.weight",
+"bit": 8,
+"width": 16,
+"old": 892,
+"new": 636
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.3.self_attn.o_proj.weight",
+"bit": 7,
+"width": 16,
+"old": -5408,
+"new": -5536
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.2.mlp.up_proj.weight",
+"bit": 15,
+"width": 16,
+"old": 7744,
+"new": -25024
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.4.mlp.gate_proj.weight",
+"bit": 11,
+"width": 16,
+"old": 4864,
+"new": 6912
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.5.mlp.gate_proj.weight",
+"bit": 7,
+"width": 16,
+"old": 6560,
+"new": 6432
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 14,
+"width": 16,
+"old": 4832,
+"new": 21216
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 0,
+"width": 16,
+"old": -9088,
+"new": -9087
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.5.mlp.down_proj.weight",
+"bit": 15,
+"width": 16,
+"old": -7904,
+"new": 24864
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.8.self_attn.v_proj.weight",
+"bit": 4,
+"width": 16,
+"old": 13120,
+"new": 13136
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 9,
+"width": 16,
+"old": -2000,
+"new": -1488
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.15.self_attn.q_proj.weight",
+"bit": 12,
+"width": 16,
+"old": 8384,
+"new": 12480
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 5,
+"width": 16,
+"old": 5120,
+"new": 5152
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.19.mlp.down_proj.weight",
+"bit": 12,
+"width": 16,
+"old": -250,
+"new": -4346
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.21.mlp.up_proj.weight",
+"bit": 7,
+"width": 16,
+"old": -4928,
+"new": -5056
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.4.self_attn.q_proj.weight",
+"bit": 5,
+"width": 16,
+"old": 6080,
+"new": 6112
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 2,
+"width": 16,
+"old": 7200,
+"new": 7204
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 3,
+"width": 16,
+"old": 54,
+"new": 62
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.21.mlp.up_proj.weight",
+"bit": 6,
+"width": 16,
+"old": 5856,
+"new": 5792
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.9.mlp.gate_proj.weight",
+"bit": 12,
+"width": 16,
+"old": -8576,
+"new": -12672
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.9.self_attn.k_proj.weight",
+"bit": 13,
+"width": 16,
+"old": -7488,
+"new": -15680
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.15.mlp.down_proj.weight",
+"bit": 11,
+"width": 16,
+"old": -2400,
+"new": -352
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.13.mlp.up_proj.weight",
+"bit": 4,
+"width": 16,
+"old": -14400,
+"new": -14384
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.15.mlp.gate_proj.weight",
+"bit": 12,
+"width": 16,
+"old": -334,
+"new": -4430
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.6.self_attn.q_proj.weight",
+"bit": 1,
+"width": 16,
+"old": -6080,
+"new": -6078
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.0.self_attn.o_proj.weight",
+"bit": 15,
+"width": 16,
+"old": 1840,
+"new": -30928
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.17.self_attn.o_proj.weight",
+"bit": 12,
+"width": 16,
+"old": -6144,
+"new": -2048
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.6.self_attn.q_proj.weight",
+"bit": 8,
+"width": 16,
+"old": -1112,
+"new": -1368
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.14.self_attn.o_proj.weight",
+"bit": 0,
+"width": 16,
+"old": 3200,
+"new": 3201
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.16.mlp.down_proj.weight",
+"bit": 2,
+"width": 16,
+"old": 8896,
+"new": 8900
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.15.mlp.gate_proj.weight",
+"bit": 9,
+"width": 16,
+"old": 9984,
+"new": 9472
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.13.mlp.up_proj.weight",
+"bit": 15,
+"width": 16,
+"old": -2368,
+"new": 30400
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.24.self_attn.k_proj.weight",
+"bit": 2,
+"width": 16,
+"old": 7168,
+"new": 7172
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.1.mlp.up_proj.weight",
+"bit": 2,
+"width": 16,
+"old": -536,
+"new": -532
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 4,
+"width": 16,
+"old": -1512,
+"new": -1528
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 2,
+"width": 16,
+"old": 6624,
+"new": 6628
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.2.mlp.gate_proj.weight",
+"bit": 2,
+"width": 16,
+"old": 11584,
+"new": 11588
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.6.mlp.down_proj.weight",
+"bit": 3,
+"width": 16,
+"old": 10112,
+"new": 10120
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.19.self_attn.v_proj.weight",
+"bit": 7,
+"width": 16,
+"old": -2032,
+"new": -1904
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 15,
+"width": 16,
+"old": -10368,
+"new": 22400
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 12,
+"width": 16,
+"old": 540,
+"new": 4636
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.14.mlp.gate_proj.weight",
+"bit": 13,
+"width": 16,
+"old": 5984,
+"new": 14176
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.26.self_attn.q_proj.weight",
+"bit": 15,
+"width": 16,
+"old": 8832,
+"new": -23936
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.19.mlp.up_proj.weight",
+"bit": 1,
+"width": 16,
+"old": 12672,
+"new": 12674
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.22.self_attn.o_proj.weight",
+"bit": 1,
+"width": 16,
+"old": 6080,
+"new": 6082
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.16.mlp.down_proj.weight",
+"bit": 9,
+"width": 16,
+"old": -928,
+"new": -416
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.5.self_attn.k_proj.weight",
+"bit": 4,
+"width": 16,
+"old": -11840,
+"new": -11824
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.1.mlp.up_proj.weight",
+"bit": 4,
+"width": 16,
+"old": -5504,
+"new": -5488
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.20.self_attn.q_proj.weight",
+"bit": 11,
+"width": 16,
+"old": 988,
+"new": 3036
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.14.mlp.down_proj.weight",
+"bit": 10,
+"width": 16,
+"old": 21,
+"new": 1045
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.9.mlp.up_proj.weight",
+"bit": 0,
+"width": 16,
+"old": -7296,
+"new": -7295
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.16.self_attn.o_proj.weight",
+"bit": 6,
+"width": 16,
+"old": -3152,
+"new": -3088
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 2,
+"width": 16,
+"old": 4960,
+"new": 4964
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.28.self_attn.v_proj.weight",
+"bit": 6,
+"width": 16,
+"old": 4672,
+"new": 4608
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.20.mlp.down_proj.weight",
+"bit": 1,
+"width": 16,
+"old": -378,
+"new": -380
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.3.self_attn.q_proj.weight",
+"bit": 3,
+"width": 16,
+"old": 10560,
+"new": 10568
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.20.self_attn.o_proj.weight",
+"bit": 7,
+"width": 16,
+"old": -13376,
+"new": -13504
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.25.self_attn.q_proj.weight",
+"bit": 14,
+"width": 16,
+"old": -11840,
+"new": -28224
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.21.self_attn.o_proj.weight",
+"bit": 0,
+"width": 16,
+"old": -3296,
+"new": -3295
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.11.self_attn.o_proj.weight",
+"bit": 0,
+"width": 16,
+"old": -3536,
+"new": -3535
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.11.mlp.up_proj.weight",
+"bit": 1,
+"width": 16,
+"old": 6304,
+"new": 6306
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 12,
+"width": 16,
+"old": 1456,
+"new": 5552
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.0.mlp.gate_proj.weight",
+"bit": 2,
+"width": 16,
+"old": 2688,
+"new": 2692
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.13.mlp.gate_proj.weight",
+"bit": 6,
+"width": 16,
+"old": 8768,
+"new": 8704
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 13,
+"width": 16,
+"old": 43,
+"new": 8235
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.13.mlp.up_proj.weight",
+"bit": 6,
+"width": 16,
+"old": 9728,
+"new": 9792
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.20.mlp.down_proj.weight",
+"bit": 14,
+"width": 16,
+"old": 3616,
+"new": 20000
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.12.mlp.gate_proj.weight",
+"bit": 9,
+"width": 16,
+"old": 5440,
+"new": 5952
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 1,
+"width": 16,
+"old": -324,
+"new": -322
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.17.mlp.up_proj.weight",
+"bit": 7,
+"width": 16,
+"old": 3856,
+"new": 3984
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 10,
+"width": 16,
+"old": 1560,
+"new": 536
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.13.mlp.down_proj.weight",
+"bit": 9,
+"width": 16,
+"old": 704,
+"new": 192
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.19.self_attn.o_proj.weight",
+"bit": 12,
+"width": 16,
+"old": 2544,
+"new": 6640
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.4.mlp.down_proj.weight",
+"bit": 12,
+"width": 16,
+"old": 8576,
+"new": 12672
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 10,
+"width": 16,
+"old": -460,
+"new": -1484
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.25.self_attn.v_proj.weight",
+"bit": 11,
+"width": 16,
+"old": -6336,
+"new": -4288
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.18.self_attn.v_proj.weight",
+"bit": 0,
+"width": 16,
+"old": -14720,
+"new": -14719
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.24.mlp.down_proj.weight",
+"bit": 1,
+"width": 16,
+"old": 8096,
+"new": 8098
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 10,
+"width": 16,
+"old": 2672,
+"new": 3696
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 15,
+"width": 16,
+"old": 2064,
+"new": -30704
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.13.mlp.up_proj.weight",
+"bit": 12,
+"width": 16,
+"old": -5408,
+"new": -1312
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.15.self_attn.k_proj.weight",
+"bit": 1,
+"width": 16,
+"old": 2608,
+"new": 2610
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.22.mlp.up_proj.weight",
+"bit": 4,
+"width": 16,
+"old": 2304,
+"new": 2320
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.layers.25.mlp.gate_proj.weight",
+"bit": 8,
+"width": 16,
+"old": -5472,
+"new": -5216
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 7,
+"unchanged": true
+},
+{
+"kind": "weight",
+"hit": {
+"kind": "weight",
+"site": "model.embed_tokens.weight",
+"bit": 7,
+"width": 16,
+"old": 364,
+"new": 492
+},
+"stopped": null,
+"fired": [
+"spare rows"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.23.mlp.down_proj.weight",
+"bit": 8,
+"width": 20,
+"old": 891,
+"new": 635
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.28.mlp.down_proj.weight",
+"bit": 27,
+"width": 28,
+"old": 88,
+"new": 134217816
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.24.mlp.down_proj.weight",
+"bit": 9,
+"width": 20,
+"old": -167,
+"new": -679
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.17.mlp.down_proj.weight",
+"bit": 1,
+"width": 19,
+"old": -241,
+"new": -243
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.11.self_attn.o_proj.weight",
+"bit": 7,
+"width": 19,
+"old": -702,
+"new": -574
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.20.mlp.up_proj.weight",
+"bit": 11,
+"width": 18,
+"old": 876,
+"new": 2924
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.24.self_attn.k_proj.weight",
+"bit": 4,
+"width": 19,
+"old": -720,
+"new": -736
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.22.self_attn.q_proj.weight",
+"bit": 17,
+"width": 19,
+"old": 3229,
+"new": 134301
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.17.self_attn.k_proj.weight",
+"bit": 12,
+"width": 20,
+"old": 1371,
+"new": 5467
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 1,
+"width": 21,
+"old": -30808,
+"new": -30806
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.25.self_attn.k_proj.weight",
+"bit": 0,
+"width": 19,
+"old": -252,
+"new": -251
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 2,
+"width": 21,
+"old": -60770,
+"new": -60774
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.9.self_attn.q_proj.weight",
+"bit": 18,
+"width": 19,
+"old": -266,
+"new": -262410
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.4.mlp.down_proj.weight",
+"bit": 6,
+"width": 18,
+"old": 1783,
+"new": 1719
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.0.self_attn.k_proj.weight",
+"bit": 0,
+"width": 17,
+"old": 2114,
+"new": 2115
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.2.mlp.down_proj.weight",
+"bit": 1,
+"width": 23,
+"old": -8,
+"new": -6
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.27.mlp.gate_proj.weight",
+"bit": 1,
+"width": 18,
+"old": 3284,
+"new": 3286
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 5,
+"width": 21,
+"old": -35209,
+"new": -35241
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.3.self_attn.o_proj.weight",
+"bit": 9,
+"width": 17,
+"old": -379,
+"new": -891
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 5,
+"width": 21,
+"old": 1717,
+"new": 1685
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.1.mlp.down_proj.weight",
+"bit": 5,
+"width": 20,
+"old": 1663,
+"new": 1631
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.17.mlp.up_proj.weight",
+"bit": 12,
+"width": 17,
+"old": 156,
+"new": 4252
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.7.mlp.gate_proj.weight",
+"bit": 2,
+"width": 17,
+"old": 2240,
+"new": 2244
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.8.mlp.up_proj.weight",
+"bit": 14,
+"width": 17,
+"old": -3126,
+"new": -19510
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.2.self_attn.q_proj.weight",
+"bit": 3,
+"width": 19,
+"old": -31,
+"new": -23
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.6.mlp.down_proj.weight",
+"bit": 3,
+"width": 19,
+"old": -572,
+"new": -564
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.26.mlp.down_proj.weight",
+"bit": 5,
+"width": 21,
+"old": -571,
+"new": -539
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "context p",
+"bit": 7,
+"width": 15,
+"old": 30726,
+"new": 30854
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.21.self_attn.v_proj.weight",
+"bit": 9,
+"width": 19,
+"old": -3132,
+"new": -3644
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.19.mlp.down_proj.weight",
+"bit": 4,
+"width": 19,
+"old": -1143,
+"new": -1127
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.23.self_attn.v_proj.weight",
+"bit": 14,
+"width": 19,
+"old": -707,
+"new": -17091
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.2.mlp.up_proj.weight",
+"bit": 15,
+"width": 17,
+"old": -5810,
+"new": -38578
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.11.mlp.down_proj.weight",
+"bit": 14,
+"width": 28,
+"old": 4473,
+"new": 20857
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 3,
+"width": 21,
+"old": -5795,
+"new": -5803
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.13.self_attn.q_proj.weight",
+"bit": 9,
+"width": 20,
+"old": 904,
+"new": 392
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.7.self_attn.k_proj.weight",
+"bit": 11,
+"width": 19,
+"old": -713,
+"new": -2761
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.16.self_attn.k_proj.weight",
+"bit": 9,
+"width": 19,
+"old": -1444,
+"new": -1956
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.7.mlp.down_proj.weight",
+"bit": 15,
+"width": 19,
+"old": 407,
+"new": 33175
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.1.mlp.gate_proj.weight",
+"bit": 0,
+"width": 17,
+"old": -5479,
+"new": -5480
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.4.self_attn.o_proj.weight",
+"bit": 13,
+"width": 17,
+"old": 8645,
+"new": 453
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.8.self_attn.o_proj.weight",
+"bit": 15,
+"width": 17,
+"old": 4236,
+"new": 37004
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.7.self_attn.o_proj.weight",
+"bit": 2,
+"width": 18,
+"old": -9,
+"new": -13
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.28.mlp.gate_proj.weight",
+"bit": 8,
+"width": 20,
+"old": -794,
+"new": -538
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.9.mlp.down_proj.weight",
+"bit": 14,
+"width": 23,
+"old": -329,
+"new": -16713
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.18.mlp.down_proj.weight",
+"bit": 7,
+"width": 19,
+"old": 6097,
+"new": 5969
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.19.self_attn.o_proj.weight",
+"bit": 3,
+"width": 18,
+"old": -651,
+"new": -643
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.29.self_attn.q_proj.weight",
+"bit": 6,
+"width": 19,
+"old": 3519,
+"new": 3583
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 8,
+"width": 21,
+"old": -52110,
+"new": -51854
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 2,
+"width": 21,
+"old": 181169,
+"new": 181173
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.9.mlp.down_proj.weight",
+"bit": 15,
+"width": 23,
+"old": -265,
+"new": -33033
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.19.mlp.down_proj.weight",
+"bit": 15,
+"width": 19,
+"old": 1755,
+"new": 34523
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.4.mlp.down_proj.weight",
+"bit": 17,
+"width": 18,
+"old": 1357,
+"new": 132429
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 17,
+"width": 21,
+"old": -12802,
+"new": -143874
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.1.self_attn.k_proj.weight",
+"bit": 3,
+"width": 19,
+"old": 403,
+"new": 411
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.23.mlp.down_proj.weight",
+"bit": 9,
+"width": 20,
+"old": -2215,
+"new": -2727
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.10.mlp.down_proj.weight",
+"bit": 12,
+"width": 21,
+"old": 1254,
+"new": 5350
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.16.mlp.gate_proj.weight",
+"bit": 4,
+"width": 17,
+"old": -2023,
+"new": -2039
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.27.self_attn.v_proj.weight",
+"bit": 9,
+"width": 19,
+"old": 167,
+"new": 679
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 13,
+"width": 21,
+"old": -30947,
+"new": -22755
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.24.mlp.down_proj.weight",
+"bit": 19,
+"width": 20,
+"old": 749,
+"new": 525037
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.16.mlp.gate_proj.weight",
+"bit": 6,
+"width": 17,
+"old": -623,
+"new": -559
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.25.mlp.down_proj.weight",
+"bit": 16,
+"width": 20,
+"old": -2050,
+"new": -67586
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.12.mlp.down_proj.weight",
+"bit": 8,
+"width": 19,
+"old": -101,
+"new": -357
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.17.mlp.up_proj.weight",
+"bit": 4,
+"width": 17,
+"old": 1263,
+"new": 1279
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.11.mlp.down_proj.weight",
+"bit": 26,
+"width": 28,
+"old": 35,
+"new": 67108899
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.2.mlp.up_proj.weight",
+"bit": 10,
+"width": 17,
+"old": 1893,
+"new": 869
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.18.mlp.up_proj.weight",
+"bit": 5,
+"width": 18,
+"old": -6223,
+"new": -6255
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.6.mlp.down_proj.weight",
+"bit": 4,
+"width": 19,
+"old": 21,
+"new": 5
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.3.mlp.gate_proj.weight",
+"bit": 5,
+"width": 17,
+"old": 1636,
+"new": 1604
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 8,
+"width": 21,
+"old": 10951,
+"new": 11207
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 7,
+"width": 21,
+"old": 31687,
+"new": 31559
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.23.mlp.down_proj.weight",
+"bit": 3,
+"width": 20,
+"old": 125,
+"new": 117
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 12,
+"width": 21,
+"old": -66427,
+"new": -70523
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.16.self_attn.k_proj.weight",
+"bit": 1,
+"width": 19,
+"old": -882,
+"new": -884
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.1.mlp.up_proj.weight",
+"bit": 3,
+"width": 17,
+"old": -77,
+"new": -69
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.23.self_attn.v_proj.weight",
+"bit": 13,
+"width": 19,
+"old": 891,
+"new": 9083
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.27.mlp.gate_proj.weight",
+"bit": 15,
+"width": 18,
+"old": -1665,
+"new": -34433
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.embed_tokens.weight",
+"bit": 14,
+"width": 22,
+"old": 2248,
+"new": 18632
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.2.self_attn.k_proj.weight",
+"bit": 8,
+"width": 19,
+"old": 1639,
+"new": 1895
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.19.self_attn.v_proj.weight",
+"bit": 14,
+"width": 20,
+"old": -2701,
+"new": -19085
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.17.mlp.down_proj.weight",
+"bit": 5,
+"width": 19,
+"old": -859,
+"new": -891
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "scores q",
+"bit": 5,
+"width": 21,
+"old": 770,
+"new": 802
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.22.self_attn.q_proj.weight",
+"bit": 7,
+"width": 19,
+"old": 2043,
+"new": 1915
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.26.self_attn.q_proj.weight",
+"bit": 2,
+"width": 19,
+"old": -277,
+"new": -273
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.22.mlp.down_proj.weight",
+"bit": 5,
+"width": 21,
+"old": -946,
+"new": -914
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.21.mlp.up_proj.weight",
+"bit": 8,
+"width": 17,
+"old": 1161,
+"new": 1417
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.18.self_attn.q_proj.weight",
+"bit": 16,
+"width": 20,
+"old": 2678,
+"new": 68214
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.0.mlp.down_proj.weight",
+"bit": 10,
+"width": 19,
+"old": -1117,
+"new": -93
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.27.mlp.up_proj.weight",
+"bit": 15,
+"width": 18,
+"old": 4999,
+"new": 37767
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.5.self_attn.k_proj.weight",
+"bit": 1,
+"width": 19,
+"old": 916,
+"new": 918
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.8.self_attn.o_proj.weight",
+"bit": 6,
+"width": 17,
+"old": -13122,
+"new": -13058
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.19.mlp.up_proj.weight",
+"bit": 10,
+"width": 18,
+"old": -2124,
+"new": -3148
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.5.mlp.down_proj.weight",
+"bit": 10,
+"width": 19,
+"old": -13577,
+"new": -12553
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.23.self_attn.v_proj.weight",
+"bit": 13,
+"width": 19,
+"old": 7540,
+"new": 15732
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.5.mlp.up_proj.weight",
+"bit": 9,
+"width": 17,
+"old": 5350,
+"new": 5862
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.27.mlp.up_proj.weight",
+"bit": 16,
+"width": 18,
+"old": -2091,
+"new": -67627
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.18.self_attn.v_proj.weight",
+"bit": 17,
+"width": 20,
+"old": -381,
+"new": -131453
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.28.mlp.up_proj.weight",
+"bit": 3,
+"width": 20,
+"old": 1652,
+"new": 1660
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.9.self_attn.o_proj.weight",
+"bit": 15,
+"width": 17,
+"old": 5672,
+"new": 38440
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "input",
+"hit": {
+"kind": "input",
+"site": "model.layers.17.self_attn.v_proj.weight",
+"bit": 15,
+"width": 20,
+"old": -1450,
+"new": -34218
+},
+"stopped": null,
+"fired": [
+"input sum"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "v split",
+"bit": 1,
+"width": 5,
+"old": -1,
+"new": -3
+},
+"stopped": null,
+"fired": [
+"v split put together"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 17,
+"width": 31,
+"old": 28977,
+"new": 160049
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 28,
+"width": 31,
+"old": -30047,
+"new": -268465503
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 5,
+"width": 31,
+"old": 455640,
+"new": 455672
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 22,
+"width": 31,
+"old": 453,
+"new": 4194757
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 8,
+"width": 31,
+"old": -183835,
+"new": -184091
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 29,
+"width": 31,
+"old": -2225,
+"new": -536873137
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 22,
+"width": 31,
+"old": -66376,
+"new": -4260680
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 29,
+"width": 31,
+"old": -3548,
+"new": -536874460
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 21,
+"width": 31,
+"old": -7641,
+"new": -2104793
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 22,
+"width": 31,
+"old": -1136,
+"new": -4195440
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 8,
+"width": 31,
+"old": -14901,
+"new": -15157
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 19,
+"width": 31,
+"old": -482,
+"new": -524770
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 27,
+"width": 31,
+"old": -10082,
+"new": -134227810
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 28,
+"width": 31,
+"old": -9535,
+"new": -268444991
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "silu table",
+"bit": 2,
+"width": 22,
+"old": -16716,
+"new": -16720
+},
+"stopped": null,
+"fired": [
+"table read twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 11,
+"width": 31,
+"old": -37759,
+"new": -39807
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 27,
+"width": 31,
+"old": 304,
+"new": 134218032
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 12,
+"width": 31,
+"old": 662,
+"new": 4758
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 0,
+"width": 31,
+"old": -504,
+"new": -503
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 8,
+"width": 31,
+"old": -18397,
+"new": -18141
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "silu table",
+"bit": 0,
+"width": 22,
+"old": -2051,
+"new": -2052
+},
+"stopped": null,
+"fired": [
+"table read twice"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 5,
+"width": 31,
+"old": -3838,
+"new": -3806
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 16,
+"width": 31,
+"old": -32480,
+"new": -98016
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "division",
+"bit": 15,
+"width": 44,
+"old": 0,
+"new": 32768
+},
+"stopped": null,
+"fired": [
+"division bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 6,
+"width": 31,
+"old": -726209,
+"new": -726145
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 17,
+"width": 31,
+"old": 19839,
+"new": 150911
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 28,
+"width": 31,
+"old": 7046,
+"new": 268442502
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 27,
+"width": 31,
+"old": -36912,
+"new": -134254640
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "division",
+"bit": 34,
+"width": 44,
+"old": -52408,
+"new": -17179921592
+},
+"stopped": "AssertionError",
+"fired": [
+"division bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "v split",
+"bit": 3,
+"width": 5,
+"old": 1,
+"new": 9
+},
+"stopped": null,
+"fired": [
+"v split put together"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 0,
+"width": 31,
+"old": -11857,
+"new": -11858
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 5,
+"width": 31,
+"old": 4910,
+"new": 4878
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "silu table",
+"bit": 1,
+"width": 22,
+"old": -177,
+"new": -179
+},
+"stopped": null,
+"fired": [
+"table read twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "division",
+"bit": 13,
+"width": 44,
+"old": 13427,
+"new": 5235
+},
+"stopped": null,
+"fired": [
+"division bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 23,
+"width": 31,
+"old": -4063,
+"new": -8392671
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 11,
+"width": 31,
+"old": 30006,
+"new": 32054
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 11,
+"width": 31,
+"old": -1006,
+"new": -3054
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 10,
+"width": 31,
+"old": 11092,
+"new": 12116
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 9,
+"width": 31,
+"old": 337,
+"new": 849
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 21,
+"width": 31,
+"old": -68745,
+"new": -2165897
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 27,
+"width": 31,
+"old": -68159,
+"new": -134285887
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 22,
+"width": 31,
+"old": 71409,
+"new": 4265713
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "division",
+"bit": 21,
+"width": 44,
+"old": -12853,
+"new": -2110005
+},
+"stopped": "AssertionError",
+"fired": [
+"division bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 14,
+"width": 31,
+"old": -56263,
+"new": -39879
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 4,
+"width": 31,
+"old": -37067,
+"new": -37083
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 13,
+"width": 31,
+"old": 63400,
+"new": 55208
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 13,
+"width": 31,
+"old": 9449,
+"new": 1257
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 18,
+"width": 31,
+"old": 75929,
+"new": 338073
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 12,
+"width": 31,
+"old": 1220794,
+"new": 1224890
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 21,
+"width": 31,
+"old": -431,
+"new": -2097583
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 18,
+"width": 31,
+"old": 24896,
+"new": 287040
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 22,
+"width": 31,
+"old": 7758,
+"new": 4202062
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 10,
+"width": 31,
+"old": 3698,
+"new": 2674
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 29,
+"width": 31,
+"old": 82281,
+"new": 536953193
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "silu table",
+"bit": 21,
+"width": 22,
+"old": -8915,
+"new": -2106067
+},
+"stopped": null,
+"fired": [
+"table read twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 1,
+"width": 31,
+"old": 310797,
+"new": 310799
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 28,
+"width": 31,
+"old": 8278,
+"new": 268443734
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 27,
+"width": 31,
+"old": 54967,
+"new": 134272695
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "division",
+"bit": 29,
+"width": 44,
+"old": 3201,
+"new": 536874113
+},
+"stopped": "AssertionError",
+"fired": [
+"division bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 22,
+"width": 31,
+"old": -4098,
+"new": -4198402
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 24,
+"width": 31,
+"old": 139252,
+"new": 16916468
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 15,
+"width": 31,
+"old": 2011988,
+"new": 1979220
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "division",
+"bit": 4,
+"width": 44,
+"old": 3446,
+"new": 3430
+},
+"stopped": null,
+"fired": [
+"division bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 28,
+"width": 31,
+"old": 47668,
+"new": 268483124
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 5,
+"width": 31,
+"old": -8662,
+"new": -8694
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "silu table",
+"bit": 18,
+"width": 22,
+"old": 47689,
+"new": 309833
+},
+"stopped": null,
+"fired": [
+"table read twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 19,
+"width": 31,
+"old": 44044,
+"new": 568332
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "silu table",
+"bit": 7,
+"width": 22,
+"old": -6170,
+"new": -6298
+},
+"stopped": null,
+"fired": [
+"table read twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 5,
+"width": 31,
+"old": -1714,
+"new": -1682
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 2,
+"width": 31,
+"old": 1442,
+"new": 1446
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 2,
+"width": 31,
+"old": 15355,
+"new": 15359
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 2,
+"width": 31,
+"old": -1034,
+"new": -1038
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "division",
+"bit": 22,
+"width": 44,
+"old": -23899,
+"new": -4218203
+},
+"stopped": "AssertionError",
+"fired": [
+"division bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 3,
+"width": 31,
+"old": 1792,
+"new": 1800
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 16,
+"width": 31,
+"old": 14897,
+"new": 80433
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 15,
+"width": 31,
+"old": -8392,
+"new": -41160
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 13,
+"width": 31,
+"old": -40536,
+"new": -48728
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 26,
+"width": 31,
+"old": -5342,
+"new": -67114206
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 15,
+"width": 31,
+"old": -23,
+"new": -32791
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 28,
+"width": 31,
+"old": -2580,
+"new": -268438036
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 22,
+"width": 31,
+"old": -13293,
+"new": -4207597
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 14,
+"width": 31,
+"old": -26898,
+"new": -10514
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 11,
+"width": 31,
+"old": -509,
+"new": -2557
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 16,
+"width": 31,
+"old": -33482,
+"new": -99018
+},
+"stopped": null,
+"fired": [
+"clamp twice",
+"v split put together"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 26,
+"width": 31,
+"old": -26376,
+"new": -67135240
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 28,
+"width": 31,
+"old": -13202,
+"new": -268448658
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "v split",
+"bit": 4,
+"width": 5,
+"old": -1,
+"new": -17
+},
+"stopped": null,
+"fired": [
+"v split put together"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 22,
+"width": 31,
+"old": -272338,
+"new": -4466642
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 27,
+"width": 31,
+"old": 295,
+"new": 134218023
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 8,
+"width": 31,
+"old": 2791,
+"new": 3047
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "v split",
+"bit": 1,
+"width": 5,
+"old": 2,
+"new": 0
+},
+"stopped": null,
+"fired": [
+"v split put together"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 15,
+"width": 31,
+"old": -6072,
+"new": -38840
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 25,
+"width": 31,
+"old": 22278,
+"new": 33576710
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": true,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "held p",
+"bit": 5,
+"width": 15,
+"old": 23,
+"new": 55
+},
+"stopped": null,
+"fired": [
+"held p twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "clamp",
+"bit": 6,
+"width": 31,
+"old": 18758,
+"new": 18694
+},
+"stopped": null,
+"fired": [
+"clamp twice"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 10,
+"width": 31,
+"old": 189166,
+"new": 190190
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 7,
+"width": 31,
+"old": -15011,
+"new": -14883
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 1,
+"width": 31,
+"old": -112492,
+"new": -112490
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": false,
+"token": false,
+"repaired": 1,
+"unchanged": true
+},
+{
+"kind": "look",
+"hit": {
+"kind": "look",
+"site": "rounding",
+"bit": 29,
+"width": 31,
+"old": 1323,
+"new": 536872235
+},
+"stopped": null,
+"fired": [
+"rounding bracket"
+],
+"logit": true,
+"token": false,
+"repaired": 1,
+"unchanged": true
+}
+]
+}

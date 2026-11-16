@@ -1,0 +1,47 @@
+== plain-f64
+plain   route f64: logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc MATCH, 356 s
+      356.76 real       142.15 user        18.70 sys
+exit 0
+           465174528  maximum resident set size
+== checked-f64
+checked route f64: logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc MATCH, 294 s
+checks made: bit length bracket 92928, clamp twice 127488, division bracket 58368, held p twice 11520, input sum 104064, peel selection twice 46464, rounding bracket 256534, softmax maximum twice 11520, spare rows 115584, square root bracket 23424, table read twice 23808, v split put together 11520; fired: 0 []
+      294.94 real       145.53 user        13.10 sys
+exit 0
+           500989952  maximum resident set size
+== plain-f32
+plain   route f32: logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc MATCH, 1028 s
+     1028.33 real       349.96 user        50.04 sys
+exit 0
+           484933632  maximum resident set size
+== checked-f32
+checked route f32: logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc MATCH, 647 s
+checks made: bit length bracket 92928, clamp twice 127488, division bracket 58368, held p twice 11520, input sum 104064, peel selection twice 46464, rounding bracket 256534, softmax maximum twice 11520, spare rows 115584, square root bracket 23424, table read twice 23808, v split put together 11520; fired: 0 []
+      648.46 real       352.63 user        29.91 sys
+exit 0
+           506888192  maximum resident set size
+== plain-i8
+plain   route i8: logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc MATCH, 312 s
+      312.23 real       694.82 user        17.80 sys
+exit 0
+           497778688  maximum resident set size
+== checked-i8
+checked route i8: logits b0cc875fde396181a70e2349ca35a60c3ae91b23f1c1012083797352d30b4460 continuations a800ebadc848514e02bebbb8077d531cf0493acd2a4c173403ba1db43d7613cc MATCH, 334 s
+checks made: bit length bracket 92928, clamp twice 127488, division bracket 58368, held p twice 11520, input sum 104064, peel selection twice 46464, rounding bracket 256534, softmax maximum twice 11520, spare rows 115584, square root bracket 23424, table read twice 23808, v split put together 11520; fired: 0 []
+      334.72 real       796.74 user        18.73 sys
+exit 0
+           518832128  maximum resident set size
+== campaign
+campaign: route f64, prompt 0 (7 tokens) and 4 tokens, clean run 1.24 s, no check fired
+fault points over the run: look 7987600, input 1707230, weight 537919488, sum 2412840
+| fault | injected | changed a logit | changed a token | caught | caught by | repaired, hash unchanged |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| one bit of one product sum | 100 | 52 | 0 | 100 | spare rows 100 | 100 |
+| one bit of one weight as it is read | 100 | 64 | 0 | 100 | spare rows 100 | 100 |
+| one bit of one product input as it is read | 100 | 91 | 4 | 100 | input sum 100 | 100 |
+| one bit of the result of one look | 100 | 92 | 16 | 100 | clamp twice 34; division bracket 7; held p twice 1; rounding bracket 48; table read twice 6; v split put together 5 | 100 |
+not caught and changed a logit: 0
+campaign time 967 s
+      967.23 real       797.69 user        21.48 sys
+exit 0
+           427229184  maximum resident set size
