@@ -67,7 +67,8 @@ Every cell printed logits `b0cc875f…0b4460` and continuations `a800ebad…7613
 | exact-16, in the order `Exact16` computes | |
 | --- | --- |
 | weights | `w16 = rint(w · 2^g)` from the bfloat16 values, `g` per output row the largest with every entry within ±(2^15 − 1) (the tied embedding: one `g` per token); int16 `.npy`, memory-mapped; `int16_weights` |
-| product inputs | per token vector: `sh = max(0, bitlength(max \|x\|) − 15)`, one more if the rounding reaches 2^15; `x16 = round(x / 2^sh)`; `block16` |
+| product inputs | made once for every product that reads them (`h` for q, k and v; `h` for gate and up), clamped, peeled and block-shifted; `prepare` |
+| block shift | per token vector: `sh = max(0, bitlength(max \|x\|) − 15)`, `x16 = round(x / 2^sh)`; a second rounding at `sh + 1` only for the vectors whose first reached 2^15; `block16` |
 | peeled terms | 2 per product, per token vector: its two largest \|x\| (ties to the lower index) kept whole; each `x · w16` is an exact wide term added in int64 before the one rounding, on every route; `peel_index` |
 | linear, logits | `y = round((2^sh · x16 · w16 + Σ peeled x · w16) / 2^g)`, one rounding; `product` |
 | key-value cache | each position's `k` clamped and block-shifted (`k16` and its shift), `v` clamped and split, once, as the position enters the cache; `cache_entry` |
@@ -189,7 +190,7 @@ Text: Tiny Shakespeare (`karpathy/char-rnn` at `370cbcd`), the first 8,192 token
 | `isqrt(n)`, `n < 2^62` | float64 `sqrt`, then integer steps; asserts `s² ≤ n < (s+1)²` on every call; `isqrt` |
 | embedding | `E[ids]` |
 | RMS norm, per token (576) | `s = max(0, bitlength(max \|x\|) − 26)`; `ms = floor(Σ (x >> s)² / 576)`; `r = isqrt(ms + round(10^-5 · 2^(32−2s)))`; `y = floor(x · 2^(16−s) / r)`, asserted `\|y\| ≤ 25·2^16`; `round(y · g / 2^16)`; `rms` |
-| linear | `round(clamp(x) · W / 2^16)`, `W` [in, out] float64 from int32; the down product in 6 chunks of 256 inputs, each in float64, summed in int64; `linear` |
+| linear | `round(clamp(x) · W / 2^16)`, `clamp(x)` made once for every product that reads it (`prepare`), `W` [in, out] float64 from int32; the down product in 6 chunks of 256 inputs, each in float64, summed in int64; `linear` |
 | rotary, `i < 32` | `x'_i = round((x_i·C[p,i] − x_{i+32}·S[p,i]) / 2^20)`; `x'_{i+32} = round((x_{i+32}·C[p,i] + x_i·S[p,i]) / 2^20)`; `rope` |
 | key-value cache | `clamp(k)` and `clamp(v)` of each position, made once as it enters the cache (`cache_entry`); cos and sin of each position read once per forward pass (`rope_tables`) |
 | scores | `s = clamp(q) · clamp(k)` at 2^-32; query head `h` reads key-value head `floor(h/3)` |
