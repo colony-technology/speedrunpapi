@@ -20,7 +20,7 @@ On the patched tree, 12 tests were run and all 12 passed. Eleven are the library
 
 ## The count before the run
 
-`tfhe_scalar_mul_count.py` is a model of the library's scalar multiplication on plain integers, and `predict_ci_scalars.py` counts the same scalars with it. The model was first run for 4 threads, the expected size of the runner, and gave -10.1, -16.0 and -21.1 percent. The runner had 2 threads. The thread count changes how the library propagates carries, so it changes the count. Run for 2 threads, the model gives every edge count, mean and worst in the table above exactly.
+`tfhe_scalar_mul_count.py` is a model of the library's scalar multiplication on plain integers, and `predict_ci_scalars.py` counts the same scalars with it. The counts above were taken on 2 threads. The model was first run for 4 threads, the expected size of the runner, and gave -10.1, -16.0 and -21.1 percent; on a 4-thread machine those are the changes to expect. The thread count changes how the library propagates carries, so it changes the count. Run for 2 threads, the model gives every edge count, mean and worst in the table above exactly.
 
 ```
 python3 -I -B predict_ci_scalars.py 200 20261115 2
@@ -66,7 +66,7 @@ Each run prints one line per case and ends with the summary table. The unit test
 | `LICENSE-tfhe-rs` | the tfhe-rs licence |
 | `MANIFEST.sha256` | SHA-256 of every file here |
 
-In the logs the runner's checkout directory is written as `/home/runner/work/<repository>/<repository>`.
+In the logs the runner's checkout directory is shortened to `/home/runner/work/<repository>/<repository>`; nothing else in the logs was changed.
 
 ## Licence
 
