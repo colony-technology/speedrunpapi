@@ -118,8 +118,8 @@ The checks run on each change to this folder, against the published files at pin
 ## AND depth
 
 In secret sharing each level of AND gates is a round of communication, so the AND depth matters as well as the count.
-Five of the circuits above have more AND depth than the published ones.
-Each of the five now comes in two more files: `.fewand.txt`, the fewest AND gates found under the published depth, and `.lowdepth.txt`, the lowest depth found.
+Six of the circuits above have more AND depth than the published ones.
+Five of them, all but FP-eq, now come in two more files: `.fewand.txt`, the fewest AND gates found under the published depth, and `.lowdepth.txt`, the lowest depth found.
 Both files are under the published count and the published depth.
 
 | Function | Published, AND gates / depth | Here, AND gates / depth | Fewest AND under the published depth | Lowest depth |
