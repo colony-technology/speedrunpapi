@@ -185,6 +185,7 @@ void t3_run(const uint16_t *stream, const int64_t *rowoff, int64_t n_in, int64_t
             int64_t nthreads, const int64_t *part, uint64_t *cnt) {
     job_t jobs[64];
     pthread_t th[64];
+    char started[64];
     if (nthreads > 64)
         nthreads = 64;
     for (int64_t t = 0; t < nthreads; t++) {
@@ -198,13 +199,14 @@ void t3_run(const uint16_t *stream, const int64_t *rowoff, int64_t n_in, int64_t
         jb->nreal = nreal;
         jb->x = x;
         jb->y = y;
-        if (nthreads == 1)
-            run_rows(jb);
+        started[t] = 0;
+        if (nthreads > 1 && pthread_create(&th[t], NULL, run_rows, jb) == 0)
+            started[t] = 1;
         else
-            pthread_create(&th[t], NULL, run_rows, jb);
+            run_rows(jb);                       /* one thread, or a thread that could not start: run here */
     }
     for (int64_t t = 0; t < nthreads; t++) {
-        if (nthreads > 1)
+        if (started[t])
             pthread_join(th[t], NULL);
         cnt[0] += jobs[t].cnt[0];
         cnt[1] += jobs[t].cnt[1];
