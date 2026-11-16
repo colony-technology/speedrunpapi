@@ -205,15 +205,23 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 | `multiplier`, size | 4282 LUT-6 | 3420 LUT-6 |
 | `multiplier`, depth | 25 levels | 11 levels |
 | `square`, size | 2894 LUT-6 | 2421 LUT-6 |
-| `square`, depth | 10 levels, 3690 LUT-6 | 10 levels, 3358 LUT-6 |
+| `square`, depth | 10 levels, 3690 LUT-6 | 9 levels, 3802 LUT-6 |
 | `sqrt`, size | 2958 LUT-6 | 2174 LUT-6 |
+| `sqrt`, depth | 150 levels, 45934 LUT-6 | 103 levels, 32337 LUT-6 |
 | `hyp`, size | 36451 LUT-6 | 24436 LUT-6 |
+| `hyp`, depth | 458 levels, 176274 LUT-6 | 199 levels, 125747 LUT-6 |
 | `div`, size | 3082 LUT-6 | 2287 LUT-6 |
 | `div`, depth | 170 levels, 30849 LUT-6 | 58 levels, 20232 LUT-6 |
 | `sin`, size | 994 LUT-6 | 685 LUT-6 |
+| `sin`, depth | 10 levels, 666529 LUT-6 | 10 levels, 360269 LUT-6 |
 | `log2`, size | 5986 LUT-6 | 4099 LUT-6 |
 | `log2`, depth | 51 levels, 9391 LUT-6 | 23 levels, 7978 LUT-6 |
 | `arbiter`, size | 259 LUT-6 | 256 LUT-6 |
+| `arbiter`, depth | 5 levels, 369 LUT-6 | 4 levels, 1477 LUT-6 |
+| `adder`, depth | 5 levels, 339 LUT-6 | 4 levels, 558 LUT-6 |
+| `max`, depth | 6 levels, 1006 LUT-6 | 6 levels, 868 LUT-6 |
+| `dec`, size | 264 LUT-6 | 260 LUT-6 |
+| `dec`, depth | 2 levels, 264 LUT-6 | 2 levels, 260 LUT-6 |
 | `sixteen`, size | 3282958 LUT-6 | 12691 LUT-6 |
 | `twenty`, size | 4166467 LUT-6 | 12719 LUT-6 |
 | `twentythree`, size | 470892 LUT-6 | 12744 LUT-6 |
@@ -232,6 +240,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 [`hardware/epfl-log2/`](hardware/epfl-log2/) holds the EPFL `log2` benchmark as 4,099 LUT-6 where the smallest published netlist has 5,986, a second netlist of 23 levels where the shallowest published has 51, and the arithmetic the benchmark computes, which the suite does not describe. All three are checked against the benchmark on all 4,294,967,296 inputs.
 
 [`hardware/epfl-arbiter/`](hardware/epfl-arbiter/) holds the EPFL round-robin `arbiter` as 256 LUT-6 where the smallest published netlist has 259, with the equations it is built from. ABC proves it equal to the benchmark in under a second.
+
+[`hardware/epfl-depth/`](hardware/epfl-depth/) holds the depth entries for `adder`, `arbiter`, `max`, `square`, `sqrt` and `hyp`, with their checks. [`hardware/epfl-dec/`](hardware/epfl-dec/) holds `dec` at 260 LUT-6 and 2 levels where the best published has 264, proved equal to the benchmark by ABC. The `sin` depth entry is in [`hardware/epfl-sin/`](hardware/epfl-sin/).
 
 [`hardware/divider/udiv.v`](hardware/divider/) is a drop-in unsigned divider: 4,889 cells at 64 bits on Lattice ECP5, placed and routed, where the Verilog operators take 12,246.
 `udivf64.v` in the same directory divides in 181 ns on that device, where the operators take 394 ns.

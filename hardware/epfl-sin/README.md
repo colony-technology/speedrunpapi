@@ -53,3 +53,35 @@ benchmark against the cosine rounded to nearest: equal on 15613364 inputs, one o
 ```
 
 The same check runs on each change to this folder against `sin.aig` of lsils/benchmarks commit `82d8cc6` ([workflow](../../.github/workflows/epfl-sin.yml)).
+
+## Depth
+
+The suite also keeps the shallowest known LUT-6 implementations; there, fewer levels wins, then fewer LUTs.
+
+| | LUT-6 | Levels |
+| --- | --- | --- |
+| Shallowest published | 666529 | 10 |
+| [`sin_depth_2027.blif.gz`](sin_depth_2027.blif.gz) | 360269 | 10 |
+
+[`check_depth.py`](check_depth.py) evaluates the suite's `sin.blif` and the netlist on all 16,777,216 inputs and compares every output; it also compares both with the formula above (`tables.json`). It reads the netlist as generic BLIF. It needs Python with numpy, takes about a minute and about 1.6 GB of memory.
+
+```
+gunzip -k sin_depth_2027.blif.gz
+yosys-abc -c "read_blif sin_depth_2027.blif; print_stats"
+python3 check_depth.py <arithmetic/sin.blif of lsils/benchmarks> tables.json sin_depth_2027.blif
+```
+
+```
+i/o = 24/ 25  lat = 0  nd = 360269  edge = 2066803  cube = 1773239  lev = 10
+formula: 0 of 16777216 inputs differ from the benchmark
+sin_depth_2027.blif: 360269 nodes, at most 6 inputs each, depth 10; 0 of 16777216 inputs differ from the benchmark (0 from the formula); outputs differing: none
+```
+
+The proof is this exhaustive comparison. A direct ABC `cec` against `sin.blif` did not finish within 20 minutes.
+
+[`mutate_depth.py`](mutate_depth.py) flips one bit of one LUT's table and writes the mutant; `check_depth.py` must reject a mutant that changes an output. Of 16 mutants (seed 2029), 13 were rejected, and ABC `cec` proved the other 3 equal to the original: those table bits are never read.
+
+```
+python3 mutate_depth.py sin_depth_2027.blif MUTANTS 16 2029
+python3 check_depth.py <sin.blif> tables.json MUTANTS/mutant_*.blif
+```

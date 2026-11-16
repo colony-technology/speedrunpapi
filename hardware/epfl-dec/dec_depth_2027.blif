@@ -1,0 +1,649 @@
+.model dec
+.inputs count[0] count[1] count[2] count[3] count[4] count[5] count[6] count[7]
+.outputs selectp1[0] selectp1[1] selectp1[2] selectp1[3] selectp1[4] selectp1[5] selectp1[6] selectp1[7] selectp1[8] selectp1[9] selectp1[10] selectp1[11] selectp1[12] selectp1[13] selectp1[14] selectp1[15] selectp1[16] selectp1[17] selectp1[18] selectp1[19] selectp1[20] selectp1[21] selectp1[22] selectp1[23] selectp1[24] selectp1[25] selectp1[26] selectp1[27] selectp1[28] selectp1[29] selectp1[30] selectp1[31] selectp1[32] selectp1[33] selectp1[34] selectp1[35] selectp1[36] selectp1[37] selectp1[38] selectp1[39] selectp1[40] selectp1[41] selectp1[42] selectp1[43] selectp1[44] selectp1[45] selectp1[46] selectp1[47] selectp1[48] selectp1[49] selectp1[50] selectp1[51] selectp1[52] selectp1[53] selectp1[54] selectp1[55] selectp1[56] selectp1[57] selectp1[58] selectp1[59] selectp1[60] selectp1[61] selectp1[62] selectp1[63] selectp1[64] selectp1[65] selectp1[66] selectp1[67] selectp1[68] selectp1[69] selectp1[70] selectp1[71] selectp1[72] selectp1[73] selectp1[74] selectp1[75] selectp1[76] selectp1[77] selectp1[78] selectp1[79] selectp1[80] selectp1[81] selectp1[82] selectp1[83] selectp1[84] selectp1[85] selectp1[86] selectp1[87] selectp1[88] selectp1[89] selectp1[90] selectp1[91] selectp1[92] selectp1[93] selectp1[94] selectp1[95] selectp1[96] selectp1[97] selectp1[98] selectp1[99] selectp1[100] selectp1[101] selectp1[102] selectp1[103] selectp1[104] selectp1[105] selectp1[106] selectp1[107] selectp1[108] selectp1[109] selectp1[110] selectp1[111] selectp1[112] selectp1[113] selectp1[114] selectp1[115] selectp1[116] selectp1[117] selectp1[118] selectp1[119] selectp1[120] selectp1[121] selectp1[122] selectp1[123] selectp1[124] selectp1[125] selectp1[126] selectp1[127] selectp2[0] selectp2[1] selectp2[2] selectp2[3] selectp2[4] selectp2[5] selectp2[6] selectp2[7] selectp2[8] selectp2[9] selectp2[10] selectp2[11] selectp2[12] selectp2[13] selectp2[14] selectp2[15] selectp2[16] selectp2[17] selectp2[18] selectp2[19] selectp2[20] selectp2[21] selectp2[22] selectp2[23] selectp2[24] selectp2[25] selectp2[26] selectp2[27] selectp2[28] selectp2[29] selectp2[30] selectp2[31] selectp2[32] selectp2[33] selectp2[34] selectp2[35] selectp2[36] selectp2[37] selectp2[38] selectp2[39] selectp2[40] selectp2[41] selectp2[42] selectp2[43] selectp2[44] selectp2[45] selectp2[46] selectp2[47] selectp2[48] selectp2[49] selectp2[50] selectp2[51] selectp2[52] selectp2[53] selectp2[54] selectp2[55] selectp2[56] selectp2[57] selectp2[58] selectp2[59] selectp2[60] selectp2[61] selectp2[62] selectp2[63] selectp2[64] selectp2[65] selectp2[66] selectp2[67] selectp2[68] selectp2[69] selectp2[70] selectp2[71] selectp2[72] selectp2[73] selectp2[74] selectp2[75] selectp2[76] selectp2[77] selectp2[78] selectp2[79] selectp2[80] selectp2[81] selectp2[82] selectp2[83] selectp2[84] selectp2[85] selectp2[86] selectp2[87] selectp2[88] selectp2[89] selectp2[90] selectp2[91] selectp2[92] selectp2[93] selectp2[94] selectp2[95] selectp2[96] selectp2[97] selectp2[98] selectp2[99] selectp2[100] selectp2[101] selectp2[102] selectp2[103] selectp2[104] selectp2[105] selectp2[106] selectp2[107] selectp2[108] selectp2[109] selectp2[110] selectp2[111] selectp2[112] selectp2[113] selectp2[114] selectp2[115] selectp2[116] selectp2[117] selectp2[118] selectp2[119] selectp2[120] selectp2[121] selectp2[122] selectp2[123] selectp2[124] selectp2[125] selectp2[126] selectp2[127]
+.names count[0] count[1] count[2] count[3] count[4] count[5] g0
+011000 1
+111000 1
+000100 1
+010100 1
+101100 1
+111100 1
+100010 1
+101010 1
+011010 1
+111010 1
+000001 1
+100001 1
+010001 1
+001001 1
+101001 1
+010101 1
+110101 1
+001101 1
+101101 1
+000011 1
+010011 1
+101011 1
+011011 1
+111011 1
+000111 1
+100111 1
+110111 1
+011111 1
+111111 1
+.names count[0] count[1] count[2] count[3] count[4] count[5] g1
+010000 1
+001000 1
+100100 1
+110100 1
+011100 1
+010010 1
+110010 1
+001010 1
+101010 1
+011010 1
+100110 1
+010110 1
+110110 1
+001110 1
+010001 1
+110001 1
+001001 1
+011001 1
+111001 1
+000101 1
+011101 1
+100011 1
+010011 1
+110011 1
+001011 1
+011011 1
+111011 1
+010111 1
+110111 1
+111111 1
+.names count[0] count[1] count[2] count[3] count[4] count[5] g2
+100000 1
+001000 1
+101000 1
+011000 1
+000100 1
+110100 1
+011100 1
+100010 1
+010010 1
+101010 1
+011010 1
+100110 1
+110110 1
+011110 1
+000001 1
+010001 1
+110001 1
+101001 1
+011001 1
+111001 1
+010101 1
+001101 1
+011101 1
+111101 1
+100011 1
+010011 1
+110011 1
+001011 1
+011011 1
+111011 1
+100111 1
+001111 1
+.names count[0] count[1] count[2] count[3] count[4] count[5] g3
+100000 1
+010000 1
+110000 1
+001000 1
+101000 1
+011000 1
+000100 1
+100100 1
+010100 1
+110100 1
+001100 1
+101100 1
+000010 1
+100010 1
+010010 1
+110010 1
+001010 1
+101010 1
+011010 1
+111010 1
+100110 1
+001110 1
+011110 1
+111110 1
+101001 1
+111001 1
+010101 1
+001101 1
+101101 1
+010011 1
+110011 1
+001011 1
+101011 1
+000111 1
+100111 1
+001111 1
+101111 1
+011111 1
+.names count[6] count[7] count[3] g0 g1 g3 selectp1[0]
+010000 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp1[1]
+010001 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp1[2]
+011010 1
+.names count[6] count[7] count[1] count[2] g0 g1 selectp1[3]
+011000 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp1[4]
+010011 1
+.names count[6] count[7] count[2] count[3] g0 g1 selectp1[5]
+011000 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp1[6]
+011001 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp1[7]
+011000 1
+.names count[6] count[7] count[3] count[5] g0 g2 selectp1[8]
+011011 1
+.names count[6] count[7] count[0] count[1] g1 g2 selectp1[9]
+011010 1
+.names count[6] count[7] count[0] count[5] g0 g2 selectp1[10]
+010010 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp1[11]
+011111 1
+.names count[6] count[7] count[2] count[4] g0 g2 selectp1[12]
+011000 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp1[13]
+010010 1
+.names count[6] count[7] count[0] count[5] g2 g3 selectp1[14]
+010010 1
+.names count[6] count[7] count[3] count[5] g0 g3 selectp1[15]
+011010 1
+.names count[6] count[7] count[3] count[4] g0 g1 selectp1[16]
+010100 1
+.names count[6] count[7] count[3] count[4] g1 g2 selectp1[17]
+010101 1
+.names count[6] count[7] count[0] count[2] g0 g2 selectp1[18]
+010001 1
+.names count[6] count[7] count[0] count[3] g1 g2 selectp1[19]
+011010 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp1[20]
+011000 1
+.names count[6] count[7] count[0] g0 g1 g3 selectp1[21]
+011111 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp1[22]
+010011 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp1[23]
+011111 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp1[24]
+010100 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp1[25]
+010111 1
+.names count[6] count[7] count[5] g1 g2 g3 selectp1[26]
+010100 1
+.names count[6] count[7] count[0] count[5] g1 g3 selectp1[27]
+011010 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp1[28]
+010111 1
+.names count[6] count[7] count[2] g0 g2 g3 selectp1[29]
+011000 1
+.names count[6] count[7] count[0] count[1] g0 g1 selectp1[30]
+010100 1
+.names count[6] count[7] count[1] count[2] g0 g2 selectp1[31]
+011100 1
+.names count[6] count[7] g0 g1 g2 g3 selectp1[32]
+011010 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp1[33]
+011010 1
+.names count[6] count[7] count[4] g0 g1 g2 selectp1[34]
+010111 1
+.names count[6] count[7] count[0] count[4] g1 g3 selectp1[35]
+011010 1
+.names count[6] count[7] count[0] g0 g1 g2 selectp1[36]
+010110 1
+.names count[6] count[7] count[0] count[4] g0 g2 selectp1[37]
+011011 1
+.names count[6] count[7] count[2] count[3] g0 g3 selectp1[38]
+011000 1
+.names count[6] count[7] count[0] count[2] g0 g1 selectp1[39]
+011101 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp1[40]
+010110 1
+.names count[6] count[7] count[2] count[5] g0 g1 selectp1[41]
+010100 1
+.names count[6] count[7] count[1] count[2] g1 g2 selectp1[42]
+011001 1
+.names count[6] count[7] count[1] count[2] g1 g3 selectp1[43]
+011000 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp1[44]
+011111 1
+.names count[6] count[7] count[4] count[5] g2 g3 selectp1[45]
+010101 1
+.names count[6] count[7] count[3] count[5] g1 g2 selectp1[46]
+011111 1
+.names count[6] count[7] g0 g1 g2 g3 selectp1[47]
+010010 1
+.names count[6] count[7] count[4] g0 g1 g3 selectp1[48]
+011100 1
+.names count[6] count[7] count[1] g0 g2 g3 selectp1[49]
+010010 1
+.names count[6] count[7] count[2] g0 g1 g3 selectp1[50]
+010111 1
+.names count[6] count[7] count[2] count[5] g0 g3 selectp1[51]
+010101 1
+.names count[6] count[7] count[1] count[5] g1 g3 selectp1[52]
+010111 1
+.names count[6] count[7] count[3] count[5] g2 g3 selectp1[53]
+010101 1
+.names count[6] count[7] count[0] count[4] g2 g3 selectp1[54]
+010110 1
+.names count[6] count[7] count[0] g0 g2 g3 selectp1[55]
+011110 1
+.names count[6] count[7] count[2] count[5] g2 g3 selectp1[56]
+010101 1
+.names count[6] count[7] count[0] count[3] g0 g2 selectp1[57]
+011111 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp1[58]
+011100 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp1[59]
+010110 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp1[60]
+010100 1
+.names count[6] count[7] count[5] g0 g2 g3 selectp1[61]
+011001 1
+.names count[6] count[7] count[1] count[5] g2 g3 selectp1[62]
+011101 1
+.names count[6] count[7] count[0] count[2] g1 g2 selectp1[63]
+011110 1
+.names count[6] count[7] count[3] g0 g1 g3 selectp1[64]
+110000 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp1[65]
+110001 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp1[66]
+111010 1
+.names count[6] count[7] count[1] count[2] g0 g1 selectp1[67]
+111000 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp1[68]
+110011 1
+.names count[6] count[7] count[2] count[3] g0 g1 selectp1[69]
+111000 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp1[70]
+111001 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp1[71]
+111000 1
+.names count[6] count[7] count[3] count[5] g0 g2 selectp1[72]
+111011 1
+.names count[6] count[7] count[0] count[1] g1 g2 selectp1[73]
+111010 1
+.names count[6] count[7] count[0] count[5] g0 g2 selectp1[74]
+110010 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp1[75]
+111111 1
+.names count[6] count[7] count[2] count[4] g0 g2 selectp1[76]
+111000 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp1[77]
+110010 1
+.names count[6] count[7] count[0] count[5] g2 g3 selectp1[78]
+110010 1
+.names count[6] count[7] count[3] count[5] g0 g3 selectp1[79]
+111010 1
+.names count[6] count[7] count[3] count[4] g0 g1 selectp1[80]
+110100 1
+.names count[6] count[7] count[3] count[4] g1 g2 selectp1[81]
+110101 1
+.names count[6] count[7] count[0] count[2] g0 g2 selectp1[82]
+110001 1
+.names count[6] count[7] count[0] count[3] g1 g2 selectp1[83]
+111010 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp1[84]
+111000 1
+.names count[6] count[7] count[0] g0 g1 g3 selectp1[85]
+111111 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp1[86]
+110011 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp1[87]
+111111 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp1[88]
+110100 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp1[89]
+110111 1
+.names count[6] count[7] count[5] g1 g2 g3 selectp1[90]
+110100 1
+.names count[6] count[7] count[0] count[5] g1 g3 selectp1[91]
+111010 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp1[92]
+110111 1
+.names count[6] count[7] count[2] g0 g2 g3 selectp1[93]
+111000 1
+.names count[6] count[7] count[0] count[1] g0 g1 selectp1[94]
+110100 1
+.names count[6] count[7] count[1] count[2] g0 g2 selectp1[95]
+111100 1
+.names count[6] count[7] g0 g1 g2 g3 selectp1[96]
+111010 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp1[97]
+111010 1
+.names count[6] count[7] count[4] g0 g1 g2 selectp1[98]
+110111 1
+.names count[6] count[7] count[0] count[4] g1 g3 selectp1[99]
+111010 1
+.names count[6] count[7] count[0] g0 g1 g2 selectp1[100]
+110110 1
+.names count[6] count[7] count[0] count[4] g0 g2 selectp1[101]
+111011 1
+.names count[6] count[7] count[2] count[3] g0 g3 selectp1[102]
+111000 1
+.names count[6] count[7] count[0] count[2] g0 g1 selectp1[103]
+111101 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp1[104]
+110110 1
+.names count[6] count[7] count[2] count[5] g0 g1 selectp1[105]
+110100 1
+.names count[6] count[7] count[1] count[2] g1 g2 selectp1[106]
+111001 1
+.names count[6] count[7] count[1] count[2] g1 g3 selectp1[107]
+111000 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp1[108]
+111111 1
+.names count[6] count[7] count[4] count[5] g2 g3 selectp1[109]
+110101 1
+.names count[6] count[7] count[3] count[5] g1 g2 selectp1[110]
+111111 1
+.names count[6] count[7] g0 g1 g2 g3 selectp1[111]
+110010 1
+.names count[6] count[7] count[4] g0 g1 g3 selectp1[112]
+111100 1
+.names count[6] count[7] count[1] g0 g2 g3 selectp1[113]
+110010 1
+.names count[6] count[7] count[2] g0 g1 g3 selectp1[114]
+110111 1
+.names count[6] count[7] count[2] count[5] g0 g3 selectp1[115]
+110101 1
+.names count[6] count[7] count[1] count[5] g1 g3 selectp1[116]
+110111 1
+.names count[6] count[7] count[3] count[5] g2 g3 selectp1[117]
+110101 1
+.names count[6] count[7] count[0] count[4] g2 g3 selectp1[118]
+110110 1
+.names count[6] count[7] count[0] g0 g2 g3 selectp1[119]
+111110 1
+.names count[6] count[7] count[2] count[5] g2 g3 selectp1[120]
+110101 1
+.names count[6] count[7] count[0] count[3] g0 g2 selectp1[121]
+111111 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp1[122]
+111100 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp1[123]
+110110 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp1[124]
+110100 1
+.names count[6] count[7] count[5] g0 g2 g3 selectp1[125]
+111001 1
+.names count[6] count[7] count[1] count[5] g2 g3 selectp1[126]
+111101 1
+.names count[6] count[7] count[0] count[2] g1 g2 selectp1[127]
+111110 1
+.names count[6] count[7] count[3] g0 g1 g3 selectp2[0]
+000000 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp2[1]
+000001 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp2[2]
+001010 1
+.names count[6] count[7] count[1] count[2] g0 g1 selectp2[3]
+001000 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp2[4]
+000011 1
+.names count[6] count[7] count[2] count[3] g0 g1 selectp2[5]
+001000 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp2[6]
+001001 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp2[7]
+001000 1
+.names count[6] count[7] count[3] count[5] g0 g2 selectp2[8]
+001011 1
+.names count[6] count[7] count[0] count[1] g1 g2 selectp2[9]
+001010 1
+.names count[6] count[7] count[0] count[5] g0 g2 selectp2[10]
+000010 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp2[11]
+001111 1
+.names count[6] count[7] count[2] count[4] g0 g2 selectp2[12]
+001000 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp2[13]
+000010 1
+.names count[6] count[7] count[0] count[5] g2 g3 selectp2[14]
+000010 1
+.names count[6] count[7] count[3] count[5] g0 g3 selectp2[15]
+001010 1
+.names count[6] count[7] count[3] count[4] g0 g1 selectp2[16]
+000100 1
+.names count[6] count[7] count[3] count[4] g1 g2 selectp2[17]
+000101 1
+.names count[6] count[7] count[0] count[2] g0 g2 selectp2[18]
+000001 1
+.names count[6] count[7] count[0] count[3] g1 g2 selectp2[19]
+001010 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp2[20]
+001000 1
+.names count[6] count[7] count[0] g0 g1 g3 selectp2[21]
+001111 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp2[22]
+000011 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp2[23]
+001111 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp2[24]
+000100 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp2[25]
+000111 1
+.names count[6] count[7] count[5] g1 g2 g3 selectp2[26]
+000100 1
+.names count[6] count[7] count[0] count[5] g1 g3 selectp2[27]
+001010 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp2[28]
+000111 1
+.names count[6] count[7] count[2] g0 g2 g3 selectp2[29]
+001000 1
+.names count[6] count[7] count[0] count[1] g0 g1 selectp2[30]
+000100 1
+.names count[6] count[7] count[1] count[2] g0 g2 selectp2[31]
+001100 1
+.names count[6] count[7] g0 g1 g2 g3 selectp2[32]
+001010 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp2[33]
+001010 1
+.names count[6] count[7] count[4] g0 g1 g2 selectp2[34]
+000111 1
+.names count[6] count[7] count[0] count[4] g1 g3 selectp2[35]
+001010 1
+.names count[6] count[7] count[0] g0 g1 g2 selectp2[36]
+000110 1
+.names count[6] count[7] count[0] count[4] g0 g2 selectp2[37]
+001011 1
+.names count[6] count[7] count[2] count[3] g0 g3 selectp2[38]
+001000 1
+.names count[6] count[7] count[0] count[2] g0 g1 selectp2[39]
+001101 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp2[40]
+000110 1
+.names count[6] count[7] count[2] count[5] g0 g1 selectp2[41]
+000100 1
+.names count[6] count[7] count[1] count[2] g1 g2 selectp2[42]
+001001 1
+.names count[6] count[7] count[1] count[2] g1 g3 selectp2[43]
+001000 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp2[44]
+001111 1
+.names count[6] count[7] count[4] count[5] g2 g3 selectp2[45]
+000101 1
+.names count[6] count[7] count[3] count[5] g1 g2 selectp2[46]
+001111 1
+.names count[6] count[7] g0 g1 g2 g3 selectp2[47]
+000010 1
+.names count[6] count[7] count[4] g0 g1 g3 selectp2[48]
+001100 1
+.names count[6] count[7] count[1] g0 g2 g3 selectp2[49]
+000010 1
+.names count[6] count[7] count[2] g0 g1 g3 selectp2[50]
+000111 1
+.names count[6] count[7] count[2] count[5] g0 g3 selectp2[51]
+000101 1
+.names count[6] count[7] count[1] count[5] g1 g3 selectp2[52]
+000111 1
+.names count[6] count[7] count[3] count[5] g2 g3 selectp2[53]
+000101 1
+.names count[6] count[7] count[0] count[4] g2 g3 selectp2[54]
+000110 1
+.names count[6] count[7] count[0] g0 g2 g3 selectp2[55]
+001110 1
+.names count[6] count[7] count[2] count[5] g2 g3 selectp2[56]
+000101 1
+.names count[6] count[7] count[0] count[3] g0 g2 selectp2[57]
+001111 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp2[58]
+001100 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp2[59]
+000110 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp2[60]
+000100 1
+.names count[6] count[7] count[5] g0 g2 g3 selectp2[61]
+001001 1
+.names count[6] count[7] count[1] count[5] g2 g3 selectp2[62]
+001101 1
+.names count[6] count[7] count[0] count[2] g1 g2 selectp2[63]
+001110 1
+.names count[6] count[7] count[3] g0 g1 g3 selectp2[64]
+100000 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp2[65]
+100001 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp2[66]
+101010 1
+.names count[6] count[7] count[1] count[2] g0 g1 selectp2[67]
+101000 1
+.names count[6] count[7] count[1] count[4] g1 g2 selectp2[68]
+100011 1
+.names count[6] count[7] count[2] count[3] g0 g1 selectp2[69]
+101000 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp2[70]
+101001 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp2[71]
+101000 1
+.names count[6] count[7] count[3] count[5] g0 g2 selectp2[72]
+101011 1
+.names count[6] count[7] count[0] count[1] g1 g2 selectp2[73]
+101010 1
+.names count[6] count[7] count[0] count[5] g0 g2 selectp2[74]
+100010 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp2[75]
+101111 1
+.names count[6] count[7] count[2] count[4] g0 g2 selectp2[76]
+101000 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp2[77]
+100010 1
+.names count[6] count[7] count[0] count[5] g2 g3 selectp2[78]
+100010 1
+.names count[6] count[7] count[3] count[5] g0 g3 selectp2[79]
+101010 1
+.names count[6] count[7] count[3] count[4] g0 g1 selectp2[80]
+100100 1
+.names count[6] count[7] count[3] count[4] g1 g2 selectp2[81]
+100101 1
+.names count[6] count[7] count[0] count[2] g0 g2 selectp2[82]
+100001 1
+.names count[6] count[7] count[0] count[3] g1 g2 selectp2[83]
+101010 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp2[84]
+101000 1
+.names count[6] count[7] count[0] g0 g1 g3 selectp2[85]
+101111 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp2[86]
+100011 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp2[87]
+101111 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp2[88]
+100100 1
+.names count[6] count[7] count[1] count[3] g1 g2 selectp2[89]
+100111 1
+.names count[6] count[7] count[5] g1 g2 g3 selectp2[90]
+100100 1
+.names count[6] count[7] count[0] count[5] g1 g3 selectp2[91]
+101010 1
+.names count[6] count[7] count[0] count[3] g1 g3 selectp2[92]
+100111 1
+.names count[6] count[7] count[2] g0 g2 g3 selectp2[93]
+101000 1
+.names count[6] count[7] count[0] count[1] g0 g1 selectp2[94]
+100100 1
+.names count[6] count[7] count[1] count[2] g0 g2 selectp2[95]
+101100 1
+.names count[6] count[7] g0 g1 g2 g3 selectp2[96]
+101010 1
+.names count[6] count[7] count[0] count[1] g0 g3 selectp2[97]
+101010 1
+.names count[6] count[7] count[4] g0 g1 g2 selectp2[98]
+100111 1
+.names count[6] count[7] count[0] count[4] g1 g3 selectp2[99]
+101010 1
+.names count[6] count[7] count[0] g0 g1 g2 selectp2[100]
+100110 1
+.names count[6] count[7] count[0] count[4] g0 g2 selectp2[101]
+101011 1
+.names count[6] count[7] count[2] count[3] g0 g3 selectp2[102]
+101000 1
+.names count[6] count[7] count[0] count[2] g0 g1 selectp2[103]
+101101 1
+.names count[6] count[7] count[1] count[3] g1 g3 selectp2[104]
+100110 1
+.names count[6] count[7] count[2] count[5] g0 g1 selectp2[105]
+100100 1
+.names count[6] count[7] count[1] count[2] g1 g2 selectp2[106]
+101001 1
+.names count[6] count[7] count[1] count[2] g1 g3 selectp2[107]
+101000 1
+.names count[6] count[7] count[2] count[3] g0 g2 selectp2[108]
+101111 1
+.names count[6] count[7] count[4] count[5] g2 g3 selectp2[109]
+100101 1
+.names count[6] count[7] count[3] count[5] g1 g2 selectp2[110]
+101111 1
+.names count[6] count[7] g0 g1 g2 g3 selectp2[111]
+100010 1
+.names count[6] count[7] count[4] g0 g1 g3 selectp2[112]
+101100 1
+.names count[6] count[7] count[1] g0 g2 g3 selectp2[113]
+100010 1
+.names count[6] count[7] count[2] g0 g1 g3 selectp2[114]
+100111 1
+.names count[6] count[7] count[2] count[5] g0 g3 selectp2[115]
+100101 1
+.names count[6] count[7] count[1] count[5] g1 g3 selectp2[116]
+100111 1
+.names count[6] count[7] count[3] count[5] g2 g3 selectp2[117]
+100101 1
+.names count[6] count[7] count[0] count[4] g2 g3 selectp2[118]
+100110 1
+.names count[6] count[7] count[0] g0 g2 g3 selectp2[119]
+101110 1
+.names count[6] count[7] count[2] count[5] g2 g3 selectp2[120]
+100101 1
+.names count[6] count[7] count[0] count[3] g0 g2 selectp2[121]
+101111 1
+.names count[6] count[7] count[1] count[5] g0 g2 selectp2[122]
+101100 1
+.names count[6] count[7] count[2] g0 g1 g2 selectp2[123]
+100110 1
+.names count[6] count[7] count[0] count[5] g0 g1 selectp2[124]
+100100 1
+.names count[6] count[7] count[5] g0 g2 g3 selectp2[125]
+101001 1
+.names count[6] count[7] count[1] count[5] g2 g3 selectp2[126]
+101101 1
+.names count[6] count[7] count[0] count[2] g1 g2 selectp2[127]
+101110 1
+.end
