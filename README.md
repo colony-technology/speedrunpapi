@@ -226,6 +226,7 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 | `bar`, size | 512 LUT-6 | 486 LUT-6 |
 | `bar`, depth | 4 levels, 512 LUT-6 | 4 levels, 486 LUT-6 |
 | `router`, depth | 3 levels, 25 LUT-6 | 3 levels, 22 LUT-6 |
+| `cavlc`, depth | 3 levels, 54 LUT-6 | 3 levels, 53 LUT-6 |
 | `mem_ctrl`, size | 1669 LUT-6 | 1666 LUT-6 |
 | `mem_ctrl`, depth | 5 levels, 1716 LUT-6 | 5 levels, 1714 LUT-6 |
 | `sixteen`, size | 3282958 LUT-6 | 12691 LUT-6 |
@@ -254,6 +255,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 [`hardware/epfl-max/`](hardware/epfl-max/) holds `max` for the size table at 510 LUT-6 where the best published has 511, proved equal to the benchmark by ABC.
 
 [`hardware/epfl-router/`](hardware/epfl-router/) holds `router` for the depth table at 22 LUT-6 and 3 levels, the minimum, where the best published has 25, proved equal to the benchmark by ABC.
+
+[`hardware/epfl-cavlc/`](hardware/epfl-cavlc/) holds `cavlc` for the depth table at 53 LUT-6 and 3 levels, where the best published has 54: the published netlist with one LUT removed, every output compared with the benchmark on every input, and ABC proves the whole netlist equal as well.
 
 [`hardware/epfl-mem_ctrl/`](hardware/epfl-mem_ctrl/) holds `mem_ctrl` at 1666 LUT-6 and 27 levels for the size table and 1714 LUT-6 and 5 levels for the depth table, where the best published have 1669 and 1716: the published netlists of F.-X. Reichl and F. Slivovsky with LUTs removed, proved equal to the benchmark by ABC.
 
