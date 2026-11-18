@@ -81,7 +81,9 @@ class Net:
             self.fan[x] = list(raw[x][0])
             self.orig[x] = (list(raw[x][0]), list(raw[x][1]))
         self.po = set(self.outputs)
-        self.deep = 120
+        self.deep = 120          # iterations allowed for a fanin set that keeps none of the old fanins
+        self.pert = 400          # iterations allowed for a perturbation
+        self.budget = 4000       # SAT conflicts allowed per call
         self.ref = {o: self.tt[o].copy() for o in self.outputs}
 
     # ---- structure
@@ -172,7 +174,8 @@ class Net:
                 s.delete(); return None
         res = None
         for _ in range(maxiter):
-            if not s.solve(): break
+            s.conf_budget(self.budget)
+            if not s.solve_limited(): break
             model = s.get_model()
             pick = [j for j in range(m) if model[j] > 0]
             code = np.zeros(self.R, dtype=np.int64)
@@ -231,12 +234,13 @@ class Net:
         before = self.count()
         saved = {w: self.fan[w] for w in plan}
         for w, D in plan.items(): self.fan[w] = D
-        if not self.acyclic():
+        bad = not self.acyclic()
+        if not bad and Lmax:                                   # the new fanins may have moved levels
+            bad = max(self.levels()[o] for o in self.outputs) > Lmax
+        if bad:
             for w, f in saved.items(): self.fan[w] = f
             return 0
         self.sweep()
-        if Lmax and max(self.levels()[o] for o in self.outputs) > Lmax:
-            raise RuntimeError("level bound broken")
         return before - self.count()
 
     def trivialize(self, w):
@@ -256,13 +260,113 @@ class Net:
         if Lmax: ml = self.required(Lmax, fo, lev)[w] - 1
         cands = self.candidates(w, fo, lev=lev, maxlev=ml)
         rng.shuffle(cands)
-        D = self.cover(w, cands, forbid=self.fan[w], rng=rng)
+        D = self.cover(w, cands, forbid=self.fan[w], rng=rng, maxiter=self.pert)
         if D is None or len(D) < 2: return False
         old = self.fan[w]; self.fan[w] = D
-        if not self.acyclic():
+        bad = not self.acyclic()
+        if not bad and Lmax:
+            bad = max(self.levels()[o] for o in self.outputs) > Lmax
+        if bad:
             self.fan[w] = old; return False
         self.sweep()
         return True
+
+    def mffc(self, w, fo):
+        """w and the nodes that only w needs (they go when w stops reading them)"""
+        dead = {w}; changed = True
+        while changed:
+            changed = False
+            for x in list(dead):
+                for y in self.fan.get(x, []):
+                    if y in self.fan and y not in dead and y not in self.po and all(z in dead for z in fo[y]):
+                        dead.add(y); changed = True
+        return dead
+
+    def resub1(self, w, Lmax=None, rng=None, maxiter=400):
+        """rebuild w as LUT(z, <=5 signals) with one NEW node z = LUT(<=6 signals); pays when w owns >= 2 other nodes"""
+        if len(self.fan[w]) < 2: return 0
+        fo = self.fanouts()
+        M = self.mffc(w, fo)
+        if sum(1 for x in M if len(self.fan[x]) >= 2) < 3: return 0
+        lev = self.levels(); bad = self.tfo(w, fo) | M
+        cands = [x for x in self.tt if x not in bad]
+        candA, candB = cands, cands
+        if Lmax:
+            req = self.required(Lmax, fo, lev)[w]
+            candA = [x for x in cands if lev[x] <= req - 2]
+            candB = [x for x in cands if lev[x] <= req - 1]
+        got = self.decomp1(self.tt[w], candA, candB, rng or random, maxiter)
+        if got is None: return 0
+        D1, z, D2 = got
+        self.fresh = getattr(self, "fresh", 0) + 1
+        name = f"rs{self.fresh}"
+        while name in self.tt: self.fresh += 1; name = f"rs{self.fresh}"
+        before = self.count(); saved = self.fan[w]
+        self.tt[name] = z; self.fan[name] = list(D1); self.fan[w] = [name] + list(D2)
+        bad = not self.acyclic()
+        if not bad and Lmax: bad = max(self.levels()[o] for o in self.outputs) > Lmax
+        if bad:
+            self.fan[w] = saved; del self.fan[name]; del self.tt[name]; return 0
+        self.sweep()
+        return before - self.count()
+
+    def decomp1(self, f, candA, candB, rng, maxiter):
+        """f = T(z, D2), z = g(D1): returns (D1, z values, D2) or None. Lazy pair constraints."""
+        R = self.R
+        if not candA or not candB: return None
+        MA = np.stack([self.tt[c] for c in candA]); MB = np.stack([self.tt[c] for c in candB])
+        na, nb = len(candA), len(candB)
+        A0, B0, Z0 = 1, na + 1, na + nb + 1               # variable offsets
+        top = na + nb + R
+        s = Solver(name="glucose4")
+        for lits, bound in ((list(range(A0, A0 + na)), 6), (list(range(B0, B0 + nb)), 5)):
+            if len(lits) > bound:
+                enc = CardEnc.atmost(lits=lits, bound=bound, top_id=top, encoding=EncType.seqcounter)
+                top = max(top, enc.nv)
+                for c in enc.clauses: s.add_clause(c)
+        on = np.flatnonzero(f); off = np.flatnonzero(np.logical_not(f))
+        if len(on) == 0 or len(off) == 0:
+            s.delete(); return None
+        s.add_clause([-(Z0 + int(on[0]))])                  # polarity of z
+        def c1(a, b):                                       # f differs: z differs or a D2 signal differs
+            d = [B0 + int(j) for j in np.flatnonzero(MB[:, a] != MB[:, b])]
+            s.add_clause([Z0 + a, Z0 + b] + d); s.add_clause([-(Z0 + a), -(Z0 + b)] + d)
+        def c2(a, b):                                       # z differs: a D1 signal differs
+            d = [A0 + int(j) for j in np.flatnonzero(MA[:, a] != MA[:, b])]
+            s.add_clause([Z0 + a, -(Z0 + b)] + d); s.add_clause([-(Z0 + a), Z0 + b] + d)
+        for _ in range(200):
+            c1(int(on[rng.randrange(len(on))]), int(off[rng.randrange(len(off))]))
+        for _ in range(400):
+            a, b = rng.randrange(R), rng.randrange(R)
+            if a != b: c2(a, b)
+        res = None
+        for _ in range(maxiter):
+            s.conf_budget(self.budget * 4)
+            if not s.solve_limited(): break
+            model = s.get_model()
+            A = [j for j in range(na) if model[A0 + j - 1] > 0]
+            B = [j for j in range(nb) if model[B0 + j - 1] > 0]
+            z = np.array(model[Z0 - 1: Z0 - 1 + R]) > 0
+            added = 0
+            code = z.astype(np.int64)
+            for b_, j in enumerate(B): code |= MB[j].astype(np.int64) << (b_ + 1)
+            size = 1 << (len(B) + 1)
+            k1 = np.bincount(code[on], minlength=size); k0 = np.bincount(code[off], minlength=size)
+            for bc in np.flatnonzero(np.logical_and(k1 > 0, k0 > 0))[:48]:
+                c1(int(on[np.flatnonzero(code[on] == bc)[0]]), int(off[np.flatnonzero(code[off] == bc)[0]])); added += 1
+            code = np.zeros(R, dtype=np.int64)
+            for b_, j in enumerate(A): code |= MA[j].astype(np.int64) << b_
+            size = 1 << len(A)
+            zi = np.flatnonzero(z); zo = np.flatnonzero(np.logical_not(z))
+            k1 = np.bincount(code[zi], minlength=size); k0 = np.bincount(code[zo], minlength=size)
+            for bc in np.flatnonzero(np.logical_and(k1 > 0, k0 > 0))[:48]:
+                ra = zi[np.flatnonzero(code[zi] == bc)]; rb = zo[np.flatnonzero(code[zo] == bc)]
+                for t in range(min(3, len(ra), len(rb))):
+                    c2(int(ra[rng.randrange(len(ra))]), int(rb[rng.randrange(len(rb))])); added += 1
+            if added == 0:
+                res = ([candA[j] for j in A], z, [candB[j] for j in B]); break
+        s.delete()
+        return res
 
     def acyclic(self):
         state = {}
@@ -303,6 +407,8 @@ class Net:
             onc = sorted(set(int(c) for c in np.unique(code[self.tt[x]])))
             for c in onc:
                 L.append("".join("1" if (c >> j) & 1 else "0" for j in range(len(f))) + " 1")
+            if not onc:                                   # never 1: say so with an off-set row
+                L.append("-" * len(f) + " 0")
         L.append(".end")
         open(path, "w").write("\n".join(L) + "\n")
 
@@ -313,7 +419,7 @@ class Net:
         self.fan = {x: list(f) for x, f in snap[0].items()}; self.tt = dict(snap[1])
 
 
-def run(start, out, Lmax=None, iters=2000, seed=1, tlimit=600, log=print):
+def run(start, out, Lmax=None, iters=2000, seed=1, tlimit=600, log=print, newnode=True):
     rng = random.Random(seed)
     net = Net(start)
     lev0 = max(net.levels()[o] for o in net.outputs)
@@ -334,6 +440,13 @@ def run(start, out, Lmax=None, iters=2000, seed=1, tlimit=600, log=print):
                 if u in net.fan and len(net.fan[u]) >= 2:
                     g = net.eliminate(u, Lmax_eff, rng)
                     if g > 0: gain += g; again = True
+            if not again and newnode:
+                for w in sorted(list(net.fan), key=lambda x: rng.random()):
+                    if w in net.fan and len(net.fan[w]) >= 2:
+                        g = net.resub1(w, Lmax_eff, rng)
+                        if g > 0:
+                            gain += g; again = True
+                            log(f"  new-node move at {w}: -{g} -> {net.count()}")
         return gain
     g = greedy()
     log(f"greedy: -{g} -> {net.count()}  [{time.time()-t0:.0f}s]")
