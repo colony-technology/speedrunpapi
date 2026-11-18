@@ -4,7 +4,7 @@ usage: python3 prove.py REF.blif OURS.blif
 
 For every output, U is the set of inputs that either netlist can reach from that output.
 Neither side can depend on an input outside U, so comparing the two on all 2^|U| settings of U
-decides that output completely. Every output of i2c reaches at most 24 inputs.
+decides that output completely. In the i2c netlists an output reaches at most 25 inputs.
 
 It also prints the shape of OURS read straight from the file: nodes by number of inputs, and the
 number of levels both when every node counts and when only nodes with two or more inputs count.

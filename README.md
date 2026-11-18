@@ -226,7 +226,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 | `bar`, size | 512 LUT-6 | 486 LUT-6 |
 | `bar`, depth | 4 levels, 512 LUT-6 | 4 levels, 486 LUT-6 |
 | `router`, depth | 3 levels, 25 LUT-6 | 3 levels, 22 LUT-6 |
-| `i2c`, depth | 3 levels, 192 LUT-6 | 2 levels, 508 LUT-6 |
+| `i2c`, size | 173 LUT-6 | 171 LUT-6 |
+| `i2c`, depth | 3 levels, 192 LUT-6 | 2 levels, 323 LUT-6 |
 | `mem_ctrl`, size | 1669 LUT-6 | 1666 LUT-6 |
 | `mem_ctrl`, depth | 5 levels, 1716 LUT-6 | 5 levels, 1714 LUT-6 |
 | `sixteen`, size | 3282958 LUT-6 | 12691 LUT-6 |
@@ -256,7 +257,7 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 
 [`hardware/epfl-router/`](hardware/epfl-router/) holds `router` for the depth table at 22 LUT-6 and 3 levels, the minimum, where the best published has 25, proved equal to the benchmark by ABC.
 
-[`hardware/epfl-i2c/`](hardware/epfl-i2c/) holds `i2c` for the depth table at 2 levels, the minimum, and 508 LUT-6, where the best published has 3 levels. Each of its 142 outputs is compared with the benchmark on every setting of the inputs it can reach, and ABC proves the whole netlist equal as well.
+[`hardware/epfl-i2c/`](hardware/epfl-i2c/) holds `i2c` for the depth table at 2 levels, the minimum, and 323 LUT-6, where the best published has 3 levels, and for the size table at 171 LUT-6, where the best published has 173. Each of the 142 outputs of both netlists is compared with the benchmark on every setting of the inputs it can reach, and ABC proves the whole netlists equal as well.
 
 [`hardware/epfl-mem_ctrl/`](hardware/epfl-mem_ctrl/) holds `mem_ctrl` at 1666 LUT-6 and 27 levels for the size table and 1714 LUT-6 and 5 levels for the depth table, where the best published have 1669 and 1716: the published netlists of F.-X. Reichl and F. Slivovsky with LUTs removed, proved equal to the benchmark by ABC.
 
