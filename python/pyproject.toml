@@ -15,7 +15,7 @@ classifiers = ["Programming Language :: Python :: 3", "Environment :: Console"]
 
 [project.urls]
 Homepage = "https://colony.technology"
-Source = "https://github.com/lmtlssss/speedrunpapi"
+Source = "https://github.com/colony-technology/speedrunpapi"
 
 [project.optional-dependencies]
 onnx = ["onnx>=1.16,<2", "numpy>=1.26,<3"]
