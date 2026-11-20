@@ -31,7 +31,7 @@ Broken  examples/division.circom
 
 ```sh
 npm install -g speedrunpapi      # or: pip install speedrunpapi  (same bundle; still needs Node.js)
-git clone https://github.com/lmtlssss/speedrunpapi && cd speedrunpapi
+git clone https://github.com/colony-technology/speedrunpapi && cd speedrunpapi
 speedrunpapi scan examples/iszero.circom examples/decoder.circom examples/modsum-safe.circom
 ```
 
@@ -157,7 +157,7 @@ python3 "$(npm root -g)/speedrunpapi/verifiers/determinism/determinism_check.py"
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: lmtlssss/speedrunpapi@v0.7.3
+- uses: colony-technology/speedrunpapi@v0.7.3
   with:
     file: circuits/main.circom
     include: node_modules/circomlib/circuits
@@ -180,7 +180,7 @@ To check a certificate offline, `node "$(npm root -g)/speedrunpapi/verifiers/cer
 
 ## Earlier versions
 
-Before 0.7.1, sources were classified by template name and keyword. A circuit with unconstrained outputs could receive `Certified`. Certificates issued before 0.7.1 have been revoked. Scan again with 0.7.1 or later. [Release notes](https://github.com/lmtlssss/speedrunpapi/releases).
+Before 0.7.1, sources were classified by template name and keyword. A circuit with unconstrained outputs could receive `Certified`. Certificates issued before 0.7.1 have been revoked. Scan again with 0.7.1 or later. [Release notes](https://github.com/colony-technology/speedrunpapi/releases).
 
 ## Hosted jobs
 
@@ -188,7 +188,7 @@ The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, 
 
 ## Exact embeddings
 
-[`proofs/exact-embeddings/`](proofs/exact-embeddings/) holds the sentence-embedding model `sentence-transformers/all-MiniLM-L6-v2` computed in integer arithmetic. The 2,758 sentences of the STS-B test set give one SHA-256 on seven machines, x86-64 and ARM64 under Linux, macOS and Windows, where the float32 model and onnxruntime each give six. STS-B Spearman is 0.8203 for all three. The only floating-point operation is a product of integer matrices whose partial sums are bounded below 2^53, and the bound is checked for every weight matrix. [The notebook](https://colab.research.google.com/github/lmtlssss/speedrunpapi/blob/main/proofs/exact-embeddings/exact_embeddings.ipynb) runs it in Colab with NumPy alone.
+[`proofs/exact-embeddings/`](proofs/exact-embeddings/) holds the sentence-embedding model `sentence-transformers/all-MiniLM-L6-v2` computed in integer arithmetic. The 2,758 sentences of the STS-B test set give one SHA-256 on seven machines, x86-64 and ARM64 under Linux, macOS and Windows, where the float32 model and onnxruntime each give six. STS-B Spearman is 0.8203 for all three. The only floating-point operation is a product of integer matrices whose partial sums are bounded below 2^53, and the bound is checked for every weight matrix. [The notebook](https://colab.research.google.com/github/colony-technology/speedrunpapi/blob/main/proofs/exact-embeddings/exact_embeddings.ipynb) runs it in Colab with NumPy alone.
 
 ## Exact language model
 
@@ -286,10 +286,10 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 
 [`hardware/certificate/hardfloat/`](hardware/certificate/hardfloat/) holds a certificate for the rounding module of Berkeley HardFloat Release 1, `roundRawFNToRecFN` with options 0: the IEEE 754-2019 value and the overflow, underflow and inexact flags for every valid finite nonzero raw input. The whole module is proved by machine at 135 formats, binary16, binary32, binary64, binary128 and x87 extended among them, and every input of 17 small formats is compared with exact rational arithmetic, 3,297,497,088 inputs with 0 differences.
 
-[`hardware/audit/`](hardware/audit/) runs open arithmetic cores beside exact arithmetic: a double-precision divider in dawsonjon/fpu returns 2^29 times the quotient for a band of subnormal results. The floating-point adder of BaseJump STL returns the smallest normal number for 0 + 0. The floating-point unit of OpenHW's CVA5 never answers 0.0 / 2.0 when that division directly follows another one. NOEL-V, Gaisler's RISC-V processor, returns 1.65e-24 for 3.0 * 5.0 - 15.0 at the target of a mispredicted branch. The float package of the VHDL standard, as the IEEE publishes it and GHDL and NVC ship it, returns -15 for (-6)(-1) + (-5) and the wrong last bit for the square root of two in double precision; the patch beside it passes 32 million calls. Two fixes are merged upstream: neorv32 #1692 and black-parrot #1380.
+[`hardware/audit/`](hardware/audit/) runs open arithmetic cores beside exact arithmetic: a double-precision divider in dawsonjon/fpu returns 2^29 times the quotient for a band of subnormal results. The floating-point adder of BaseJump STL returns the smallest normal number for 0 + 0. The floating-point unit of OpenHW's CVA5 never answers 0.0 / 2.0 when that division directly follows another one. NOEL-V, Gaisler's RISC-V processor, returns 1.65e-24 for 3.0 * 5.0 - 15.0 at the target of a mispredicted branch. The float package of the VHDL standard, as the IEEE publishes it and GHDL and NVC ship it, returns -15 for (-6)(-1) + (-5) and the wrong last bit for the square root of two in double precision; the patch beside it passes 32 million calls. Seven floating-point fixes are merged upstream: neorv32 #1692, black-parrot #1380 and basejump_stl #765 from our pull requests, and cva5 #37 and xls #5437, #5439 and #5440, the maintainers' fixes to our reports.
 Every netlist has an independent checker; the division and square-root recurrences are proved in Lean 4.
 
-One unit of work, 1,800 USD, fixed, in three forms, each with its own refund: [a core or IP block audited](hardware/audit/#your-block), refunded if no defect is found; [an arithmetic block in your flow](hardware/multiplier/#paid-evaluation), refunded if it does not beat your reference on LUT count or logic depth; [a model made exact](proofs/exact-llm/#your-model), up to 500 million parameters, refunded if two of your machines print different hashes. Larger work, by contract: lmtlssss@colony.technology.
+One unit of work, fixed, each with its own refund: [a core or IP block audited](hardware/audit/#your-block), 1,800 USD, refunded if no defect is found; [a model made exact](proofs/exact-llm/#your-model), 1,800 USD up to 500 million parameters and 7,000 USD up to 2,000 million, refunded if two of your machines print different hashes; [an arithmetic block in your flow](hardware/multiplier/#paid-evaluation), 7,000 USD, refunded if it does not beat your reference on LUT count or logic depth. Larger work, by contract: lmtlssss@colony.technology.
 
-[Terms](https://colony.technology/terms) · [Releases](https://github.com/lmtlssss/speedrunpapi/releases)
+[Terms](https://colony.technology/terms) · [Releases](https://github.com/colony-technology/speedrunpapi/releases)
 Questions: lmtlssss@colony.technology
