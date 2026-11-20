@@ -230,6 +230,7 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 | `i2c`, depth | 3 levels, 192 LUT-6 | 2 levels, 323 LUT-6 |
 | `mem_ctrl`, size | 1669 LUT-6 | 1666 LUT-6 |
 | `mem_ctrl`, depth | 5 levels, 1716 LUT-6 | 5 levels, 1714 LUT-6 |
+| `int2float`, depth | 2 levels, 23 LUT-6 | 2 levels, 21 LUT-6 |
 | `sixteen`, size | 3282958 LUT-6 | 12691 LUT-6 |
 | `twenty`, size | 4166467 LUT-6 | 12719 LUT-6 |
 | `twentythree`, size | 470892 LUT-6 | 12744 LUT-6 |
@@ -260,6 +261,8 @@ Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 [`hardware/epfl-i2c/`](hardware/epfl-i2c/) holds `i2c` for the depth table at 2 levels, the minimum, and 323 LUT-6, where the best published has 3 levels, and for the size table at 171 LUT-6, where the best published has 173. Each of the 142 outputs of both netlists is compared with the benchmark on every setting of the inputs it can reach, and ABC proves the whole netlists equal as well.
 
 [`hardware/epfl-mem_ctrl/`](hardware/epfl-mem_ctrl/) holds `mem_ctrl` at 1666 LUT-6 and 27 levels for the size table and 1714 LUT-6 and 5 levels for the depth table, where the best published have 1669 and 1716: the published netlists of F.-X. Reichl and F. Slivovsky with LUTs removed, proved equal to the benchmark by ABC.
+
+[`hardware/epfl-int2float/`](hardware/epfl-int2float/) holds `int2float` for the depth table at 21 LUT-6 and 2 levels, the minimum, where the best published has 23: the published netlist of F.-X. Reichl and F. Slivovsky with two LUTs removed, each output compared with the benchmark on every input, and ABC proves the whole netlist equal as well.
 
 [`hardware/epfl-ties/`](hardware/epfl-ties/) proves three published entries optimal, so they cannot be beaten: `ctrl` at 25 LUT-6 and 2 levels on both tables, and `adder` at 129 LUT-6 and 126 levels on the size table.
 
