@@ -23453,7 +23453,7 @@ function createColonyClient(options) {
 
 // packages/colony-sdk/src/cli.ts
 function syntax() {
-  console.log("\u1455. colony universal jobs\n  colony-jobs run <source> [--format circom] [--cert] [--public]\n  colony-jobs quote <source> [--format circom|onnx|math]\n  colony-jobs solve <source.math>\n  colony-jobs optimize <source.onnx> --out candidate.onnx --proof-dir proof\n  colony-jobs status <job-id>\n  colony-jobs result <job-id> [--out result.json]\n  colony-jobs check <source> <result.json>\n  colony-jobs usage\nSet COLONY_API_KEY. Optional COLONY_API defaults to https://api.colony.technology.\nspeedrunpapi scan and verify are unchanged.");
+  console.log("\u1455. colony universal jobs\n  colony-jobs run <source> [--format circom] [--cert] [--public]\n  colony-jobs quote <source> [--format circom|onnx|math]\n  colony-jobs solve <source.math>\n  colony-jobs credits [buy [<credits>] [--print]]\n  colony-jobs optimize <source.onnx> --out candidate.onnx --proof-dir proof\n  colony-jobs status <job-id>\n  colony-jobs result <job-id> [--out result.json]\n  colony-jobs check <source> <result.json>\n  colony-jobs usage\nSet COLONY_API_KEY. Optional COLONY_API defaults to https://api.colony.technology.\nspeedrunpapi scan and verify are unchanged.");
 }
 function option(args, flag) {
   const i = args.indexOf(flag);
@@ -23479,6 +23479,62 @@ function sourceFormat(file2, args) {
   if (!format) throw new Error("Provide --format for this source");
   return format;
 }
+var CREDIT_PACKS = [[500, 10], [1e3, 18], [5e3, 75], [2e4, 240], [1e5, 1e3]];
+var PACKS_URL = "https://colony.technology/packs";
+var ADD_CREDITS = "add credits: speedrunpapi credits buy";
+async function openUrl(url) {
+  const { spawn } = await import("node:child_process");
+  const [cmd, argv] = process.platform === "darwin" ? ["open", [url]] : process.platform === "win32" ? ["cmd", ["/c", "start", "", url]] : ["xdg-open", [url]];
+  return new Promise((resolve) => {
+    try {
+      const child = spawn(cmd, argv, { stdio: "ignore", detached: true });
+      child.on("error", () => resolve(false));
+      child.on("spawn", () => {
+        child.unref();
+        resolve(true);
+      });
+    } catch {
+      resolve(false);
+    }
+  });
+}
+async function credits(args) {
+  if (args[1] === "buy") {
+    const wanted = args.slice(2).find((a) => !a.startsWith("--"));
+    const rows = CREDIT_PACKS.map(([n, usd]) => "  " + String(n).padStart(6) + " credits   $" + String(usd).padEnd(5) + "  $" + (usd / n).toFixed(3) + " each");
+    if (wanted === void 0) {
+      console.log(["credit packs (1 credit per certificate or completed job; Unknown costs nothing)", ...rows, "", "buy one:  speedrunpapi credits buy <credits>     for example: speedrunpapi credits buy 1000", "          add --print to print the link without opening a browser"].join("\n"));
+      return;
+    }
+    const pack = CREDIT_PACKS.find(([n]) => String(n) === wanted);
+    if (!pack) {
+      console.error("No pack of " + wanted + " credits. Packs: " + CREDIT_PACKS.map(([n]) => n).join(", "));
+      process.exitCode = 2;
+      return;
+    }
+    console.log([pack[0] + " credits, $" + pack[1] + ": on the packs page choose buy on the " + pack[0] + " row; Stripe checkout opens there", PACKS_URL, "", "your key", "  after payment this page asks for your receipt email and shows the API key", "  lost the page: mail lmtlssss@colony.technology with the receipt", "  then: export COLONY_API_KEY=el_..."].join("\n"));
+    if (!args.includes("--print") && !await openUrl(PACKS_URL)) console.error("No browser opened; open the link above.");
+    return;
+  }
+  if (args[1] !== void 0) {
+    console.log("speedrunpapi credits              credit balance of COLONY_API_KEY\nspeedrunpapi credits buy          list the credit packs\nspeedrunpapi credits buy <n>      open the checkout for the pack of n credits (--print: only print the link)");
+    process.exitCode = 2;
+    return;
+  }
+  const apiKey = process.env.COLONY_API_KEY || "";
+  if (!apiKey) {
+    console.error("Set COLONY_API_KEY to the key from your credit pack (it starts with el_).\n" + ADD_CREDITS);
+    process.exitCode = 1;
+    return;
+  }
+  const usage = await createColonyClient({ apiBase: process.env.COLONY_API, apiKey }).usage();
+  console.log(JSON.stringify({ credits: usage.balance }, null, 2));
+  if (!(usage.balance > 0) && !usage.post_paid) console.error(ADD_CREDITS);
+}
+function noCredits(job) {
+  if (job?.state === "failed" && /Insufficient (available credits|certificate balance)/.test(String(job.error ?? "")))
+    console.error("Job failed: " + job.error + "\n" + ADD_CREDITS);
+}
 async function main() {
   const args = process.argv.slice(2), requested = args[0];
   const sourceExt = typeof args[1] === "string" ? path2.extname(args[1]).toLowerCase() : "";
@@ -23494,6 +23550,7 @@ async function main() {
     if (!verdict.ok) process.exitCode = 1;
     return;
   }
+  if (cmd === "credits") return credits(args);
   const client = createColonyClient({
     apiBase: process.env.COLONY_API,
     apiKey: process.env.COLONY_API_KEY || ""
@@ -23545,6 +23602,7 @@ async function main() {
       artifacts: result.result?.artifacts?.map((a) => ({ name: a.name, digest: a.digest }))
     }, null, 2));
     if (result.job.state === "failed") process.exitCode = 1;
+    noCredits(result.job);
     return;
   }
   if (cmd === "solve") {
@@ -23560,6 +23618,7 @@ async function main() {
       source_digest: result.result?.source_digest
     }, null, 2));
     if (result.job.state === "failed") process.exitCode = 1;
+    noCredits(result.job);
     return;
   }
   if (cmd === "run" || cmd === "quote") {
@@ -23588,12 +23647,13 @@ async function main() {
       certificate_signature_verified: run.certified
     }, null, 2));
     if (run.job.state === "failed") process.exitCode = 1;
+    noCredits(run.job);
     return;
   }
   syntax();
   process.exitCode = 2;
 }
 main().catch((err) => {
-  console.error((err instanceof Error ? err.message : String(err)).slice(0, 500));
+  console.error((err instanceof Error ? err.message : String(err)).slice(0, 500) + (err?.status === 402 ? "\n" + ADD_CREDITS : ""));
   process.exitCode = 1;
 });

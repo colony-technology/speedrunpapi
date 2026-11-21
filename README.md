@@ -56,6 +56,7 @@ speedrunpapi scan build/withdraw.r1cs
 speedrunpapi scan circuit.circom --json
 speedrunpapi scan circuit.circom --report out/circuit.report.json
 speedrunpapi verify out/circuit.report.json --source out/circuit.r1cs
+speedrunpapi credits buy
 ```
 
 | Option | Effect |

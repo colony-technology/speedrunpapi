@@ -132,6 +132,8 @@ jobs:
           done
       - name: Chain certificates reject a modified table, a swapped position and a stale digest
         run: node .github/scripts/chain-tamper.mjs m15-chain-alt12-k4 m15-chain-alt26-k6 m15-chain-alt120-k6 m15-chain-prio6-k6 m15-chain-prio5-k6 m15-chain-prio4-k6 m15-chain-prio3-k6 m15-chain-prio2-k6
+      - name: Credits command lists the packs, prints without a browser, and points a refused job to credits buy
+        run: node .github/scripts/credits-cli.mjs
       - name: Independently replay live production ONNX proof from npm and PyPI clients
         run: |
           set -euo pipefail
