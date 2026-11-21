@@ -1,0 +1,26 @@
+{
+  "schema": "colony.math-result.v1",
+  "source_digest": "sha256:7f63ebec5f601bd5ba4a798625372fd836fee941803668891811817a13d23ebc",
+  "contract_digest": "sha256:f299a06d9c2913075acf767fa63a75526711b22b64faf49c0c5eb4aec005d257",
+  "result": {
+    "verdict": "Built",
+    "operator": "chain.ordered-decision.v1",
+    "scope": "Ordered decision list x0 op0 (x1 op1 ( ... x[N-1])), each op OR or AND, 2 <= N <= 256, as a network of k-input tables, 2 <= k <= 8, of at most the declared depth 1..4, equal to the list on every input; every table, composition step and partition is replayed.",
+    "candidate": {
+      "n": 12,
+      "k": 4,
+      "ops": "|&|&|&|&|&|",
+      "depth": 2,
+      "table_count": 5,
+      "output": "t4",
+      "tables": [
+        {"inputs":["x0","x1","x2"],"ops":"|&","truth":"eaea","computes":{"positions":[0,1,2],"ops":"|&"}},
+        {"inputs":["x1","x3","x4","x5"],"ops":"&&|","truth":"8880","computes":{"positions":[1,3,4,5],"ops":"&&|"}},
+        {"inputs":["x4","x6","x7","x8"],"ops":"||&","truth":"feee","computes":{"positions":[4,6,7,8],"ops":"||&"}},
+        {"inputs":["x7","x9","x10","x11"],"ops":"&&|","truth":"8880","computes":{"positions":[7,9,10,11],"ops":"&&|"}},
+        {"inputs":["t0","t1","t2","t3"],"ops":"|&|","truth":"eeea","computes":{"positions":[0,1,2,3,4,5,6,7,8,9,10,11],"ops":"|&|&|&|&|&|"},"segments":[[0,3],[3,6],[6,9]],"bottom":9,"holds":[[0],[1,2],[3,4],[5,6]]}
+      ]
+    },
+    "candidate_digest": "sha256:5ab688a5cce222eb32c5bb32e0c9028c8d13d1b57c760164fb9bb9b661338789"
+  }
+}

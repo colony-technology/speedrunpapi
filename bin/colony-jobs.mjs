@@ -22119,7 +22119,8 @@ var claims = {
   "lattice.phase-selection.v1": "M11: exact rational common-lattice phase selection at one supplied phase, 1..8 bounded designs and all winner ties.",
   "recurrence.damped-horizon.v1": "M12: stable conjugate-root second-order rational recurrences, exact minimal uniform observation horizon category 2, 3, or at least 4.",
   "affine.cycle-defects.v1": "M13: scalar affine cyclic words, chronological linear costs, transported cut defects, and minimum retained defect rank.",
-  "taa.quadratic-cost.v1": "M14: exact scalar affine state with chronological quadratic accumulated cost, including every cross term for all rational initial states."
+  "taa.quadratic-cost.v1": "M14: exact scalar affine state with chronological quadratic accumulated cost, including every cross term for all rational initial states.",
+  "chain.ordered-decision.v1": "Ordered decision list x0 op0 (x1 op1 ( ... x[N-1])), each op OR or AND, 2 <= N <= 256, as a network of k-input tables, 2 <= k <= 8, of at most the declared depth 1..4, equal to the list on every input; every table, composition step and partition is replayed."
 };
 var MATH_CLAIMS = claims;
 
@@ -22532,6 +22533,142 @@ function checkTaaCost(a, c) {
   exactString(c.total_cost, actual.cost);
 }
 
+function chainList(a) {
+  test(a && typeof a === "object" && !Array.isArray(a), "Chain args");
+  const fields = Object.keys(a).sort().join("|");
+  test(fields === "alternating|depth|k" || fields === "depth|k|kinds", "Chain fields");
+  const k = valid(a.k, 2, 8), depth = valid(a.depth, 1, 4), kinds = [];
+  if (fields === "alternating|depth|k") {
+    const n = valid(a.alternating, 2, 256);
+    for (let i = 0; i < n; i++) kinds.push(i % 2);
+  } else {
+    test(Array.isArray(a.kinds) && a.kinds.length >= 1 && a.kinds.length <= 256, "Chain run lengths");
+    a.kinds.forEach((r, j) => {
+      test(kinds.length + valid(r, 1, 256) <= 256, "Chain list length");
+      for (let i = 0; i < r; i++) kinds.push(j % 2);
+    });
+  }
+  test(kinds.length >= 2 && kinds.length <= 256, "Chain list length");
+  return { k, depth, n: kinds.length, ops: kinds.slice(0, -1).map((x) => x ? "&" : "|").join("") };
+}
+function chainValue(ops, vals) {
+  let acc = vals[vals.length - 1];
+  for (let i = vals.length - 2; i >= 0; i--) acc = ops[i] === "|" ? vals[i] | acc : vals[i] & acc;
+  return acc;
+}
+function checkChainOrdered(a, c, exhaustive = true) {
+  const L = chainList(a), k = L.k, N = L.n;
+  shape(c, "depth|k|n|ops|output|table_count|tables");
+  test(c.n === N && c.k === k && c.ops === L.ops, "Chain list");
+  test(Array.isArray(c.tables) && c.tables.length >= 1 && c.tables.length <= 4096 && c.table_count === c.tables.length, "Chain tables");
+  const rows = 1 << k, wire = /* @__PURE__ */ new Map(), level = /* @__PURE__ */ new Map(), used = /* @__PURE__ */ new Set();
+  const isList = (s) => s && typeof s === "object" && !Array.isArray(s) && Object.keys(s).sort().join("|") === "ops|positions" && Array.isArray(s.positions) && s.positions.length >= 1 && s.positions.length <= N && s.positions.every((p) => Number.isSafeInteger(p) && p >= 0 && p < N) && typeof s.ops === "string" && /^[|&]*$/.test(s.ops) && s.ops.length === s.positions.length - 1;
+  const same = (x, y) => x.ops === y.ops && x.positions.length === y.positions.length && x.positions.every((p, i) => p === y.positions[i]);
+  const claimOf = (ref) => {
+    test(typeof ref === "string", "Chain wire");
+    if (/^x(0|[1-9]\d{0,2})$/.test(ref)) {
+      const p = Number(ref.slice(1));
+      test(p < N, "Chain primary input");
+      return { positions: [p], ops: "" };
+    }
+    test(wire.has(ref), "Chain wire order");
+    used.add(ref);
+    return wire.get(ref);
+  };
+  const sim = [];
+  c.tables.forEach((t, id) => {
+    const node = t && typeof t === "object" && "segments" in t;
+    shape(t, node ? "bottom|computes|holds|inputs|ops|segments|truth" : "computes|inputs|ops|truth");
+    test(Array.isArray(t.inputs) && t.inputs.length >= 1 && t.inputs.length <= k && typeof t.ops === "string" && /^[|&]*$/.test(t.ops) && t.ops.length === t.inputs.length - 1, "Chain table");
+    test(typeof t.truth === "string" && t.truth.length === rows / 4 && /^[0-9a-f]+$/.test(t.truth), "Chain truth table width");
+    test(isList(t.computes), "Chain claimed sub-list");
+    const m = t.inputs.length, claimed = t.inputs.map(claimOf), T = BigInt("0x" + t.truth), lut = new Uint8Array(rows);
+    // (a) every table is the decision list over its own inputs on all 2^k rows; an unconnected pin is never read
+    for (let row = 0; row < rows; row++) {
+      const vals = [];
+      for (let i = 0; i < m; i++) vals.push(row >> i & 1);
+      lut[row] = Number(T >> BigInt(row) & 1n);
+      test(lut[row] === chainValue(t.ops, vals), "Chain truth table");
+    }
+    if (!node) {
+      test(t.inputs.every((r) => r[0] === "x") && same(t.computes, { positions: claimed.map((s) => s.positions[0]), ops: t.ops }), "Chain table and its sub-list");
+    } else {
+      const P = t.computes.positions, o = t.computes.ops, n = P.length, atoms = [];
+      test(n >= 2 && Number.isSafeInteger(t.bottom) && t.bottom >= 0 && t.bottom < n && Array.isArray(t.segments) && t.segments.length <= n, "Chain cut");
+      // (c) the segments and then the bottom partition the list in order
+      let at = 0;
+      for (const s of t.segments) {
+        test(Array.isArray(s) && s.length === 2 && s[0] === at && Number.isSafeInteger(s[1]) && s[1] > at && s[1] <= t.bottom, "Chain partition");
+        const lo = s[0], hi = s[1], kind = o[hi - 1], unit = kind === "|" ? "&" : "|";
+        // (b) F_S(R) = F_S(0) | (P_S & R) when S ends in OR, F_S(R) = F_S(1) & (E_S | R) when S ends in AND.
+        // F_S(0), resp. F_S(1), is the list S itself: the item, of the kind of its last connective.
+        // P_S, resp. E_S, is read as one unit per variable of the other kind in S.
+        atoms.push({ positions: P.slice(lo, hi), ops: o.slice(lo, hi - 1), kind });
+        for (let i = lo; i < hi; i++) if (o[i] === unit) atoms.push({ positions: [P[i]], ops: "", kind: unit });
+        at = hi;
+      }
+      test(at === t.bottom, "Chain partition");
+      atoms.push({ positions: P.slice(t.bottom), ops: o.slice(t.bottom), kind: null });
+      // The list is the decision list of its atoms. Atoms of one kind in a row form a run; a run is the AND, or the OR, of its atoms.
+      const run = [];
+      let r = -1;
+      atoms.forEach((x, i) => {
+        if (x.kind === null) run.push(r + 1);
+        else {
+          if (i === 0 || x.kind !== atoms[i - 1].kind) r++;
+          run.push(r);
+        }
+      });
+      test(Array.isArray(t.holds) && t.holds.length === m, "Chain holds");
+      const taken = /* @__PURE__ */ new Set();
+      let prev = 0;
+      t.holds.forEach((h, j) => {
+        test(Array.isArray(h) && h.length >= 1, "Chain atom");
+        for (const x of h) {
+          test(Number.isSafeInteger(x) && x >= 0 && x < atoms.length && !taken.has(x), "Chain atom");
+          taken.add(x);
+        }
+        test(h.slice(0, -1).every((x) => atoms[x].positions.length === 1), "Chain only single variables precede the last atom of a wire");
+        let ops;
+        if (j === m - 1) {
+          // The last wire holds units in run order and then the bottom: K-units o (notK-units o bottom).
+          test(h[h.length - 1] === atoms.length - 1 && h.every((x, i) => i === 0 || run[x] >= run[h[i - 1]]) && run[h[0]] >= prev, "Chain last wire");
+          ops = h.slice(0, -1).map((x) => atoms[x].kind).join("") + atoms[atoms.length - 1].ops;
+        } else {
+          // Any other wire holds atoms of one run, of the kind the table gives that wire, in run order.
+          const kind = t.ops[j];
+          test(h.every((x) => atoms[x].kind === kind && run[x] === run[h[0]]) && run[h[0]] >= prev, "Chain wire of one run");
+          prev = run[h[0]];
+          ops = kind.repeat(h.length - 1) + atoms[h[h.length - 1]].ops;
+        }
+        test(same(claimed[j], { positions: h.flatMap((x) => atoms[x].positions), ops }), "Chain wire sub-list");
+      });
+      test(taken.size === atoms.length, "Chain every atom on one wire");
+    }
+    wire.set("t" + id, t.computes);
+    level.set("t" + id, 1 + Math.max(...t.inputs.map((x) => x[0] === "x" ? 0 : level.get(x))));
+    sim.push({ inputs: t.inputs.map((x) => x[0] === "x" ? -1 - Number(x.slice(1)) : Number(x.slice(1))), lut });
+  });
+  const out = "t" + (c.tables.length - 1);
+  test(c.output === out && !used.has(out) && used.size === c.tables.length - 1, "Chain output and undeclared logic");
+  test(same(wire.get(out), { positions: Array.from({ length: N }, (_, i) => i), ops: L.ops }), "Chain output computes the list");
+  test(c.depth === level.get(out) && c.depth <= L.depth, "Chain depth");
+  if (exhaustive && N <= 20) {
+    const v = new Uint8Array(sim.length), x = new Uint8Array(N);
+    for (let w = 0; w < 2 ** N; w++) {
+      for (let i = 0; i < N; i++) x[i] = Math.floor(w / 2 ** i) % 2;
+      sim.forEach((s, i) => {
+        let row = 0;
+        s.inputs.forEach((q, j) => {
+          if (q < 0 ? x[-1 - q] : v[q]) row |= 1 << j;
+        });
+        v[i] = s.lut[row];
+      });
+      test(v[sim.length - 1] === chainValue(L.ops, x), "Chain exhaustive simulation");
+    }
+  }
+}
+
 // packages/colony-math/src/math-independent.ts
 function integer2(x, lo, hi) {
   if (typeof x !== "number" || !Number.isSafeInteger(x) || x < lo || x > hi) throw Error("Invalid bound");
@@ -22934,7 +23071,7 @@ async function checkMathComputation(source, pkg) {
       return { ok: true, kind: "bounded_math_unknown", certifiable: false };
     }
     assert2(typeof name === "string" && Object.hasOwn(MATH_CLAIMS, name), "Unsupported exact operator");
-    assert2(pkg.result.verdict === "Certified" && pkg.result.operator === name && pkg.result.scope === MATH_CLAIMS[name], "Claim scope or operator mismatch");
+    assert2(pkg.result.verdict === (name === "chain.ordered-decision.v1" ? "Built" : "Certified") && pkg.result.operator === name && pkg.result.scope === MATH_CLAIMS[name], "Claim scope or operator mismatch");
     assert2(pkg.result.candidate !== void 0 && pkg.result.candidate_digest === await digestJson(pkg.result.candidate), "Candidate digest mismatch");
     if (name === "carry.frontier.v1") checkCarry(sourceObj.args, pkg.result.candidate);
     else if (name === "gf2.rank-factor.v1") checkGF2(sourceObj.args, pkg.result.candidate);
@@ -22954,6 +23091,7 @@ async function checkMathComputation(source, pkg) {
     else if (name === "recurrence.damped-horizon.v1") checkDamped(sourceObj.args, pkg.result.candidate);
     else if (name === "affine.cycle-defects.v1") checkAffineCycles(sourceObj.args, pkg.result.candidate);
     else if (name === "taa.quadratic-cost.v1") checkTaaCost(sourceObj.args, pkg.result.candidate);
+    else if (name === "chain.ordered-decision.v1") checkChainOrdered(sourceObj.args, pkg.result.candidate);
     else throw Error("Unknown exact primitive");
     return { ok: true, kind: "colony_math_independent_exact_replay", certifiable: false };
   } catch {
@@ -23315,7 +23453,7 @@ function createColonyClient(options) {
 
 // packages/colony-sdk/src/cli.ts
 function syntax() {
-  console.log("\u1455. colony universal jobs\n  colony-jobs run <source> [--format circom] [--cert] [--public]\n  colony-jobs quote <source> [--format circom|onnx|math]\n  colony-jobs solve <source.math>\n  colony-jobs optimize <source.onnx> --out candidate.onnx --proof-dir proof\n  colony-jobs status <job-id>\n  colony-jobs result <job-id> [--out result.json]\n  colony-jobs check <source> <result.json>\n  colony-jobs usage\nSet COLONY_API_KEY. Optional COLONY_API defaults to https://api.colony.technology.\nspeedrunpapi scan and verify are unchanged.");
+  console.log("\u1455. colony universal jobs\n  colony-jobs run <source> [--format circom] [--cert] [--public]\n  colony-jobs quote <source> [--format circom|onnx|math]\n  colony-jobs solve <source.math>\n  colony-jobs credits [buy [<credits>] [--print]]\n  colony-jobs optimize <source.onnx> --out candidate.onnx --proof-dir proof\n  colony-jobs status <job-id>\n  colony-jobs result <job-id> [--out result.json]\n  colony-jobs check <source> <result.json>\n  colony-jobs usage\nSet COLONY_API_KEY. Optional COLONY_API defaults to https://api.colony.technology.\nspeedrunpapi scan and verify are unchanged.");
 }
 function option(args, flag) {
   const i = args.indexOf(flag);
@@ -23341,6 +23479,62 @@ function sourceFormat(file2, args) {
   if (!format) throw new Error("Provide --format for this source");
   return format;
 }
+var CREDIT_PACKS = [[500, 10], [1e3, 18], [5e3, 75], [2e4, 240], [1e5, 1e3]];
+var PACKS_URL = "https://colony.technology/packs";
+var ADD_CREDITS = "add credits: speedrunpapi credits buy";
+async function openUrl(url) {
+  const { spawn } = await import("node:child_process");
+  const [cmd, argv] = process.platform === "darwin" ? ["open", [url]] : process.platform === "win32" ? ["cmd", ["/c", "start", "", url]] : ["xdg-open", [url]];
+  return new Promise((resolve) => {
+    try {
+      const child = spawn(cmd, argv, { stdio: "ignore", detached: true });
+      child.on("error", () => resolve(false));
+      child.on("spawn", () => {
+        child.unref();
+        resolve(true);
+      });
+    } catch {
+      resolve(false);
+    }
+  });
+}
+async function credits(args) {
+  if (args[1] === "buy") {
+    const wanted = args.slice(2).find((a) => !a.startsWith("--"));
+    const rows = CREDIT_PACKS.map(([n, usd]) => "  " + String(n).padStart(6) + " credits   $" + String(usd).padEnd(5) + "  $" + (usd / n).toFixed(3) + " each");
+    if (wanted === void 0) {
+      console.log(["credit packs (1 credit per certificate or completed job; Unknown costs nothing)", ...rows, "", "buy one:  speedrunpapi credits buy <credits>     for example: speedrunpapi credits buy 1000", "          add --print to print the link without opening a browser"].join("\n"));
+      return;
+    }
+    const pack = CREDIT_PACKS.find(([n]) => String(n) === wanted);
+    if (!pack) {
+      console.error("No pack of " + wanted + " credits. Packs: " + CREDIT_PACKS.map(([n]) => n).join(", "));
+      process.exitCode = 2;
+      return;
+    }
+    console.log([pack[0] + " credits, $" + pack[1] + ": on the packs page choose buy on the " + pack[0] + " row; Stripe checkout opens there", PACKS_URL, "", "your key", "  after payment this page asks for your receipt email and shows the API key", "  lost the page: mail lmtlssss@colony.technology with the receipt", "  then: export COLONY_API_KEY=el_..."].join("\n"));
+    if (!args.includes("--print") && !await openUrl(PACKS_URL)) console.error("No browser opened; open the link above.");
+    return;
+  }
+  if (args[1] !== void 0) {
+    console.log("speedrunpapi credits              credit balance of COLONY_API_KEY\nspeedrunpapi credits buy          list the credit packs\nspeedrunpapi credits buy <n>      open the checkout for the pack of n credits (--print: only print the link)");
+    process.exitCode = 2;
+    return;
+  }
+  const apiKey = process.env.COLONY_API_KEY || "";
+  if (!apiKey) {
+    console.error("Set COLONY_API_KEY to the key from your credit pack (it starts with el_).\n" + ADD_CREDITS);
+    process.exitCode = 1;
+    return;
+  }
+  const usage = await createColonyClient({ apiBase: process.env.COLONY_API, apiKey }).usage();
+  console.log(JSON.stringify({ credits: usage.balance }, null, 2));
+  if (!(usage.balance > 0) && !usage.post_paid) console.error(ADD_CREDITS);
+}
+function noCredits(job) {
+  if (job?.state === "failed" && /Insufficient (available credits|certificate balance)/.test(String(job.error ?? "")))
+    console.error("Job failed: " + job.error + "\n" + ADD_CREDITS);
+}
 async function main() {
   const args = process.argv.slice(2), requested = args[0];
   const sourceExt = typeof args[1] === "string" ? path2.extname(args[1]).toLowerCase() : "";
@@ -23356,6 +23550,7 @@ async function main() {
     if (!verdict.ok) process.exitCode = 1;
     return;
   }
+  if (cmd === "credits") return credits(args);
   const client = createColonyClient({
     apiBase: process.env.COLONY_API,
     apiKey: process.env.COLONY_API_KEY || ""
@@ -23407,6 +23602,7 @@ async function main() {
       artifacts: result.result?.artifacts?.map((a) => ({ name: a.name, digest: a.digest }))
     }, null, 2));
     if (result.job.state === "failed") process.exitCode = 1;
+    noCredits(result.job);
     return;
   }
   if (cmd === "solve") {
@@ -23422,6 +23618,7 @@ async function main() {
       source_digest: result.result?.source_digest
     }, null, 2));
     if (result.job.state === "failed") process.exitCode = 1;
+    noCredits(result.job);
     return;
   }
   if (cmd === "run" || cmd === "quote") {
@@ -23450,12 +23647,13 @@ async function main() {
       certificate_signature_verified: run.certified
     }, null, 2));
     if (run.job.state === "failed") process.exitCode = 1;
+    noCredits(run.job);
     return;
   }
   syntax();
   process.exitCode = 2;
 }
 main().catch((err) => {
-  console.error((err instanceof Error ? err.message : String(err)).slice(0, 500));
+  console.error((err instanceof Error ? err.message : String(err)).slice(0, 500) + (err?.status === 402 ? "\n" + ADD_CREDITS : ""));
   process.exitCode = 1;
 });

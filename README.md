@@ -56,6 +56,7 @@ speedrunpapi scan build/withdraw.r1cs
 speedrunpapi scan circuit.circom --json
 speedrunpapi scan circuit.circom --report out/circuit.report.json
 speedrunpapi verify out/circuit.report.json --source out/circuit.r1cs
+speedrunpapi credits buy
 ```
 
 | Option | Effect |
@@ -157,7 +158,7 @@ python3 "$(npm root -g)/speedrunpapi/verifiers/determinism/determinism_check.py"
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: lmtlssss/speedrunpapi@v0.7.3
+- uses: colony-technology/speedrunpapi@v0.7.4
   with:
     file: circuits/main.circom
     include: node_modules/circomlib/circuits

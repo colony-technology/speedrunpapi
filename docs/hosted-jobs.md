@@ -19,9 +19,11 @@ For other supported exact problems, use `speedrunpapi run problem.math`, `speedr
 
 ### Exact mathematical jobs (R15)
 
-Eighteen bounded exact operators are registered. They implement source-specific operators from the M-01 through M-14 mathematical papers, plus four foundational contracts. Each `.math` source names the exact operator and its input domain. The separate CLI checker reconstructs the original mathematics and rejects modified evidence even when its digest is recalculated. Unsupported parameters return `Unknown`.
+Nineteen bounded exact operators are registered. They implement source-specific operators from the M-01 through M-14 mathematical papers, four foundational contracts and the chain operator. Each `.math` source names the exact operator and its input domain. The separate CLI checker reconstructs the original mathematics and rejects modified evidence even when its digest is recalculated. Unsupported parameters return `Unknown`.
 
 M-05 adds complete cascaded sum/carry responses. M-07 and M-08 supply the 35-rectangle nonnegative tensor certificate and a 20-term signed tensor algorithm. M-09 checks the sparse GF(2) operators. M-10 determines the cyclic occupancy energy minimum. M-11 selects exact rational lattice phases. M-12 classifies recurrence horizons. M-13 computes transported affine-cycle defects. M-14 composes exact quadratic costs under the ᑕ. observation contract. Each implementation states its bounded inputs in the returned scope; the full research theorems are cited separately.
+
+`chain.ordered-decision.v1` decides whether an ordered decision list, x0 op0 (x1 op1 ( ... x[N-1])) with each op OR or AND, is computed by a network of k-input tables of at most a declared depth. The source gives `k` (2 to 8), `depth` (1 to 4) and the list, either as `kinds`, run lengths beginning with an OR run, or as `alternating: N`; the list has 2 to 256 variables, and the kind of the last variable has no effect. A `Built` result carries every table with its inputs and its 2^k-bit truth table, primary inputs named by position, the network depth and table count, and the sub-list each table computes. The checker evaluates every table on all 2^k rows. It checks every composition step against the identities F_S(R) = F_S(0) OR (P_S AND R) and F_S(R) = F_S(1) AND (E_S OR R), where P_S is the AND of the AND-variables and E_S the OR of the OR-variables of segment S, and the rule that the last wire may hold units of one kind around units of the other around the bottom item. It checks that the segments partition the list in order, and it simulates the network on every input when N is at most 20. It needs no key and no solver. A modified table, a swapped position or a recalculated digest is rejected. When no network of the declared depth is available the result is `Unknown`, which does not state that none exists. The hosted search also stops at a fixed amount of work, and a list it does not finish within that bound is `Unknown` and costs nothing.
 
 The production result examples for M-02, M-03, M-04, M-05 and M-06 through M-14 can be independently replayed offline with:
 
@@ -42,6 +44,14 @@ speedrunpapi check examples/m14-taa-cost.math examples/m14-taa-cost.result.json
 ```
 
 These result bundles came from funded technical-test jobs in production. They carry original source digests and exact independent mathematical evidence. They do not represent external card payments. New hosted jobs require an API key with credits.
+
+The chain operator examples: alternating lists of 12 variables at k = 4, depth 2, of 26 at k = 6, depth 2, and of 120 at k = 6, depth 3; and the lists of bits 6 down to 2 of a 128-input priority encoder, each variable one input or its complement, written as runs of 64, 32, 16, 8 and 4, at k = 6, depth 3. These bundles were produced by the operator implementation before hosting and are not records of funded jobs.
+
+```sh
+for name in alt12-k4 alt26-k6 alt120-k6 prio6-k6 prio5-k6 prio4-k6 prio3-k6 prio2-k6; do
+  speedrunpapi check examples/m15-chain-$name.math examples/m15-chain-$name.result.json
+done
+```
 
 A [replayable production ONNX proof](proofs/hosted-onnx-production-20261110/) accompanies this release. The source, candidate, cost decision, transformation proof and independent checker are available to inspect. Local scans remain free and offline.
 

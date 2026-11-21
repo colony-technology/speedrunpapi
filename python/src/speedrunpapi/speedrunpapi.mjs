@@ -2587,7 +2587,7 @@ function scanCircomFile(file, options = {}) {
 }
 
 // src/cli.ts
-var VERSION = "0.7.3";
+var VERSION = "0.7.4";
 function usage() {
   console.log(`speedrunpapi ${VERSION}: output-determinism analysis for Circom circuits and R1CS
 
@@ -2597,6 +2597,7 @@ Usage:
   speedrunpapi verify <report.json> --source <circuit.r1cs>
   speedrunpapi version
   speedrunpapi quote|solve|run|optimize|status|result|check ...   hosted jobs; needs COLONY_API_KEY
+  speedrunpapi credits [buy [<credits>] [--print]]                credit balance, or buy a credit pack
   speedrunpapi verify-onnx <source.onnx> <artifacts-dir>           offline ONNX plan check
 
 What scan decides, per file:
@@ -3044,7 +3045,7 @@ scanned ${results.length}: ${counts.Certified} Certified / ${counts.Broken} Brok
   usage();
   process.exit(1);
 }
-var hostedCommands = /* @__PURE__ */ new Set(["run", "quote", "solve", "optimize", "status", "result", "check"]);
+var hostedCommands = /* @__PURE__ */ new Set(["run", "quote", "solve", "optimize", "status", "result", "check", "credits"]);
 if (process.argv[2] === "jobs") process.argv.splice(2, 1);
 if (process.argv[2] === "verify-onnx") {
   const arguments2 = process.argv.slice(3);

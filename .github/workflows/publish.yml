@@ -33,7 +33,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --provenance --access public
   pypi:
-    if: github.event_name == 'push' || inputs.registry == 'pypi'
+    if: github.event_name == 'workflow_dispatch' && inputs.registry == 'pypi'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
