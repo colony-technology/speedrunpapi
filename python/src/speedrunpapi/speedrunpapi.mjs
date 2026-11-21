@@ -2587,7 +2587,7 @@ function scanCircomFile(file, options = {}) {
 }
 
 // src/cli.ts
-var VERSION = "0.7.3";
+var VERSION = "0.7.4";
 function usage() {
   console.log(`speedrunpapi ${VERSION}: output-determinism analysis for Circom circuits and R1CS
 
