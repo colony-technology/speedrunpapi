@@ -1,0 +1,43 @@
+{
+  "schema": "colony.math-result.v1",
+  "source_digest": "sha256:01b64de260983e40b1ff957f6ccff3597210f6cd72200bf330f332609169fa9b",
+  "contract_digest": "sha256:f299a06d9c2913075acf767fa63a75526711b22b64faf49c0c5eb4aec005d257",
+  "result": {
+    "verdict": "Built",
+    "operator": "chain.ordered-decision.v1",
+    "scope": "Ordered decision list x0 op0 (x1 op1 ( ... x[N-1])), each op OR or AND, 2 <= N <= 256, as a network of k-input tables, 2 <= k <= 8, of at most the declared depth 1..4, equal to the list on every input; every table, composition step and partition is replayed.",
+    "candidate": {
+      "n": 96,
+      "k": 6,
+      "ops": "||||||||||||||||||||||||||||||||&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&|||||||||||||||||||||||||||||||",
+      "depth": 3,
+      "table_count": 22,
+      "output": "t21",
+      "tables": [
+        {"inputs":["x0","x1","x2","x3","x4","x5"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[0,1,2,3,4,5],"ops":"|||||"}},
+        {"inputs":["x6","x7","x8","x9","x10","x11"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[6,7,8,9,10,11],"ops":"|||||"}},
+        {"inputs":["x12","x13","x14","x15","x16","x17"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[12,13,14,15,16,17],"ops":"|||||"}},
+        {"inputs":["x18","x19","x20","x21","x22","x23"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[18,19,20,21,22,23],"ops":"|||||"}},
+        {"inputs":["x24","x25","x26","x27","x28","x29"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[24,25,26,27,28,29],"ops":"|||||"}},
+        {"inputs":["x30","x31"],"ops":"|","truth":"eeeeeeeeeeeeeeee","computes":{"positions":[30,31],"ops":"|"}},
+        {"inputs":["t0","t1","t2","t3","t4","t5"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],"ops":"|||||||||||||||||||||||||||||||"},"segments":[[0,6],[6,12],[12,18],[18,24],[24,30]],"bottom":30,"holds":[[0],[1],[2],[3],[4],[5]]},
+        {"inputs":["x32","x33","x34","x35","x36","x37"],"ops":"&&&&&","truth":"8000000000000000","computes":{"positions":[32,33,34,35,36,37],"ops":"&&&&&"}},
+        {"inputs":["x38","x39","x40","x41","x42","x43"],"ops":"&&&&&","truth":"8000000000000000","computes":{"positions":[38,39,40,41,42,43],"ops":"&&&&&"}},
+        {"inputs":["x44","x45","x46","x47","x48","x49"],"ops":"&&&&&","truth":"8000000000000000","computes":{"positions":[44,45,46,47,48,49],"ops":"&&&&&"}},
+        {"inputs":["x50","x51","x52","x53","x54","x55"],"ops":"&&&&&","truth":"8000000000000000","computes":{"positions":[50,51,52,53,54,55],"ops":"&&&&&"}},
+        {"inputs":["x56","x57","x58","x59","x60","x61"],"ops":"&&&&&","truth":"8000000000000000","computes":{"positions":[56,57,58,59,60,61],"ops":"&&&&&"}},
+        {"inputs":["x62","x63"],"ops":"&","truth":"8888888888888888","computes":{"positions":[62,63],"ops":"&"}},
+        {"inputs":["t7","t8","t9","t10","t11","t12"],"ops":"&&&&&","truth":"8000000000000000","computes":{"positions":[32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63],"ops":"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"},"segments":[[0,6],[6,12],[12,18],[18,24],[24,30]],"bottom":30,"holds":[[0],[1],[2],[3],[4],[5]]},
+        {"inputs":["x64","x65","x66","x67","x68","x69"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[64,65,66,67,68,69],"ops":"|||||"}},
+        {"inputs":["x70","x71","x72","x73","x74","x75"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[70,71,72,73,74,75],"ops":"|||||"}},
+        {"inputs":["x76","x77","x78","x79","x80","x81"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[76,77,78,79,80,81],"ops":"|||||"}},
+        {"inputs":["x82","x83","x84","x85","x86","x87"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[82,83,84,85,86,87],"ops":"|||||"}},
+        {"inputs":["x88","x89","x90","x91","x92","x93"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[88,89,90,91,92,93],"ops":"|||||"}},
+        {"inputs":["x94","x95"],"ops":"|","truth":"eeeeeeeeeeeeeeee","computes":{"positions":[94,95],"ops":"|"}},
+        {"inputs":["t14","t15","t16","t17","t18","t19"],"ops":"|||||","truth":"fffffffffffffffe","computes":{"positions":[64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95],"ops":"|||||||||||||||||||||||||||||||"},"segments":[[0,6],[6,12],[12,18],[18,24],[24,30]],"bottom":30,"holds":[[0],[1],[2],[3],[4],[5]]},
+        {"inputs":["t6","t13","t20"],"ops":"|&","truth":"eaeaeaeaeaeaeaea","computes":{"positions":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95],"ops":"||||||||||||||||||||||||||||||||&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&|||||||||||||||||||||||||||||||"},"segments":[[0,32],[32,64]],"bottom":64,"holds":[[0],[1],[2]]}
+      ]
+    },
+    "candidate_digest": "sha256:9251e5b2a0411987b4fae9838a13afddf7727c588e00476fd2e1d81c4d68ccf8"
+  }
+}
