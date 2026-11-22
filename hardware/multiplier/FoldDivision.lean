@@ -3,7 +3,7 @@ Fold division.  D + eps = 2^P with eps small.  A running value W = T * 2^(P+o) +
 W' = L + T * eps * 2^o.  The difference is T * D * 2^o, so T is a quotient digit at offset o.
 Core Lean only.
 -/
-namespace colony.Fold
+namespace Colony.Fold
 
 /-- One fold removes exactly T * D * 2^o. -/
 theorem step (P o T L eps D W W' : Nat) (hD : D + eps = 2 ^ P)
@@ -114,10 +114,10 @@ theorem select (a d Q : Nat) (hd : 0 < d) (h1 : Q * d ≤ a) (h2 : a < Q * d + 3
   · refine (Nat.div_mod_unique hd).mpr ⟨?_, by omega⟩
     rw [Nat.mul_add, Nat.mul_comm d Q]; omega
 
-end colony.Fold
+end Colony.Fold
 
-#print axioms colony.Fold.invariant
-#print axioms colony.Fold.fields
-#print axioms colony.Fold.bound
-#print axioms colony.Fold.last
-#print axioms colony.Fold.select
+#print axioms Colony.Fold.invariant
+#print axioms Colony.Fold.fields
+#print axioms Colony.Fold.bound
+#print axioms Colony.Fold.last
+#print axioms Colony.Fold.select

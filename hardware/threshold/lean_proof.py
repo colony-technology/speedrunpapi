@@ -1,7 +1,7 @@
 """Emit a Lean 4 proof that a threshold netlist equals [popcount >= T] for every input.
 
 Input: BLIF netlist and its colony.lut-threshold.v1 derivation.  Output: one self-contained .lean file
-(core Lean only, no Mathlib).  The Lean kernel, not colony code, is the judge:
+(core Lean only, no Mathlib).  The Lean kernel, not Colony code, is the judge:
   - each LUT is a definition by its truth-table constant;
   - each node identity is a lemma proved by exhaustive case split on its Boolean inputs;
   - node identities are summed in chunks by `omega`; the final theorem is
