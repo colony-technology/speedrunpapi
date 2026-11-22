@@ -21,7 +21,7 @@ The full packet is checked locally using:
 
 All evidence is bound to the exact original bytes. The receipt has a
 local ephemeral Ed25519 **laboratory** signature. It is not a production
-Colony certificate and establishes no third-party signer identity.
+colony certificate and establishes no third-party signer identity.
 
 ## Integration / claim boundary
 
