@@ -7,7 +7,7 @@ signs, and takes the sign as the top bit.  `sqrt_correct` shows the root bits sa
 `Q * Q ≤ X < (Q + 1) * (Q + 1)` for every radicand given by its bit pairs.  Core Lean 4 only.
 -/
 
-namespace Colony
+namespace colony
 
 /-- Exact step: `p` is the next pair of radicand bits, `Q` the root bits so far. -/
 def stepS (r Q p : Int) : Int := if 0 ≤ r then 4 * r + p - (4 * Q + 1) else 4 * r + p + (4 * Q + 3)
@@ -179,6 +179,6 @@ theorem sqrt_correct (ps : List Int) (hps : ∀ p ∈ ps, 0 ≤ p ∧ p ≤ 3) :
   · obtain ⟨h1, h2⟩ := hp (by omega)
     constructor <;> omega
 
-end Colony
+end colony
 
-#print axioms Colony.sqrt_correct
+#print axioms colony.sqrt_correct

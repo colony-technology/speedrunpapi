@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ᑕ. Standalone proof packet verifier.
 
-No optimizer, Colony account, network connection or private repository.
+No optimizer, colony account, network connection or private repository.
 The accompanying ONNX independent checkers are derived from their
 standalone reference modules, without proposal-generator imports.
 """
