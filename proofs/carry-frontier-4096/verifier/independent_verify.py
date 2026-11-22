@@ -1,4 +1,4 @@
-"""Independent mathematical replay for bounded colony transformations.
+"""Independent mathematical replay for bounded Colony transformations.
 
 This checker never imports proposal/optimization code and derives claims from
 original source, exact bit identities, and exact rational algebra.

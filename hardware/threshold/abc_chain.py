@@ -2,7 +2,7 @@
 
 A direct `cec reference delivered` is undecided: the two netlists share no internal
 functions and SAT cannot bridge two different 1001-input counters.  The chain inserts
-hybrids H_h (tree blocks of height <= h in colony's redundant form, converted to binary
+hybrids H_h (tree blocks of height <= h in Colony's redundant form, converted to binary
 at the cut; plain binary addition above).  Consecutive netlists differ by one local merge
 rule, so ABC's SAT sweeping matches the block sums and each step is decided.
 Equivalence is transitive, so the chain is a proof by the evaluator alone.

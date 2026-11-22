@@ -7,7 +7,7 @@ any sequence of dividend bits the kept word, the sign and the quotient bits are 
 Core Lean 4 only.
 -/
 
-namespace colony
+namespace Colony
 
 /-- Exact non-restoring step: subtract while the remainder is non-negative, add back otherwise. -/
 def stepZ (b r x : Int) : Int := if 0 ≤ r then 2 * r + x - b else 2 * r + x + b
@@ -261,7 +261,7 @@ theorem div_zero : ∀ (xs : List Bool) (H Q A : Int), 0 < H → 0 ≤ A → 2 *
     have e : (2 * Q + 1 + 1) = (Q + 1) * 2 := by omega
     rw [e, Int.mul_assoc, Int.mul_comm 2 (2 ^ xs.length)]
 
-end colony
+end Colony
 
-#print axioms colony.div_correct
-#print axioms colony.div_zero
+#print axioms Colony.div_correct
+#print axioms Colony.div_zero

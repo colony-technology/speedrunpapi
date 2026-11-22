@@ -1,7 +1,7 @@
 {
   "schema": "colony.market-lab-signature.v1",
   "signature_scope": "laboratory observation receipt",
-  "issuer": "colony independent local lab, ephemeral key",
+  "issuer": "Colony independent local lab, ephemeral key",
   "signature_algorithm": "Ed25519",
   "signer_key_id": "lab-sha256:99c8c73e879f43400",
   "public_key_spki_base64": "MCowBQYDK2VwAyEAyyrfXhLuxVARYLFrCEmooIdfwrnNv1Wdtu5+bbWvCtQ=",

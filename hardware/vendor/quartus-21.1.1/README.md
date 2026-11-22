@@ -23,7 +23,7 @@
 
 ## Matched CRC comparison
 
-| Width | Plain ALMs | colony ALMs | Plain MHz | colony MHz | ALM ratio colony / plain |
+| Width | Plain ALMs | Colony ALMs | Plain MHz | Colony MHz | ALM ratio Colony / plain |
 |--:|--:|--:|--:|--:|--:|
 | 512 | 1081 | 1203 | 108.48 | 109.90 | 1.113× |
 | 1024 | 2019 | 2112 | 109.75 | 108.47 | 1.046× |

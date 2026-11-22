@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Standalone verification of self-contained colony ephemeral LAB evidence. */
+/** Standalone verification of self-contained Colony ephemeral LAB evidence. */
 import fs from "node:fs";
 import path from "node:path";
 import {createHash,createPublicKey,verify} from "node:crypto";
@@ -9,7 +9,7 @@ try{
  const data=fs.readFileSync(path.join(root,"receipt.json"));
  const signature=JSON.parse(fs.readFileSync(path.join(root,"signature.json"),"utf8"));
  if(signature.schema!=="colony.market-lab-signature.v1" ||
-    signature.issuer!=="colony independent local lab, ephemeral key" ||
+    signature.issuer!=="Colony independent local lab, ephemeral key" ||
     signature.signature_scope!=="laboratory observation receipt" ||
     signature.signature_algorithm!=="Ed25519" ||
     signature.production_issuer!==false ||

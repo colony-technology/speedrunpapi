@@ -71,7 +71,7 @@ sh prove.sh 10
 ```
 
 Yosys's SAT solver proves `udiv` equal to `/` and `%` for every `a` and every `b > 0`, and its `b = 0` outputs, at each width from 1 to 10. Widths 16, 32 and 64 are simulated against the operators.
-`GrowingWordDivision.lean` proves the recurrence for every width in Lean 4, core library only: `colony.div_correct` states that for `0 < b <= 2^n` the rows return `a / b` and the remainder word is `a % b`. Run `lean GrowingWordDivision.lean`.
+`GrowingWordDivision.lean` proves the recurrence for every width in Lean 4, core library only: `Colony.div_correct` states that for `0 < b <= 2^n` the rows return `a / b` and the remainder word is `a % b`. Run `lean GrowingWordDivision.lean`.
 
 ## Paid evaluation
 

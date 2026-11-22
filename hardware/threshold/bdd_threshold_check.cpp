@@ -1,6 +1,6 @@
 // Certificate-free exact check: BLIF netlist == [popcount(A) >= T].
 // Reduced ordered BDDs, variable order A[0] < A[1] < ... ; canonical form => pointer equality.
-// Uses no derivation and no colony code.  Build: c++ -O2 -std=c++17 bdd_threshold_check.cpp -o bddcheck
+// Uses no derivation and no Colony code.  Build: c++ -O2 -std=c++17 bdd_threshold_check.cpp -o bddcheck
 #include <cstdio>
 #include <cstdlib>
 #include <cstdint>
