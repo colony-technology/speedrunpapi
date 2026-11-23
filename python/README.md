@@ -11,7 +11,7 @@ python -m speedrunpapi.verifiers.determinism circuit.r1cs circuit.report.json
 
 The scanner needs Node.js 20 or later on `PATH`, and the circom compiler for `.circom` input. The checker (`speedrunpapi.verifiers.determinism`) needs only the Python standard library: it parses the R1CS itself and replays the derivation or re-evaluates the counterexample without the scanner.
 
-Full documentation: https://github.com/lmtlssss/speedrunpapi
+Full documentation: https://github.com/colony-technology/speedrunpapi
 
 Versions before 0.7.1 classified sources by template name and keyword and could report `Certified` for a circuit whose outputs were unconstrained. Those results were not proofs. If you relied on one, scan again.
 
