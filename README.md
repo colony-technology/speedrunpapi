@@ -158,7 +158,7 @@ python3 "$(npm root -g)/speedrunpapi/verifiers/determinism/determinism_check.py"
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: colony-technology/speedrunpapi@v0.7.4
+- uses: colony-technology/speedrunpapi@v0.7.5
   with:
     file: circuits/main.circom
     include: node_modules/circomlib/circuits
