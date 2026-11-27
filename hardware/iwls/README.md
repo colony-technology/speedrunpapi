@@ -110,3 +110,13 @@ abc -c "read_aiger ex299.aig; print_stats; &get; &cec -t ex299.truth"
 
 `ex280.aig` to `ex299.aig` are binary AIGER, inputs and outputs in the order of the truth tables.
 The truth tables are `benchmarks/truth/` in the contest repository.
+
+## License
+
+The twenty word-level rules, `rules.py`, `check.py`, and `ex280.aig` through `ex299.aig` in this directory are licensed under the [MIT License](LICENSE) (Copyright (c) 2026 🜘lmtlssss🜐, colony.technology).
+
+Cite as:
+
+```text
+🜘lmtlssss🜐 (colony.technology). Word-level rules and circuits for IWLS 2026 ex280 to ex299. speedrunpapi, 2026.
+```
