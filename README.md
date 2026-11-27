@@ -12,7 +12,7 @@ An under-constrained circuit accepts more than one output for the same input, so
 
 A circuit it cannot decide is `Unknown`.
 
-## Quick start
+## quick start
 
 Requires Node.js 20+ and the [circom](https://github.com/iden3/circom/blob/master/mkdocs/docs/getting-started/installation.md) compiler 2.x for `.circom` input.
 
@@ -37,7 +37,7 @@ speedrunpapi scan examples/iszero.circom examples/decoder.circom examples/modsum
 
 Exit status is `0` when every file is `Certified`, `2` if any is `Broken`, `3` if any is `Unknown`, `1` on error. Analysis runs on your machine; nothing is uploaded unless you supply an API key for a signed certificate.
 
-## Usage
+## usage
 
 ```sh
 # A circuit with a main component
@@ -72,7 +72,7 @@ speedrunpapi credits buy
 | `--timeout`, `--cex-timeout` | Seconds for proof search (600) and counterexample search (15) |
 | `--circom <bin>`, `--prime <name>` | Compiler binary and field (`bn128`, `bls12381`, `goldilocks`, ...) |
 
-## What Certified means
+## what certified means
 
 `Certified` states output determinism of one constraint system: for any two assignments that satisfy every constraint and agree on all input signals, the output signals agree. With `--strict` the same is stated for every signal.
 
@@ -82,7 +82,7 @@ A circuit with no output signals is never `Certified`: the property says nothing
 
 `--assume-binary` adds the constraint `x * (x - 1) = 0` for each matched input. The verdict holds for callers that pass bits at those inputs. The assumptions are written into the report and the certificate.
 
-### Compiler levels
+### compiler levels
 
 A verdict about a `.circom` file is a verdict about the R1CS that circom emits for it, under the recorded compiler version and flags.
 
@@ -90,7 +90,7 @@ circom `--O0` applies no simplification, so that system describes the circuit ex
 
 `scan` therefore analyses the `--O0` system first and accepts its proof or counterexample. If that is `Unknown` it tries `--O1`, and accepts a counterexample there only when all declared inputs are wired. When you scan an `.r1cs` directly and some declared inputs have no wire, the tool can still certify but will not report `Broken`. Scan the `.circom` source, or an R1CS compiled with `--O0`.
 
-## How it decides
+## how it decides
 
 The prover works on the difference of two satisfying assignments that agree on the inputs and shows, wire by wire, that the difference is zero. Rules:
 
@@ -105,7 +105,7 @@ Every rule application is a step in the derivation. The checker re-reads each ci
 
 For `Broken`, the tool fixes concrete inputs, solves the system by propagation, and looks for a second solution with different outputs, steering inputs toward the degenerate cases the prover could not rule out (a divisor being zero, for example). A pair is reported only after both assignments pass a full evaluation of every constraint.
 
-## Measured
+## measured
 
 circomlib templates compiled with circom 2.2.3 at `--O0`, analysed on an Apple M1 with Node.js 26. Times are single runs in milliseconds.
 
@@ -132,7 +132,7 @@ The `Broken` rows are properties of those templates taken alone, with unrestrict
 
 The corpus has 71 circom-compiled cases with known answers. The engine currently decides 61 of them and reports `Unknown` for 10; none of its verdicts contradicts the known answer. A separate fuzzer compares the engine against brute-force enumeration on random systems over small fields (150,000 systems in the release run, no wrong `Certified` or `Broken`).
 
-## What returns Unknown
+## what returns unknown
 
 - Elliptic-curve arithmetic whose uniqueness depends on a number-theoretic fact, such as the completeness of the Baby Jubjub addition law.
 - Big-integer arithmetic whose uniqueness depends on range bounds across limbs.
@@ -142,7 +142,7 @@ The corpus has 71 circom-compiled cases with known answers. The engine currently
 
 For these the report lists each open signal with the condition under which a constraint would fix it, for example `main.xout: fixed by constraint 4 only where (1 + 168696*main.tau) != 0`. Each line gives a condition to check by hand.
 
-## Checking a result yourself
+## checking a result yourself
 
 A report is self-contained: the derivation or the two witnesses, the R1CS digest, the compiler and flags, and any assumptions.
 
@@ -154,7 +154,7 @@ python3 "$(npm root -g)/speedrunpapi/verifiers/determinism/determinism_check.py"
 
 `verify` uses the JavaScript checker. `determinism_check.py` is a second implementation in Python with no dependencies beyond the standard library and its own R1CS parser. To tie the R1CS back to your source, recompile with the recorded compiler version and flags and compare digests.
 
-## CI
+## ci
 
 ```yaml
 - uses: actions/checkout@v4
@@ -166,7 +166,7 @@ python3 "$(npm root -g)/speedrunpapi/verifiers/determinism/determinism_check.py"
 
 The Action installs the pinned circom compiler, scans, uploads the report, and fails on `Broken`. Set `fail_on_unknown: true` to require `Certified`. Supplying `api_key` additionally requests a signed certificate.
 
-## Signed certificates
+## signed certificates
 
 Local analysis is free. A paid API key adds an Ed25519-signed statement from colony.technology that its service replayed your derivation, or re-evaluated your witness pair, against the R1CS you submitted:
 
@@ -179,23 +179,23 @@ The service signs only `Certified` and `Broken` results that it has itself re-ve
 
 To check a certificate offline, `node "$(npm root -g)/speedrunpapi/verifiers/cert/verify.mjs" certificate.json circuit.r1cs` (or `node verifiers/cert/verify.mjs …` from a clone of this repository) verifies the Ed25519 signature against the pinned public key and that the certificate names the digest of your file. The signature identifies the issuer. The report lets you re-check the result. Credit packs: [colony.technology/packs](https://colony.technology/packs).
 
-## Earlier versions
+## earlier versions
 
 Before 0.7.1, sources were classified by template name and keyword. A circuit with unconstrained outputs could receive `Certified`. Certificates issued before 0.7.1 have been revoked. Scan again with 0.7.1 or later. [Release notes](https://github.com/colony-technology/speedrunpapi/releases).
 
-## Hosted jobs
+## hosted jobs
 
 The hosted-job client (`run`, `solve`, `quote`, `optimize`, `status`, `result`, `check`) and the offline ONNX checker (`verify-onnx`) are described in [docs/hosted-jobs.md](docs/hosted-jobs.md).
 
-## Exact embeddings
+## exact embeddings
 
-[`proofs/exact-embeddings/`](proofs/exact-embeddings/) holds the sentence-embedding model `sentence-transformers/all-MiniLM-L6-v2` computed in integer arithmetic. The 2,758 sentences of the STS-B test set give one SHA-256 on seven machines, x86-64 and ARM64 under Linux, macOS and Windows, where the float32 model and onnxruntime each give six. STS-B Spearman is 0.8203 for all three. The only floating-point operation is a product of integer matrices whose partial sums are bounded below 2^53, and the bound is checked for every weight matrix. [The notebook](https://colab.research.google.com/github/lmtlssss/speedrunpapi/blob/main/proofs/exact-embeddings/exact_embeddings.ipynb) runs it in Colab with NumPy alone.
+[`proofs/exact-embeddings/`](proofs/exact-embeddings/) holds the sentence-embedding model `sentence-transformers/all-MiniLM-L6-v2` computed in integer arithmetic. The 2,758 sentences of the STS-B test set give one SHA-256 on seven machines, x86-64 and ARM64 under Linux, macOS and Windows, where the float32 model and onnxruntime each give six. STS-B Spearman is 0.8203 for all three. The only floating-point operation is a product of integer matrices whose partial sums are bounded below 2^53, and the bound is checked for every weight matrix. [The notebook](https://colab.research.google.com/github/colony-technology/speedrunpapi/blob/main/proofs/exact-embeddings/exact_embeddings.ipynb) runs it in Colab with NumPy alone.
 
-## Exact language model
+## exact language model
 
 [`proofs/exact-llm/`](proofs/exact-llm/) holds the language model `HuggingFaceTB/SmolLM2-135M` computed in integer arithmetic. The logits at the 471 prompt positions of 64 prompts give one SHA-256 on seven machines, where the float32 model gives six and onnxruntime three; the top token equals float32's at 471 of 471 prompt positions. exact-16, in the same folder, makes every operand of every matrix product an integer within ±(2^15 − 1); its three routes, one float64 product, float32 byte products and onnxruntime `MatMulInteger`, print one pair of hashes: 21 runs on seven machines. The same code makes SmolLM2-360M (361,821,120 weights) exact with one pair of hashes on seven machines and three routes, and SmolLM2-1.7B (1,711,376,384 weights) with one pair on six machines, 13 runs; the top token equals float32's at 471 of 471 prompt positions wherever float32 finished.
 
-## Hardware
+## hardware
 
 Logic compilers, netlists and proofs are under [`hardware/`](hardware/).
 
